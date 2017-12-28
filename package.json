@@ -1,0 +1,40 @@
+{
+  "name": "tacocat-gallery-redux",
+  "version": "1.0.0",
+  "description": "Photo gallery for tacocat.com built in React and Redux",
+  "main": "index.js",
+  "keywords": [],
+  "author": "Dean Moses",
+  "license": "MIT",
+  "dependencies": {
+    "@types/react": "^16.0.31",
+    "@types/react-dom": "^16.0.3",
+    "@types/react-redux": "^5.0.14",
+    "@types/react-router-dom": "^4.2.3",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-redux": "^5.0.6",
+    "react-router-dom": "^4.2.2",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0"
+  },
+  "devDependencies": {
+    "awesome-typescript-loader": "^3.4.1",
+    "css-loader": "^0.28.7",
+    "jshint": "^2.9.5",
+    "less": "^2.7.3",
+    "less-loader": "^4.0.5",
+    "node-sass": "^4.7.2",
+    "source-map-loader": "^0.2.3",
+    "style-loader": "^0.19.1",
+    "typescript": "^2.6.2",
+    "webpack": "^3.10.0",
+    "webpack-dev-server": "^2.9.7"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "webpack --watch",
+    "start": "webpack-dev-server --open",
+    "build": "NODE_ENV=production webpack && cp src/index.html dist/index.html"
+  }
+}
