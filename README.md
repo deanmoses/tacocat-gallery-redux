@@ -3,8 +3,8 @@ A HTML5/javascript single page application (SPA) front end for tacocat.com's pho
 ## Technologies
 Uses the following technologies: 
 * [React.js](http://facebook.github.io/react/):  A component-based Javascript View layer.
-* [Typescript](https://www.typescriptlang.org/): Written in Typescript.
-* [Webpack](https://webpack.js.org/): A javascript build system
+* [Typescript](https://www.typescriptlang.org/): Strongly typed Javascript, transpiles to browser Javascript.
+* [Webpack](https://webpack.js.org/): A javascript build system.
 
 Retrieves album data from tacocat's [ZenPhoto](http://www.zenphoto.org/) installation.  Depends on this prototype JSON REST backend ([github](https://github.com/deanmoses/tacocat-gallery-zenphoto-rest-api)).
 
