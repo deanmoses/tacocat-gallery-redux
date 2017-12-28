@@ -1,6 +1,12 @@
 const webpack = require('webpack');
 const path = require('path');
 
+// This helper function is not strictly necessary.
+// I just don't like repeating the path.join a dozen times.
+function srcPath(subdir) {
+    return path.join(__dirname, "src", subdir);
+}
+
 var config = {
     // context: the base directory, an absolute path, for resolving entry points and loaders from configuration
     context: __dirname + '/src',
@@ -18,11 +24,16 @@ var config = {
 
     plugins: [
         new webpack.DefinePlugin({
-          ON_TEST: process.env.NODE_ENV === 'test'
+            ON_TEST: process.env.NODE_ENV === 'test'
         })
     ],
 
     resolve: {
+        // Needed so files can import from 'components/App' instead of './components/App'
+        alias: {
+            actions: srcPath('actions'),
+            components: srcPath('components')
+        },
         // Add '.ts' and '.tsx' as resolvable extensions.
         extensions: [".ts", ".tsx", ".js", ".json"]
     },
@@ -34,9 +45,9 @@ var config = {
 
             // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
             { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
-            {test: /\.html$/, loader: 'raw', exclude: /node_modules/},
-            {test: /\.css$/, loader: 'style!css', exclude: /node_modules/},
-            {test: /\.styl$/, loader: 'style!css!stylus', exclude: /node_modules/}
+            { test: /\.html$/, loader: 'raw', exclude: /node_modules/ },
+            { test: /\.css$/, loader: 'style!css', exclude: /node_modules/ },
+            { test: /\.styl$/, loader: 'style!css!stylus', exclude: /node_modules/ }
         ]
     },
 
