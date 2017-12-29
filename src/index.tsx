@@ -1,5 +1,6 @@
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import { render } from 'react-dom';
+import { Provider } from 'react-redux';
 import { App } from '@src/components/App';
 import { configureStore } from '@src/store/configureStore';
 import {
@@ -7,6 +8,7 @@ import {
 	createMyAction1
 } from '@src/actions/actions';
 
+// create the React Redux store, which stores the application's state
 let store = configureStore();
 
 console.log(store.getState());
@@ -26,4 +28,9 @@ store.dispatch(createMyAction1('baz'));
 // Stop listening to state updates
 unsubscribe();
 
-ReactDOM.render(<App />, document.getElementById('app'));
+render(
+	<Provider store={store}>
+		<App />
+	</Provider>,
+	document.getElementById('app')
+);
