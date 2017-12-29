@@ -1,21 +1,25 @@
 {
     "compilerOptions": {
-        "outDir": "./dist/",
-        "sourceMap": true,
-        "noImplicitAny": true,
         "alwaysStrict": true,
+        "module": "commonjs",
+        "noEmitOnError": true,
+        "noFallthroughCasesInSwitch": true,
+        "noImplicitAny": true,
+        "noImplicitReturns": true,
+        "noImplicitThis": true,
         "noUnusedLocals": true,
         "noUnusedParameters": true,
-        "module": "commonjs",
+        "removeComments": true,
+        "sourceMap": true,
         "target": "es5",
         "jsx": "react",
-        "baseUrl": "src",
-        "paths": {
-            "actions/*": [
-                "actions/*"
-            ],
-            "components/*": [
-                "components/*"
+        "outDir": "./dist/", // Target location to output compiled files
+        "baseUrl": "./", // Enables absolute path imports
+        "paths": { // Define absolute path mappings
+            // Enables import { ... } from '@src/components' in the source files
+            // In webpack.config.js you need to add -> resolve: { alias: { '@src': PATH_TO_SRC } }
+            "@src/*": [
+                "src/*"
             ]
         }
     },
