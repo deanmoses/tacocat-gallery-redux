@@ -15,7 +15,7 @@ import {
  * Root React.js component of the application
  */
 export const App: React.StatelessComponent = () => (
-	<Router>
+	<Router hashType="noslash">
 		<div>
 			<header>
 				<nav>
