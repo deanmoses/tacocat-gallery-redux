@@ -10,14 +10,17 @@
 /**
  * A type representing all Redux actions in the app
  */
-export type ActionTypes = MyAction1 | MyAction2 | OtherAction;
+export type ActionTypes =
+	| MyAction1
+	| UpdateUserAuthenticationStatus
+	| OtherAction;
 
 /**
- * Enum of all of the Redux action type keys dispatched in the application
+ * The keys for each action in the application
  */
 export enum ActionTypeKeys {
 	MY_ACTION1 = 'MY_ACTION1',
-	MY_ACTION2 = 'MY_ACTION2',
+	UPDATE_USER_AUTHENTICATION_STATUS = 'UPDATE_USER_AUTHENTICATION_STATUS',
 	OTHER_ACTION = '__any_other_action_type__'
 }
 
@@ -30,11 +33,15 @@ export interface MyAction1 {
 }
 
 /**
- * Sample action type definition
+ * Action type definition
  */
-export interface MyAction2 {
-	type: ActionTypeKeys.MY_ACTION2;
-	myParameter1: string;
+export interface UpdateUserAuthenticationStatus {
+	type: ActionTypeKeys.UPDATE_USER_AUTHENTICATION_STATUS;
+
+	/**
+	 * True: user is authenticated
+	 */
+	isAuthenticated: boolean;
 }
 
 /**
@@ -52,3 +59,21 @@ export interface MyAction2 {
 export interface OtherAction {
 	type: ActionTypeKeys.OTHER_ACTION;
 }
+
+/**
+ * Action Builder: a helper function to create an Action
+ */
+export const createMyAction1 = (myParameter1: string): MyAction1 => ({
+	type: ActionTypeKeys.MY_ACTION1,
+	myParameter1
+});
+
+/**
+ * Action Builder: a helper function to create an Action
+ */
+export const updateUserAuthenticationStatus = (
+	isAuthenticated: boolean
+): UpdateUserAuthenticationStatus => ({
+	type: ActionTypeKeys.UPDATE_USER_AUTHENTICATION_STATUS,
+	isAuthenticated
+});

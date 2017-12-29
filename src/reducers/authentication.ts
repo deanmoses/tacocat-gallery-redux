@@ -7,11 +7,14 @@
  */
 import * as Actions from '@src/actions/actions';
 
-export function myReducer(state: string, action: Actions.ActionTypes): string {
+export function isAuthenticated(
+	state: boolean,
+	action: Actions.ActionTypes
+): boolean {
 	switch (action.type) {
-		case Actions.ActionTypeKeys.MY_ACTION1:
-			return state + ' ' + action.myParameter1;
+		case Actions.ActionTypeKeys.UPDATE_USER_AUTHENTICATION_STATUS:
+			return action.isAuthenticated;
 		default:
-			return state ? state : '';
+			return state ? state : false;
 	}
 }
