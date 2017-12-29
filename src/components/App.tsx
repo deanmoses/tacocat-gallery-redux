@@ -39,9 +39,9 @@ export const App: React.StatelessComponent = () => (
 			</header>
 
 			{/*
-                A <Switch> renders the first child <Route> that matches. 
-                A <Route> with no path always matches.
-            */}
+					A <Switch> renders the first child <Route> that matches. 
+					A <Route> with no path always matches.
+			*/}
 			<Switch>
 				<Route exact path="/" component={Album.RootAlbumPage} />
 				<Route exact path="/(\\d\\d\\d\\d)" component={Album.YearAlbumPage} />

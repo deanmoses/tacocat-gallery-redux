@@ -9,23 +9,29 @@ import Config from '@src/config';
  * React.js component that renders the site shell
  */
 interface PageProps {
-	classes?: string;
+	className?: string;
 	showFooter?: boolean;
 }
 export const Page: React.StatelessComponent<PageProps> = ({
 	children,
-	classes = '',
+	className = '',
 	showFooter = true
-}) => (
-	<div>
-		<div className={classes}>{children}</div>
-		{showFooter && (
-			<div className="footer hidden-xs hidden-sm">
-				<img src="images/tacocat-logo.png" width="102px" height="19px" />
-			</div>
-		)}
-	</div>
-);
+}) => {
+	var classes = 'pagecontents';
+	if (className) {
+		classes += ' ' + className;
+	}
+	return (
+		<div>
+			<div className={classes}>{children}</div>
+			{showFooter && (
+				<div className="footer hidden-xs hidden-sm">
+					<img src="images/tacocat-logo.png" width="102px" height="19px" />
+				</div>
+			)}
+		</div>
+	);
+};
 
 /**
  * React.js component that renders the site's header bar with title
