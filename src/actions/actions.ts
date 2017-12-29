@@ -18,14 +18,8 @@
  * The keys for each action in the application
  */
 export enum ActionTypeKeys {
-	ASYNC_THUNK_ACTION,
 	MY_ACTION1,
 	UPDATE_USER_AUTHENTICATION_STATUS,
-	SET_TEXT,
-	LOAD_COUNT_REQUEST,
-	SAVE_COUNT_REQUEST,
-	LOAD_COUNT_ERROR,
-	SAVE_COUNT_ERROR,
 	OTHER_ACTION
 }
 

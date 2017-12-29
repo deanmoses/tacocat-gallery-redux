@@ -7,10 +7,18 @@ import * as Actions from '@src/actions/actions';
 
 /**
  * The shape of the application's state.
- *
- * TODO: change 'interface' to 'type' here.  We don't want anything extending State.
  */
-export interface State {
+export type State = {
+	/**
+	 * Map of albumName -> album object
+	 */
+	readonly albumsByName: any;
+
+	/**
+	 * Currently selected album
+	 */
+	readonly nameOfSelectedAlbum: string;
+
 	/**
 	 * True: user is authenticated
 	 */
@@ -30,7 +38,7 @@ export interface State {
 	 * App is in an error state (like there was an error loading data)
 	 */
 	error: string;
-}
+};
 
 /**
  * The root React Redux reducer.
