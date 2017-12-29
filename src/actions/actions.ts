@@ -5,24 +5,51 @@
  * the application state such as “Hey Redux Store! I’ve got
  * an instruction for you, please update the state tree with
  * this new piece of information.”
+ *
+ * A Redux Thunk asynchronous action is an action that can
+ * do stuff, like make ajax calls, then fire more actions.
  */
 
-/**
- * A type representing all Redux actions in the app
- */
-export type ActionTypes =
-	| MyAction1
-	| UpdateUserAuthenticationStatus
-	| OtherAction;
+// import { Action, ActionCreator, Dispatch } from 'redux';
+// import { ThunkAction } from 'redux-thunk';
+// import { State } from '@src/reducers/reducers';
 
 /**
  * The keys for each action in the application
  */
 export enum ActionTypeKeys {
-	MY_ACTION1 = 'MY_ACTION1',
-	UPDATE_USER_AUTHENTICATION_STATUS = 'UPDATE_USER_AUTHENTICATION_STATUS',
-	OTHER_ACTION = '__any_other_action_type__'
+	ASYNC_THUNK_ACTION,
+	MY_ACTION1,
+	UPDATE_USER_AUTHENTICATION_STATUS,
+	SET_TEXT,
+	LOAD_COUNT_REQUEST,
+	SAVE_COUNT_REQUEST,
+	LOAD_COUNT_ERROR,
+	SAVE_COUNT_ERROR,
+	OTHER_ACTION
 }
+
+export type ActionTypes =
+	| MyAction1
+	| UpdateUserAuthenticationStatus
+	| OtherAction;
+
+// /**
+//  *  Async Redux-Thunk action
+//  */
+// export const AsyncThunkAction: ActionCreator<
+// 	ThunkAction<Promise<Action>, State, void>
+// > = () => {
+// 	return async (dispatch: Dispatch<State>): Promise<Action> => {
+// 		try {
+// 			const text = await Api.call();
+// 			return dispatch({
+// 				type: ActionTypeKeys.SET_TEXT,
+// 				text
+// 			});
+// 		} catch (e) {}
+// 	};
+// };
 
 /**
  * Sample action type definition

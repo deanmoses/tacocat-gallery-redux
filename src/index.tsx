@@ -1,15 +1,17 @@
 import * as React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
+import * as redux from 'redux';
+import thunk from 'redux-thunk';
+import { rootReducer, State } from '@src/reducers/reducers';
 import { App } from '@src/components/App';
-import { configureStore } from '@src/store/configureStore';
 import {
 	updateUserAuthenticationStatus,
 	createMyAction1
 } from '@src/actions/actions';
 
 // create the React Redux store, which stores the application's state
-let store = configureStore();
+let store = redux.createStore<State>(rootReducer, redux.applyMiddleware(thunk));
 
 console.log(store.getState());
 

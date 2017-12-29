@@ -1,0 +1,281 @@
+$icon-font-path: "../fonts/bootstrap/";
+
+$font-size-base: 16px;
+$font-family-sans-serif:  "Trebuchet MS",Verdana,Arial,Helvetica,sans-serif;
+$line-height-base: 1.5;
+$titleColor: #fff;
+
+@import "bootstrap-sass-official/assets/stylesheets/bootstrap";
+
+.btn {
+    border-radius: 0;
+}
+
+.btn.disabled {
+    color: #ccc;
+}
+
+.container-fluid {
+    padding: 0;
+}
+
+.pagecontents {
+    margin: 10px;
+    background-color: white;
+    border: solid black 1px;
+}
+
+.footer {
+    padding: 0 10px 10px 10px;
+}
+
+a.navbar-brand, .search-button a {
+    color: #333;
+}
+
+.header-controls {
+    position: absolute;
+    right: 10px;
+    bottom: 8px;
+
+    .site-title {
+        margin-right: 10px;
+    }
+}
+
+.year, .day {
+    .btn-group > .btn:first-child, .btn-group > .btn:last-child {
+        border-left: 0;
+        border-right: 0;
+    }
+}
+
+.photo {
+    .navbar {
+        border-bottom: solid black 1px;
+    }
+}
+
+.root {
+    .header {
+        border-bottom: solid black 1px;
+    }
+
+    section.col-md-9 {
+        padding-top: 15px;
+    }
+}
+
+.navbar {
+    border-radius: 0;
+	margin-bottom: 0;
+}
+
+.navbar-brand {
+	font-size: 28px;
+}
+
+.photo .header.navbar, .nav-button-label {
+    /* portrait phones and below */
+    @media all and (max-width: 767px) {
+        display: none;
+    }
+}
+
+@media (max-width: 320px) {
+    .hidden-xxs {
+        display: none !important;
+    }
+}
+
+.container, .container-fluid, .col-md-3, .col-md-9 {
+	/* portrait phones and below */
+	@media all and (max-width: 768px) {
+		padding-left: 0;
+		padding-right: 0;
+	}
+}
+
+.container-fluid {
+    position: relative;
+}
+
+.sidebar {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+	vertical-align: top;
+
+    padding-top: 1em;
+    border-right: solid black 1px;
+	@media (max-width: 992px) {
+		display: none;
+	}
+}
+
+.latest {
+    border-right: solid black 1px;
+    h2 {
+        font-size: $font-size-base;
+        font-weight: bold;
+        text-align: center;
+    }
+}
+
+.imagepage {
+	.btn-group > .btn:first-child {
+		border-bottom-left-radius: 0;
+	}
+	.btn-group > .btn:last-child:not(:first-child) {
+		border-bottom-right-radius: 0;
+	}
+}
+
+.month {
+    display: block;
+    margin: 1em;
+
+    & > h1 {
+        font-weight: bold;
+        font-size: 1.3em;
+        padding: 0.3em 0.4em;
+        width: 100%;
+    }
+}
+
+.thumbnails {
+    min-height: 300px;
+
+    .search & {
+        border-top: solid black 1px;
+    }
+}
+
+.thumbnail {
+	display: inline-block;
+	border: 0 none;
+	box-shadow: none;
+	vertical-align: top;
+	margin-bottom: 0;
+	background-color: transparent;
+    position: relative;
+
+    .latest & {
+        display: block;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    a {
+        text-decoration: none;
+        .latest & {
+            margin-right: auto;
+            margin-left: auto;
+        }
+    }
+
+    a.thumb-link {
+        display: block;
+        border: solid black 1px;
+    }
+
+    .thumb-caption {
+        color: black;
+        text-decoration: none;
+        text-align: center;
+        margin-top: 4px;
+        display: block;
+        .latest & {
+            margin-right: auto;
+            margin-left: auto;
+        }
+    }
+
+    .thumb-summary {
+        text-align: center;
+        .latest & {
+            margin-right: auto;
+            margin-left: auto;
+        }
+    }
+
+    .glyphicon {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        color: #fff;
+        text-shadow:
+        -1px -1px 0 #000,
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000;
+
+        &:hover {
+            color: yellow;
+        }
+    }
+
+    &.selected .glyphicon {
+        color: yellow;
+    }
+}
+
+.photo-body {
+	margin-top: 20px;
+}
+
+.thephoto {
+    @media all and (max-width: 768px) {
+        min-height: 150px;
+    }
+    @media all and (min-width: 768px) {
+        min-height: 250px;
+    }
+    background-color: #c2ccd1;
+}
+
+.caption {
+    margin-bottom: .7em;
+}
+
+.weekalbumtype .caption {
+    max-width: 670px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.photo .caption {
+    // portrait phones and below
+    @media all and (max-width: 768px) {
+        padding-left: .7em;
+    }
+}
+
+.caption p {
+    margin-top: .7em;
+}
+
+/* For browsers that don't meet the requirements */
+.browsehappy {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}
+
+.editStatusMsg,  .editControls input {
+    margin-left: 1em;
+}
+
+.fullPageMessage {
+    padding: 2em;
+    p {
+        text-align: center;
+    }
+}
+
+/**
+ * Keep the years in a separate easy-to-maintain file.
+ */
+@import "years";

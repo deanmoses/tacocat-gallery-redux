@@ -4,7 +4,7 @@
 
 import * as React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
-import * as Site from '@src/components/Site';
+import * as Site from '@src/components/site';
 
 /**
  * React.js component that renders the top level album page

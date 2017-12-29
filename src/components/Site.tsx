@@ -9,8 +9,8 @@ import Config from '@src/config';
  * React.js component that renders the site shell
  */
 interface PageProps {
-	className?: string;
-	showFooter?: boolean;
+	readonly className?: string;
+	readonly showFooter?: boolean;
 }
 export const Page: React.StatelessComponent<PageProps> = ({
 	children,
@@ -37,9 +37,9 @@ export const Page: React.StatelessComponent<PageProps> = ({
  * React.js component that renders the site's header bar with title
  */
 export interface HeaderTitleProps {
-	title?: string;
-	href?: string;
-	showTitle?: boolean;
+	readonly title?: string;
+	readonly href?: string;
+	readonly showTitle?: boolean;
 }
 export const HeaderTitle: React.StatelessComponent<HeaderTitleProps> = ({
 	title = '',

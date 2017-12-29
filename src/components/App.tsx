@@ -1,14 +1,14 @@
 /**
- * Root React.js component of the Tacocat Gallery application
+ * The root React.js component of the Tacocat Gallery application
  */
 
 import * as React from 'react';
 import { HashRouter as Router, Route, Switch, Link } from 'react-router-dom';
-import * as Album from '@src/components/Album';
-import { NotFoundPage } from '@src/components/NotFound';
+import * as Album from '@src/components/album';
+import { NotFoundPage } from '@src/components/not-found';
 
 /**
- * Root React.js component of the application
+ * The root React.js component of the application
  */
 export const App: React.StatelessComponent = () => (
 	<Router hashType="noslash">
@@ -18,12 +18,6 @@ export const App: React.StatelessComponent = () => (
 					<ul>
 						<li>
 							<Link to="/">Home</Link>
-						</li>
-						<li>
-							<Link to="/one">One</Link>
-						</li>
-						<li>
-							<Link to="/two">Two</Link>
 						</li>
 						<li>
 							<Link to="/2000">Year</Link>
@@ -37,11 +31,6 @@ export const App: React.StatelessComponent = () => (
 					</ul>
 				</nav>
 			</header>
-
-			{/*
-					A <Switch> renders the first child <Route> that matches. 
-					A <Route> with no path always matches.
-			*/}
 			<Switch>
 				<Route exact path="/" component={Album.RootAlbumPage} />
 				<Route exact path="/(\\d\\d\\d\\d)" component={Album.YearAlbumPage} />

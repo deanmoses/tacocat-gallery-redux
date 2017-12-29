@@ -1,0 +1,302 @@
+//
+// colors for each year
+//
+
+// default for years with no styling
+body {
+    background-color: #3F64EE;
+
+    .header, .month > h1 {
+        background-color: #FFE793;
+    }
+
+    .btn {
+        background-color: lighten(#FFE793, 10%);
+    }
+
+    .sidebar {
+        background-color: #FFD02D;
+    }
+}
+
+// each year, root and search should move to the latest year
+.root, .search, .y2018 {
+
+    background-color: #676559;
+
+    .header, .month > h1 {
+        background-color: #87679f;
+    }
+
+    .btn {
+        background-color: #a1b9bd;
+    }
+
+    .sidebar {
+        background-color: #879099;
+    }
+}
+
+.y2017 {
+    background-color: #5c7148;
+
+    .header, .month > h1 {
+        background-color: #d1af94;
+    }
+
+    .btn {
+        background-color: #efcec5;
+    }
+
+    .sidebar {
+        background-color: #be869f;
+    }
+}
+
+.y2016 {
+    background-color: #034f84;
+
+    .header, .month > h1 {
+        background-color: #98ddde;
+    }
+
+    .btn {
+        background-color: #c6f7f7;
+    }
+
+    .sidebar {
+        background-color: #91a8d0;
+    }
+}
+
+.y2015 {
+    background-color: #692F55;
+
+    .header, .month > h1 {
+        background-color: #C56D69;
+    }
+
+    .btn {
+        background-color: #E2B6B4;
+    }
+
+    .sidebar {
+        background-color: #837D54;
+    }
+}
+
+.y2014 {
+    background-color: #8d5f5f;
+
+    .header, .month > h1 {
+        background-color: #e8ddc7;
+    }
+
+    .btn {
+        background-color: lighten(#e8ddc7, 10%);
+    }
+
+    .sidebar {
+        background-color: #cebfa1;
+    }
+}
+
+.y2013 {
+    background-color: #917d61;
+
+    .header, .month > h1 {
+        background-color: #b7c8a4;
+    }
+
+    .btn {
+        background-color: lighten(#b7c8a4, 20%);
+    }
+
+    .sidebar {
+        background-color: #8a9e75;
+    }
+}
+
+.y2012 {
+    background-color: #973450;
+
+    .header, .month > h1  {
+        background-color: #edb79c;
+    }
+
+    .btn {
+        background-color: lighten(#edb79c, 20%);
+    }
+
+    .sidebar {
+        background-color: #e77f4b;
+    }
+}
+
+.y2011 {
+    background-color: #4d3087;
+
+    .header, .month > h1 {
+        background-color: #e0ee83;
+    }
+
+    .btn {
+        background-color: lighten(#e0ee83, 20%);
+    }
+
+    .sidebar {
+        background-color: #c2d543;
+    }
+}
+
+.y2010, .y2009 {
+    background-color: #3F64EE;
+
+    .header, .month > h1 {
+        background-color: #FFE793;
+    }
+
+    .btn {
+        background-color: lighten(#FFE793, 10%);
+    }
+
+    .sidebar {
+        background-color: #FFD02D;
+    }
+}
+
+.y2008 {
+    background-color: #869e59;
+
+    .header, .month > h1 {
+        background-color: #d3e0f1;
+    }
+
+    .btn {
+        background-color: lighten(#d3e0f1, 10%);
+    }
+
+    .sidebar {
+        background-color: #bbcbe0;
+    }
+}
+
+.y2005 {
+    background-color: #743a7d;
+
+    .header, .month > h1 {
+        background-color: #bde6d8;
+    }
+
+    .btn {
+        background-color: lighten(#bde6d8, 10%);
+    }
+
+    .sidebar {
+        background-color: #69c7af;
+    }
+}
+
+.y2003, .y2004 {
+    background-color: #99cc33;
+
+    .header, .month > h1 {
+        background-color: #E2F8B6;
+    }
+
+    .btn {
+        background-color: lighten(#E2F8B6, 10%);
+    }
+
+    .sidebar {
+        background-color: #9dc6ef;
+    }
+}
+
+.y2001, .y2002 {
+    background-color: #FF6600;
+
+    .header {
+        background-color: #FBEFCE;
+    }
+
+    .btn {
+        background-color: lighten(#FBEFCE, 5%);
+    }
+
+    .sidebar {
+        background-color: #FF99FF;
+    }
+
+    .month > h1 {
+        background-color: #FFCCFF;
+    }
+}
+
+.y1981,.y1983,.y1985,.y1987,.y1989 {
+    background-color: #3A3A3C;
+
+    .header {
+        background-color: #E82E79;
+    }
+
+    .month > h1 {
+        background-color: #6BD4DB;
+    }
+
+    .btn {
+        background-color: #F497BC;
+    }
+
+    .sidebar {
+        background-color: #BBBBBB;
+    }
+}
+
+.y1980,.y1982,.y1984,.y1986,.y1988 {
+    background-color: #4E337A;
+
+    .header, .month > h1 {
+        background-color: #B1A6D0;
+    }
+
+    .btn {
+        background-color: #D8D3E8;
+    }
+
+    .sidebar {
+        background-color: #EDE7D5;
+    }
+}
+
+.y1971,.y1973,.y1975,.y1977,.y1979 {
+    background-color: #503200;
+
+    .header, .month > h1 {
+        background-color: #E7B62A;
+    }
+
+    .btn {
+        background-color: #F3DB95;
+    }
+
+    .sidebar {
+        background-color: #DE8B31;
+    }
+}
+
+.y1970,.y1972,.y1974,.y1976,.y1978 {
+    background-color: #434210;
+
+    .header, .month > h1 {
+        background-color: #A2A22C;
+    }
+
+    .btn {
+        background-color: #D1D196;
+    }
+
+    .sidebar {
+        background-color: #F6C54C;
+    }
+}
