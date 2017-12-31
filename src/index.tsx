@@ -15,11 +15,15 @@ import {
 } from '@src/reducers/reducers';
 import { App } from '@src/components/App';
 
+// helper to enable the redux Chrome devtools extension
+const compose =
+	(window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || redux.compose;
+
 // Create the React Redux store.  This stores the application's state
 let store = redux.createStore<RootState>(
 	rootReducer,
 	initialRootState,
-	redux.applyMiddleware(thunk)
+	compose(redux.applyMiddleware(thunk))
 );
 
 render(
