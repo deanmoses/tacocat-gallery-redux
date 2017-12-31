@@ -4,7 +4,7 @@
 
 import { Action, combineReducers } from 'redux';
 import * as Actions from '@src/actions/actions';
-import { AlbumsByName } from '@src/reducers/Album';
+import { AlbumsByName } from '@src/reducers/album';
 
 /**
  * The shape of the application's state.

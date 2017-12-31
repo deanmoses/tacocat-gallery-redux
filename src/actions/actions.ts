@@ -13,7 +13,7 @@ import { Action } from 'redux';
 // import { Action, ActionCreator, Dispatch } from 'redux';
 // import { ThunkAction } from 'redux-thunk';
 import { RootState } from '@src/reducers/reducers';
-import { Album } from '@src/reducers/Album';
+import { Album } from '@src/reducers/album';
 
 /**
  * The keys for each action in the application

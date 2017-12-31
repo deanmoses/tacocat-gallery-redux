@@ -1,3 +1,7 @@
+/**
+ * Interfaces for the application state
+ */
+
 export interface AlbumsByName {
 	[albumName: string]: Album;
 }

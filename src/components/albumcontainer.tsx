@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actions from '@src/actions/actions';
 import { RootState } from '@src/reducers/reducers';
-import { Album } from '@src/reducers/Album';
+import { Album } from '@src/reducers/album';
 
 /**
  * The shape of this React.js component's properties
