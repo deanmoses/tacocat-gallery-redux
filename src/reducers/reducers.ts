@@ -46,8 +46,11 @@ function albumsByPath(
 	action: Actions.ActionTypes
 ): AlbumsByPath {
 	switch (action.type) {
-		// In process of fetching album from server
+		/**
+		 *  In process of fetching album from server
+		 */
 		case Actions.ActionTypeKeys.REQUEST_ALBUM:
+			console.log('REQUEST_ALBUM');
 			// Set album status to "loading"
 			let album = albumsByPath[action.albumPath];
 			if (!album) {
@@ -59,12 +62,23 @@ function albumsByPath(
 				album.isLoading = true;
 			}
 			action.albumPath;
-			return albumsByPath;
-		// Received album from server
+			albumsByPath[action.albumPath] = album;
+			// Return a copy of the object.  Otherwise, Redux won't recognize it as
+			// having changed and won't broadcast any updates.
+			// TODO: figure out polyfill that allows the more performant ECMAscript 6 (works on Edge but not IE): return Object.assign({}, albumsByPath);
+			return Object.create(albumsByPath);
+
+		/**
+		 * Received album from server
+		 */
 		case Actions.ActionTypeKeys.RECEIVE_ALBUM:
+			console.log('RECEIVE_ALBUM');
 			//Add album to store
 			albumsByPath[action.albumPath] = action.album;
-			return albumsByPath;
+			// Return a copy of the object.  Otherwise, Redux won't recognize it as
+			// having changed and won't broadcast any updates.
+			// TODO: figure out polyfill that allows the more performant ECMAscript 6 (works on Edge but not IE): return Object.assign({}, albumsByPath);
+			return Object.create(albumsByPath);
 		default:
 			return albumsByPath;
 	}

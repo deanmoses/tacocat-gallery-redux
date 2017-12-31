@@ -28,6 +28,7 @@ class AlbumPage extends React.Component<AlbumPageProps> {
 		this.props.fetchAlbumIfNeeded(this.props.albumPath);
 	}
 	render() {
+		console.log('component render() album:', this.props.album);
 		if (!this.props.album || this.props.album.isLoading) {
 			document.title = 'Loading album...';
 			return <h3>Loading...</h3>;
@@ -57,8 +58,16 @@ class AlbumPage extends React.Component<AlbumPageProps> {
  */
 function mapStateToProps(state: RootState, ownProps: AlbumPageProps) {
 	const albumPath = ownProps.albumPath;
-	const { albumsByPath } = state;
-	const album = albumsByPath[albumPath];
+	const album = state.albumsByPath[albumPath];
+
+	console.log(
+		'mapStateToProps state.albumsByPath:',
+		JSON.stringify(state.albumsByPath),
+		'albumPath:',
+		albumPath,
+		'album:',
+		album
+	);
 
 	return {
 		albumPath,
