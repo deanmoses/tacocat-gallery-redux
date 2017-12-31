@@ -33,6 +33,11 @@ Retrieves album data from tacocat's [ZenPhoto](http://www.zenphoto.org/) install
 3. Open browser to localhost. In the output of `npm start`, it'll tell you what port the web server's on.
 4. In the browser you should the root gallery of tacocat.com. If you don't, look in your browser's javascript console for what's going on.
 
+### Run tests
+
+1. `cd` into project
+2. Run tests: `npm test`.
+
 ### Prod distribution project
 
 To bundle project for prod use:
