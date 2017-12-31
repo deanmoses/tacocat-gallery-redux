@@ -107,7 +107,7 @@ export interface AlbumErrored extends Action {
 	albumPath: string;
 	error: any;
 }
-function errorAlbum(albumPath: string, error: any): AlbumErrored {
+export function errorAlbum(albumPath: string, error: any): AlbumErrored {
 	return {
 		type: ActionTypeKeys.ALBUM_ERRORED,
 		albumPath,

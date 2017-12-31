@@ -45,6 +45,9 @@ function albumsByPath(
 	albumsByPath: AlbumsByPath = {},
 	action: Actions.ActionTypes
 ): AlbumsByPath {
+	if (!action) {
+		return {};
+	}
 	switch (action.type) {
 		/**
 		 *  In process of fetching album from server
@@ -100,6 +103,9 @@ function albumsByPath(
  * A reducer function
  */
 function isAuthenticated(state: boolean, action: Actions.ActionTypes): boolean {
+	if (!action) {
+		return state ? state : false;
+	}
 	switch (action.type) {
 		case Actions.ActionTypeKeys.UPDATE_USER_AUTHENTICATION_STATUS:
 			return action.isAuthenticated;
