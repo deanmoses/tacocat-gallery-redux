@@ -4,13 +4,13 @@ A HTML5/javascript single page application (SPA) front end for tacocat.com's pho
 
 Uses the following technologies:
 
-* [React.js](http://facebook.github.io/react/): A component-based Javascript View layer.
-* [Redux](https://redux.js.org/): A state management system for React.js.
-* [Redux Thunk](https://github.com/gaearon/redux-thunk): Middleware for Redux to handle async actions like ajax calls.
-* [TypeScript](https://www.typescriptlang.org/): Strongly typed Javascript. It transpiles to browser Javascript.
-* [Webpack](https://webpack.js.org/): A javascript build system.
+* [React.js](http://facebook.github.io/react/): a component-based Javascript View layer.
+* [Redux](https://redux.js.org/): a state management system for React.js.
+* [Redux Thunk](https://github.com/gaearon/redux-thunk): middleware for Redux to handle async actions like ajax calls.
+* [TypeScript](https://www.typescriptlang.org/): strongly typed Javascript. It transpiles to browser Javascript.
+* [Webpack](https://webpack.js.org/): a javascript build system.
 
-Retrieves album data from tacocat's [ZenPhoto](http://www.zenphoto.org/) installation. Depends on this prototype JSON REST backend ([github](https://github.com/deanmoses/tacocat-gallery-zenphoto-rest-api)).
+Retrieves album data from tacocat's [ZenPhoto](http://www.zenphoto.org/) installation. Depends on this [prototype JSON REST backend](https://github.com/deanmoses/tacocat-gallery-zenphoto-rest-api).
 
 ## How To Work With Project
 
