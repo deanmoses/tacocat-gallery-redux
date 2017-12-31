@@ -35,7 +35,9 @@ var config = {
 
 	resolve: {
 		// Enable files to import from '@src/components/App' instead of './components/App'
-		// These work with the 'path' setting in tsconfig.json
+		// These work with the 'path' setting in the Typescript config file, tsconfig.json
+		// For Jest tests to work, in package.json you need to add 	the following:
+		//   "jest": {"moduleNameMapper": {"^@src(.*)$": "<rootDir>/src$1"},"@src/*": ["src/*"]}
 		alias: {
 			'@src': PATH_TO_SRC
 		},

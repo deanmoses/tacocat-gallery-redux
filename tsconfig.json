@@ -18,6 +18,8 @@
         "paths": { // Define absolute path mappings
             // Enables import { ... } from '@src/components' in the source files
             // In webpack.config.js you need to add -> resolve: { alias: { '@src': PATH_TO_SRC } }
+            // For Jest tests to work, in package.json you need to add 	the following:
+            //   "jest": {"moduleNameMapper": {"^@src(.*)$": "<rootDir>/src$1"},"@src/*": ["src/*"]}
             "@src/*": [
                 "src/*"
             ]
