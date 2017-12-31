@@ -14,6 +14,8 @@ var config = {
 	// The base directory, an absolute path, for resolving entry points and loaders from configuration
 	context: PATH_TO_SRC,
 
+	devtool: 'source-map',
+
 	// The entry point into the application. At this point the application starts executing
 	entry: './index.tsx',
 
