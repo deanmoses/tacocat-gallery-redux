@@ -4,7 +4,6 @@
 
 import * as React from 'react';
 import { HashRouter as Router, Route, Switch, Link } from 'react-router-dom';
-import * as Album from '@src/components/album';
 import ConnectedAlbum from '@src/components/albumcontainer';
 import { NotFoundPage } from '@src/components/not-found';
 
@@ -24,7 +23,10 @@ export const App: React.StatelessComponent = () => (
 							<Link to="/2000">Year</Link>
 						</li>
 						<li>
-							<Link to="/2000/12-31">Week</Link>
+							<Link to="/2017/12-25">Day</Link>
+						</li>
+						<li>
+							<Link to="/2999/12-31">Nonexistent Day</Link>
 						</li>
 						<li>
 							<Link to="nosuchroute">404</Link>
@@ -34,11 +36,19 @@ export const App: React.StatelessComponent = () => (
 			</header>
 			<Switch>
 				<Route exact path="/" render={() => <ConnectedAlbum albumPath="/" />} />
-				<Route exact path="/(\\d\\d\\d\\d)" component={Album.YearAlbumPage} />
 				<Route
 					exact
-					path="/(\\d\\d\\d\\d/\\d\\d\-\\d\\d)"
-					component={Album.WeekAlbumPage}
+					path="/:year(\\d\\d\\d\\d)"
+					render={props => (
+						<ConnectedAlbum albumPath={props.match.params.year as string} />
+					)}
+				/>
+				<Route
+					exact
+					path="/:day(\\d\\d\\d\\d/\\d\\d\-\\d\\d)"
+					render={props => (
+						<ConnectedAlbum albumPath={props.match.params.day as string} />
+					)}
 				/>
 				<Route component={NotFoundPage} />
 			</Switch>

@@ -10,8 +10,6 @@
  * do stuff, like make ajax calls, then fire more actions.
  */
 import { Action } from 'redux';
-// import { Action, ActionCreator, Dispatch } from 'redux';
-// import { ThunkAction } from 'redux-thunk';
 import { RootState } from '@src/reducers/reducers';
 import { FullAlbum } from '@src/reducers/album';
 
@@ -19,15 +17,17 @@ import { FullAlbum } from '@src/reducers/album';
  * The keys for each action in the application
  */
 export enum ActionTypeKeys {
+	ALBUM_REQUESTED = 'ALBUM_REQUESTED',
+	ALBUM_RECEIVED = 'ALBUM_RECEIVED',
+	ALBUM_ERRORED = 'ALBUM_ERRORED',
 	UPDATE_USER_AUTHENTICATION_STATUS = 'UPDATE_USER_AUTHENTICATION_STATUS',
-	REQUEST_ALBUM = 'REQUEST_ALBUM',
-	RECEIVE_ALBUM = 'RECEIVE_ALBUM',
 	OTHER_ACTION = 'OTHER_ACTION'
 }
 
 export type ActionTypes =
-	| ReceiveAlbum
-	| RequestAlbum
+	| AlbumRequested
+	| AlbumRecieved
+	| AlbumErrored
 	| UpdateUserAuthenticationStatus
 	| OtherAction;
 
@@ -35,6 +35,7 @@ export type ActionTypes =
  * Action Builder: a helper function to create an Action
  */
 export function fetchAlbumIfNeeded(albumPath: string) {
+	console.log('fetchAlbumIfNeeded', albumPath);
 	return function(dispatch: Function, getState: Function) {
 		if (shouldFetchAlbum(getState(), albumPath)) {
 			return dispatch(fetchAlbum(albumPath));
@@ -51,21 +52,30 @@ function fetchAlbum(albumPath: string) {
 	return (dispatch: Function) => {
 		dispatch(requestAlbum(albumPath));
 		return fetch(`https://tacocat.com/zenphoto/${albumPath}/?api`)
+			.then(handleErrors)
 			.then(response => response.json())
-			.then(json => dispatch(receiveAlbum(albumPath, json)));
+			.then(json => dispatch(receiveAlbum(albumPath, json)))
+			.catch(error => dispatch(errorAlbum(albumPath, error.message)));
 	};
+}
+
+function handleErrors(response: any) {
+	if (!response.ok) {
+		throw Error(response.statusText);
+	}
+	return response;
 }
 
 /**
  * Action type definition
  */
-export interface RequestAlbum extends Action {
-	type: ActionTypeKeys.REQUEST_ALBUM;
+export interface AlbumRequested extends Action {
+	type: ActionTypeKeys.ALBUM_REQUESTED;
 	albumPath: string;
 }
-function requestAlbum(albumPath: string): RequestAlbum {
+function requestAlbum(albumPath: string): AlbumRequested {
 	return {
-		type: ActionTypeKeys.REQUEST_ALBUM,
+		type: ActionTypeKeys.ALBUM_REQUESTED,
 		albumPath
 	};
 }
@@ -73,20 +83,33 @@ function requestAlbum(albumPath: string): RequestAlbum {
 /**
  * Action type definition
  */
-export interface ReceiveAlbum extends Action {
-	type: ActionTypeKeys.RECEIVE_ALBUM;
-	album: FullAlbum;
+export interface AlbumRecieved extends Action {
+	type: ActionTypeKeys.ALBUM_RECEIVED;
 	albumPath: string;
+	album: FullAlbum;
 }
-function receiveAlbum(albumPath: string, json: any): ReceiveAlbum {
+function receiveAlbum(albumPath: string, json: any): AlbumRecieved {
 	return {
-		type: ActionTypeKeys.RECEIVE_ALBUM,
+		type: ActionTypeKeys.ALBUM_RECEIVED,
 		albumPath,
 		// This is NOT a cast from json to a real Album object; it simply
 		// asserts that the json is the right shape to be an Album.
 		// TODO: defensive programming programming if the json isn't the
 		// right shape to be used as an Album
 		album: <FullAlbum>json
+	};
+}
+
+export interface AlbumErrored extends Action {
+	type: ActionTypeKeys.ALBUM_ERRORED;
+	albumPath: string;
+	error: any;
+}
+function errorAlbum(albumPath: string, error: any): AlbumErrored {
+	return {
+		type: ActionTypeKeys.ALBUM_ERRORED,
+		albumPath,
+		error: error
 	};
 }
 

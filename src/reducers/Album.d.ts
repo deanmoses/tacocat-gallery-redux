@@ -6,16 +6,13 @@ export interface AlbumsByPath {
 	[albumPath: string]: Album;
 }
 
-export type Album = TempAlbum | FullAlbum;
-
-export interface TempAlbum {
+export interface Album {
 	path: string;
 	isLoading?: boolean;
 	err?: string;
 }
 
-export interface FullAlbum {
-	path: string;
+export interface FullAlbum extends Album {
 	title: string;
 	summary: string;
 	description: string;
@@ -27,6 +24,7 @@ export interface FullAlbum {
 	parent_album: AlbumNavInfo;
 	next: AlbumNavInfo;
 	isLoading?: boolean;
+	err?: string;
 }
 
 export interface Image {

@@ -49,36 +49,38 @@ function albumsByPath(
 		/**
 		 *  In process of fetching album from server
 		 */
-		case Actions.ActionTypeKeys.REQUEST_ALBUM:
-			console.log('REQUEST_ALBUM');
-			// Set album status to "loading"
-			let album = albumsByPath[action.albumPath];
-			if (!album) {
-				album = {
-					path: action.albumPath,
-					isLoading: true
-				};
-			} else {
-				album.isLoading = true;
-			}
-			action.albumPath;
-			albumsByPath[action.albumPath] = album;
-			// Return a copy of the object.  Otherwise, Redux won't recognize it as
-			// having changed and won't broadcast any updates.
-			// TODO: figure out polyfill that allows the more performant ECMAscript 6 (works on Edge but not IE): return Object.assign({}, albumsByPath);
-			return Object.create(albumsByPath);
+		case Actions.ActionTypeKeys.ALBUM_REQUESTED:
+			console.log(action.type, action.albumPath);
+			let newAlbums = { ...albumsByPath };
+			// Set album to 'loading'
+			newAlbums[action.albumPath] = {
+				path: action.albumPath,
+				isLoading: true
+			};
+			return newAlbums;
 
 		/**
 		 * Received album from server
 		 */
-		case Actions.ActionTypeKeys.RECEIVE_ALBUM:
-			console.log('RECEIVE_ALBUM');
-			//Add album to store
-			albumsByPath[action.albumPath] = action.album;
-			// Return a copy of the object.  Otherwise, Redux won't recognize it as
-			// having changed and won't broadcast any updates.
-			// TODO: figure out polyfill that allows the more performant ECMAscript 6 (works on Edge but not IE): return Object.assign({}, albumsByPath);
-			return Object.create(albumsByPath);
+		case Actions.ActionTypeKeys.ALBUM_RECEIVED:
+			console.log(action.type, action.albumPath);
+			newAlbums = { ...albumsByPath };
+			// Add album to store
+			newAlbums[action.albumPath] = action.album;
+			return newAlbums;
+
+		/**
+		 * Received error attempting to fetch album from server
+		 */
+		case Actions.ActionTypeKeys.ALBUM_ERRORED:
+			console.log(action.type, action.albumPath);
+			newAlbums = { ...albumsByPath };
+			// Set album status to error
+			newAlbums[action.albumPath] = {
+				path: action.albumPath,
+				err: action.error
+			};
+			return newAlbums;
 		default:
 			return albumsByPath;
 	}

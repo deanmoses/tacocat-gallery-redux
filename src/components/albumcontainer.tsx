@@ -27,11 +27,28 @@ class AlbumPage extends React.Component<AlbumPageProps> {
 	componentDidMount() {
 		this.props.fetchAlbumIfNeeded(this.props.albumPath);
 	}
+
+	/**
+	 * React.js component lifecycle method.  Invoked before a mounted component
+	 * receives new props.  Note that React may call this method even if the props
+	 * have not changed, so make sure to compare the current and next values if you
+	 * only want to handle changes. This may occur when the parent component causes
+	 * your component to re-render.
+	 */
+	componentWillReceiveProps(nextProps: AlbumPageProps) {
+		if (nextProps.albumPath !== this.props.albumPath) {
+			this.props.fetchAlbumIfNeeded(nextProps.albumPath);
+		}
+	}
+
 	render() {
-		console.log('component render() album:', this.props.album);
+		console.log('render()', this.props.albumPath, 'album:', this.props.album);
+
 		if (!this.props.album || this.props.album.isLoading) {
 			document.title = 'Loading album...';
 			return <h3>Loading...</h3>;
+		} else if (this.props.album.err) {
+			return <h3>Error: {this.props.album.err}</h3>;
 		}
 
 		const album = this.props.album as FullAlbum;
@@ -59,15 +76,6 @@ class AlbumPage extends React.Component<AlbumPageProps> {
 function mapStateToProps(state: RootState, ownProps: AlbumPageProps) {
 	const albumPath = ownProps.albumPath;
 	const album = state.albumsByPath[albumPath];
-
-	console.log(
-		'mapStateToProps state.albumsByPath:',
-		JSON.stringify(state.albumsByPath),
-		'albumPath:',
-		albumPath,
-		'album:',
-		album
-	);
 
 	return {
 		albumPath,
