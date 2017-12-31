@@ -4,7 +4,7 @@
 
 import { combineReducers } from 'redux';
 import * as Actions from '@src/actions/actions';
-import { AlbumsByPath } from '@src/reducers/album';
+import { AlbumsByPath, Alb } from '@src/reducers/album';
 
 /**
  * The shape of the application's state.
@@ -49,38 +49,48 @@ function albumsByPath(
 		/**
 		 *  In process of fetching album from server
 		 */
-		case Actions.ActionTypeKeys.ALBUM_REQUESTED:
+		case Actions.ActionTypeKeys.ALBUM_REQUESTED: {
 			console.log(action.type, action.albumPath);
-			let newAlbums = { ...albumsByPath };
+
 			// Set album to 'loading'
-			newAlbums[action.albumPath] = {
-				path: action.albumPath,
-				isLoading: true
-			};
+			let updatedAlbum = Object.assign(
+				new Alb(action.albumPath),
+				albumsByPath[action.albumPath]
+			);
+			updatedAlbum.isLoading = true;
+			let newAlbums = { ...albumsByPath };
+			newAlbums[action.albumPath] = updatedAlbum;
 			return newAlbums;
+		}
 
 		/**
 		 * Received album from server
 		 */
-		case Actions.ActionTypeKeys.ALBUM_RECEIVED:
+		case Actions.ActionTypeKeys.ALBUM_RECEIVED: {
 			console.log(action.type, action.albumPath);
-			newAlbums = { ...albumsByPath };
+			let newAlbums = { ...albumsByPath };
 			// Add album to store
 			newAlbums[action.albumPath] = action.album;
 			return newAlbums;
+		}
 
 		/**
 		 * Received error attempting to fetch album from server
 		 */
-		case Actions.ActionTypeKeys.ALBUM_ERRORED:
+		case Actions.ActionTypeKeys.ALBUM_ERRORED: {
 			console.log(action.type, action.albumPath);
-			newAlbums = { ...albumsByPath };
 			// Set album status to error
-			newAlbums[action.albumPath] = {
-				path: action.albumPath,
-				err: action.error
-			};
+			let updatedAlbum = Object.assign(
+				new Alb(action.albumPath),
+				albumsByPath[action.albumPath]
+			);
+			updatedAlbum.isLoading = false;
+			updatedAlbum.err = action.error;
+			let newAlbums = { ...albumsByPath };
+			newAlbums[action.albumPath] = updatedAlbum;
 			return newAlbums;
+		}
+
 		default:
 			return albumsByPath;
 	}

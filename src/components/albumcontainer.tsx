@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actions from '@src/actions/actions';
 import { RootState } from '@src/reducers/reducers';
-import { Album, FullAlbum } from '@src/reducers/album';
+import { Album } from '@src/reducers/album';
 
 /**
  * The shape of this React.js component's properties
@@ -36,6 +36,7 @@ class AlbumPage extends React.Component<AlbumPageProps> {
 	 * your component to re-render.
 	 */
 	componentWillReceiveProps(nextProps: AlbumPageProps) {
+		//if (nextProps !== this.props) {
 		if (nextProps.albumPath !== this.props.albumPath) {
 			this.props.fetchAlbumIfNeeded(nextProps.albumPath);
 		}
@@ -44,16 +45,19 @@ class AlbumPage extends React.Component<AlbumPageProps> {
 	render() {
 		console.log('render()', this.props.albumPath, 'album:', this.props.album);
 
-		if (!this.props.album || this.props.album.isLoading) {
+		const album = this.props.album as Album;
+
+		if (album && album.image_size) {
+			document.title = album.path;
+			return <h3>Got Album: {album.path}</h3>;
+		} else if (album && album.err) {
+			return <h3>Error: {album.err}</h3>;
+		} else if (!album || (album.isLoading && !album.title)) {
 			document.title = 'Loading album...';
 			return <h3>Loading...</h3>;
-		} else if (this.props.album.err) {
-			return <h3>Error: {this.props.album.err}</h3>;
 		}
 
-		const album = this.props.album as FullAlbum;
-		document.title = album.path;
-		return <h3>Got Album: {this.props.albumPath}</h3>;
+		return <h3>I'm in some weird state I didn't expect</h3>;
 	}
 }
 

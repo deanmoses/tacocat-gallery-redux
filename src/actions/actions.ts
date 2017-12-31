@@ -11,7 +11,7 @@
  */
 import { Action } from 'redux';
 import { RootState } from '@src/reducers/reducers';
-import { FullAlbum } from '@src/reducers/album';
+import { Album, Alb } from '@src/reducers/album';
 
 /**
  * The keys for each action in the application
@@ -35,7 +35,7 @@ export type ActionTypes =
  * Action Builder: a helper function to create an Action
  */
 export function fetchAlbumIfNeeded(albumPath: string) {
-	console.log('fetchAlbumIfNeeded', albumPath);
+	console.log('fetchAlbumIfNeeded()', albumPath);
 	return function(dispatch: Function, getState: Function) {
 		if (shouldFetchAlbum(getState(), albumPath)) {
 			return dispatch(fetchAlbum(albumPath));
@@ -44,12 +44,14 @@ export function fetchAlbumIfNeeded(albumPath: string) {
 }
 
 function shouldFetchAlbum(state: RootState, albumPath: string) {
+	console.log('shouldFetchAlbum() state:', state);
 	const album = state.albumsByPath[albumPath];
 	return !album || !album.isLoading;
 }
 
 function fetchAlbum(albumPath: string) {
 	return (dispatch: Function) => {
+		console.log('fetchAlbum()', albumPath);
 		dispatch(requestAlbum(albumPath));
 		return fetch(`https://tacocat.com/zenphoto/${albumPath}/?api`)
 			.then(handleErrors)
@@ -86,7 +88,7 @@ function requestAlbum(albumPath: string): AlbumRequested {
 export interface AlbumRecieved extends Action {
 	type: ActionTypeKeys.ALBUM_RECEIVED;
 	albumPath: string;
-	album: FullAlbum;
+	album: Album;
 }
 function receiveAlbum(albumPath: string, json: any): AlbumRecieved {
 	return {
@@ -96,7 +98,7 @@ function receiveAlbum(albumPath: string, json: any): AlbumRecieved {
 		// asserts that the json is the right shape to be an Album.
 		// TODO: defensive programming programming if the json isn't the
 		// right shape to be used as an Album
-		album: <FullAlbum>json
+		album: Alb.fromObject(json)
 	};
 }
 
