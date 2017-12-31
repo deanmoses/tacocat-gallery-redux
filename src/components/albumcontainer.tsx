@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actions from '@src/actions/actions';
 import { RootState } from '@src/reducers/reducers';
-import { Album } from '@src/reducers/album';
+import { Album, FullAlbum } from '@src/reducers/album';
 
 /**
  * The shape of this React.js component's properties
@@ -13,11 +13,9 @@ type AlbumPageProps = {
 	readonly album?: Album;
 	readonly fetchAlbumIfNeeded?: Function;
 };
-
 /**
  * The React.js component itself.
  */
-
 class AlbumPage extends React.Component<AlbumPageProps> {
 	/**
 	 * React.js component lifecycle method. Invoked once, immediately after the
@@ -30,12 +28,19 @@ class AlbumPage extends React.Component<AlbumPageProps> {
 		this.props.fetchAlbumIfNeeded(this.props.albumPath);
 	}
 	render() {
-		return <h3>Album Page Connected Component {this.props.albumPath}</h3>;
+		if (!this.props.album || this.props.album.isLoading) {
+			document.title = 'Loading album...';
+			return <h3>Loading...</h3>;
+		}
+
+		const album = this.props.album as FullAlbum;
+		document.title = album.path;
+		return <h3>Got Album: {this.props.albumPath}</h3>;
 	}
 }
 
 //
-// Redax redux machinery below this point
+// Redux redux machinery below this point
 //
 // The above component is a "pure" component that just knows about its properties
 // and what functions it publishes to the outside world.  It doesn't know anything about:
@@ -50,12 +55,13 @@ class AlbumPage extends React.Component<AlbumPageProps> {
  * @prop state the current Redux store state
  * @returns set of props for this component
  */
-function mapStateToProps(state: RootState) {
-	const { currentAlbumPath, albumsByPath } = state;
-	const album = albumsByPath[currentAlbumPath];
+function mapStateToProps(state: RootState, ownProps: AlbumPageProps) {
+	const albumPath = ownProps.albumPath;
+	const { albumsByPath } = state;
+	const album = albumsByPath[albumPath];
 
 	return {
-		currentAlbumPath,
+		albumPath,
 		album
 	};
 }
@@ -82,7 +88,7 @@ function mapDispatchToProps(dispatch: any) {
  *
  * The Redux connect() method does the wrapping.
  */
-const ConnectedAlbum = connect<{}, {}, AlbumPageProps>(
+export const ConnectedAlbum = connect<{}, {}, AlbumPageProps>(
 	mapStateToProps,
 	mapDispatchToProps
 )(AlbumPage);

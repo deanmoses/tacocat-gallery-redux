@@ -13,20 +13,23 @@ import { Action } from 'redux';
 // import { Action, ActionCreator, Dispatch } from 'redux';
 // import { ThunkAction } from 'redux-thunk';
 import { RootState } from '@src/reducers/reducers';
-import { Album } from '@src/reducers/album';
+import { FullAlbum } from '@src/reducers/album';
 
 /**
  * The keys for each action in the application
  */
 export enum ActionTypeKeys {
-	MY_ACTION1,
-	UPDATE_USER_AUTHENTICATION_STATUS,
-	REQUEST_ALBUM,
-	RECEIVE_ALBUM,
-	OTHER_ACTION
+	UPDATE_USER_AUTHENTICATION_STATUS = 'UPDATE_USER_AUTHENTICATION_STATUS',
+	REQUEST_ALBUM = 'REQUEST_ALBUM',
+	RECEIVE_ALBUM = 'RECEIVE_ALBUM',
+	OTHER_ACTION = 'OTHER_ACTION'
 }
 
-export type ActionTypes = UpdateUserAuthenticationStatus | OtherAction;
+export type ActionTypes =
+	| ReceiveAlbum
+	| RequestAlbum
+	| UpdateUserAuthenticationStatus
+	| OtherAction;
 
 /**
  * Action Builder: a helper function to create an Action
@@ -53,14 +56,29 @@ function fetchAlbum(albumPath: string) {
 	};
 }
 
-function requestAlbum(albumPath: string) {
+/**
+ * Action type definition
+ */
+export interface RequestAlbum extends Action {
+	type: ActionTypeKeys.REQUEST_ALBUM;
+	albumPath: string;
+}
+function requestAlbum(albumPath: string): RequestAlbum {
 	return {
 		type: ActionTypeKeys.REQUEST_ALBUM,
 		albumPath
 	};
 }
 
-function receiveAlbum(albumPath: string, json: any) {
+/**
+ * Action type definition
+ */
+export interface ReceiveAlbum extends Action {
+	type: ActionTypeKeys.RECEIVE_ALBUM;
+	album: FullAlbum;
+	albumPath: string;
+}
+function receiveAlbum(albumPath: string, json: any): ReceiveAlbum {
 	return {
 		type: ActionTypeKeys.RECEIVE_ALBUM,
 		albumPath,
@@ -68,8 +86,7 @@ function receiveAlbum(albumPath: string, json: any) {
 		// asserts that the json is the right shape to be an Album.
 		// TODO: defensive programming programming if the json isn't the
 		// right shape to be used as an Album
-		album: <Album>json,
-		receivedAt: Date.now()
+		album: <FullAlbum>json
 	};
 }
 

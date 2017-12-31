@@ -2,11 +2,19 @@
  * Interfaces for the application state
  */
 
-export interface AlbumsByName {
-	[albumName: string]: Album;
+export interface AlbumsByPath {
+	[albumPath: string]: Album;
 }
 
-export interface Album {
+export type Album = TempAlbum | FullAlbum;
+
+export interface TempAlbum {
+	path: string;
+	isLoading?: boolean;
+	err?: string;
+}
+
+export interface FullAlbum {
 	path: string;
 	title: string;
 	summary: string;
@@ -20,6 +28,7 @@ export interface Album {
 	next: AlbumNavInfo;
 	isLoading?: boolean;
 }
+
 export interface Image {
 	path: string;
 	title: string;
@@ -31,6 +40,7 @@ export interface Image {
 	width: number;
 	height: number;
 }
+
 export interface AlbumNavInfo {
 	path: string;
 	title: string;
