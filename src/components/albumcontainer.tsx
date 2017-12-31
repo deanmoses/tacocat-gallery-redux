@@ -16,7 +16,7 @@ type AlbumPageProps = {
 /**
  * The React.js component itself.
  */
-class AlbumPage extends React.Component<AlbumPageProps> {
+export class AlbumPage extends React.Component<AlbumPageProps> {
 	/**
 	 * React.js component lifecycle method. Invoked once, immediately after the
 	 * initial rendering occurs. At this point in the lifecycle, the component
