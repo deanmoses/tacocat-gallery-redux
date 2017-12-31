@@ -5,6 +5,7 @@
 import * as React from 'react';
 import { HashRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import * as Album from '@src/components/album';
+import ConnectedAlbum from '@src/components/albumcontainer';
 import { NotFoundPage } from '@src/components/not-found';
 
 /**
@@ -32,7 +33,7 @@ export const App: React.StatelessComponent = () => (
 				</nav>
 			</header>
 			<Switch>
-				<Route exact path="/" component={Album.RootAlbumPage} />
+				<Route exact path="/" render={() => <ConnectedAlbum albumPath="/" />} />
 				<Route exact path="/(\\d\\d\\d\\d)" component={Album.YearAlbumPage} />
 				<Route
 					exact
