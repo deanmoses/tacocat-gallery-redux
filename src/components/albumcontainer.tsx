@@ -36,8 +36,9 @@ class AlbumPage extends React.Component<AlbumPageProps> {
 	 * your component to re-render.
 	 */
 	componentWillReceiveProps(nextProps: AlbumPageProps) {
-		//if (nextProps !== this.props) {
-		if (nextProps.albumPath !== this.props.albumPath) {
+		// Have we changed which album we're displaying?
+		let differentAlbum: boolean = nextProps.albumPath !== this.props.albumPath;
+		if (differentAlbum) {
 			this.props.fetchAlbumIfNeeded(nextProps.albumPath);
 		}
 	}
