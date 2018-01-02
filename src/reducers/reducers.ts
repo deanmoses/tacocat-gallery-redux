@@ -2,7 +2,6 @@
  * The React Redux reducers and state for the application
  */
 
-import { combineReducers } from 'redux';
 import * as Actions from '@src/actions/actions';
 import { AlbumsByPath, Alb } from '@src/reducers/album';
 
@@ -33,15 +32,15 @@ export const initialRootState: RootState = {
  * The root React Redux reducer.  It combines all the other reducers into a
  * single top-level reducer that the React Redux store calls.
  */
-export const rootReducer = combineReducers<RootState>({
+export const allReducers = {
 	albumsByPath: albumsByPath,
 	isAuthenticated: isAuthenticated
-});
+};
 
 /**
  * A reducer function
  */
-function albumsByPath(
+export function albumsByPath(
 	albumsByPath: AlbumsByPath = {},
 	action: Actions.ActionTypes
 ): AlbumsByPath {
@@ -102,7 +101,10 @@ function albumsByPath(
 /**
  * A reducer function
  */
-function isAuthenticated(state: boolean, action: Actions.ActionTypes): boolean {
+export function isAuthenticated(
+	state: boolean,
+	action: Actions.ActionTypes
+): boolean {
 	if (!action) {
 		return state ? state : false;
 	}

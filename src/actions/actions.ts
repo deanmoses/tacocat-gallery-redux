@@ -94,10 +94,6 @@ function receiveAlbum(albumPath: string, json: any): AlbumRecieved {
 	return {
 		type: ActionTypeKeys.ALBUM_RECEIVED,
 		albumPath,
-		// This is NOT a cast from json to a real Album object; it simply
-		// asserts that the json is the right shape to be an Album.
-		// TODO: defensive programming programming if the json isn't the
-		// right shape to be used as an Album
 		album: Alb.fromObject(json)
 	};
 }

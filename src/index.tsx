@@ -1,34 +1,22 @@
 /**
- * This is the initial javascript of the application; I'm responsible for
- * finding some DOM element in the HTML page and attaching the app to it.
+ * The initial javascript that's executed for the application
  */
 
 import * as React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import * as redux from 'redux';
-import thunk from 'redux-thunk';
-import {
-	rootReducer,
-	initialRootState,
-	RootState
-} from '@src/reducers/reducers';
+import { PersistGate } from 'redux-persist/es/integration/react';
+import configureStore from '@src/store/store';
 import { App } from '@src/components/App';
 
-// helper to enable the redux Chrome devtools extension
-const compose =
-	(window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || redux.compose;
+const { persistor, store } = configureStore();
 
-// Create the React Redux store.  This stores the application's state
-let store = redux.createStore<RootState>(
-	rootReducer,
-	initialRootState,
-	compose(redux.applyMiddleware(thunk))
-);
-
+// Render the app into an element on the index HTML page
 render(
 	<Provider store={store}>
-		<App />
+		<PersistGate persistor={persistor}>
+			<App />
+		</PersistGate>
 	</Provider>,
 	document.getElementById('app')
 );
