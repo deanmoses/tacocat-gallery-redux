@@ -5,16 +5,25 @@
 import * as redux from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
 import { persistStore, persistCombineReducers } from 'redux-persist';
-import storage from 'redux-persist/es/storage';
 import thunk from 'redux-thunk';
 import { allReducers } from '../reducers/reducers';
+import * as localForage from 'localforage';
 
-// Set up redux-persist
-const config = {
+//
+// Configure redux-persist
+//
+localForage.config({
+	name: 'tacocatGalleryApp',
+	description: 'Storage for Tacocat.com photo gallery'
+});
+const reduxPersistConfig = {
 	key: 'root',
-	storage
+	storage: localForage
 };
-const combinedReducers = persistCombineReducers(config, allReducers);
+const combinedReducers = persistCombineReducers(
+	reduxPersistConfig,
+	allReducers
+);
 
 /**
  * Export function that creates the Redux store
