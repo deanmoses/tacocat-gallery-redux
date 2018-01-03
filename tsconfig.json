@@ -13,13 +13,9 @@
         "sourceMap": true,
         "target": "es6",
         "jsx": "react",
-        "outDir": "./dist/", // Target location to output compiled files
-        "baseUrl": "./", // Enables absolute path imports
-        "paths": { // Define absolute path mappings
-            // Enables import { ... } from '@src/components' in the source files
-            // In webpack.config.js you need to add -> resolve: { alias: { '@src': PATH_TO_SRC } }
-            // For Jest tests to work, in package.json you need to add 	the following:
-            //   "jest": {"moduleNameMapper": {"^@src(.*)$": "<rootDir>/src$1"},"@src/*": ["src/*"]}
+        "outDir": "./dist/",
+        "baseUrl": "./",
+        "paths": {
             "@src/*": [
                 "src/*"
             ]

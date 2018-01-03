@@ -1,3 +1,7 @@
+//
+// Configuration file for the Webpack source file bundler
+//
+
 const webpack = require('webpack');
 const path = require('path');
 
