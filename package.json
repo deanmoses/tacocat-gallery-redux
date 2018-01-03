@@ -1,72 +1,71 @@
 {
-  "private": true,
-  "name": "tacocat-gallery-redux",
-  "version": "1.0.0",
-  "description": "Javascript front end for tacocat.com photo gallery built in React, Redux and Typescript",
-  "keywords": [
-    "javascript",
-    "react",
-    "redux",
-    "typescript"
-  ],
-  "license": "MIT",
-  "author": "Dean Moses",
-  "scripts": {
-    "test": "jest",
-    "watch": "webpack --watch",
-    "build-css": "node-sass-chokidar src/styles/main.scss -o dist/ --source-map true",
-    "watch-css": "npm run build-css && node-sass-chokidar src/styles/main.scss -o dist/ --source-map true --watch --recursive",
-    "start": "webpack-dev-server --open",
-    "start-mockapi": "json-server --watch src/api/db.json --port 3001",
-    "build": "NODE_ENV=production webpack && cp src/index.html dist/index.html"
-  },
-  "dependencies": {
-    "jquery": "^3.2.1",
-    "localforage": "^1.5.5",
-    "popper.js": "^1.12.9",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "react-redux": "^5.0.6",
-    "react-router-dom": "^4.2.2",
-    "redux": "^3.7.2",
-    "redux-devtools-extension": "^2.13.2",
-    "redux-persist": "^5.4.0",
-    "redux-thunk": "^2.2.0"
-  },
-  "devDependencies": {
-    "@types/jest": "^22.0.0",
-    "@types/react": "^16.0.31",
-    "@types/react-dom": "^16.0.3",
-    "@types/react-redux": "^5.0.14",
-    "@types/react-router-dom": "^4.2.3",
-    "@types/react-test-renderer": "^16.0.0",
-    "ajv": "^5.5.2",
-    "awesome-typescript-loader": "^3.4.1",
-    "bootstrap": "^4.0.0-beta.3",
-    "jest": "^22.0.4",
-    "jshint": "^2.9.5",
-    "json-server": "^0.12.1",
-    "node-sass-chokidar": "0.0.3",
-    "react-test-renderer": "^16.2.0",
-    "source-map-loader": "^0.2.3",
-    "ts-jest": "^22.0.0",
-    "tslint": "^5.8.0",
-    "typescript": "^2.6.2",
-    "webpack": "^3.10.0",
-    "webpack-dev-server": "^2.9.7"
-  },
-  "jest": {
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js"
-    ],
-    "moduleNameMapper": {
-      "^@src(.*)$": "<rootDir>/src$1"
-    },
-    "transform": {
-      "\\.(ts|tsx)$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
-    },
-    "testRegex": "/__tests__/.*\\.(ts|tsx|js)$"
-  }
+	"private": true,
+	"name": "tacocat-gallery-redux",
+	"version": "1.0.0",
+	"description":
+		"Javascript front end for tacocat.com photo gallery built in React, Redux and Typescript",
+	"keywords": ["javascript", "react", "redux", "typescript"],
+	"license": "MIT",
+	"author": "Dean Moses",
+	"scripts": {
+		"build": "run-s build-setprodenv build-js build-css build-html",
+		"build-setprodenv": "NODE_ENV=production",
+		"build-js": "webpack",
+		"build-html": "cp src/index.html dist/index.html",
+		"start": "run-p start-css start-webpack",
+		"start-webpack": "webpack-dev-server --open",
+		"start-css": "run-s build-css watch-css",
+		"build-css":
+			"node-sass-chokidar src/styles/main.scss -o dist/ --source-map true",
+		"watch-css":
+			"node-sass-chokidar src/styles/main.scss -o dist/ --source-map true --watch --recursive",
+		"start-mockapi": "json-server --watch src/api/db.json --port 3001",
+		"test": "jest"
+	},
+	"dependencies": {
+		"jquery": "^3.2.1",
+		"localforage": "^1.5.5",
+		"popper.js": "^1.12.9",
+		"react": "^16.2.0",
+		"react-dom": "^16.2.0",
+		"react-redux": "^5.0.6",
+		"react-router-dom": "^4.2.2",
+		"redux": "^3.7.2",
+		"redux-devtools-extension": "^2.13.2",
+		"redux-persist": "^5.4.0",
+		"redux-thunk": "^2.2.0"
+	},
+	"devDependencies": {
+		"@types/jest": "^22.0.0",
+		"@types/react": "^16.0.31",
+		"@types/react-dom": "^16.0.3",
+		"@types/react-redux": "^5.0.14",
+		"@types/react-router-dom": "^4.2.3",
+		"@types/react-test-renderer": "^16.0.0",
+		"ajv": "^5.5.2",
+		"awesome-typescript-loader": "^3.4.1",
+		"bootstrap": "^4.0.0-beta.3",
+		"jest": "^22.0.4",
+		"jshint": "^2.9.5",
+		"json-server": "^0.12.1",
+		"node-sass-chokidar": "0.0.3",
+		"npm-run-all": "^4.1.2",
+		"react-test-renderer": "^16.2.0",
+		"source-map-loader": "^0.2.3",
+		"ts-jest": "^22.0.0",
+		"tslint": "^5.8.0",
+		"typescript": "^2.6.2",
+		"webpack": "^3.10.0",
+		"webpack-dev-server": "^2.9.7"
+	},
+	"jest": {
+		"moduleFileExtensions": ["ts", "tsx", "js"],
+		"moduleNameMapper": {
+			"^@src(.*)$": "<rootDir>/src$1"
+		},
+		"transform": {
+			"\\.(ts|tsx)$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+		},
+		"testRegex": "/__tests__/.*\\.(ts|tsx|js)$"
+	}
 }

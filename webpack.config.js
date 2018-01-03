@@ -40,7 +40,6 @@ var config = {
 		alias: {
 			'@src': PATH_TO_SRC
 		},
-		// Add '.ts' and '.tsx' as resolvable extensions
 		extensions: ['.ts', '.tsx', '.js', '.json']
 	},
 
@@ -50,13 +49,20 @@ var config = {
 			{ test: /\.tsx?$/, loader: 'awesome-typescript-loader' },
 
 			// All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'
-			{ test: /\.js$/, enforce: 'pre', loader: 'source-map-loader' }
+			{ test: /\.js$/, loader: 'source-map-loader', enforce: 'pre' }
 		]
 	},
 
+	// Development webserver configuration
 	devServer: {
-		//contentBase: PATH_TO_SRC
-		contentBase: path.join(__dirname, 'dist')
+		// Path to static assets.  This is NOT where bundle.js is served from;
+		// Webpack bundles the javascript internally and serves it from memory.
+		contentBase: path.join(__dirname, 'dist'),
+
+		// Detect when dist changes and reload the browser.
+		// This is needed detect changes to the CSS and HTML,
+		// which webpack does not process.
+		watchContentBase: true
 	}
 };
 
