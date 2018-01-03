@@ -1,3 +1,5 @@
+'use strict';
+
 //
 // Configuration file for the Webpack source file bundler
 //
@@ -6,13 +8,6 @@ const webpack = require('webpack');
 const path = require('path');
 
 const PATH_TO_SRC = path.join(__dirname, 'src');
-
-/**
- * Helper function to avoid repeating path.join a dozen times
- */
-function srcPath(subdir) {
-	return path.join(PATH_TO_SRC, subdir);
-}
 
 var config = {
 	// The base directory, an absolute path, for resolving entry points and loaders from configuration
@@ -25,7 +20,7 @@ var config = {
 
 	output: {
 		// The output directory as an absolute path
-		path: __dirname + '/app',
+		path: path.join(__dirname, 'app'),
 
 		// The name of the output bundle
 		filename: 'bundle.js'
@@ -55,20 +50,18 @@ var config = {
 			{ test: /\.tsx?$/, loader: 'awesome-typescript-loader' },
 
 			// All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'
-			{ enforce: 'pre', test: /\.js$/, loader: 'source-map-loader' },
-			{ test: /\.html$/, loader: 'raw', exclude: /node_modules/ },
-			{ test: /\.css$/, loader: 'style!css', exclude: /node_modules/ },
-			{ test: /\.styl$/, loader: 'style!css!stylus', exclude: /node_modules/ }
+			{ test: /\.js$/, enforce: 'pre', loader: 'source-map-loader' }
 		]
 	},
 
 	devServer: {
-		contentBase: PATH_TO_SRC
+		//contentBase: PATH_TO_SRC
+		contentBase: path.join(__dirname, 'dist')
 	}
 };
 
 if (process.env.NODE_ENV === 'production') {
-	config.output.path = __dirname + '/dist';
+	config.output.path = path.join(__dirname, 'dist');
 	config.plugins.push(new webpack.optimize.UglifyJsPlugin());
 	config.devtool = 'source-map';
 }

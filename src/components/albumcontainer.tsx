@@ -50,7 +50,11 @@ export class AlbumPage extends React.Component<AlbumPageProps> {
 
 		if (album && album.image_size) {
 			document.title = album.path;
-			return <h3>Got Album: {album.path}</h3>;
+			return (
+				<div>
+					<h3>Got Album: {album.path}</h3>
+				</div>
+			);
 		} else if (album && album.err) {
 			return <h3>Error: {album.err}</h3>;
 		} else if (!album || (album.isLoading && !album.title)) {
