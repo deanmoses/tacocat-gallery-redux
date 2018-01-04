@@ -6,14 +6,14 @@ import * as React from 'react';
 import * as StringUtils from '@src/utils/string-utils';
 import * as DateUtils from '@src/utils/date-utils';
 import Config from '@src/utils/config';
-import { AlbumType, Album, Image } from '@src/redux/reducers/album';
+import { AlbumType, Thumbable } from '@src/redux/reducers/album';
 import { Icon, Icons } from '@src/components/presentation/icon';
 
 /**
  * List component properties
  */
 interface ListProps {
-	readonly items: Album[];
+	readonly items: Thumbable[];
 	readonly isAlbum?: boolean;
 	readonly albumType?: AlbumType;
 	readonly editMode?: boolean;
@@ -96,7 +96,7 @@ export class List extends React.Component<ListProps> {
  * Nail component properties
  */
 interface NailProps {
-	readonly item: Image;
+	readonly item: Thumbable;
 	readonly isAlbum?: boolean;
 	readonly albumType: AlbumType;
 	readonly editMode?: boolean;

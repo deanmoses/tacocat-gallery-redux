@@ -17,8 +17,8 @@ export interface Album {
 	thumb_size?: number;
 	thumb?: string;
 	date?: number;
-	images?: (Image)[] | null;
-	albums?: (Album)[] | null;
+	images?: Image[];
+	albums?: AlbumThumb[];
 	parent_album?: AlbumNavInfo;
 	next?: AlbumNavInfo;
 	isLoading?: boolean;
@@ -34,7 +34,7 @@ export interface Album {
 	parentAlbumTitle?: string;
 }
 
-export interface Image {
+export interface Thumbable {
 	path: string;
 	title: string;
 	date: number;
@@ -45,6 +45,12 @@ export interface Image {
 	width: number;
 	height: number;
 }
+
+export interface AlbumThumb extends Thumbable {
+	type?: AlbumType;
+}
+
+export interface Image extends Thumbable {}
 
 export interface AlbumNavInfo {
 	path: string;
