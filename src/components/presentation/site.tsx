@@ -39,17 +39,21 @@ export const Page: React.StatelessComponent<PageProps> = ({
  */
 export interface HeaderTitleProps {
 	readonly title?: string;
+	readonly shortTitle?: string;
 	readonly path?: string;
 	readonly href?: string;
 	readonly showTitle?: boolean;
+	readonly showTitleLink?: boolean;
 	readonly showSearch?: boolean;
 	readonly children?: any;
 }
 export const HeaderTitle: React.StatelessComponent<HeaderTitleProps> = ({
 	title = '',
+	//	shortTitle = '',
 	href = '',
 	path = '',
 	showTitle = true,
+	//	showTitleLink = true,
 	showSearch = true,
 	children
 }) => {
