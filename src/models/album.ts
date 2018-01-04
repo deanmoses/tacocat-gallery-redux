@@ -82,6 +82,7 @@ export class Alb implements Album {
 	err?: string;
 
 	constructor(path: string) {
+		if (!path) throw new Error('Album.path cannot be null');
 		this.path = path;
 	}
 

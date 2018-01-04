@@ -9,12 +9,12 @@ export default function createAlbumFromObject(json: any): Album {
 	let alb: Album;
 	// no path: it's the root album
 	if (!!json && (!json.path || json.path.length <= 0 || json.path === '/')) {
-		alb = Object.create(Alb.prototype);
+		alb = new Alb(json.path);
 	} else if (!!json && !!json.path && json.path.indexOf('/') < 0) {
-		// no slashes:  it's a year album
-		alb = Object.create(YearAlbum.prototype);
+		// no slashes: it's a year album
+		alb = new YearAlbum(json.path);
 	} else {
-		alb = Object.create(Alb.prototype);
+		alb = new Alb(json.path);
 	}
 	return Object.assign(alb, json);
 }
