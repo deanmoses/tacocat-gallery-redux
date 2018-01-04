@@ -87,10 +87,13 @@ export class Alb implements Album {
 	}
 
 	get type(): AlbumType {
-		// no path: it's the root album
-		if (!this.path || this.path.length <= 0 || this.path === '/') {
+		return Alb.type(this.path);
+	}
+
+	static type(path: string): AlbumType {
+		if (!path || path.length <= 0 || path === '/') {
 			return AlbumType.ROOT;
-		} else if (this.path.indexOf('/') < 0) {
+		} else if (path.indexOf('/') < 0) {
 			// no slashes:  it's a year album
 			return AlbumType.YEAR;
 		} else {
@@ -103,16 +106,7 @@ export class Alb implements Album {
 	 * Friendly title of page
 	 */
 	get pageTitle(): string {
-		switch (this.type) {
-			case AlbumType.ROOT:
-				return '';
-			case AlbumType.YEAR:
-				return DateUtils.year(this.date);
-			case AlbumType.DAY:
-				return DateUtils.longDate(this.date);
-			default:
-				throw 'no such type';
-		}
+		return this.title;
 	}
 
 	/**
