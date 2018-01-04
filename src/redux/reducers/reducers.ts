@@ -3,7 +3,8 @@
  */
 
 import * as Actions from '@src/redux/actions/actions';
-import { AlbumsByPath, Alb } from '@src/redux/reducers/album';
+import { AlbumsByPath, Alb } from '@src/models/album';
+import createAlbumFromObject from '@src/models/album-creator';
 
 /**
  * The shape of the application's state.
@@ -72,7 +73,7 @@ export function albumsByPath(
 			console.log(action.type, action.albumPath);
 			let newAlbums = { ...albumsByPath };
 			// Add album to store
-			newAlbums[action.albumPath] = action.album;
+			newAlbums[action.albumPath] = createAlbumFromObject(action.albumJson);
 			return newAlbums;
 		}
 

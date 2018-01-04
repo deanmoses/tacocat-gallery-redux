@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actions from '@src/redux/actions/actions';
 import { RootState } from '@src/redux/reducers/reducers';
-import { Album } from '@src/redux/reducers/album';
+import { Album } from '@src/models/album';
 import AlbumPage from '@src/components/pages/album-page';
 import AlbumLoadingPage from '@src/components/pages/album-loading-page';
 import AlbumErrorPage from '@src/components/pages/album-error-page';

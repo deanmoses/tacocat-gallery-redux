@@ -85,11 +85,6 @@ export class Alb implements Album {
 		this.path = path;
 	}
 
-	static fromObject(json: any): Alb {
-		let alb = Object.create(Alb.prototype);
-		return Object.assign(alb, json);
-	}
-
 	get type(): AlbumType {
 		// no path: it's the root album
 		if (!this.path || this.path.length <= 0 || this.path === '/') {

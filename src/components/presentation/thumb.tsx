@@ -6,7 +6,7 @@ import * as React from 'react';
 import * as StringUtils from '@src/utils/string-utils';
 import * as DateUtils from '@src/utils/date-utils';
 import Config from '@src/utils/config';
-import { AlbumType, Thumbable } from '@src/redux/reducers/album';
+import { AlbumType, Thumbable } from '@src/models/album';
 import { Icon, Icons } from '@src/components/presentation/icon';
 
 /**

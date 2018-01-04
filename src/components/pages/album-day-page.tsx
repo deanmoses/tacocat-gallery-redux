@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as Site from '@src/components/presentation/site';
-import { Album } from '@src/redux/reducers/album';
+import { Album } from '@src/models/album';
 import * as Thumb from '@src/components/presentation/thumb';
 
 interface AlbumPageProps {

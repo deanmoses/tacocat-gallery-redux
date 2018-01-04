@@ -11,7 +11,6 @@
  */
 import { Action } from 'redux';
 import { RootState } from '@src/redux/reducers/reducers';
-import { Album, Alb } from '@src/redux/reducers/album';
 
 /**
  * The keys for each action in the application
@@ -92,13 +91,13 @@ function requestAlbum(albumPath: string): AlbumRequested {
 export interface AlbumRecieved extends Action {
 	type: ActionTypeKeys.ALBUM_RECEIVED;
 	albumPath: string;
-	album: Album;
+	albumJson: Object;
 }
 function receiveAlbum(albumPath: string, json: any): AlbumRecieved {
 	return {
 		type: ActionTypeKeys.ALBUM_RECEIVED,
 		albumPath,
-		album: Alb.fromObject(json)
+		albumJson: json
 	};
 }
 

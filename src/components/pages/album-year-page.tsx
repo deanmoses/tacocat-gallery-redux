@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as Site from '@src/components/presentation/site';
-import { Album, AlbumThumb } from '@src/redux/reducers/album';
+import { Album, AlbumThumb } from '@src/models/album';
 import * as Thumb from '@src/components/presentation/thumb';
 
 /**
@@ -81,8 +81,15 @@ const MonthThumbs: React.StatelessComponent<MonthThumbsProps> = ({ album }) => {
 	var months = album.albums.map(function(child: AlbumThumb) {
 		// TODO: render by months
 		//var months = album.childAlbumsByMonth.map(function(childAlbum:Album) {
-		return <Thumb.Nail item={child} isAlbum={true} albumType={child.type} />;
-		//return <MonthThumb month={childAlbum} key={childAlbum.monthName} />;
+		return (
+			<Thumb.Nail
+				item={child}
+				isAlbum={true}
+				albumType={child.type}
+				key={child.date}
+			/>
+		);
+		//return <MonthThumb month={child} key={child.monthName} />;
 	});
 
 	return <div>{months}</div>;
