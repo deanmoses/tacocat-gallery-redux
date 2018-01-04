@@ -6,6 +6,7 @@ import * as React from 'react';
 import * as Site from '@src/components/presentation/site';
 import WaitingSpinner from '@src/components/presentation/waiting-spinner';
 import { Album, AlbumType } from '@src/redux/reducers/album';
+import * as Thumb from '@src/components/presentation/thumb';
 
 /**
  * Album page that displays a "loading..." spinner
@@ -123,9 +124,18 @@ export const DayAlbumPage: React.StatelessComponent<AlbumPageProps> = ({
 		</Site.HeaderTitle>
 		<section className="overview">
 			<h2 className="hidden">Overview</h2>
-			{album.description}
+			<div
+				className="caption"
+				dangerouslySetInnerHTML={{ __html: album.description }}
+			/>
 		</section>
-		Thumbs Go Here
+		<Thumb.List
+			items={album.images}
+			isAlbum={false}
+			// editMode={user.editMode}
+			// selectedItem={selectedItem}
+			// onSelect={this.onThumbSelect}
+		/>
 		<div>Edit Menu Goes Here</div>
 	</Site.Page>
 );

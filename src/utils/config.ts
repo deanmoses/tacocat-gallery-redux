@@ -1,7 +1,7 @@
 /**
  * Configuration global to the application
  */
-export default abstract class MyClass {
+export default abstract class Config {
 	public static siteTitle(): string {
 		return 'Dean, Lucie, Felix and Milo Moses';
 	}
