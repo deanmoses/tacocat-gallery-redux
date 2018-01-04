@@ -42,12 +42,14 @@ export interface HeaderTitleProps {
 	readonly href?: string;
 	readonly showTitle?: boolean;
 	readonly showSearch?: boolean;
+	readonly children?: any;
 }
 export const HeaderTitle: React.StatelessComponent<HeaderTitleProps> = ({
 	title = '',
 	href = '',
 	showTitle = true,
-	showSearch = true
+	showSearch = true,
+	children
 }) => {
 	var derivedTitle = (
 		<a className="navbar-brand" href={href}>
@@ -70,9 +72,7 @@ export const HeaderTitle: React.StatelessComponent<HeaderTitleProps> = ({
 					)}
 				</div>
 			</nav>
-			{
-				//<Site.HeaderButtons>{props.children}</Site.HeaderButtons>
-			}
+			<HeaderButtons>{children}</HeaderButtons>
 		</div>
 	);
 };
@@ -111,4 +111,94 @@ export const SearchButton: React.StatelessComponent<SearchButtonProps> = ({
 			<Icon name="search" />
 		</a>
 	);
+};
+
+/**
+ * Row of header buttons
+ */
+interface HeaderButtonsProps {
+	readonly children?: any;
+}
+export const HeaderButtons: React.StatelessComponent<HeaderButtonsProps> = ({
+	children
+}) => {
+	if (!children) {
+		return null;
+	}
+	return (
+		<div>
+			<div className="btn-group btn-group-justified" role="group">
+				{children}
+			</div>
+		</div>
+	);
+};
+
+/**
+ * Header Nav Button Props used for multiple types of header buttons (prev / next)
+ */
+interface HeaderNavButtonProps {
+	readonly href?: string;
+	readonly title?: string;
+}
+
+/**
+ * Prev Nav Button
+ */
+export const PrevButton: React.StatelessComponent<HeaderNavButtonProps> = ({
+	href,
+	title
+}) => (
+	<HeaderButton href={href}>
+		<Icon name="chevron-left" />{' '}
+		<span className="nav-button-label">{title}</span>
+	</HeaderButton>
+);
+
+/**
+ * Next Nav Button
+ */
+export const NextButton: React.StatelessComponent<HeaderNavButtonProps> = ({
+	href,
+	title
+}) => (
+	<HeaderButton href={href}>
+		<span className="nav-button-label">{title}</span>{' '}
+		<Icon name="chevron-right" />
+	</HeaderButton>
+);
+
+/**
+ * Up Nav Button
+ */
+export const UpButton: React.StatelessComponent<HeaderNavButtonProps> = ({
+	href,
+	title
+}) => (
+	<HeaderButton href={href}>
+		<Icon name="home" /> <span className="nav-button-label">{title}</span>
+	</HeaderButton>
+);
+
+/**
+ * Header Button
+ */
+interface HeaderButtonProps {
+	readonly href?: string;
+	readonly children?: any;
+}
+export const HeaderButton: React.StatelessComponent<HeaderButtonProps> = ({
+	href,
+	children
+}) => {
+	if (href) {
+		return (
+			<a className="btn btn-default" href={href}>
+				{children}
+			</a>
+		);
+	} else {
+		// else render with no href
+		return <a className="btn btn-default disabled">{children}</a>;
+	}
 };

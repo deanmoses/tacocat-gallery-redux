@@ -22,6 +22,14 @@ export interface Album {
 	next?: AlbumNavInfo;
 	isLoading?: boolean;
 	err?: string;
+	type?: AlbumType;
+	href?: string;
+	nextAlbumHref?: string;
+	nextAlbumTitle?: string;
+	prevAlbumHref?: string;
+	prevAlbumTitle?: string;
+	parentAlbumHref?: string;
+	parentAlbumTitle?: string;
 }
 
 export interface Image {
@@ -52,6 +60,7 @@ export class Alb implements Album {
 	path: string;
 	title?: string;
 	summary?: string;
+	unpublished?: boolean;
 	description?: string;
 	image_size?: number;
 	thumb_size?: number;
@@ -60,6 +69,7 @@ export class Alb implements Album {
 	images?: (Image)[] | null;
 	parent_album?: AlbumNavInfo;
 	next?: AlbumNavInfo;
+	prev?: AlbumNavInfo;
 	isLoading?: boolean;
 	err?: string;
 
@@ -72,7 +82,7 @@ export class Alb implements Album {
 		return Object.assign(alb, json);
 	}
 
-	private get type(): AlbumType {
+	get type(): AlbumType {
 		// no path: it's the root album
 		if (!this.path || this.path.length <= 0) {
 			return AlbumType.ROOT;
@@ -96,5 +106,95 @@ export class Alb implements Album {
 			default:
 				throw 'no such type';
 		}
+	}
+
+	/**
+	 * True: album is public
+	 */
+	get published(): boolean {
+		return !this.unpublished;
+	}
+
+	/**
+	 * URL (including hashtag) to screen displaying album, like #2014/12-31
+	 */
+	get href(): string {
+		return '#' + this.path;
+	}
+
+	/**
+	 * Path of next album
+	 * Blank if no next album
+	 */
+	get nextAlbumPath(): string {
+		return this.next ? this.next.path : '';
+	}
+
+	/**
+	 * URL to next album, including hash
+	 * Blank if no next album
+	 */
+	get nextAlbumHref(): string {
+		return this.next ? '#' + this.next.path : '';
+	}
+
+	/**
+	 * Path of previous album
+	 * Blank if no previous album
+	 */
+	get prevAlbumPath(): string {
+		return this.prev ? this.prev.path : '';
+	}
+
+	/**
+	 * URL to previous album, including hash
+	 * Blank if no previous album
+	 */
+	get prevAlbumHref(): string {
+		return this.prev ? '#' + this.prev.path : '';
+	}
+
+	/**
+	 * URL to parent album, including hash
+	 * Blank if no parent album
+	 */
+	get parentAlbumHref(): string {
+		return this.parent_album ? '#' + this.parent_album.path : '';
+	}
+
+	/**
+	 * Title of next album
+	 * Blank if no next album
+	 */
+	get nextAlbumTitle(): string {
+		if (!this.next) {
+			return '';
+		} else if (this.type === AlbumType.YEAR) {
+			return DateUtils.year(this.next.date);
+		} else {
+			return DateUtils.shortDate(this.next.date);
+		}
+	}
+
+	/**
+	 * Title of previous album
+	 * Blank if no previous album
+	 */
+	get prevAlbumTitle(): string {
+		if (!this.next) {
+			return '';
+		} else if (this.type === AlbumType.YEAR) {
+			return DateUtils.year(this.next.date);
+		} else {
+			return DateUtils.shortDate(this.next.date);
+		}
+	}
+
+	/**
+	 * Title of parent album
+	 * Blank if no parent album
+	 */
+	get parentAlbumTitle(): string {
+		return this.parent_album ? this.parent_album.title : '';
 	}
 }
