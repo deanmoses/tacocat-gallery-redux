@@ -5,7 +5,7 @@ $font-family-sans-serif: "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
 $line-height-base: 1.5;
 $titleColor: #fff;
 
-@import "./node_modules/bootstrap/scss/bootstrap.scss";
+@import "./node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
 .btn {
 	border-radius: 0;
