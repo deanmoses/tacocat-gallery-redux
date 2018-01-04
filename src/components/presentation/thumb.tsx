@@ -5,15 +5,15 @@
 import * as React from 'react';
 import * as StringUtils from '@src/utils/string-utils';
 import * as DateUtils from '@src/utils/date-utils';
-//import * as Config from '@src/utils/config';
-import { AlbumType, Image } from '@src/redux/reducers/album';
+import Config from '@src/utils/config';
+import { AlbumType, Album, Image } from '@src/redux/reducers/album';
 import { Icon, Icons } from '@src/components/presentation/icon';
 
 /**
  * List component properties
  */
 interface ListProps {
-	readonly items: Image[];
+	readonly items: Album[];
 	readonly isAlbum?: boolean;
 	readonly albumType?: AlbumType;
 	readonly editMode?: boolean;
@@ -172,8 +172,7 @@ export class Nail extends React.Component<NailProps> {
 		) : (
 			<Icon icon={Icons.STAR} onClick={this.onSelect} />
 		);
-		//var thumbUrl = Config.cdnHost() + item.urlThumb;
-		var thumbUrl = 'https://cdn.tacocat.com' + item.urlThumb;
+		var thumbUrl = Config.cdnHost() + item.urlThumb;
 
 		return (
 			<span className={'thumbnail' + selectedClass}>

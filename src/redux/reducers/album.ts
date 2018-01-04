@@ -18,6 +18,7 @@ export interface Album {
 	thumb?: string;
 	date?: number;
 	images?: (Image)[] | null;
+	albums?: (Album)[] | null;
 	parent_album?: AlbumNavInfo;
 	next?: AlbumNavInfo;
 	isLoading?: boolean;
