@@ -12,7 +12,6 @@ interface AlbumPageProps {
  */
 const RootAlbumPage: React.StatelessComponent<AlbumPageProps> = ({ album }) => (
 	<Site.Page className="albumpage rootalbumtype">
-		<Site.HeaderTitle />
 		<Site.HeaderTitle
 			title={Config.siteTitle()}
 			shortTitle={Config.siteShortTitle()}
