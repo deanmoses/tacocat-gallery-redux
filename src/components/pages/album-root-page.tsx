@@ -24,7 +24,6 @@ const RootAlbumPage: React.StatelessComponent<AlbumPageProps> = ({ album }) => (
 			<section className="col-md-3 sidebar latest">
 				<h2>Latest Album</h2>
 			</section>
-			<section className="col-md-9 col-md-offset-3">Thumbnails</section>
 			<section className="col-md-9 col-md-offset-3">
 				<Thumb.List
 					items={album.albums}

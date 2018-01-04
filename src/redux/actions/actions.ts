@@ -43,10 +43,14 @@ export function fetchAlbumIfNeeded(albumPath: string) {
 	};
 }
 
-function shouldFetchAlbum(state: RootState, albumPath: string) {
-	console.log('shouldFetchAlbum() state:', state);
+function shouldFetchAlbum(state: RootState, albumPath: string): boolean {
 	const album = state.albumsByPath[albumPath];
-	return !album || !album.isLoading;
+	// always fetch album, except if we're already fetching the album
+	//const shouldFetch = !album || !album.isLoading;
+	// always fetch album
+	const shouldFetch = !album || !!album;
+	console.log(`shouldFetchAlbum(${albumPath})?`, shouldFetch);
+	return shouldFetch;
 }
 
 function fetchAlbum(albumPath: string) {

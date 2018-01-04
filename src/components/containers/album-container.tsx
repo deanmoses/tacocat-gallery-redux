@@ -90,8 +90,8 @@ export class AlbumContainer extends React.Component<AlbumContainerProps> {
  * @returns set of props for this component
  */
 function mapStateToProps(state: RootState, ownProps: AlbumContainerProps) {
-	const albumPath = ownProps.albumPath;
-	const album = state.albumsByPath[albumPath];
+	const albumPath: string = ownProps.albumPath;
+	const album: Album = state.albumsByPath[albumPath];
 
 	return {
 		albumPath,

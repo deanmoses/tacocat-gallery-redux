@@ -86,7 +86,7 @@ export class Alb implements Album {
 
 	get type(): AlbumType {
 		// no path: it's the root album
-		if (!this.path || this.path.length <= 0) {
+		if (!this.path || this.path.length <= 0 || this.path === '/') {
 			return AlbumType.ROOT;
 		} else if (this.path.indexOf('/') < 0) {
 			// no slashes:  it's a year album
