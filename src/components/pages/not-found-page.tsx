@@ -1,11 +1,10 @@
-/**
- * React.js components that renders page for invalid route syntax
- */
-
 import * as React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import * as Site from '@src/components/presentation/site';
 
+/**
+ * Page when the URL is invalid
+ */
 export const NotFoundPage: React.StatelessComponent<
 	RouteComponentProps<any>
 > = () => (

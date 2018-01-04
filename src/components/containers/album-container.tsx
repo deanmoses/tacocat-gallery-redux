@@ -4,12 +4,14 @@ import { connect } from 'react-redux';
 import * as actions from '@src/redux/actions/actions';
 import { RootState } from '@src/redux/reducers/reducers';
 import { Album } from '@src/redux/reducers/album';
-import * as albumpages from '@src/components/pages/album-pages';
+import AlbumPage from '@src/components/pages/album-page';
+import AlbumLoadingPage from '@src/components/pages/album-loading-page';
+import AlbumErrorPage from '@src/components/pages/album-error-page';
 
 /**
  * The shape of this component's properties
  */
-type AlbumPageProps = {
+type AlbumContainerProps = {
 	readonly albumPath: string;
 	readonly album?: Album;
 	readonly fetchAlbumIfNeeded?: Function;
@@ -17,7 +19,7 @@ type AlbumPageProps = {
 /**
  * The component itself.
  */
-export class AlbumPage extends React.Component<AlbumPageProps> {
+export class AlbumContainer extends React.Component<AlbumContainerProps> {
 	/**
 	 * React.js component lifecycle method. Invoked once, immediately after the
 	 * initial rendering occurs. At this point in the lifecycle, the component
@@ -36,7 +38,7 @@ export class AlbumPage extends React.Component<AlbumPageProps> {
 	 * only want to handle changes. This may occur when the parent component causes
 	 * your component to re-render.
 	 */
-	componentWillReceiveProps(nextProps: AlbumPageProps) {
+	componentWillReceiveProps(nextProps: AlbumContainerProps) {
 		// Have we changed which album we're displaying?
 		let differentAlbum: boolean = nextProps.albumPath !== this.props.albumPath;
 		if (differentAlbum) {
@@ -56,17 +58,17 @@ export class AlbumPage extends React.Component<AlbumPageProps> {
 
 		if (album && album.image_size) {
 			document.title = album.path;
-			return <albumpages.AlbumPage album={album} />;
+			return <AlbumPage album={album} />;
 		} else if (album && album.err) {
 			document.title = 'Error loading album';
-			return <albumpages.AlbumErrorPage message={album.err} />;
+			return <AlbumErrorPage message={album.err} />;
 		} else if (!album || (album.isLoading && !album.title)) {
 			document.title = 'Loading album...';
-			return <albumpages.AlbumLoadingPage />;
+			return <AlbumLoadingPage />;
 		} else {
 			document.title = 'Weird state...';
 			const message = "I'm in some weird state I didn't expect";
-			return <albumpages.AlbumErrorPage message={message} />;
+			return <AlbumErrorPage message={message} />;
 		}
 	}
 }
@@ -87,7 +89,7 @@ export class AlbumPage extends React.Component<AlbumPageProps> {
  * @prop state the current Redux store state
  * @returns set of props for this component
  */
-function mapStateToProps(state: RootState, ownProps: AlbumPageProps) {
+function mapStateToProps(state: RootState, ownProps: AlbumContainerProps) {
 	const albumPath = ownProps.albumPath;
 	const album = state.albumsByPath[albumPath];
 
@@ -119,8 +121,8 @@ function mapDispatchToProps(dispatch: any) {
  *
  * The Redux connect() method does the wrapping.
  */
-export const ConnectedAlbum = connect<{}, {}, AlbumPageProps>(
+export const ConnectedAlbum = connect<{}, {}, AlbumContainerProps>(
 	mapStateToProps,
 	mapDispatchToProps
-)(AlbumPage);
+)(AlbumContainer);
 export default ConnectedAlbum;
