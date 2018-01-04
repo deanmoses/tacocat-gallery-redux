@@ -1,10 +1,11 @@
-import { Alb, AlbumNavInfo } from '@src/models/album';
+import { AlbumNavInfo } from '@src/models/album';
+import DateBasedAlbum from '@src/models/album-datebased';
 import * as DateUtils from '@src/utils/date-utils';
 
 /**
  * Overrides the default album class with  behavior specific to year albums.
  */
-export default class YearAlbum extends Alb {
+export default class YearAlbum extends DateBasedAlbum {
 	/**
 	 * Friendly title of page
 	 */

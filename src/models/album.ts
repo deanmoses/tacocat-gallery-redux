@@ -1,5 +1,3 @@
-import * as DateUtils from '@src/utils/date-utils';
-
 /**
  * Interfaces for the application state
  */
@@ -168,7 +166,7 @@ export class Alb implements Album {
 	 * Blank if no next album
 	 */
 	get nextAlbumTitle(): string {
-		return this.next ? DateUtils.shortDate(this.next.date) : '';
+		return this.next ? this.next.title : '';
 	}
 
 	/**
@@ -176,7 +174,7 @@ export class Alb implements Album {
 	 * Blank if no previous album
 	 */
 	get prevAlbumTitle(): string {
-		return this.prev ? DateUtils.shortDate(this.prev.date) : '';
+		return this.prev ? this.prev.title : '';
 	}
 
 	/**
