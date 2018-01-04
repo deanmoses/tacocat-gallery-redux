@@ -21,6 +21,7 @@ test/temp
 
 # log files
 *.log
+npm-debug.log*
 
 # JetBrains editor dir
 .idea/
