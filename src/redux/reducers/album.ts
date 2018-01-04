@@ -23,6 +23,7 @@ export interface Album {
 	isLoading?: boolean;
 	err?: string;
 	type?: AlbumType;
+	pageTitle?: string;
 	href?: string;
 	nextAlbumHref?: string;
 	nextAlbumTitle?: string;
@@ -95,7 +96,10 @@ export class Alb implements Album {
 		}
 	}
 
-	getTitle() {
+	/**
+	 * Friendly title of page
+	 */
+	get pageTitle(): string {
 		switch (this.type) {
 			case AlbumType.ROOT:
 				return '';

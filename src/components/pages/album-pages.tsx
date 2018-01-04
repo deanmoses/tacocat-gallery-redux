@@ -94,10 +94,22 @@ export const RootAlbumPage: React.StatelessComponent<AlbumPageProps> = () => (
 /**
  * Year album pages (like the one at the "2001" URL path)
  */
-export const YearAlbumPage: React.StatelessComponent<AlbumPageProps> = () => (
+export const YearAlbumPage: React.StatelessComponent<AlbumPageProps> = ({
+	album
+}) => (
 	<Site.Page className="albumpage yearalbumtype">
-		<Site.HeaderTitle>Buttons Go Here</Site.HeaderTitle>
-		Firsts And Thumbs Go Here
+		<Site.HeaderTitle href="#" title={album.pageTitle} path={album.path}>
+			<Site.PrevButton
+				href={album.nextAlbumHref}
+				title={album.nextAlbumTitle}
+			/>
+			<Site.UpButton href="#" title="All Years" />
+			<Site.NextButton
+				href={album.prevAlbumHref}
+				title={album.prevAlbumTitle}
+			/>
+		</Site.HeaderTitle>
+		FirstsAndThumbs go here
 	</Site.Page>
 );
 
@@ -108,7 +120,11 @@ export const DayAlbumPage: React.StatelessComponent<AlbumPageProps> = ({
 	album
 }) => (
 	<Site.Page className="albumpage weekalbumtype">
-		<Site.HeaderTitle title={album.title}>
+		<Site.HeaderTitle
+			href={'#' + album.parent_album.path}
+			title={album.pageTitle}
+			path={album.path}
+		>
 			<Site.PrevButton
 				href={album.nextAlbumHref}
 				title={album.nextAlbumTitle}

@@ -39,6 +39,7 @@ export const Page: React.StatelessComponent<PageProps> = ({
  */
 export interface HeaderTitleProps {
 	readonly title?: string;
+	readonly path?: string;
 	readonly href?: string;
 	readonly showTitle?: boolean;
 	readonly showSearch?: boolean;
@@ -47,6 +48,7 @@ export interface HeaderTitleProps {
 export const HeaderTitle: React.StatelessComponent<HeaderTitleProps> = ({
 	title = '',
 	href = '',
+	path = '',
 	showTitle = true,
 	showSearch = true,
 	children
@@ -67,7 +69,7 @@ export const HeaderTitle: React.StatelessComponent<HeaderTitleProps> = ({
 					)}
 					{showSearch && (
 						<span className="search-button">
-							<SearchButton />
+							<SearchButton returnPath={path} />
 						</span>
 					)}
 				</div>
