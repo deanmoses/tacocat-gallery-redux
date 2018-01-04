@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as actions from '@src/actions/actions';
-import { RootState } from '@src/reducers/reducers';
-import { Album } from '@src/reducers/album';
+import * as actions from '@src/redux/actions/actions';
+import { RootState } from '@src/redux/reducers/reducers';
+import { Album } from '@src/redux/reducers/album';
 import * as albumpages from '@src/components/pages/album-pages';
 
 /**

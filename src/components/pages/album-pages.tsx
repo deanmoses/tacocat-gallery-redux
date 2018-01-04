@@ -5,7 +5,7 @@
 import * as React from 'react';
 import * as Site from '@src/components/presentation/site';
 import WaitingSpinner from '@src/components/presentation/waiting-spinner';
-import { Album, AlbumType } from '@src/reducers/album';
+import { Album, AlbumType } from '@src/redux/reducers/album';
 
 /**
  * Album page that displays a "loading..." spinner

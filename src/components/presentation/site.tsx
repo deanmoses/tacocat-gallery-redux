@@ -3,7 +3,7 @@
  */
 
 import * as React from 'react';
-import Config from '@src/config';
+import Config from '@src/utils/config';
 import Icon from '@src/components/presentation/icon';
 
 /**

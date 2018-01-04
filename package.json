@@ -13,8 +13,9 @@
 		"build-setprodenv": "NODE_ENV=production",
 		"build-js": "webpack",
 		"start-static": "run-s build-static watch-static",
-		"build-static": "cpx 'src/**/*.{html,png,jpg,ico}' dist",
-		"watch-static": "cpx 'src/**/*.{html,png,jpg,ico}' dist --watch",
+		"build-static": "cpx 'src/public/**/*.{html,png,jpg,ico,xml,tx}' dist",
+		"watch-static":
+			"cpx 'src/public/**/*.{html,png,jpg,ico,xml,txt}' dist --watch",
 		"start-webpack": "webpack-dev-server --open",
 		"start-css": "run-s build-css watch-css",
 		"build-css":

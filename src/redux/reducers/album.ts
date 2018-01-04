@@ -1,4 +1,4 @@
-import * as DateUtils from '@src/date-utils';
+import * as DateUtils from '@src/utils/date-utils';
 
 /**
  * Interfaces for the application state

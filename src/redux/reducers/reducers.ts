@@ -2,8 +2,8 @@
  * The React Redux reducers and state for the application
  */
 
-import * as Actions from '@src/actions/actions';
-import { AlbumsByPath, Alb } from '@src/reducers/album';
+import * as Actions from '@src/redux/actions/actions';
+import { AlbumsByPath, Alb } from '@src/redux/reducers/album';
 
 /**
  * The shape of the application's state.

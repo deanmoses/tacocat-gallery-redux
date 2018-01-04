@@ -10,8 +10,8 @@
  * do stuff, like make ajax calls, then fire more actions.
  */
 import { Action } from 'redux';
-import { RootState } from '@src/reducers/reducers';
-import { Album, Alb } from '@src/reducers/album';
+import { RootState } from '@src/redux/reducers/reducers';
+import { Album, Alb } from '@src/redux/reducers/album';
 
 /**
  * The keys for each action in the application

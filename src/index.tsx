@@ -6,8 +6,8 @@ import * as React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/es/integration/react';
-import configureStore from '@src/store/store';
-import { App } from '@src/components/App';
+import configureStore from '@src/redux/store/store';
+import { App } from '@src/components/app';
 
 const { persistor, store } = configureStore();
 

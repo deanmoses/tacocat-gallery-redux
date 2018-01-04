@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import * as reducers from '../reducers';
 import { allReducers, RootState } from '../reducers';
-import * as actions from '@src/actions/actions';
+import * as actions from '@src/redux/actions/actions';
 
 const rootReducer = combineReducers<RootState>(allReducers);
 
