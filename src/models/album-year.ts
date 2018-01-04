@@ -32,10 +32,6 @@ export default class YearAlbum extends Alb {
 	 * Return title of another album to navigate to
 	 */
 	private albumTitle(anotherAlbum: AlbumNavInfo): string {
-		if (anotherAlbum) {
-			return DateUtils.year(anotherAlbum.date);
-		} else {
-			return '';
-		}
+		return anotherAlbum ? DateUtils.year(anotherAlbum.date) : '';
 	}
 }

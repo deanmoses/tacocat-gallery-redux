@@ -168,13 +168,7 @@ export class Alb implements Album {
 	 * Blank if no next album
 	 */
 	get nextAlbumTitle(): string {
-		if (!this.next) {
-			return '';
-		} else if (this.type === AlbumType.YEAR) {
-			return DateUtils.year(this.next.date);
-		} else {
-			return DateUtils.shortDate(this.next.date);
-		}
+		return this.next ? DateUtils.shortDate(this.next.date) : '';
 	}
 
 	/**
@@ -182,13 +176,7 @@ export class Alb implements Album {
 	 * Blank if no previous album
 	 */
 	get prevAlbumTitle(): string {
-		if (!this.prev) {
-			return '';
-		} else if (this.type === AlbumType.YEAR) {
-			return DateUtils.year(this.prev.date);
-		} else {
-			return DateUtils.shortDate(this.prev.date);
-		}
+		return this.prev ? DateUtils.shortDate(this.prev.date) : '';
 	}
 
 	/**
