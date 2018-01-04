@@ -4,7 +4,7 @@
 
 import * as React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
-import * as Site from '@src/components/site';
+import * as Site from '@src/components/presentation/site';
 
 export const NotFoundPage: React.StatelessComponent<
 	RouteComponentProps<any>

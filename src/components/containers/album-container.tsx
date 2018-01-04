@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import * as actions from '@src/actions/actions';
 import { RootState } from '@src/reducers/reducers';
 import { Album } from '@src/reducers/album';
-import * as albumpages from '@src/components/album-pages';
+import * as albumpages from '@src/components/pages/album-pages';
 
 /**
  * The shape of this component's properties

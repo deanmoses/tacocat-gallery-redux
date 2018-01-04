@@ -3,8 +3,8 @@
  */
 
 import * as React from 'react';
-import * as Site from '@src/components/site';
-import WaitingSpinner from '@src/components/waiting-spinner';
+import * as Site from '@src/components/presentation/site';
+import WaitingSpinner from '@src/components/presentation/waiting-spinner';
 import { Album, AlbumType } from '@src/reducers/album';
 
 /**

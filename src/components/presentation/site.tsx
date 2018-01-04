@@ -4,7 +4,7 @@
 
 import * as React from 'react';
 import Config from '@src/config';
-import Icon from '@src/components/icon';
+import Icon from '@src/components/presentation/icon';
 
 /**
  * Shell of a page
