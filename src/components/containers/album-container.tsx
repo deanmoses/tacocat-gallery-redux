@@ -45,12 +45,12 @@ export class AlbumPage extends React.Component<AlbumPageProps> {
 	}
 
 	render() {
-		console.log(
-			'AlbumPage.render()',
-			this.props.albumPath,
-			'album:',
-			this.props.album
-		);
+		// console.log(
+		// 	'AlbumPage.render()',
+		// 	this.props.albumPath,
+		// 	'album:',
+		// 	this.props.album
+		// );
 
 		const album = this.props.album as Album;
 

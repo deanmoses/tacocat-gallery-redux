@@ -181,12 +181,12 @@ export class Alb implements Album {
 	 * Blank if no previous album
 	 */
 	get prevAlbumTitle(): string {
-		if (!this.next) {
+		if (!this.prev) {
 			return '';
 		} else if (this.type === AlbumType.YEAR) {
-			return DateUtils.year(this.next.date);
+			return DateUtils.year(this.prev.date);
 		} else {
-			return DateUtils.shortDate(this.next.date);
+			return DateUtils.shortDate(this.prev.date);
 		}
 	}
 
