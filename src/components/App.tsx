@@ -1,33 +1,31 @@
 /**
- * The root React.js component of the Tacocat Gallery application
+ * The root component of the application
  */
 
 import * as React from 'react';
 import { HashRouter as Router, Route, Switch, Link } from 'react-router-dom';
-import ConnectedAlbum from '@src/components/albumcontainer';
+import Album from '@src/components/album-container';
 import { NotFoundPage } from '@src/components/not-found';
 
 /**
- * The root React.js component of the application
+ * The root component of the application
  */
 export const App: React.StatelessComponent = () => (
 	<Router hashType="noslash">
 		<Switch>
-			<Route exact path="/" render={() => <ConnectedAlbum albumPath="/" />} />
+			<Route exact path="/" render={() => <Album albumPath="/" />} />
 			<Route exact path="/home" render={() => <Home />} />
 			<Route
 				exact
 				path="/:year(\\d\\d\\d\\d)"
 				render={props => (
-					<ConnectedAlbum albumPath={props.match.params.year as string} />
+					<Album albumPath={props.match.params.year as string} />
 				)}
 			/>
 			<Route
 				exact
 				path="/:day(\\d\\d\\d\\d/\\d\\d\-\\d\\d)"
-				render={props => (
-					<ConnectedAlbum albumPath={props.match.params.day as string} />
-				)}
+				render={props => <Album albumPath={props.match.params.day as string} />}
 			/>
 			<Route component={NotFoundPage} />
 		</Switch>

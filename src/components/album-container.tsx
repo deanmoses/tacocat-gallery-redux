@@ -4,9 +4,10 @@ import { connect } from 'react-redux';
 import * as actions from '@src/actions/actions';
 import { RootState } from '@src/reducers/reducers';
 import { Album } from '@src/reducers/album';
+import * as albumpages from '@src/components/album-pages';
 
 /**
- * The shape of this React.js component's properties
+ * The shape of this component's properties
  */
 type AlbumPageProps = {
 	readonly albumPath: string;
@@ -14,7 +15,7 @@ type AlbumPageProps = {
 	readonly fetchAlbumIfNeeded?: Function;
 };
 /**
- * The React.js component itself.
+ * The component itself.
  */
 export class AlbumPage extends React.Component<AlbumPageProps> {
 	/**
@@ -44,25 +45,29 @@ export class AlbumPage extends React.Component<AlbumPageProps> {
 	}
 
 	render() {
-		console.log('render()', this.props.albumPath, 'album:', this.props.album);
+		console.log(
+			'AlbumPage.render()',
+			this.props.albumPath,
+			'album:',
+			this.props.album
+		);
 
 		const album = this.props.album as Album;
 
 		if (album && album.image_size) {
 			document.title = album.path;
-			return (
-				<div>
-					<h3>Got Album: {album.path}</h3>
-				</div>
-			);
+			return <albumpages.AlbumPage album={album} />;
 		} else if (album && album.err) {
-			return <h3>Error: {album.err}</h3>;
+			document.title = 'Error loading album';
+			return <albumpages.AlbumErrorPage message={album.err} />;
 		} else if (!album || (album.isLoading && !album.title)) {
 			document.title = 'Loading album...';
-			return <h3>Loading...</h3>;
+			return <albumpages.AlbumLoadingPage />;
+		} else {
+			document.title = 'Weird state...';
+			const message = "I'm in some weird state I didn't expect";
+			return <albumpages.AlbumErrorPage message={message} />;
 		}
-
-		return <h3>I'm in some weird state I didn't expect</h3>;
 	}
 }
 

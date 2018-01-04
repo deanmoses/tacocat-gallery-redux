@@ -4,9 +4,10 @@
 
 import * as React from 'react';
 import Config from '@src/config';
+import Icon from '@src/components/icon';
 
 /**
- * React.js component that renders the site shell
+ * Shell of a page
  */
 interface PageProps {
 	readonly className?: string;
@@ -34,17 +35,19 @@ export const Page: React.StatelessComponent<PageProps> = ({
 };
 
 /**
- * React.js component that renders the site's header bar with title
+ * Page's header bar with title
  */
 export interface HeaderTitleProps {
 	readonly title?: string;
 	readonly href?: string;
 	readonly showTitle?: boolean;
+	readonly showSearch?: boolean;
 }
 export const HeaderTitle: React.StatelessComponent<HeaderTitleProps> = ({
 	title = '',
 	href = '',
-	showTitle = true
+	showTitle = true,
+	showSearch = true
 }) => {
 	var derivedTitle = (
 		<a className="navbar-brand" href={href}>
@@ -60,16 +63,52 @@ export const HeaderTitle: React.StatelessComponent<HeaderTitleProps> = ({
 					{showTitle && (
 						<span className="hidden-xs site-title">{Config.siteTitle()}</span>
 					)}
-					{/*props.showSearch && (
+					{showSearch && (
 						<span className="search-button">
-							<Site.SearchButton returnPath={props.path} />
+							<SearchButton />
 						</span>
-					)*/}
+					)}
 				</div>
 			</nav>
 			{
 				//<Site.HeaderButtons>{props.children}</Site.HeaderButtons>
 			}
 		</div>
+	);
+};
+
+/**
+ * Full page message component
+ */
+interface FullPageMessageProps {
+	readonly children: any;
+}
+export const FullPageMessage: React.StatelessComponent<
+	FullPageMessageProps
+> = ({ children }) => (
+	<div className="fullPageMessage">
+		<p>{children}</p>
+	</div>
+);
+
+/**
+ * Search icon for navigating to search screen
+ */
+interface SearchButtonProps {
+	readonly searchTerms?: string;
+	readonly returnPath?: string;
+}
+export const SearchButton: React.StatelessComponent<SearchButtonProps> = ({
+	searchTerms,
+	returnPath
+}) => {
+	var searchUrl = '#search:';
+	searchUrl += searchTerms ? encodeURIComponent(searchTerms) : '';
+	searchUrl += '&return:';
+	searchUrl += returnPath ? encodeURIComponent(returnPath) : '';
+	return (
+		<a href={searchUrl}>
+			<Icon name="search" />
+		</a>
 	);
 };

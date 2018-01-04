@@ -5,9 +5,53 @@
 import * as React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import * as Site from '@src/components/site';
+import WaitingSpinner from '@src/components/waiting-spinner';
+import { Album } from '@src/reducers/album';
 
 /**
- * React.js component that renders the top level album page
+ * Page that displays a "loading..." spinner
+ */
+export const AlbumLoadingPage: React.StatelessComponent = () => (
+	<Site.Page className="albumpage loading">
+		<Site.HeaderTitle showTitle={false} />
+		<Site.FullPageMessage>
+			<WaitingSpinner />
+		</Site.FullPageMessage>
+	</Site.Page>
+);
+
+/**
+ * Page that displays an error
+ */
+interface AlbumErrorPageProps {
+	readonly message: string;
+}
+export const AlbumErrorPage: React.StatelessComponent<AlbumErrorPageProps> = ({
+	message = null
+}) => (
+	<Site.Page className="albumpage loading">
+		<Site.HeaderTitle showTitle={false} />
+		<Site.FullPageMessage>Error: {message}</Site.FullPageMessage>
+	</Site.Page>
+);
+
+/**
+ * Page that displays an album.  A real album, not an error or loading.
+ */
+interface AlbumPageProps {
+	readonly album: Album;
+}
+export const AlbumPage: React.StatelessComponent<AlbumPageProps> = ({
+	album = null
+}) => (
+	<Site.Page className="albumpage">
+		<Site.HeaderTitle title={album.title} />
+		<Site.FullPageMessage>Got Album: {album.path}</Site.FullPageMessage>
+	</Site.Page>
+);
+
+/**
+ * Top level album page
  */
 export const RootAlbumPage: React.StatelessComponent = () => (
 	<Site.Page className="albumpage rootalbumtype">
@@ -22,7 +66,7 @@ export const RootAlbumPage: React.StatelessComponent = () => (
 );
 
 /**
- * React.js component that renders year album pages
+ * Year album pages
  */
 export const YearAlbumPage: React.StatelessComponent<
 	RouteComponentProps<any>
