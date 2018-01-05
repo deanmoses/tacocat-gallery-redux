@@ -72,9 +72,9 @@ class ImagePageBody extends React.Component<ImagePageBodyProps> {
 				<section className="col-md-9">
 					<h2 className="hidden">Photo</h2>
 					<Site.HeaderButtons>
-						<Site.PrevButton href={image.nextImageHref} />
+						<Site.PrevButton href={image.prevImageHref} />
 						<Site.UpButton href={album.href} title={album.pageTitle} />
-						<Site.NextButton href={image.prevImageHref} />
+						<Site.NextButton href={image.nextImageHref} />
 					</Site.HeaderButtons>
 					<a href={Config.zenphotoImageFullSizeUrl(image.path)} target="zen">
 						<img

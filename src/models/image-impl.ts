@@ -61,6 +61,7 @@ export class ImageImpl implements Image {
 		// already found my prev in the previous iteration.
 		const myPath = this.path;
 		let prev: Image;
+
 		prev = this.album.images.find(img => {
 			if (img.path === myPath) {
 				return true;
