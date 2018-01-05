@@ -3,7 +3,6 @@
 //
 
 import * as React from 'react';
-import * as StringUtils from '@src/utils/string-utils';
 import * as DateUtils from '@src/utils/date-utils';
 import Config from '@src/utils/config';
 import { AlbumType, Thumbable } from '@src/models/album';
@@ -51,7 +50,7 @@ export class List extends React.Component<ListProps> {
 				var selected =
 					this.props.editMode &&
 					!!this.props.selectedItem &&
-					StringUtils.endsWith(child.path, this.props.selectedItem);
+					child.path.endsWith(this.props.selectedItem);
 				return (
 					<Nail
 						item={child}
