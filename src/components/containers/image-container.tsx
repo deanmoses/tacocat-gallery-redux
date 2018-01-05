@@ -10,6 +10,7 @@ import ImageNotFoundPage from '@src/components/pages/image-notfound-page';
  */
 export type ComponentProps = {
 	readonly path: string;
+	readonly image?: Image;
 	readonly album?: Album;
 	readonly fetchIfNeeded?: Function;
 };
@@ -45,10 +46,10 @@ export default class ImageContainer extends React.Component<ComponentProps> {
 	}
 
 	render() {
-		const imagePath = this.props.path;
+		const image = this.props.image;
 		const album = this.props.album;
 
-		//console.log(`ImageContainer.render(${imagePath}) album:`, album);
+		//console.log(`ImageContainer.render(${this.props.path}) album:`, album);
 
 		if (!album || album.isLoading) {
 			return <ImageLoadingPage />;
@@ -57,7 +58,6 @@ export default class ImageContainer extends React.Component<ComponentProps> {
 		} else if (!album.images) {
 			return <ImageNotFoundPage album={album} />;
 		} else {
-			var image = album.images.find((image: Image) => image.path === imagePath);
 			if (!image) {
 				//console.log(`No image of path (${imagePath}) in album ${album.path}`);
 				return <ImageNotFoundPage album={album} />;

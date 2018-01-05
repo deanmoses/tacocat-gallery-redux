@@ -30,6 +30,7 @@ export interface Album {
 	prevAlbumTitle?: string;
 	parentAlbumHref?: string;
 	parentAlbumTitle?: string;
+	getImage?: Function;
 }
 
 export interface Thumbable {
@@ -48,12 +49,20 @@ export interface AlbumThumb extends Thumbable {
 	type?: AlbumType;
 }
 
-export interface Image extends Thumbable {}
+export interface Image extends Thumbable {
+	nextImageHref: string;
+	prevImageHref: string;
+}
 
 export interface AlbumNavInfo {
 	path: string;
 	title: string;
 	date: number;
+}
+
+export interface ImageNavInfo {
+	path: string;
+	title: string;
 }
 
 export enum AlbumType {
@@ -184,5 +193,89 @@ export class Alb implements Album {
 	 */
 	get parentAlbumTitle(): string {
 		return this.parent_album ? this.parent_album.title : '';
+	}
+
+	/**
+	 * Return image at specified path, or null
+	 */
+	getImage(imagePath: string): Image {
+		if (this.images) {
+			let image = this.images.find((image: Image) => image.path === imagePath);
+			if (image) {
+				return Object.assign(new Img(this), image);
+			}
+		}
+		return null;
+	}
+}
+
+export class Img implements Image {
+	path: string;
+	title: string;
+	date: number;
+	desc: string;
+	url_full: string;
+	url_sized: string;
+	url_thumb: string;
+	width: number;
+	height: number;
+	album: Album;
+
+	constructor(album: Album) {
+		this.album = album;
+	}
+
+	get nextImageHref(): string {
+		const next = this.next;
+		return next ? '#' + next.path : null;
+	}
+
+	get nextImagePath(): string {
+		const next = this.next;
+		return next ? next.path : null;
+	}
+
+	get next(): ImageNavInfo {
+		// I don't know my own index in my parent collection, so
+		// first I have to find myself, then find the next image.
+		// collection = the parent collection of images I'm in.
+		const myPath = this.path;
+		let foundMyself = false;
+		return this.album.images.find(img => {
+			if (foundMyself) {
+				return true; // returning true on the image AFTER me
+			}
+			if (img.path === myPath) {
+				foundMyself = true;
+			}
+			return false;
+		});
+	}
+
+	get prevImageHref(): string {
+		const prev = this.prev;
+		return prev ? '#' + prev.path : null;
+	}
+
+	get prevImagePath(): string {
+		const prev = this.prev;
+		return prev ? prev.path : null;
+	}
+
+	get prev(): ImageNavInfo {
+		// I don't know my own index in my parent collection.
+		// But I do know that once I find myself, I will have
+		// already found my prev in the previous iteration.
+		// collection = the parent collection of images I'm in.
+		const myPath = this.path;
+		let prev: Image;
+		prev = this.album.images.find(img => {
+			if (img.path === myPath) {
+				return true;
+			}
+			prev = img;
+			return false;
+		});
+		return prev;
 	}
 }

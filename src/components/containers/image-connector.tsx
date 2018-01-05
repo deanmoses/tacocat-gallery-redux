@@ -6,7 +6,8 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actions from '@src/redux/actions/image-actions';
 import { RootState } from '@src/redux/reducers/reducers';
-import { getAlbumForImage } from '@src/redux/selectors/selectors';
+import { getImage, getAlbumForImage } from '@src/redux/selectors/selectors';
+
 import ImageContainer, {
 	ComponentProps
 } from '@src/components/containers/image-container';
@@ -23,12 +24,12 @@ function mapStateToProps(
 	ownProps: ComponentProps
 ): ComponentProps {
 	const path = ownProps.path;
-	// retrieve the album from state
+	const image = getImage(state, ownProps.path);
 	const album = getAlbumForImage(state, ownProps.path);
-
 	return {
 		path,
-		album
+		album,
+		image
 	};
 }
 

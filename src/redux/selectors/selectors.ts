@@ -1,15 +1,23 @@
 import { RootState } from '@src/redux/reducers/reducers';
-import { Album } from '@src/models/album';
+import { Album, Image } from '@src/models/album';
 import createAlbumFromObject from '@src/models/album-creator';
+
+/**
+ * Retrieve album for the specified imagePath
+ */
+export function getImage(state: RootState, imagePath: string): Image {
+	let album = getAlbumForImage(state, imagePath);
+	return album ? album.getImage(imagePath) : null;
+}
 
 /**
  * Retrieve album for the specified imagePath
  */
 export function getAlbumForImage(state: RootState, imagePath: string): Album {
 	// get album's path from the photo's path
-	var pathParts = imagePath.split('/');
+	let pathParts = imagePath.split('/');
 	pathParts.pop(); // remove photo filename
-	var albumPath = pathParts.join('/');
+	const albumPath = pathParts.join('/');
 
 	// retrieve album from state
 	return getAlbum(state, albumPath);
