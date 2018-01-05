@@ -63,7 +63,7 @@ const FirstsAndThumbs: React.StatelessComponent<FirstsAndThumbsProps> = ({
 			</section>
 			<section className="col-md-9 col-md-offset-3">
 				<h2 className="hidden">Thumbnails</h2>
-				<MonthThumbs album={album} />
+				<ThumbsForYear album={album} />
 			</section>
 		</div>
 	);
@@ -72,26 +72,99 @@ const FirstsAndThumbs: React.StatelessComponent<FirstsAndThumbsProps> = ({
 /**
  * Component properties
  */
-interface MonthThumbsProps {
+interface ThumbsForYearProps {
 	readonly album: Album;
 }
+
 /**
- * Component that displays the thumbnail of each individual week album in the year.
+ * Component that displays all the thumbnails for the year
  */
-const MonthThumbs: React.StatelessComponent<MonthThumbsProps> = ({ album }) => {
-	var months = album.albums.map(function(child: AlbumThumb) {
-		// TODO: render by months
-		//var months = album.childAlbumsByMonth.map(function(childAlbum:Album) {
-		return (
-			<Thumb.Nail
-				item={child}
-				isAlbum={true}
-				albumType={child.type}
-				key={child.date}
-			/>
-		);
-		//return <MonthThumb month={child} key={child.monthName} />;
+const ThumbsForYear: React.StatelessComponent<ThumbsForYearProps> = ({
+	album
+}) => {
+	// Get data structure containing albums grouped by month
+	const albumsByMonth = childAlbumsByMonth(album);
+	// Build each month
+	let thumbsForYear = albumsByMonth.map(month => (
+		<ThumbsForMonth month={month} key={month.monthName} />
+	));
+	return <div>{thumbsForYear}</div>;
+};
+
+/**
+ * Component properties
+ */
+interface MonthThumbsProps {
+	readonly month: ChildAlbumsByMonth;
+}
+/**
+ * Component that displays all the thumbnails for a month within the year
+ */
+const ThumbsForMonth: React.StatelessComponent<MonthThumbsProps> = ({
+	month
+}) => {
+	// Build each thumbnail in month
+	var thumbsForMonth = month.albums.map(childAlbum => (
+		<Thumb.Nail
+			item={childAlbum}
+			isAlbum={true}
+			albumType={childAlbum.type}
+			key={childAlbum.date}
+		/>
+	));
+
+	return (
+		<section className="month">
+			<h1>{month.monthName}</h1>
+			{thumbsForMonth}
+		</section>
+	);
+};
+
+interface ChildAlbumsByMonth {
+	monthName: string;
+	albums: AlbumThumb[];
+}
+
+/**
+ * Groups the child albums by month.
+ * Assumes you are passing in an album whose subalbums are all within the same year.
+ */
+function childAlbumsByMonth(album: Album): ChildAlbumsByMonth[] {
+	if (!album || !album.albums) return null;
+
+	// month names to add to the results, to make rendering even simpler
+	const monthNames = [
+		'January',
+		'February',
+		'March',
+		'April',
+		'May',
+		'June',
+		'July',
+		'August',
+		'September',
+		'October',
+		'November',
+		'December'
+	];
+
+	// array to return
+	let childAlbumsByMonth: ChildAlbumsByMonth[] = [];
+
+	// iterate over this album's subalbums, putting them into the correct month
+	album.albums.forEach(childAlbum => {
+		// create Date object based on album's timestamp
+		// multiply by 1000 to turn seconds into milliseconds
+		const month: number = new Date(childAlbum.date * 1000).getMonth();
+		if (!childAlbumsByMonth[month]) {
+			childAlbumsByMonth[month] = {
+				monthName: monthNames[month],
+				albums: []
+			};
+		}
+		childAlbumsByMonth[month].albums.push(childAlbum);
 	});
 
-	return <div>{months}</div>;
-};
+	return childAlbumsByMonth.reverse();
+}
