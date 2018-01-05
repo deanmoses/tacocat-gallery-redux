@@ -45,11 +45,11 @@ const FirstsAndThumbs: React.StatelessComponent<FirstsAndThumbsProps> = ({
 	editMode = false
 }) => {
 	var desc = editMode ? (
-		<div>Edit Mode</div> //<RichTextEditor valueToEdit={a.description}/>
+		<div>Edit Mode</div> //<RichTextEditor valueToEdit={album.desc}/>
 	) : (
 		<div
 			className="firsts-text"
-			dangerouslySetInnerHTML={{ __html: album.description }}
+			dangerouslySetInnerHTML={{ __html: album.desc }}
 		/>
 	);
 

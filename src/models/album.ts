@@ -10,7 +10,7 @@ export interface Album {
 	path: string;
 	title?: string;
 	summary?: string;
-	description?: string;
+	desc?: string;
 	image_size?: number;
 	thumb_size?: number;
 	thumb?: string;
@@ -36,10 +36,10 @@ export interface Thumbable {
 	path: string;
 	title: string;
 	date: number;
-	description: string;
+	desc: string;
 	urlFull: string;
 	urlSized: string;
-	urlThumb: string;
+	url_thumb: string;
 	width: number;
 	height: number;
 }
@@ -67,7 +67,7 @@ export class Alb implements Album {
 	title?: string;
 	summary?: string;
 	unpublished?: boolean;
-	description?: string;
+	desc?: string;
 	image_size?: number;
 	thumb_size?: number;
 	thumb?: string;
@@ -80,7 +80,8 @@ export class Alb implements Album {
 	err?: string;
 
 	constructor(path: string) {
-		if (!path) throw new Error('Album.path cannot be null');
+		if (!(typeof path === 'string'))
+			throw new Error('Album path must be a string');
 		this.path = path;
 	}
 

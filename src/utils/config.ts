@@ -20,12 +20,26 @@ export default abstract class Config {
 		return 'https://cdn.tacocat.com';
 	}
 
-	// Base host for AJAX read requests. Could be a CDN or may be the actual webserver.
-	public static ajaxReadHost(): string {
-		return this.liveHost();
+	/**
+	 * URL of the JSON REST API from which to retrieve the album
+	 */
+	public static jsonAlbumUrl(path: string): string {
+		// For JSON requests to zenphoto, always end with a / or else suffer the cost of a redirect.
+		// Zenphoto has a stupid redirect in its .htaccess that redirects you to the / version of
+		// an album.
+		// Request THIS:
+		// https://tacocat.com/zenphoto/2005/11-20/?json
+		// NOT this:
+		// https://tacocat.com/zenphoto/2005/11-20?json
+
+		let newPath = path.endsWith('/') ? path : path + '/';
+		newPath = path.startsWith('/') ? path : '/' + path;
+		return 'https://tacocat.com/zenphoto' + newPath + '?json';
 	}
 
-	// URL you can hit to update the JSON cache of a specific album
+	/**
+	 * URL you can hit to update the JSON cache of a specific album
+	 */
 	public static refreshAlbumCacheUrl(albumPath: string): string {
 		// strip the '/' off if it exists
 		var slashlessAlbumPath = albumPath.replace('/', '');

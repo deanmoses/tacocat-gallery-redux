@@ -81,7 +81,7 @@ export function albumsByPath(
 		 * Received error attempting to fetch album from server
 		 */
 		case Actions.ActionTypeKeys.ALBUM_ERRORED: {
-			console.log(action.type, action.albumPath);
+			console.log(action.type, action.albumPath, action.error);
 			// Set album status to error
 			let updatedAlbum = Object.assign(
 				new Alb(action.albumPath),

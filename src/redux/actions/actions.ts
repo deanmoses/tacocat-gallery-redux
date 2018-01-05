@@ -11,6 +11,7 @@
  */
 import { Action } from 'redux';
 import { RootState } from '@src/redux/reducers/reducers';
+import Config from '@src/utils/config';
 
 /**
  * The keys for each action in the application
@@ -44,8 +45,6 @@ export function fetchAlbumIfNeeded(albumPath: string) {
 
 function shouldFetchAlbum(state: RootState, albumPath: string): boolean {
 	const album = state.albumsByPath[albumPath];
-	// always fetch album, except if we're already fetching the album
-	//const shouldFetch = !album || !album.isLoading;
 	// always fetch album
 	const shouldFetch = !album || !!album;
 	console.log(`shouldFetchAlbum(${albumPath})?`, shouldFetch);
@@ -56,7 +55,7 @@ function fetchAlbum(albumPath: string) {
 	return (dispatch: Function) => {
 		console.log('fetchAlbum()', albumPath);
 		dispatch(requestAlbum(albumPath));
-		return fetch(`https://tacocat.com/zenphoto/${albumPath}/?api`)
+		return fetch(Config.jsonAlbumUrl(albumPath))
 			.then(handleErrors)
 			.then(response => response.json())
 			.then(json => dispatch(receiveAlbum(albumPath, json)))
@@ -97,7 +96,7 @@ function receiveAlbum(albumPath: string, json: any): AlbumRecieved {
 	return {
 		type: ActionTypeKeys.ALBUM_RECEIVED,
 		albumPath,
-		albumJson: json
+		albumJson: json.album
 	};
 }
 

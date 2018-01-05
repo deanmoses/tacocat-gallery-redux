@@ -8,13 +8,11 @@ import DayAlbum from '@src/models/album-day';
  * @param json JSON or any Object
  */
 export default function createAlbumFromObject(json: any): Album {
-	let alb: Album = getAlbum(json);
+	let alb: Album = instantiateAlbum(json);
 	return Object.assign(alb, json);
 }
 
-function getAlbum(json: any): Album {
-	if (!json || !json.path)
-		throw new Error('JSON must have a "path" field to be an album');
+function instantiateAlbum(json: any): Album {
 	const type = Alb.type(json.path);
 
 	switch (type) {

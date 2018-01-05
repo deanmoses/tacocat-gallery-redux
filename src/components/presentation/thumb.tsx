@@ -172,7 +172,7 @@ export class Nail extends React.Component<NailProps> {
 		) : (
 			<Icon icon={Icons.STAR} onClick={this.onSelect} />
 		);
-		var thumbUrl = Config.cdnHost() + item.urlThumb;
+		var thumbUrl = Config.cdnHost() + item.url_thumb;
 
 		return (
 			<span className={'thumbnail' + selectedClass}>

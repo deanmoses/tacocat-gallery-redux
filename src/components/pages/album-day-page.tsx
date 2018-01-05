@@ -34,7 +34,7 @@ const DayAlbumPage: React.StatelessComponent<AlbumPageProps> = ({ album }) => (
 			<h2 className="hidden">Overview</h2>
 			<div
 				className="caption"
-				dangerouslySetInnerHTML={{ __html: album.description }}
+				dangerouslySetInnerHTML={{ __html: album.desc }}
 			/>
 		</section>
 		<Thumb.List
