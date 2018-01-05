@@ -48,15 +48,13 @@ class ImagePageBody extends React.Component<ImagePageBodyProps> {
 
 		const isPortrait = true; //TODO: image.isPortrait
 		var orientation = isPortrait ? 'portrait' : 'landscape';
-		var style: any = {
+		var imgStyle: any = {
+			objectFit: 'contain',
+			width: '100%',
+			height: '100%',
 			maxWidth: image.width,
 			maxHeight: image.height
 		};
-		if (isPortrait) {
-			style.height = '100%';
-		} else {
-			style.width = '100%';
-		}
 
 		var desc = (
 			<div
@@ -81,7 +79,7 @@ class ImagePageBody extends React.Component<ImagePageBodyProps> {
 					<a href={Config.zenphotoImageFullSizeUrl(image.path)} target="zen">
 						<img
 							src={Config.cdnHost() + image.url_sized}
-							style={style}
+							style={imgStyle}
 							className={'thephoto ' + orientation}
 						/>
 					</a>
