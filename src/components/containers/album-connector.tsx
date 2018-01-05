@@ -10,6 +10,7 @@ import { Album } from '@src/models/album';
 import AlbumContainer, {
 	ComponentProps
 } from '@src/components/containers/album-container';
+import { getAlbum } from '@src/redux/selectors/selectors';
 
 /**
  * To use React Redux connect(), define a mapStateToProps() function that
@@ -20,7 +21,7 @@ import AlbumContainer, {
  */
 function mapStateToProps(state: RootState, ownProps: ComponentProps) {
 	const path: string = ownProps.path;
-	const album: Album = state.albumsByPath[path];
+	const album: Album = getAlbum(state, path);
 
 	return {
 		path,

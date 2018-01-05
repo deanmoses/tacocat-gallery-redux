@@ -3,8 +3,7 @@
  */
 
 import * as Actions from '@src/redux/actions/actions';
-import { AlbumsByPath, Alb } from '@src/models/album';
-import createAlbumFromObject from '@src/models/album-creator';
+import { AlbumsByPath, Album } from '@src/models/album';
 
 /**
  * The shape of the application's state.
@@ -55,15 +54,16 @@ export function albumsByPath(
 		case Actions.ActionTypeKeys.ALBUM_REQUESTED: {
 			console.log(action.type, action.albumPath);
 
-			// Set album to 'loading'
-			let updatedAlbum = Object.assign(
-				new Alb(action.albumPath),
+			// Make copy of existing album, except with status of 'loading'
+			let albumCopy = Object.assign(
+				{ path: action.albumPath, isLoading: true },
 				albumsByPath[action.albumPath]
 			);
-			updatedAlbum.isLoading = true;
-			let newAlbums = { ...albumsByPath };
-			newAlbums[action.albumPath] = updatedAlbum;
-			return newAlbums;
+
+			// Make copy of entire store and return it
+			let albumsCopy = { ...albumsByPath };
+			albumsCopy[action.albumPath] = albumCopy;
+			return albumsCopy;
 		}
 
 		/**
@@ -73,7 +73,7 @@ export function albumsByPath(
 			console.log(action.type, action.albumPath);
 			let newAlbums = { ...albumsByPath };
 			// Add album to store
-			newAlbums[action.albumPath] = createAlbumFromObject(action.albumJson);
+			newAlbums[action.albumPath] = action.albumJson as Album;
 			return newAlbums;
 		}
 
@@ -82,16 +82,17 @@ export function albumsByPath(
 		 */
 		case Actions.ActionTypeKeys.ALBUM_ERRORED: {
 			console.log(action.type, action.albumPath, action.error);
-			// Set album status to error
-			let updatedAlbum = Object.assign(
-				new Alb(action.albumPath),
+
+			// Make copy of existing album, except with status of 'loading'
+			let albumCopy = Object.assign(
+				{ path: action.albumPath, err: action.error, isLoading: false },
 				albumsByPath[action.albumPath]
 			);
-			updatedAlbum.isLoading = false;
-			updatedAlbum.err = action.error;
-			let newAlbums = { ...albumsByPath };
-			newAlbums[action.albumPath] = updatedAlbum;
-			return newAlbums;
+
+			// Make copy of entire store and return it
+			let albumsCopy = { ...albumsByPath };
+			albumsCopy[action.albumPath] = albumCopy;
+			return albumsCopy;
 		}
 
 		default:

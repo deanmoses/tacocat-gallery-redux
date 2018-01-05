@@ -6,6 +6,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actions from '@src/redux/actions/image-actions';
 import { RootState } from '@src/redux/reducers/reducers';
+import { getAlbumForImage } from '@src/redux/selectors/selectors';
 import ImageContainer, {
 	ComponentProps
 } from '@src/components/containers/image-container';
@@ -22,14 +23,8 @@ function mapStateToProps(
 	ownProps: ComponentProps
 ): ComponentProps {
 	const path = ownProps.path;
-
-	// get the album's path from the photo's path
-	var pathParts = ownProps.path.split('/');
-	pathParts.pop(); // remove photo filename
-	var albumPath = pathParts.join('/');
-
 	// retrieve the album from state
-	const album = state.albumsByPath[albumPath];
+	const album = getAlbumForImage(state, ownProps.path);
 
 	return {
 		path,
