@@ -1,15 +1,11 @@
 import * as React from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-import * as actions from '@src/redux/actions/image-actions';
-import { RootState } from '@src/redux/reducers/reducers';
 import { Album, Image } from '@src/models/album';
 import ImagePage from '@src/components/pages/image-page';
 
 /**
  * Component properties
  */
-type ComponentProps = {
+export type ComponentProps = {
 	readonly path: string;
 	readonly album?: Album;
 	readonly fetchIfNeeded?: Function;
@@ -18,7 +14,7 @@ type ComponentProps = {
 /**
  * Image container component: manages image loading and error state
  */
-class ImageContainer extends React.Component<ComponentProps> {
+export default class ImageContainer extends React.Component<ComponentProps> {
 	/**
 	 * React.js component lifecycle method. Invoked once, immediately after the
 	 * initial rendering occurs. At this point in the lifecycle, the component
@@ -49,7 +45,7 @@ class ImageContainer extends React.Component<ComponentProps> {
 		const imagePath = this.props.path;
 		const album = this.props.album;
 
-		console.log(`ImageContainer.render(${imagePath}) album ${album.path}`);
+		console.log(`ImageContainer.render(${imagePath}) album:`, album);
 
 		if (!album || album.isLoading) {
 			return 'Waiting on album';
@@ -65,67 +61,3 @@ class ImageContainer extends React.Component<ComponentProps> {
 		}
 	}
 }
-
-//
-// Redux redux machinery below this point
-//
-// The above component is a "pure" component that just knows about its properties
-// and what functions it publishes to the outside world.  It doesn't know anything about:
-//  - Redux
-//  - calling Ajax
-//
-
-/**
- * To use React Redux connect(), define a mapStateToProps() function that
- * transforms the state of the Redux store into this component's props.
- *
- * @prop state the current Redux store state
- * @returns set of props for this component
- */
-function mapStateToProps(
-	state: RootState,
-	ownProps: ComponentProps
-): ComponentProps {
-	const path = ownProps.path;
-
-	// get the album's path from the photo's path
-	var pathParts = ownProps.path.split('/');
-	pathParts.pop(); // remove photo filename
-	var albumPath = pathParts.join('/');
-
-	// retrieve the album from state
-	const album = state.albumsByPath[albumPath];
-
-	return {
-		path,
-		album
-	};
-}
-
-/**
- * To use React Redux connect(), define a mapDispatchToProps() function that
- * maps a function on this component to a Redux action creator function.
- */
-function mapDispatchToProps(dispatch: any) {
-	return bindActionCreators(
-		{
-			fetchIfNeeded: actions.fetchImageIfNeeded
-		},
-		dispatch
-	);
-}
-
-/**
- * Instead of exporting the ImageContainer component, export a Redux-wrapped component.
- *
- * We need to wrap the AlbumContainer component in a Redux wrapper in order to be
- * notified of changes to global state and map the new global state to this
- * component's properties.
- *
- * The Redux connect() method does the wrapping.
- */
-export const ConnectedComponent = connect<{}, {}, ComponentProps>(
-	mapStateToProps,
-	mapDispatchToProps
-)(ImageContainer);
-export default ConnectedComponent;

@@ -4,8 +4,8 @@
 
 import * as React from 'react';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
-import Album from '@src/components/containers/album-container';
-import Image from '@src/components/containers/image-container';
+import Album from '@src/components/containers/album-connector';
+import Image from '@src/components/containers/image-connector';
 import InvalidUrl from '@src/components/pages/invalid-url-page';
 
 /**
