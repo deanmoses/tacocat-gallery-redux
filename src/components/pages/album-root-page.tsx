@@ -4,13 +4,17 @@ import { Album, AlbumType } from '@src/models/album';
 import Config from '@src/utils/config';
 import * as Thumb from '@src/components/presentation/thumb';
 
-interface AlbumPageProps {
+/**
+ * Component properties
+ */
+interface ComponentProps {
 	readonly album: Album;
 }
+
 /**
  * Root album (the one at the "/" URL path) page
  */
-const RootAlbumPage: React.StatelessComponent<AlbumPageProps> = ({ album }) => (
+const RootAlbumPage: React.StatelessComponent<ComponentProps> = ({ album }) => (
 	<Site.Page className="albumpage rootalbumtype">
 		<Site.HeaderTitle
 			title={Config.siteTitle()}

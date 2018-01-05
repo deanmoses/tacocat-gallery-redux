@@ -9,6 +9,7 @@ import * as Thumb from '@src/components/presentation/thumb';
 interface AlbumPageProps {
 	readonly album: Album;
 }
+
 /**
  * Year album page (like the one at the "2001" URL path)
  */

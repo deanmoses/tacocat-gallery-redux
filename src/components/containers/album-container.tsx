@@ -9,15 +9,16 @@ import AlbumLoadingPage from '@src/components/pages/album-loading-page';
 import AlbumErrorPage from '@src/components/pages/album-error-page';
 
 /**
- * The shape of this component's properties
+ * Component properties
  */
 type ComponentProps = {
 	readonly path: string;
 	readonly album?: Album;
 	readonly fetchIfNeeded?: Function;
 };
+
 /**
- * The component itself.
+ * Album container component: manages album loading and error state
  */
 export class AlbumContainer extends React.Component<ComponentProps> {
 	/**

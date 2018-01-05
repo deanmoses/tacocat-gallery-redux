@@ -37,8 +37,8 @@ export interface Thumbable {
 	title: string;
 	date: number;
 	desc: string;
-	urlFull: string;
-	urlSized: string;
+	url_full: string;
+	url_sized: string;
 	url_thumb: string;
 	width: number;
 	height: number;

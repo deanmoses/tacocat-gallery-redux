@@ -3,14 +3,17 @@ import * as Site from '@src/components/presentation/site';
 import { Album } from '@src/models/album';
 import * as Thumb from '@src/components/presentation/thumb';
 
-interface AlbumPageProps {
+/**
+ * Component properties
+ */
+interface ComponentProps {
 	readonly album: Album;
 }
 
 /**
  * Day/week/leaf album pages (like the one at the "2001/12-31" URL path)
  */
-const DayAlbumPage: React.StatelessComponent<AlbumPageProps> = ({ album }) => (
+const DayAlbumPage: React.StatelessComponent<ComponentProps> = ({ album }) => (
 	<Site.Page className="albumpage weekalbumtype">
 		<Site.HeaderTitle
 			href={'#' + album.parent_album.path}

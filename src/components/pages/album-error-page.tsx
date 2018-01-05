@@ -1,14 +1,17 @@
 import * as React from 'react';
 import * as Site from '@src/components/presentation/site';
 
-interface AlbumErrorPageProps {
+/**
+ * Component properties
+ */
+interface ComponentProps {
 	readonly message: string;
 }
 
 /**
  * Album page that displays an error
  */
-const AlbumErrorPage: React.StatelessComponent<AlbumErrorPageProps> = ({
+const AlbumErrorPage: React.StatelessComponent<ComponentProps> = ({
 	message
 }) => (
 	<Site.Page className="albumpage loading">

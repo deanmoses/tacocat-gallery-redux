@@ -3,19 +3,20 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actions from '@src/redux/actions/image-actions';
 import { RootState } from '@src/redux/reducers/reducers';
-import { Image } from '@src/models/album';
+import { Album, Image } from '@src/models/album';
 import ImagePage from '@src/components/pages/image-page';
 
 /**
- * The shape of this component's properties
+ * Component properties
  */
 type ComponentProps = {
 	readonly path: string;
-	readonly image?: Image;
+	readonly album?: Album;
 	readonly fetchIfNeeded?: Function;
 };
+
 /**
- * The component itself.
+ * Image container component: manages image loading and error state
  */
 class ImageContainer extends React.Component<ComponentProps> {
 	/**
@@ -45,14 +46,23 @@ class ImageContainer extends React.Component<ComponentProps> {
 	}
 
 	render() {
-		console.log(
-			`ImageContainer.render(${this.props.path}) image: ${this.props.image}`
-		);
+		const imagePath = this.props.path;
+		const album = this.props.album;
 
-		const image = this.props.image as Image;
+		console.log(`ImageContainer.render(${imagePath}) album ${album.path}`);
 
-		if (image) document.title = image.path;
-		return <ImagePage path={this.props.path} />;
+		if (!album || album.isLoading) {
+			return 'Waiting on album';
+		} else if (!album.images) {
+			return `No images in album ${album}`;
+		} else {
+			var image = album.images.find((image: Image) => image.path === imagePath);
+			if (!image) {
+				return `No image of path (${imagePath}) in album ${album.path}`;
+			} else {
+				return <ImagePage album={album} image={image} />;
+			}
+		}
 	}
 }
 
@@ -72,17 +82,26 @@ class ImageContainer extends React.Component<ComponentProps> {
  * @prop state the current Redux store state
  * @returns set of props for this component
  */
-function mapStateToProps(state: RootState, ownProps: ComponentProps) {
-	const path: string = ownProps.path;
-	// TODO: figure out image state
-	const image: Image = !state ? null : null;
-	//const image: Image = state.imagesByPath[path];
+function mapStateToProps(
+	state: RootState,
+	ownProps: ComponentProps
+): ComponentProps {
+	const path = ownProps.path;
+
+	// get the album's path from the photo's path
+	var pathParts = ownProps.path.split('/');
+	pathParts.pop(); // remove photo filename
+	var albumPath = pathParts.join('/');
+
+	// retrieve the album from state
+	const album = state.albumsByPath[albumPath];
 
 	return {
 		path,
-		image
+		album
 	};
 }
+
 /**
  * To use React Redux connect(), define a mapDispatchToProps() function that
  * maps a function on this component to a Redux action creator function.
