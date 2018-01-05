@@ -10,7 +10,7 @@ interface AlbumPageProps {
 }
 
 /**
- * Album page that displays a real album, not an error or loading.
+ * Album page.
  */
 const AlbumPage: React.StatelessComponent<AlbumPageProps> = ({ album }) => {
 	switch (album.type) {

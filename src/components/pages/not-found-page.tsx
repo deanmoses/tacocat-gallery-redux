@@ -18,3 +18,4 @@ export const NotFoundPage: React.StatelessComponent<
 		</div>
 	</Site.Page>
 );
+export default NotFoundPage;
