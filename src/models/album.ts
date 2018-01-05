@@ -238,7 +238,6 @@ export class Img implements Image {
 	get next(): ImageNavInfo {
 		// I don't know my own index in my parent collection, so
 		// first I have to find myself, then find the next image.
-		// collection = the parent collection of images I'm in.
 		const myPath = this.path;
 		let foundMyself = false;
 		return this.album.images.find(img => {
@@ -266,7 +265,6 @@ export class Img implements Image {
 		// I don't know my own index in my parent collection.
 		// But I do know that once I find myself, I will have
 		// already found my prev in the previous iteration.
-		// collection = the parent collection of images I'm in.
 		const myPath = this.path;
 		let prev: Image;
 		prev = this.album.images.find(img => {
