@@ -6,9 +6,15 @@ import { fetchAlbum } from '@src/redux/actions/album-actions';
  */
 export function fetchImageIfNeeded(imagePath: string) {
 	console.log(`fetchImageIfNeeded(${imagePath})`);
+
+	// get the album's path from the photo's path
+	var pathParts = imagePath.split('/');
+	pathParts.pop(); // remove photo filename
+	var albumPath = pathParts.join('/');
+
 	return function(dispatch: Function, getState: Function) {
-		if (shouldFetch(getState(), imagePath)) {
-			return dispatch(fetchAlbum(imagePath));
+		if (shouldFetch(getState(), albumPath)) {
+			return dispatch(fetchAlbum(albumPath));
 		}
 	};
 }
@@ -16,15 +22,10 @@ export function fetchImageIfNeeded(imagePath: string) {
 /**
  * Return true if we need to fetch album containing the image
  *
- * @param imagePath path to the image
+ * @param albumPath path to the album the image is in
  * @returns true if we need to fetch the album containing the image
  */
-function shouldFetch(state: RootState, imagePath: string): boolean {
-	// get the album's path from the photo's path
-	var pathParts = imagePath.split('/');
-	pathParts.pop(); // remove photo filename
-	var albumPath = pathParts.join('/');
-
+function shouldFetch(state: RootState, albumPath: string): boolean {
 	// retrieve the album from state
 	const album = state.albumsByPath[albumPath];
 
