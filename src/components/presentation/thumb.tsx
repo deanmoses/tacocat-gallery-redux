@@ -5,7 +5,7 @@
 import * as React from 'react';
 import * as DateUtils from '@src/utils/date-utils';
 import Config from '@src/utils/config';
-import { AlbumType, Thumbable } from '@src/models/album';
+import { AlbumType, Thumbable } from '@src/models/models';
 import { Icon, Icons } from '@src/components/presentation/icon';
 
 /**

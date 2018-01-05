@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Album, Image } from '@src/models/album';
+import { Album, Image } from '@src/models/models';
 import ImagePage from '@src/components/pages/image-page';
 import ImageLoadingPage from '@src/components/pages/image-loading-page';
 import ImageErrorPage from '@src/components/pages/image-error-page';

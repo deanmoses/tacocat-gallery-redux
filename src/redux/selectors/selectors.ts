@@ -1,5 +1,5 @@
 import { RootState } from '@src/redux/reducers/reducers';
-import { Album, Image } from '@src/models/album';
+import { Album, Image } from '@src/models/models';
 import createAlbumFromObject from '@src/models/album-creator';
 
 /**

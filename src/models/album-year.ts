@@ -1,4 +1,4 @@
-import { AlbumNavInfo } from '@src/models/album';
+import { AlbumNavInfo } from '@src/models/models';
 import DateBasedAlbum from '@src/models/album-datebased';
 import * as DateUtils from '@src/utils/date-utils';
 

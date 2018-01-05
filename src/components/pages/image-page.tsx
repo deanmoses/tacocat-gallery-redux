@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as Site from '@src/components/presentation/site';
-import { Album, Image } from '@src/models/album';
+import { Album, Image } from '@src/models/models';
 import Config from '@src/utils/config';
 
 /**

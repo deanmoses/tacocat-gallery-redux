@@ -3,7 +3,7 @@
  */
 
 import * as Actions from '@src/redux/actions/actions';
-import { AlbumsByPath, Album } from '@src/models/album';
+import { AlbumsByPath, Album } from '@src/models/models';
 
 /**
  * The shape of the application's state.

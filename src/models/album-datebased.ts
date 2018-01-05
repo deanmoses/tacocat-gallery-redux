@@ -1,11 +1,11 @@
-import { Alb } from '@src/models/album';
+import { AlbumImpl } from '@src/models/album-impl';
 import * as DateUtils from '@src/utils/date-utils';
 
 /**
  * Overrides the default album class with behavior specific to any album that shows titles based
  * on dates and not what the admin typed in.
  */
-export default class DateBasedAlbum extends Alb {
+export default class DateBasedAlbum extends AlbumImpl {
 	/**
 	 * Title of next album
 	 * Blank if no next album

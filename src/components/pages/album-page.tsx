@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as Site from '@src/components/presentation/site';
-import { Album, AlbumType } from '@src/models/album';
+import { Album, AlbumType } from '@src/models/models';
 import DayAlbumPage from '@src/components/pages/album-day-page';
 import YearAlbumPage from '@src/components/pages/album-year-page';
 import RootAlbumPage from '@src/components/pages/album-root-page';

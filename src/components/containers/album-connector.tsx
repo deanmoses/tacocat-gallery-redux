@@ -1,12 +1,15 @@
 //
-// React Redux state connector for the AlbumContainer component
+// React Redux state connector for the AlbumContainer component.
+//
+// It's job is to connect the Redux store's state with the AlbumContainer component,
+// and connect the AlbumContainer's events (like fetchAlbumIfNeeded) to the Redux store.
 //
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actions from '@src/redux/actions/album-actions';
 import { RootState } from '@src/redux/reducers/reducers';
-import { Album } from '@src/models/album';
+import { Album } from '@src/models/models';
 import AlbumContainer, {
 	ComponentProps
 } from '@src/components/containers/album-container';
