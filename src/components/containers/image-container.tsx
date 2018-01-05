@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as actions from '@src/redux/actions/actions';
+import * as actions from '@src/redux/actions/image-actions';
 import { RootState } from '@src/redux/reducers/reducers';
 import { Image } from '@src/models/album';
 import ImagePage from '@src/components/pages/image-page';

@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux';
 import * as reducers from '../reducers';
 import { allReducers, RootState } from '../reducers';
-import * as actions from '@src/redux/actions/actions';
+import * as authenticationActions from '@src/redux/actions/authentication-actions';
+import * as albumActions from '@src/redux/actions/album-actions';
 
 const rootReducer = combineReducers<RootState>(allReducers);
 
@@ -31,7 +32,10 @@ describe('root reducer test', () => {
 
 	it('should update authenticated=true', () => {
 		expect(
-			rootReducer(blankState, actions.updateUserAuthenticationStatus(true))
+			rootReducer(
+				blankState,
+				authenticationActions.updateUserAuthenticationStatus(true)
+			)
 		).toEqual({
 			albumsByPath: {},
 			isAuthenticated: true
@@ -40,7 +44,10 @@ describe('root reducer test', () => {
 
 	it('should set album / to "not found"', () => {
 		expect(
-			rootReducer(blankState, actions.errorAlbum('/', { message: 'not found' }))
+			rootReducer(
+				blankState,
+				albumActions.errorAlbum('/', { message: 'not found' })
+			)
 		).toEqual({
 			albumsByPath: {
 				'/': {

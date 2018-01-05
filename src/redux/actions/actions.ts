@@ -10,8 +10,6 @@
  * do stuff, like make ajax calls, then fire more actions.
  */
 import { Action } from 'redux';
-import { RootState } from '@src/redux/reducers/reducers';
-import Config from '@src/utils/config';
 
 /**
  * The keys for each action in the application
@@ -32,69 +30,17 @@ export type ActionTypes =
 	| OtherAction;
 
 /**
- * Action Builder: a helper function to create an Image
- */
-export function fetchImageIfNeeded(path: string) {
-	console.log('fetchImageIfNeeded()', path);
-	return function(dispatch: Function, getState: Function) {
-		// TODO: this should check if we need to fetch an IMAGE, not an ALBUM
-		if (shouldFetchAlbum(getState(), path)) {
-			return dispatch(fetchAlbum(path));
-		}
-	};
-}
-
-/**
- * Action Builder: a helper function to create an Action
- */
-export function fetchAlbumIfNeeded(albumPath: string) {
-	console.log('fetchAlbumIfNeeded()', albumPath);
-	return function(dispatch: Function, getState: Function) {
-		if (shouldFetchAlbum(getState(), albumPath)) {
-			return dispatch(fetchAlbum(albumPath));
-		}
-	};
-}
-
-function shouldFetchAlbum(state: RootState, albumPath: string): boolean {
-	const album = state.albumsByPath[albumPath];
-	// always fetch album
-	const shouldFetch = !album || !!album;
-	console.log(`shouldFetchAlbum(${albumPath})?`, shouldFetch);
-	return shouldFetch;
-}
-
-function fetchAlbum(albumPath: string) {
-	return (dispatch: Function) => {
-		console.log('fetchAlbum()', albumPath);
-		dispatch(requestAlbum(albumPath));
-		return fetch(Config.jsonAlbumUrl(albumPath))
-			.then(handleErrors)
-			.then(response => response.json())
-			.then(json => dispatch(receiveAlbum(albumPath, json)))
-			.catch(error => dispatch(errorAlbum(albumPath, error.message)));
-	};
-}
-
-function handleErrors(response: any) {
-	if (!response.ok) {
-		throw Error(response.statusText);
-	}
-	return response;
-}
-
-/**
  * Action type definition
  */
 export interface AlbumRequested extends Action {
 	type: ActionTypeKeys.ALBUM_REQUESTED;
 	albumPath: string;
 }
-function requestAlbum(albumPath: string): AlbumRequested {
-	return {
-		type: ActionTypeKeys.ALBUM_REQUESTED,
-		albumPath
-	};
+
+export interface AlbumErrored extends Action {
+	type: ActionTypeKeys.ALBUM_ERRORED;
+	albumPath: string;
+	error: any;
 }
 
 /**
@@ -104,26 +50,6 @@ export interface AlbumRecieved extends Action {
 	type: ActionTypeKeys.ALBUM_RECEIVED;
 	albumPath: string;
 	albumJson: Object;
-}
-function receiveAlbum(albumPath: string, json: any): AlbumRecieved {
-	return {
-		type: ActionTypeKeys.ALBUM_RECEIVED,
-		albumPath,
-		albumJson: json.album
-	};
-}
-
-export interface AlbumErrored extends Action {
-	type: ActionTypeKeys.ALBUM_ERRORED;
-	albumPath: string;
-	error: any;
-}
-export function errorAlbum(albumPath: string, error: any): AlbumErrored {
-	return {
-		type: ActionTypeKeys.ALBUM_ERRORED,
-		albumPath,
-		error: error
-	};
 }
 
 /**
@@ -148,13 +74,3 @@ export interface UpdateUserAuthenticationStatus extends Action {
 export interface OtherAction extends Action {
 	type: ActionTypeKeys.OTHER_ACTION;
 }
-
-/**
- * Action Builder: a helper function to create an Action
- */
-export const updateUserAuthenticationStatus = (
-	isAuthenticated: boolean
-): UpdateUserAuthenticationStatus => ({
-	type: ActionTypeKeys.UPDATE_USER_AUTHENTICATION_STATUS,
-	isAuthenticated
-});
