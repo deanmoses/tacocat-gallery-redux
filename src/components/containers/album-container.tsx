@@ -12,7 +12,7 @@ import AlbumErrorPage from '@src/components/pages/album-error-page';
  * The shape of this component's properties
  */
 type AlbumContainerProps = {
-	readonly albumPath: string;
+	readonly path: string;
 	readonly album?: Album;
 	readonly fetchAlbumIfNeeded?: Function;
 };
@@ -28,7 +28,7 @@ export class AlbumContainer extends React.Component<AlbumContainerProps> {
 	 * This is the place to trigger async logic, such as Redux actions.
 	 */
 	componentDidMount() {
-		this.props.fetchAlbumIfNeeded(this.props.albumPath);
+		this.props.fetchAlbumIfNeeded(this.props.path);
 	}
 
 	/**
@@ -40,20 +40,13 @@ export class AlbumContainer extends React.Component<AlbumContainerProps> {
 	 */
 	componentWillReceiveProps(nextProps: AlbumContainerProps) {
 		// Have we changed which album we're displaying?
-		let differentAlbum: boolean = nextProps.albumPath !== this.props.albumPath;
+		let differentAlbum: boolean = nextProps.path !== this.props.path;
 		if (differentAlbum) {
-			this.props.fetchAlbumIfNeeded(nextProps.albumPath);
+			this.props.fetchAlbumIfNeeded(nextProps.path);
 		}
 	}
 
 	render() {
-		// console.log(
-		// 	'AlbumPage.render()',
-		// 	this.props.albumPath,
-		// 	'album:',
-		// 	this.props.album
-		// );
-
 		const album = this.props.album as Album;
 
 		if (album && album.image_size) {
@@ -90,15 +83,14 @@ export class AlbumContainer extends React.Component<AlbumContainerProps> {
  * @returns set of props for this component
  */
 function mapStateToProps(state: RootState, ownProps: AlbumContainerProps) {
-	const albumPath: string = ownProps.albumPath;
-	const album: Album = state.albumsByPath[albumPath];
+	const path: string = ownProps.path;
+	const album: Album = state.albumsByPath[path];
 
 	return {
-		albumPath,
+		path,
 		album
 	};
 }
-
 /**
  * To use React Redux connect(), define a mapDispatchToProps() function that
  * maps a function on this component to a Redux action creator function.
@@ -113,9 +105,9 @@ function mapDispatchToProps(dispatch: any) {
 }
 
 /**
- * Instead of exporting the AlbumPage component, export a Redux-wrapped component.
+ * Instead of exporting the AlbumContainer component, export a Redux-wrapped component.
  *
- * We need to wrap the AlbumPage component in a Redux wrapper in order to be
+ * We need to wrap the AlbumContainer component in a Redux wrapper in order to be
  * notified of changes to global state and map the new global state to this
  * component's properties.
  *

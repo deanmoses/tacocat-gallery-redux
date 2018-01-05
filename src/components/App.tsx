@@ -5,8 +5,8 @@
 import * as React from 'react';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import Album from '@src/components/containers/album-container';
-import Image from '@src/components/pages/image-page';
-import NotFoundPage from '@src/components/pages/not-found-page';
+import Image from '@src/components/containers/image-container';
+import InvalidUrlPage from '@src/components/pages/invalid-url-page';
 
 /**
  * The root component of the application
@@ -14,29 +14,23 @@ import NotFoundPage from '@src/components/pages/not-found-page';
 export const App: React.StatelessComponent = () => (
 	<Router hashType="noslash">
 		<Switch>
-			<Route exact path="/" render={() => <Album albumPath="/" />} />
+			<Route exact path="/" render={() => <Album path="/" />} />
 			<Route
 				exact
 				path="/:path(\\d\\d\\d\\d)"
-				render={props => (
-					<Album albumPath={props.match.params.path as string} />
-				)}
+				render={props => <Album path={props.match.params.path as string} />}
 			/>
 			<Route
 				exact
 				path="/:path(\\d\\d\\d\\d/\\d\\d\-\\d\\d)"
-				render={props => (
-					<Album albumPath={props.match.params.path as string} />
-				)}
+				render={props => <Album path={props.match.params.path as string} />}
 			/>
 			<Route
 				exact
 				path="/:path(\\d\\d\\d\\d/\\d\\d\-\\d\\d/*.*)"
-				render={props => (
-					<Image imagePath={props.match.params.path as string} />
-				)}
+				render={props => <Image path={props.match.params.path as string} />}
 			/>
-			<Route component={NotFoundPage} />
+			<Route component={InvalidUrlPage} />
 		</Switch>
 	</Router>
 );

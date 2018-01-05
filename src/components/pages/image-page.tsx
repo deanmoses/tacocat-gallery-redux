@@ -1,17 +1,17 @@
 import * as React from 'react';
 import * as Site from '@src/components/presentation/site';
 
-interface Props {
-	readonly imagePath: string;
+interface ComponentProps {
+	readonly path: string;
 }
 
 /**
  * Image page.
  */
-const ImagePage: React.StatelessComponent<Props> = ({ imagePath }) => (
+const ImagePage: React.StatelessComponent<ComponentProps> = ({ path }) => (
 	<Site.Page className="imagepage">
 		<Site.HeaderTitle title="IMAGE" />
-		<Site.FullPageMessage>IMAGE PAGE: {imagePath}</Site.FullPageMessage>
+		<Site.FullPageMessage>IMAGE PAGE: {path}</Site.FullPageMessage>
 	</Site.Page>
 );
 export default ImagePage;
