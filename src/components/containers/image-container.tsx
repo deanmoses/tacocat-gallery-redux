@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Album, Image } from '@src/models/album';
 import ImagePage from '@src/components/pages/image-page';
-
+import ImageLoadingPage from '@src/components/pages/image-loading-page';
 /**
  * Component properties
  */
@@ -48,7 +48,7 @@ export default class ImageContainer extends React.Component<ComponentProps> {
 		console.log(`ImageContainer.render(${imagePath}) album:`, album);
 
 		if (!album || album.isLoading) {
-			return 'Waiting on album';
+			return <ImageLoadingPage />;
 		} else if (!album.images) {
 			return `No images in album ${album}`;
 		} else {
