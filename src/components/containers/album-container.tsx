@@ -11,15 +11,15 @@ import AlbumErrorPage from '@src/components/pages/album-error-page';
 /**
  * The shape of this component's properties
  */
-type AlbumContainerProps = {
+type ComponentProps = {
 	readonly path: string;
 	readonly album?: Album;
-	readonly fetchAlbumIfNeeded?: Function;
+	readonly fetchIfNeeded?: Function;
 };
 /**
  * The component itself.
  */
-export class AlbumContainer extends React.Component<AlbumContainerProps> {
+export class AlbumContainer extends React.Component<ComponentProps> {
 	/**
 	 * React.js component lifecycle method. Invoked once, immediately after the
 	 * initial rendering occurs. At this point in the lifecycle, the component
@@ -28,7 +28,7 @@ export class AlbumContainer extends React.Component<AlbumContainerProps> {
 	 * This is the place to trigger async logic, such as Redux actions.
 	 */
 	componentDidMount() {
-		this.props.fetchAlbumIfNeeded(this.props.path);
+		this.props.fetchIfNeeded(this.props.path);
 	}
 
 	/**
@@ -38,11 +38,11 @@ export class AlbumContainer extends React.Component<AlbumContainerProps> {
 	 * only want to handle changes. This may occur when the parent component causes
 	 * your component to re-render.
 	 */
-	componentWillReceiveProps(nextProps: AlbumContainerProps) {
+	componentWillReceiveProps(nextProps: ComponentProps) {
 		// Have we changed which album we're displaying?
 		let differentAlbum: boolean = nextProps.path !== this.props.path;
 		if (differentAlbum) {
-			this.props.fetchAlbumIfNeeded(nextProps.path);
+			this.props.fetchIfNeeded(nextProps.path);
 		}
 	}
 
@@ -82,7 +82,7 @@ export class AlbumContainer extends React.Component<AlbumContainerProps> {
  * @prop state the current Redux store state
  * @returns set of props for this component
  */
-function mapStateToProps(state: RootState, ownProps: AlbumContainerProps) {
+function mapStateToProps(state: RootState, ownProps: ComponentProps) {
 	const path: string = ownProps.path;
 	const album: Album = state.albumsByPath[path];
 
@@ -98,7 +98,7 @@ function mapStateToProps(state: RootState, ownProps: AlbumContainerProps) {
 function mapDispatchToProps(dispatch: any) {
 	return bindActionCreators(
 		{
-			fetchAlbumIfNeeded: actions.fetchAlbumIfNeeded
+			fetchIfNeeded: actions.fetchAlbumIfNeeded
 		},
 		dispatch
 	);
@@ -113,8 +113,8 @@ function mapDispatchToProps(dispatch: any) {
  *
  * The Redux connect() method does the wrapping.
  */
-export const ConnectedAlbum = connect<{}, {}, AlbumContainerProps>(
+export const ConnectedComponent = connect<{}, {}, ComponentProps>(
 	mapStateToProps,
 	mapDispatchToProps
 )(AlbumContainer);
-export default ConnectedAlbum;
+export default ConnectedComponent;

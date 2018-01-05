@@ -32,6 +32,19 @@ export type ActionTypes =
 	| OtherAction;
 
 /**
+ * Action Builder: a helper function to create an Image
+ */
+export function fetchImageIfNeeded(path: string) {
+	console.log('fetchImageIfNeeded()', path);
+	return function(dispatch: Function, getState: Function) {
+		// TODO: this should check if we need to fetch an IMAGE, not an ALBUM
+		if (shouldFetchAlbum(getState(), path)) {
+			return dispatch(fetchAlbum(path));
+		}
+	};
+}
+
+/**
  * Action Builder: a helper function to create an Action
  */
 export function fetchAlbumIfNeeded(albumPath: string) {
