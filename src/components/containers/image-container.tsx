@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Album, Image } from '@src/models/album';
 import ImagePage from '@src/components/pages/image-page';
 import ImageLoadingPage from '@src/components/pages/image-loading-page';
+import ImageErrorPage from '@src/components/pages/image-error-page';
 import ImageNotFoundPage from '@src/components/pages/image-notfound-page';
 
 /**
@@ -47,16 +48,18 @@ export default class ImageContainer extends React.Component<ComponentProps> {
 		const imagePath = this.props.path;
 		const album = this.props.album;
 
-		console.log(`ImageContainer.render(${imagePath}) album:`, album);
+		//console.log(`ImageContainer.render(${imagePath}) album:`, album);
 
 		if (!album || album.isLoading) {
 			return <ImageLoadingPage />;
+		} else if (album.err) {
+			return <ImageErrorPage message={album.err} />;
 		} else if (!album.images) {
 			return <ImageNotFoundPage album={album} />;
 		} else {
 			var image = album.images.find((image: Image) => image.path === imagePath);
 			if (!image) {
-				console.log(`No image of path (${imagePath}) in album ${album.path}`);
+				//console.log(`No image of path (${imagePath}) in album ${album.path}`);
 				return <ImageNotFoundPage album={album} />;
 			} else {
 				return <ImagePage album={album} image={image} />;

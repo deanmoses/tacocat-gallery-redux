@@ -14,7 +14,7 @@ interface ComponentProps {
 const AlbumErrorPage: React.StatelessComponent<ComponentProps> = ({
 	message
 }) => (
-	<Site.Page className="albumpage loading">
+	<Site.Page className="albumpage rootalbumtype">
 		<Site.HeaderTitle showTitle={false} />
 		<Site.FullPageMessage>Error: {message}</Site.FullPageMessage>
 	</Site.Page>
