@@ -1,12 +1,13 @@
 import * as React from 'react';
 import * as Site from '@src/components/presentation/site';
 import { Icon, Icons } from '@src/components/presentation/icon';
+import { FetchError } from '@src/models/models';
 
 /**
  * Component properties
  */
 interface ComponentProps {
-	readonly message: string;
+	readonly error: FetchError;
 }
 
 /**

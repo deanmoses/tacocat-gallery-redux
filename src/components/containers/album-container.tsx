@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Album } from '@src/models/models';
+import { Album, FetchErrorImpl } from '@src/models/models';
 import AlbumPage from '@src/components/pages/album-page';
 import AlbumLoadingPage from '@src/components/pages/album-loading-page';
 import AlbumErrorPage from '@src/components/pages/album-error-page';
@@ -51,14 +51,16 @@ export class AlbumContainer extends React.Component<ComponentProps> {
 			return <AlbumPage album={album} />;
 		} else if (album && album.err) {
 			document.title = 'Error loading album';
-			return <AlbumErrorPage message={album.err} />;
+			return <AlbumErrorPage error={album.err} />;
 		} else if (!album || (album.isLoading && !album.title)) {
 			document.title = 'Loading album...';
 			return <AlbumLoadingPage />;
 		} else {
 			document.title = 'Weird state...';
-			const message = "I'm in some weird state I didn't expect";
-			return <AlbumErrorPage message={message} />;
+			const error = new FetchErrorImpl(
+				"I'm in some weird state I didn't expect"
+			);
+			return <AlbumErrorPage error={error} />;
 		}
 	}
 }

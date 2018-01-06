@@ -54,7 +54,7 @@ export class ImageContainer extends React.Component<ComponentProps> {
 		if (!album || album.isLoading) {
 			return <ImageLoadingPage />;
 		} else if (album.err) {
-			return <ImageErrorPage message={album.err} />;
+			return <ImageErrorPage error={album.err} />;
 		} else if (!album.images) {
 			return <ImageNotFoundPage album={album} />;
 		} else {

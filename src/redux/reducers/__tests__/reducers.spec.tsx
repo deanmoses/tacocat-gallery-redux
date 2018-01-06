@@ -42,7 +42,7 @@ describe('root reducer test', () => {
 		expect(
 			rootReducer(
 				initialRootState,
-				albumActions.errorAlbum('/', { message: 'not found' })
+				albumActions.errorAlbum('/', new Error('not found'))
 			)
 		).toEqual({
 			albumsByPath: {

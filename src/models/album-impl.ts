@@ -3,7 +3,8 @@ import {
 	Image,
 	AlbumNavInfo,
 	AlbumType,
-	AlbumThumb
+	AlbumThumb,
+	FetchError
 } from '@src/models/models';
 import { ImageImpl } from '@src/models/image-impl';
 
@@ -26,7 +27,7 @@ export class AlbumImpl implements Album {
 	next?: AlbumNavInfo;
 	prev?: AlbumNavInfo;
 	isLoading?: boolean;
-	err?: string;
+	err?: FetchError;
 
 	constructor(path: string) {
 		if (!(typeof path === 'string'))

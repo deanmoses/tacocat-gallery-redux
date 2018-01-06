@@ -1,5 +1,6 @@
 import { RootState } from '@src/redux/reducers/root-state';
 import Config from '@src/utils/config';
+import { Album, FetchErrorImpl } from '@src/models/models';
 import {
 	ActionTypeKeys,
 	AlbumRequested,
@@ -60,20 +61,22 @@ function requestAlbum(albumPath: string): AlbumRequested {
  * Action Builder: a helper function to create an Action
  */
 function receiveAlbum(albumPath: string, json: any): AlbumRecieved {
+	// TODO: better error handling if we don't get back expected response
+	const album: Album = json.album as Album;
 	return {
 		type: ActionTypeKeys.ALBUM_RECEIVED,
 		albumPath,
-		albumJson: json.album
+		album: album
 	};
 }
 
 /**
  * Action Builder: a helper function to create an Action
  */
-export function errorAlbum(albumPath: string, error: any): AlbumErrored {
+export function errorAlbum(albumPath: string, error: Error): AlbumErrored {
 	return {
 		type: ActionTypeKeys.ALBUM_ERRORED,
 		albumPath,
-		error: error
+		error: new FetchErrorImpl(error.message)
 	};
 }

@@ -10,7 +10,7 @@ import {
 	LatestAlbumRecieved,
 	LatestAlbumErrored
 } from '@src/redux/actions/actions';
-import { AlbumThumb } from '@src/models/models';
+import { AlbumThumb, FetchErrorImpl } from '@src/models/models';
 
 /**
  * Fetch the latest album if needed
@@ -40,11 +40,12 @@ function fetchLatestAlbum() {
 			.then(handleErrors)
 			.then(response => response.json())
 			.then(json => dispatch(receiveLatestAlbum(json)))
-			.catch(error => dispatch(errorLatestAlbum(error.message)));
+			.catch(error => dispatch(errorLatestAlbum(error)));
 	};
 }
 
 function handleErrors(response: any) {
+	// TODO: instead of simply checking ok, return a structured FetchError with a NotFound type, etc
 	if (!response.ok) {
 		throw Error(response.statusText);
 	}
@@ -64,6 +65,8 @@ function requestLatestAlbum(): LatestAlbumRequested {
  * Action Builder: a helper function to create an Action
  */
 function receiveLatestAlbum(json: any): LatestAlbumRecieved {
+	// TODO: better error handling if we don't get back expected response
+	// This will happen for sure if the statistics plugin isn't enabled
 	const latestAlbum: AlbumThumb = json.stats.album.latest[0] as AlbumThumb;
 
 	return {
@@ -75,9 +78,9 @@ function receiveLatestAlbum(json: any): LatestAlbumRecieved {
 /**
  * Action Builder: a helper function to create an Action
  */
-export function errorLatestAlbum(error: any): LatestAlbumErrored {
+export function errorLatestAlbum(error: Error): LatestAlbumErrored {
 	return {
 		type: ActionTypeKeys.LATEST_ALBUM_ERRORED,
-		error: error
+		error: new FetchErrorImpl(error.message)
 	};
 }

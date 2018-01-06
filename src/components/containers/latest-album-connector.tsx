@@ -12,7 +12,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { RootState } from '@src/redux/reducers/root-state';
 import { AlbumThumb } from '@src/models/models';
-import * as actions from '@src/redux/actions/album-latest-actions';
+import * as actions from '@src/redux/actions/latest-album-actions';
 import { getLatestAlbum } from '@src/redux/selectors/selectors';
 import {
 	LatestAlbumContainer,

@@ -41,7 +41,7 @@ export function albumsByPathReducer(
 			console.log(action.type, action.albumPath);
 			let newAlbums = { ...albumsByPath };
 			// Add album to store
-			newAlbums[action.albumPath] = action.albumJson as Album;
+			newAlbums[action.albumPath] = action.album as Album;
 			return newAlbums;
 		}
 

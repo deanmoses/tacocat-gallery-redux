@@ -1,16 +1,14 @@
-/**
- * This file contains React Redux action definitions.
- *
- * A Redux action is essentially an instruction to change
- * the application state such as “Hey Redux Store! I’ve got
- * an instruction for you, please update the state tree with
- * this new piece of information.”
- *
- * A Redux Thunk asynchronous action is an action that can
- * do stuff, like make ajax calls, then fire more actions.
- */
+//
+// This file contains React Redux action definitions.
+//
+// A Redux action is essentially an instruction to change
+// the application state such as “Hey Redux Store! I’ve got
+// an instruction for you, please update the state tree with
+// this new piece of information.”
+//
+
 import { Action } from 'redux';
-import { AlbumThumb } from '@src/models/models';
+import { Album, AlbumThumb, FetchError } from '@src/models/models';
 
 /**
  * The keys for each action in the application
@@ -47,7 +45,7 @@ export interface AlbumRequested extends Action {
 export interface AlbumErrored extends Action {
 	type: ActionTypeKeys.ALBUM_ERRORED;
 	albumPath: string;
-	error: any;
+	error: FetchError;
 }
 
 /**
@@ -56,7 +54,7 @@ export interface AlbumErrored extends Action {
 export interface AlbumRecieved extends Action {
 	type: ActionTypeKeys.ALBUM_RECEIVED;
 	albumPath: string;
-	albumJson: Object;
+	album: Album;
 }
 
 /**
@@ -68,7 +66,7 @@ export interface LatestAlbumRequested extends Action {
 
 export interface LatestAlbumErrored extends Action {
 	type: ActionTypeKeys.LATEST_ALBUM_ERRORED;
-	error: any;
+	error: FetchError;
 }
 
 /**
