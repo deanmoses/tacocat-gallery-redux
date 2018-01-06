@@ -1,3 +1,7 @@
+//
+// These are Redux Action builders: helper functions to create Actions
+//
+
 import { RootState } from '@src/redux/reducers/root-state';
 import Config from '@src/utils/config';
 import { Album, FetchErrorImpl } from '@src/models/models';

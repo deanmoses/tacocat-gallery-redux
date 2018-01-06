@@ -1,3 +1,7 @@
+//
+// These are Redux Action builders: helper functions to create Actions
+//
+
 import {
 	ActionTypeKeys,
 	UpdateUserAuthenticationStatus

@@ -1,5 +1,9 @@
+//
+// These are Redux Action builders: helper functions to create Actions
+//
+
 import { RootState } from '@src/redux/reducers/root-state';
-import { fetchAlbum } from '@src/redux/actions/album-actions';
+import { fetchAlbum } from '@src/redux/actions/album-action-builders';
 
 /**
  * Action Builder: a helper function to create an Image

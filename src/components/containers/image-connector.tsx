@@ -10,7 +10,7 @@
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as actions from '@src/redux/actions/image-actions';
+import * as actions from '@src/redux/actions/image-action-builders';
 import { RootState } from '@src/redux/reducers/root-state';
 import { getImage, getAlbumForImage } from '@src/redux/selectors/selectors';
 import {
