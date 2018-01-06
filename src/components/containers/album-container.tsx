@@ -16,7 +16,7 @@ export type ComponentProps = {
 /**
  * Album container component: manages album loading and error state
  */
-export default class AlbumContainer extends React.Component<ComponentProps> {
+export class AlbumContainer extends React.Component<ComponentProps> {
 	/**
 	 * React.js component lifecycle method. Invoked once, immediately after the
 	 * initial rendering occurs. At this point in the lifecycle, the component

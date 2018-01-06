@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as renderer from 'react-test-renderer/shallow';
 
-import AlbumContainer from '../album-container';
+import { AlbumContainer } from '../album-container';
 
 describe('<Album path="/" /> = Loading', () => {
 	it('renders', () => {

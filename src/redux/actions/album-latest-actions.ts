@@ -1,3 +1,7 @@
+//
+// These are Redux Action builders: helper functions to create Actions
+//
+
 import { RootState } from '@src/redux/reducers/root-state';
 import Config from '@src/utils/config';
 import {
@@ -6,9 +10,10 @@ import {
 	LatestAlbumRecieved,
 	LatestAlbumErrored
 } from '@src/redux/actions/actions';
+import { AlbumThumb } from '@src/models/models';
 
 /**
- * Action Builder: a helper function to create an Action
+ * Fetch the latest album if needed
  */
 export function fetchLatestAlbumIfNeeded() {
 	console.log('fetchLatestAlbumIfNeeded()');
@@ -59,9 +64,11 @@ function requestLatestAlbum(): LatestAlbumRequested {
  * Action Builder: a helper function to create an Action
  */
 function receiveLatestAlbum(json: any): LatestAlbumRecieved {
+	const latestAlbum: AlbumThumb = json.stats.album.latest[0] as AlbumThumb;
+
 	return {
 		type: ActionTypeKeys.LATEST_ALBUM_RECEIVED,
-		json: json.album
+		latestAlbum: latestAlbum
 	};
 }
 

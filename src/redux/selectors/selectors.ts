@@ -1,6 +1,24 @@
+//
+// Redux selector functions
+//
+// The job of a selector function is to "select" (aka retrieve) some bit of state
+// out of the Redux store.
+//
+// The Redux store should store plain javascript objects so this is a good place
+// to turn that plain object into a specific class.
+//
+
 import { RootState } from '@src/redux/reducers/root-state';
-import { Album, Image } from '@src/models/models';
+import { Album, Image, AlbumThumb } from '@src/models/models';
 import createAlbumFromObject from '@src/models/album-creator';
+
+/**
+ * Retrieve album with specified path
+ */
+export function getAlbum(state: RootState, albumPath: string): Album {
+	const album = state.albumsByPath[albumPath];
+	return album ? createAlbumFromObject(album) : null;
+}
 
 /**
  * Retrieve album for the specified imagePath
@@ -24,9 +42,8 @@ export function getAlbumForImage(state: RootState, imagePath: string): Album {
 }
 
 /**
- * Retrieve album with specified path
+ * Retrieve the latest album
  */
-export function getAlbum(state: RootState, albumPath: string): Album {
-	const album = state.albumsByPath[albumPath];
-	return album ? createAlbumFromObject(album) : null;
+export function getLatestAlbum(state: RootState): AlbumThumb {
+	return state.latestAlbum;
 }

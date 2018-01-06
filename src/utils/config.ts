@@ -32,8 +32,9 @@ export default abstract class Config {
 		// NOT this:
 		// https://tacocat.com/zenphoto/2005/11-20?json
 
-		let newPath = path.endsWith('/') ? path : path + '/';
-		newPath = path.startsWith('/') ? path : '/' + path;
+		let newPath = path ? path : '/'; // root path
+		newPath = newPath.endsWith('/') ? newPath : newPath + '/';
+		newPath = newPath.startsWith('/') ? newPath : '/' + newPath;
 		return 'https://tacocat.com/zenphoto' + newPath + '?json';
 	}
 

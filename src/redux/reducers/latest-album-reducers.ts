@@ -3,17 +3,17 @@
 //
 
 import * as Actions from '@src/redux/actions/actions';
-import { AlbumNavInfo } from '@src/models/models';
+import { AlbumThumb } from '@src/models/models';
 
 /**
  * A reducer function
  */
 export function latestAlbumReducer(
-	latestAlbum: AlbumNavInfo = {},
+	latestAlbum: AlbumThumb = null,
 	action: Actions.ActionTypes
-): AlbumNavInfo {
+): AlbumThumb {
 	if (!action) {
-		return {};
+		return latestAlbum;
 	}
 	switch (action.type) {
 		/**
@@ -31,8 +31,8 @@ export function latestAlbumReducer(
 		 * Received from server
 		 */
 		case Actions.ActionTypeKeys.LATEST_ALBUM_RECEIVED: {
-			console.log(action.type);
-			return action.json as AlbumNavInfo;
+			console.log(action.type, action.latestAlbum);
+			return action.latestAlbum;
 		}
 
 		/**

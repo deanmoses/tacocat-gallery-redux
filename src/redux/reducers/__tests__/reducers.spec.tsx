@@ -1,18 +1,12 @@
 import { combineReducers } from 'redux';
 import { RootState } from '../root-state';
-import { allReducers } from '../root-reducer';
+import { allReducers, initialRootState } from '../root-reducer';
 import * as authenticationActions from '@src/redux/actions/authentication-actions';
 import * as albumActions from '@src/redux/actions/album-actions';
 
 const rootReducer = combineReducers<RootState>(allReducers);
 
 describe('root reducer test', () => {
-	const blankState: RootState = {
-		albumsByPath: {},
-		latestAlbum: {},
-		isAuthenticated: false
-	};
-
 	it('should return the initial state', () => {
 		expect(rootReducer(undefined, undefined)).toEqual({
 			albumsByPath: {},
@@ -23,7 +17,7 @@ describe('root reducer test', () => {
 	it('should keep authenticated=true', () => {
 		const state: RootState = {
 			albumsByPath: {},
-			latestAlbum: {},
+			latestAlbum: null,
 			isAuthenticated: true
 		};
 		expect(rootReducer(state, undefined)).toEqual({
@@ -35,7 +29,7 @@ describe('root reducer test', () => {
 	it('should update authenticated=true', () => {
 		expect(
 			rootReducer(
-				blankState,
+				initialRootState,
 				authenticationActions.updateUserAuthenticationStatus(true)
 			)
 		).toEqual({
@@ -47,7 +41,7 @@ describe('root reducer test', () => {
 	it('should set album / to "not found"', () => {
 		expect(
 			rootReducer(
-				blankState,
+				initialRootState,
 				albumActions.errorAlbum('/', { message: 'not found' })
 			)
 		).toEqual({

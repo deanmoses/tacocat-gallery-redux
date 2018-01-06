@@ -2,7 +2,7 @@
  * The React Redux reducers and state for the application
  */
 
-import { AlbumsByPath, AlbumNavInfo } from '@src/models/models';
+import { AlbumsByPath, AlbumThumb } from '@src/models/models';
 
 /**
  * The shape of the application's state.
@@ -16,7 +16,7 @@ export type RootState = {
 	/**
 	 * The most recently published album in the gallery
 	 */
-	readonly latestAlbum: AlbumNavInfo;
+	readonly latestAlbum?: AlbumThumb;
 
 	/**
 	 * True: user is authenticated

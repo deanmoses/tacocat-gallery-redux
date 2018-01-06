@@ -8,7 +8,7 @@ import { isAuthenticatedReducer } from '@src/redux/reducers/authentication-reduc
  */
 export const initialRootState: RootState = {
 	albumsByPath: {},
-	latestAlbum: {},
+	latestAlbum: null,
 	isAuthenticated: false
 };
 

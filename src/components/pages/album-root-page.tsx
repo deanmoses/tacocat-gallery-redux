@@ -3,6 +3,7 @@ import * as Site from '@src/components/presentation/site';
 import { Album, AlbumType } from '@src/models/models';
 import Config from '@src/utils/config';
 import * as Thumb from '@src/components/presentation/thumb';
+import LatestAlbumThumb from '@src/components/containers/latest-album-connector';
 
 /**
  * Component properties
@@ -25,7 +26,7 @@ const RootAlbumPage: React.StatelessComponent<ComponentProps> = ({ album }) => (
 		/>
 		<div className="container-fluid">
 			<section className="col-md-3 sidebar latest">
-				<h2>Latest Album</h2>
+				<LatestAlbumThumb />
 			</section>
 			<section className="col-md-9 col-md-offset-3">
 				<Thumb.List

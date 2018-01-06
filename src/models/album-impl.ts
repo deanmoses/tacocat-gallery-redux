@@ -1,8 +1,14 @@
-import { Album, Image, AlbumNavInfo, AlbumType } from '@src/models/models';
+import {
+	Album,
+	Image,
+	AlbumNavInfo,
+	AlbumType,
+	AlbumThumb
+} from '@src/models/models';
 import { ImageImpl } from '@src/models/image-impl';
 
 /**
- * Album class
+ * Album implementation
  */
 export class AlbumImpl implements Album {
 	path: string;
@@ -14,7 +20,8 @@ export class AlbumImpl implements Album {
 	thumb_size?: number;
 	thumb?: string;
 	date?: number;
-	images?: (Image)[] | null;
+	albums?: AlbumThumb[];
+	images?: (Image)[];
 	parent_album?: AlbumNavInfo;
 	next?: AlbumNavInfo;
 	prev?: AlbumNavInfo;

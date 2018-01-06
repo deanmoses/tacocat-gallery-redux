@@ -13,9 +13,7 @@ export type ComponentProps = {
 /**
  * Album container component: manages album loading and error state
  */
-export default class LatestAlbumContainer extends React.Component<
-	ComponentProps
-> {
+export class LatestAlbumContainer extends React.Component<ComponentProps> {
 	/**
 	 * React.js component lifecycle method. Invoked once, immediately after the
 	 * initial rendering occurs. At this point in the lifecycle, the component
@@ -46,7 +44,12 @@ export default class LatestAlbumContainer extends React.Component<
 		const album = this.props.latestAlbum as AlbumThumb;
 
 		if (album && album.url_thumb) {
-			return <Thumb.Nail item={album} isAlbum={true} albumType={album.type} />;
+			return (
+				<div>
+					<h2>Latest Album</h2>
+					<Thumb.Nail item={album} isAlbum={true} albumType={null} />
+				</div>
+			);
 		}
 		// Don't render anything if we don't have a latest album
 		return null;

@@ -10,6 +10,7 @@
  * do stuff, like make ajax calls, then fire more actions.
  */
 import { Action } from 'redux';
+import { AlbumThumb } from '@src/models/models';
 
 /**
  * The keys for each action in the application
@@ -75,7 +76,7 @@ export interface LatestAlbumErrored extends Action {
  */
 export interface LatestAlbumRecieved extends Action {
 	type: ActionTypeKeys.LATEST_ALBUM_RECEIVED;
-	json: Object;
+	latestAlbum: AlbumThumb;
 }
 
 /**
