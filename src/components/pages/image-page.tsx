@@ -1,5 +1,6 @@
 import * as React from 'react';
 import * as Site from '@src/components/presentation/site';
+import { EditableHtml } from '@src/components/presentation/editable-html';
 import { Album, Image } from '@src/models/models';
 import Config from '@src/utils/config';
 
@@ -56,18 +57,11 @@ class ImagePageBody extends React.Component<ImagePageBodyProps> {
 			maxHeight: image.height
 		};
 
-		var desc = (
-			<div
-				className="caption"
-				dangerouslySetInnerHTML={{ __html: image.desc }}
-			/>
-		);
-
 		return (
 			<div className="photo-body container-fluid">
 				<section className="col-md-3">
 					<h2 className="hidden">Caption</h2>
-					{desc}
+					<EditableHtml html={image.desc} className="caption" />
 				</section>
 				<section className="col-md-9">
 					<h2 className="hidden">Photo</h2>

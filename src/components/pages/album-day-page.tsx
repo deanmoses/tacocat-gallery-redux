@@ -1,6 +1,7 @@
 import * as React from 'react';
 import * as Site from '@src/components/presentation/site';
 import { Album } from '@src/models/models';
+import { EditableHtml } from '@src/components/presentation/editable-html';
 import * as Thumb from '@src/components/presentation/thumb';
 
 /**
@@ -37,10 +38,7 @@ export const DayAlbumPage: React.StatelessComponent<ComponentProps> = ({
 		</Site.HeaderTitle>
 		<section className="overview">
 			<h2 className="hidden">Overview</h2>
-			<div
-				className="caption"
-				dangerouslySetInnerHTML={{ __html: album.desc }}
-			/>
+			<EditableHtml html={album.desc} className={'caption'} />
 		</section>
 		<Thumb.List
 			items={album.images}

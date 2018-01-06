@@ -1,5 +1,6 @@
 import * as React from 'react';
 import * as Site from '@src/components/presentation/site';
+import { EditableHtml } from '@src/components/presentation/editable-html';
 import { Album, AlbumThumb } from '@src/models/models';
 import * as Thumb from '@src/components/presentation/thumb';
 
@@ -37,30 +38,19 @@ export const YearAlbumPage: React.StatelessComponent<AlbumPageProps> = ({
  */
 interface FirstsAndThumbsProps {
 	readonly album: Album;
-	readonly editMode?: boolean;
 }
 /**
  * Component that displays the year's firsts and the child albums' thumbnails
  */
 const FirstsAndThumbs: React.StatelessComponent<FirstsAndThumbsProps> = ({
-	album,
-	editMode = false
+	album
 }) => {
-	var desc = editMode ? (
-		<div>Edit Mode</div> //<RichTextEditor valueToEdit={album.desc}/>
-	) : (
-		<div
-			className="firsts-text"
-			dangerouslySetInnerHTML={{ __html: album.desc }}
-		/>
-	);
-
 	return (
 		<div className="container-fluid">
 			<section className="col-md-3 firsts sidebar">
 				<h2 className="hidden">Firsts</h2>
-				{desc}
-				{/*<EditMenu album={album} allowEdit={user.isAdmin} editMode={user.editMode} />*/}
+				<EditableHtml html={album.desc} className="firsts-text" />
+				{/* TODO: <EditMenu album={album} allowEdit={user.isAdmin} editMode={user.editMode} />*/}
 			</section>
 			<section className="col-md-9 col-md-offset-3">
 				<h2 className="hidden">Thumbnails</h2>

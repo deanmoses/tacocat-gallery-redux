@@ -1,5 +1,6 @@
 import * as React from 'react';
 import * as Site from '@src/components/presentation/site';
+import { EditableHtml } from '@src/components/presentation/editable-html';
 import { Album } from '@src/models/models';
 import * as Thumb from '@src/components/presentation/thumb';
 
@@ -38,10 +39,7 @@ export const GenericAlbumPage: React.StatelessComponent<ComponentProps> = ({
 		<section className="overview">
 			<h2 className="hidden">Overview</h2>
 			GENERIC
-			<div
-				className="caption"
-				dangerouslySetInnerHTML={{ __html: album.desc }}
-			/>
+			<EditableHtml html={album.desc} className="caption" />
 		</section>
 		<Thumb.List
 			items={album.images}
