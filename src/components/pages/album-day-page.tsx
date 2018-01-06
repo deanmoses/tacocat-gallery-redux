@@ -1,6 +1,6 @@
 import * as React from 'react';
-import * as Site from '@src/components/presentation/site';
 import { Album } from '@src/models/models';
+import * as Site from '@src/components/presentation/site';
 import { EditableHtml } from '@src/components/presentation/editable-html';
 import * as Thumb from '@src/components/presentation/thumb';
 
