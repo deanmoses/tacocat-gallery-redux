@@ -81,11 +81,9 @@ export class ImageImpl implements Image {
 		// I don't know my own index in my parent collection.
 		// But I do know that once I find myself, I will have
 		// already found my prev in the previous iteration.
-		const myPath = this.path;
 		let prev: Image;
-
-		prev = this.album.images.find(img => {
-			if (img.path === myPath) {
+		this.album.images.find(img => {
+			if (img.path === this.path) {
 				return true;
 			}
 			prev = img;
