@@ -20,8 +20,6 @@ export function latestAlbumReducer(
 		 *  In process of fetching from server
 		 */
 		case Actions.ActionTypeKeys.LATEST_ALBUM_REQUESTED: {
-			console.log(action.type);
-
 			// Make copy of existing item, except with status of 'loading'
 			let copy = Object.assign({ isLoading: true }, latestAlbum);
 			return copy;
@@ -31,7 +29,7 @@ export function latestAlbumReducer(
 		 * Received from server
 		 */
 		case Actions.ActionTypeKeys.LATEST_ALBUM_RECEIVED: {
-			console.log(action.type, action.latestAlbum);
+			console.log(action.type);
 			return action.latestAlbum;
 		}
 

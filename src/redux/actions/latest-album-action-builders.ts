@@ -67,7 +67,8 @@ function requestLatestAlbum(): LatestAlbumRequested {
 function receiveLatestAlbum(json: any): LatestAlbumRecieved {
 	// TODO: better error handling if we don't get back expected response
 	// This will happen for sure if the statistics plugin isn't enabled
-	const latestAlbum: AlbumThumb = json.stats.album.latest[0] as AlbumThumb;
+	const latestAlbum: AlbumThumb = json.album.stats.album
+		.latest[0] as AlbumThumb;
 
 	return {
 		type: ActionTypeKeys.LATEST_ALBUM_RECEIVED,
