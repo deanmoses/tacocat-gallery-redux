@@ -41,18 +41,17 @@ export class ImageImpl implements Image {
 	 * Next image in my album
 	 */
 	get next(): Image {
-		// I don't know my own index in my parent collection, so
-		// first I have to find myself, then find the next image.
-		const myPath = this.path;
 		let foundMyself = false;
 		return this.album.images.find(img => {
 			if (foundMyself) {
-				return true; // returning true on the image AFTER me
+				// I don't know my own index in my parent collection, so
+				// first I have to find myself, then find the next image.
+				return true; // stop iterating on the image AFTER me
 			}
-			if (img.path === myPath) {
+			if (img.path === this.path) {
 				foundMyself = true;
 			}
-			return false;
+			return false; // keep iterating
 		});
 	}
 
@@ -84,7 +83,7 @@ export class ImageImpl implements Image {
 			// But I do know that once I find myself, I will have
 			// already found my prev in the previous iteration.
 			if (img.path === this.path) {
-				return true; // stop iterating
+				return true; // stop iterating once I've found myself
 			}
 			prev = img;
 			return false; // keep iterating
