@@ -1,4 +1,4 @@
-import { RootState } from '@src/redux/reducers/reducers';
+import { RootState } from '@src/redux/reducers/root-state';
 import { fetchAlbum } from '@src/redux/actions/album-actions';
 
 /**

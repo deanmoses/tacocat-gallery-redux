@@ -38,6 +38,13 @@ export default abstract class Config {
 	}
 
 	/**
+	 * URL of the JSON REST API to retrieve the latest album
+	 */
+	public static latestAlbumJsonUrl(): string {
+		return 'http://tacocat.com/zenphoto/?json&latest_albums&depth=0';
+	}
+
+	/**
 	 * URL you can hit to update the JSON cache of a specific album
 	 */
 	public static refreshAlbumCacheUrl(albumPath: string): string {

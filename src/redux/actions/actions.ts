@@ -18,6 +18,9 @@ export enum ActionTypeKeys {
 	ALBUM_REQUESTED = 'ALBUM_REQUESTED',
 	ALBUM_RECEIVED = 'ALBUM_RECEIVED',
 	ALBUM_ERRORED = 'ALBUM_ERRORED',
+	LATEST_ALBUM_REQUESTED = 'LATEST_ALBUM_REQUESTED',
+	LATEST_ALBUM_RECEIVED = 'LATEST_ALBUM_RECEIVED',
+	LATEST_ALBUM_ERRORED = 'LATEST_ALBUM_ERRORED',
 	UPDATE_USER_AUTHENTICATION_STATUS = 'UPDATE_USER_AUTHENTICATION_STATUS',
 	OTHER_ACTION = 'OTHER_ACTION'
 }
@@ -26,6 +29,9 @@ export type ActionTypes =
 	| AlbumRequested
 	| AlbumRecieved
 	| AlbumErrored
+	| LatestAlbumRequested
+	| LatestAlbumRecieved
+	| LatestAlbumErrored
 	| UpdateUserAuthenticationStatus
 	| OtherAction;
 
@@ -49,6 +55,26 @@ export interface AlbumErrored extends Action {
 export interface AlbumRecieved extends Action {
 	type: ActionTypeKeys.ALBUM_RECEIVED;
 	albumPath: string;
+	albumJson: Object;
+}
+
+/**
+ * Action type definition
+ */
+export interface LatestAlbumRequested extends Action {
+	type: ActionTypeKeys.LATEST_ALBUM_REQUESTED;
+}
+
+export interface LatestAlbumErrored extends Action {
+	type: ActionTypeKeys.LATEST_ALBUM_ERRORED;
+	error: any;
+}
+
+/**
+ * Action type definition
+ */
+export interface LatestAlbumRecieved extends Action {
+	type: ActionTypeKeys.LATEST_ALBUM_RECEIVED;
 	albumJson: Object;
 }
 

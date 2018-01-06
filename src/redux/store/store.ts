@@ -6,7 +6,7 @@ import * as redux from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
 import { persistStore, persistCombineReducers } from 'redux-persist';
 import thunk from 'redux-thunk';
-import { allReducers } from '../reducers/reducers';
+import { allReducers } from '../reducers/root-reducer';
 import * as localForage from 'localforage';
 
 //

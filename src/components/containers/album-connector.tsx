@@ -8,7 +8,7 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actions from '@src/redux/actions/album-actions';
-import { RootState } from '@src/redux/reducers/reducers';
+import { RootState } from '@src/redux/reducers/root-state';
 import { Album } from '@src/models/models';
 import AlbumContainer, {
 	ComponentProps

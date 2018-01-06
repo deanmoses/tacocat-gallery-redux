@@ -1,4 +1,4 @@
-import { RootState } from '@src/redux/reducers/reducers';
+import { RootState } from '@src/redux/reducers/root-state';
 import { Album, Image } from '@src/models/models';
 import createAlbumFromObject from '@src/models/album-creator';
 

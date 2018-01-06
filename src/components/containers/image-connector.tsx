@@ -5,7 +5,7 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actions from '@src/redux/actions/image-actions';
-import { RootState } from '@src/redux/reducers/reducers';
+import { RootState } from '@src/redux/reducers/root-state';
 import { getImage, getAlbumForImage } from '@src/redux/selectors/selectors';
 
 import ImageContainer, {

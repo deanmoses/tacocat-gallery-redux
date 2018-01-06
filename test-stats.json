@@ -1,0 +1,28 @@
+{
+	"album": {
+		"title": "The Moses Family",
+		"desc": "<p>Dean, Lucie, Felix and Milo Moses</p>",
+		"path": "",
+		"image_size": 1024,
+		"thumb_size": 200,
+		"stats": {
+			"album": {
+				"latest": [
+					{
+						"path": "2018/01-01",
+						"title": "01-01",
+						"desc":
+							"<p>Happy New Year!</p><p>2018 is off to a good start.&nbsp;</p><p>We celebrated New Year's Eve with Alva, Nicole, Ulysses and Ana in their new house up in the Berkeley hills with a good view of the fireworks.</p><p>New Year's Day, we did our annual&nbsp;Tennessee Valley hike.</p>",
+						"date": 1514855992,
+						"date_updated": 1514853358,
+						"customdata": "New Year",
+						"image_size": 1024,
+						"thumb_size": 200,
+						"url_thumb":
+							"/zenphoto/cache/2018/01-01/new_years_eve10_200_cw200_ch200_thumb.jpg"
+					}
+				]
+			}
+		}
+	}
+}

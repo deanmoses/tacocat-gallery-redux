@@ -1,14 +1,15 @@
 import { combineReducers } from 'redux';
-import * as reducers from '../reducers';
-import { allReducers, RootState } from '../reducers';
+import { RootState } from '../root-state';
+import { allReducers } from '../root-reducer';
 import * as authenticationActions from '@src/redux/actions/authentication-actions';
 import * as albumActions from '@src/redux/actions/album-actions';
 
 const rootReducer = combineReducers<RootState>(allReducers);
 
 describe('root reducer test', () => {
-	const blankState: reducers.RootState = {
+	const blankState: RootState = {
 		albumsByPath: {},
+		latestAlbum: {},
 		isAuthenticated: false
 	};
 
@@ -20,8 +21,9 @@ describe('root reducer test', () => {
 	});
 
 	it('should keep authenticated=true', () => {
-		const state: reducers.RootState = {
+		const state: RootState = {
 			albumsByPath: {},
+			latestAlbum: {},
 			isAuthenticated: true
 		};
 		expect(rootReducer(state, undefined)).toEqual({
