@@ -78,16 +78,16 @@ export class ImageImpl implements Image {
 	 * Previous image in my album
 	 */
 	get prev(): Image {
-		// I don't know my own index in my parent collection.
-		// But I do know that once I find myself, I will have
-		// already found my prev in the previous iteration.
-		let prev: Image;
+		let prev: Image; // image I will be returning
 		this.album.images.find(img => {
+			// I don't know my own index in my parent collection.
+			// But I do know that once I find myself, I will have
+			// already found my prev in the previous iteration.
 			if (img.path === this.path) {
-				return true;
+				return true; // stop iterating
 			}
 			prev = img;
-			return false;
+			return false; // keep iterating
 		});
 		return prev;
 	}
