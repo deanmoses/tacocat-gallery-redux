@@ -17,18 +17,17 @@ export const App: React.StatelessComponent = () => (
 			<Route exact path="/" render={() => <Album path="/" />} />
 			<Route
 				exact
-				path="/:path(\\d\\d\\d\\d)"
-				render={props => <Album path={props.match.params.path as string} />}
+				path="/:albumPath([^.]+)"
+				render={props => (
+					<Album path={props.match.params.albumPath as string} />
+				)}
 			/>
 			<Route
 				exact
-				path="/:path(\\d\\d\\d\\d/\\d\\d\-\\d\\d)"
-				render={props => <Album path={props.match.params.path as string} />}
-			/>
-			<Route
-				exact
-				path="/:path(\\d\\d\\d\\d/\\d\\d\-\\d\\d/*.*)"
-				render={props => <Image path={props.match.params.path as string} />}
+				path="/:imagePath([^.]+[.][^.]+)"
+				render={props => (
+					<Image path={props.match.params.imagePath as string} />
+				)}
 			/>
 			<Route component={InvalidUrl} />
 		</Switch>

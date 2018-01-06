@@ -15,7 +15,9 @@ interface ComponentProps {
 /**
  * Root album (the one at the "/" URL path) page
  */
-const RootAlbumPage: React.StatelessComponent<ComponentProps> = ({ album }) => (
+export const RootAlbumPage: React.StatelessComponent<ComponentProps> = ({
+	album
+}) => (
 	<Site.Page className="albumpage rootalbumtype">
 		<Site.HeaderTitle
 			title={Config.siteTitle()}
@@ -38,4 +40,3 @@ const RootAlbumPage: React.StatelessComponent<ComponentProps> = ({ album }) => (
 		</div>
 	</Site.Page>
 );
-export default RootAlbumPage;

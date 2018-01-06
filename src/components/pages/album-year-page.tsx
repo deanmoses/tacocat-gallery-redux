@@ -13,7 +13,9 @@ interface AlbumPageProps {
 /**
  * Year album page (like the one at the "2001" URL path)
  */
-const YearAlbumPage: React.StatelessComponent<AlbumPageProps> = ({ album }) => (
+export const YearAlbumPage: React.StatelessComponent<AlbumPageProps> = ({
+	album
+}) => (
 	<Site.Page className="albumpage yearalbumtype">
 		<Site.HeaderTitle href="#" title={album.pageTitle} path={album.path}>
 			<Site.PrevButton
@@ -29,7 +31,6 @@ const YearAlbumPage: React.StatelessComponent<AlbumPageProps> = ({ album }) => (
 		<FirstsAndThumbs album={album} />
 	</Site.Page>
 );
-export default YearAlbumPage;
 
 /**
  * Component properties

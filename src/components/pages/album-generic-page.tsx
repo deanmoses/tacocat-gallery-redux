@@ -11,12 +11,12 @@ interface ComponentProps {
 }
 
 /**
- * Day/week/leaf album pages (like the one at the "2001/12-31" URL path)
+ * Generic album page, should be able to render any type of album
  */
-export const DayAlbumPage: React.StatelessComponent<ComponentProps> = ({
+export const GenericAlbumPage: React.StatelessComponent<ComponentProps> = ({
 	album
 }) => (
-	<Site.Page className="albumpage weekalbumtype">
+	<Site.Page className="albumpage dayalbumtype">
 		<Site.HeaderTitle
 			href={'#' + album.parent_album.path}
 			title={album.pageTitle}
@@ -37,6 +37,7 @@ export const DayAlbumPage: React.StatelessComponent<ComponentProps> = ({
 		</Site.HeaderTitle>
 		<section className="overview">
 			<h2 className="hidden">Overview</h2>
+			GENERIC
 			<div
 				className="caption"
 				dangerouslySetInnerHTML={{ __html: album.desc }}

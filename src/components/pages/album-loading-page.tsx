@@ -5,7 +5,7 @@ import WaitingSpinner from '@src/components/presentation/waiting-spinner';
 /**
  * Album page that displays a "loading..." spinner
  */
-const AlbumLoadingPage: React.StatelessComponent = () => (
+export const AlbumLoadingPage: React.StatelessComponent = () => (
 	<Site.Page className="albumpage loading">
 		<Site.HeaderTitle showTitle={false}>
 			<Site.PrevButton />
@@ -17,4 +17,3 @@ const AlbumLoadingPage: React.StatelessComponent = () => (
 		</Site.FullPageMessage>
 	</Site.Page>
 );
-export default AlbumLoadingPage;

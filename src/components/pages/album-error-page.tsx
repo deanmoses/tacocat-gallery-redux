@@ -12,7 +12,7 @@ interface ComponentProps {
 /**
  * Album page that displays an error
  */
-const AlbumErrorPage: React.StatelessComponent<ComponentProps> = ({
+export const AlbumErrorPage: React.StatelessComponent<ComponentProps> = ({
 	error
 }) => (
 	<Site.Page className="albumpage rootalbumtype">
@@ -20,4 +20,3 @@ const AlbumErrorPage: React.StatelessComponent<ComponentProps> = ({
 		<Site.FullPageMessage>Error: {error.message}</Site.FullPageMessage>
 	</Site.Page>
 );
-export default AlbumErrorPage;
