@@ -61,7 +61,7 @@ function requestLatestAlbum(): LatestAlbumRequested {
 function receiveLatestAlbum(json: any): LatestAlbumRecieved {
 	return {
 		type: ActionTypeKeys.LATEST_ALBUM_RECEIVED,
-		albumJson: json.album
+		json: json.album
 	};
 }
 

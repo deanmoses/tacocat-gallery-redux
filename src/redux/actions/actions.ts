@@ -75,7 +75,7 @@ export interface LatestAlbumErrored extends Action {
  */
 export interface LatestAlbumRecieved extends Action {
 	type: ActionTypeKeys.LATEST_ALBUM_RECEIVED;
-	albumJson: Object;
+	json: Object;
 }
 
 /**

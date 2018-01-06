@@ -7,7 +7,7 @@ import * as Actions from '@src/redux/actions/actions';
 /**
  * A reducer function
  */
-export function isAuthenticated(
+export function isAuthenticatedReducer(
 	state: boolean,
 	action: Actions.ActionTypes
 ): boolean {

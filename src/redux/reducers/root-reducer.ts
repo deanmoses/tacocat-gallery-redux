@@ -1,6 +1,7 @@
 import { RootState } from '@src/redux/reducers/root-state';
-import { albumsByPath } from '@src/redux/reducers/album-reducers';
-import { isAuthenticated } from '@src/redux/reducers/authentication-reducers';
+import { albumsByPathReducer } from '@src/redux/reducers/album-reducers';
+import { latestAlbumReducer } from '@src/redux/reducers/latest-album-reducers';
+import { isAuthenticatedReducer } from '@src/redux/reducers/authentication-reducers';
 
 /**
  * Starting state of the application
@@ -16,6 +17,7 @@ export const initialRootState: RootState = {
  * single top-level reducer that the React Redux store calls.
  */
 export const allReducers = {
-	albumsByPath: albumsByPath,
-	isAuthenticated: isAuthenticated
+	albumsByPath: albumsByPathReducer,
+	latestAlbum: latestAlbumReducer,
+	isAuthenticated: isAuthenticatedReducer
 };

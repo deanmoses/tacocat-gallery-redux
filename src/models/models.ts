@@ -55,9 +55,9 @@ export interface Image extends Thumbable {
 }
 
 export interface AlbumNavInfo {
-	path: string;
-	title: string;
-	date: number;
+	path?: string;
+	title?: string;
+	date?: number;
 }
 
 export interface ImageNavInfo {

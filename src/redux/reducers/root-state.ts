@@ -16,7 +16,7 @@ export type RootState = {
 	/**
 	 * The most recently published album in the gallery
 	 */
-	readonly latestAlbum: AlbumNavInfo | {};
+	readonly latestAlbum: AlbumNavInfo;
 
 	/**
 	 * True: user is authenticated

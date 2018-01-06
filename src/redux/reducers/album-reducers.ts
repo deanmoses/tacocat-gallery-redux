@@ -8,7 +8,7 @@ import { AlbumsByPath, Album } from '@src/models/models';
 /**
  * A reducer function
  */
-export function albumsByPath(
+export function albumsByPathReducer(
 	albumsByPath: AlbumsByPath = {},
 	action: Actions.ActionTypes
 ): AlbumsByPath {
@@ -51,7 +51,7 @@ export function albumsByPath(
 		case Actions.ActionTypeKeys.ALBUM_ERRORED: {
 			console.log(action.type, action.albumPath, action.error);
 
-			// Make copy of existing album, except with status of 'loading'
+			// Make copy of existing album, except with status of 'error'
 			let albumCopy = Object.assign(
 				{ path: action.albumPath, err: action.error, isLoading: false },
 				albumsByPath[action.albumPath]
