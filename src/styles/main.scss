@@ -21,6 +21,7 @@ $titleColor: #fff;
 
 #page-container {
 	padding: 10px;
+	min-height: 100vh;
 }
 
 #page-contents {
@@ -29,7 +30,7 @@ $titleColor: #fff;
 }
 
 .footer {
-	padding: 0 10px 10px 10px;
+	padding: 10px 0 0 0;
 }
 
 a.navbar-brand,
@@ -133,7 +134,7 @@ a.navbar-brand,
 	}
 }
 
-.imagepage {
+.photo {
 	.btn-group > .btn:first-child {
 		border-bottom-left-radius: 0;
 	}
