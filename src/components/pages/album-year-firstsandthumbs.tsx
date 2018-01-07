@@ -7,15 +7,15 @@ import * as Thumb from '@src/components/presentation/thumb';
 /**
  * Component properties
  */
-interface FirstsAndThumbsProps {
+interface ComponentProps {
 	readonly album: Album;
 }
 /**
  * Component that displays the year's firsts and the child albums' thumbnails
  */
-export const FirstsAndThumbs: React.StatelessComponent<
-	FirstsAndThumbsProps
-> = ({ album }) => {
+export const FirstsAndThumbs: React.StatelessComponent<ComponentProps> = ({
+	album
+}) => {
 	let albums = separateDayAlbums(album.albums);
 	return (
 		<div className="container-fluid">
@@ -34,7 +34,7 @@ export const FirstsAndThumbs: React.StatelessComponent<
 };
 
 /**
- * Split the specified list of albums into two:
+ * Split the list of albums into two:
  * 1) "Day" albums whose path are of the format 2000/12-31
  * 2) All the other albums
  */

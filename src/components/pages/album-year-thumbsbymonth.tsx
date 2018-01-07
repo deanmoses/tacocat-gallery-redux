@@ -5,14 +5,14 @@ import * as Thumb from '@src/components/presentation/thumb';
 /**
  * Component properties
  */
-interface ThumbsByMonthProps {
+interface ComponentProps {
 	readonly albums: AlbumThumb[];
 }
 
 /**
  * Component that displays a collection of thumbnails by grouping them into months
  */
-export const ThumbsByMonth: React.StatelessComponent<ThumbsByMonthProps> = ({
+export const ThumbsByMonth: React.StatelessComponent<ComponentProps> = ({
 	albums
 }) => {
 	// Get data structure containing albums grouped by month
