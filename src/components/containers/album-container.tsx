@@ -51,7 +51,7 @@ export class AlbumContainer extends React.Component<ComponentProps> {
 			return <AlbumPage album={album} />;
 		} else if (album && album.err) {
 			document.title = 'Error loading album';
-			return <AlbumErrorPage error={album.err} />;
+			return <AlbumErrorPage path={album.path} error={album.err} />;
 		} else if (!album || (album.isLoading && !album.title)) {
 			document.title = 'Loading album...';
 			return <AlbumLoadingPage path={this.props.path} />;
@@ -60,7 +60,7 @@ export class AlbumContainer extends React.Component<ComponentProps> {
 			const error = new FetchErrorImpl(
 				"I'm in some weird state I didn't expect"
 			);
-			return <AlbumErrorPage error={error} />;
+			return <AlbumErrorPage path={this.props.path} error={error} />;
 		}
 	}
 }

@@ -33,9 +33,11 @@ function shouldFetch(state: RootState, albumPath: string): boolean {
 	// retrieve the album from state
 	const album = state.albumsByPath[albumPath];
 
-	// if the album exists, no matter how old, don't fetch it again
+	// If the album exists, no matter how old, don't fetch it again
+	// unless it's errored or loading.  Yes, get when loading because
+	// the previous fetch could have failed -- I've seen that!
 	// TODO: implement some sort of age-based system to re-fetch older albums
-	const shouldFetchAlbum = !album;
+	const shouldFetchAlbum = !album || (!!album.err || !!album.isLoading);
 	console.log(`shouldFetchAlbum(${albumPath})?`, shouldFetchAlbum);
 	return shouldFetchAlbum;
 }

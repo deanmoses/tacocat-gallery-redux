@@ -16,7 +16,7 @@ interface ComponentProps {
 const ImageNotFoundPage: React.StatelessComponent<ComponentProps> = ({
 	album
 }) => (
-	<Site.Page className="imagepage loading">
+	<Site.Page className="imagepage" year={album.year}>
 		<Site.HeaderTitle
 			href={album.href}
 			title={'Image Not Found'}
