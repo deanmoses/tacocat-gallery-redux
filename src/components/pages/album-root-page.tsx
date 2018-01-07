@@ -20,7 +20,7 @@ export const RootAlbumPage: React.StatelessComponent<ComponentProps> = ({
 }) => {
 	let albums = separateYearAlbums(album.albums);
 	return (
-		<Site.Page className="albumpage rootalbumtype">
+		<Site.Page className="root">
 			<Site.HeaderTitle
 				title={Config.siteTitle()}
 				shortTitle={Config.siteShortTitle()}
@@ -31,7 +31,7 @@ export const RootAlbumPage: React.StatelessComponent<ComponentProps> = ({
 			<div className="container-fluid">
 				<section className="col-md-3 sidebar latest">
 					<LatestAlbumThumb />
-					{albums.nonYearAlbums && (
+					{!!albums.nonYearAlbums.length && (
 						<div>
 							<hr />
 							<Thumb.List items={albums.nonYearAlbums} />

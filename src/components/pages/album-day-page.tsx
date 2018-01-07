@@ -17,7 +17,7 @@ interface ComponentProps {
 export const DayAlbumPage: React.StatelessComponent<ComponentProps> = ({
 	album
 }) => (
-	<Site.Page className="albumpage weekalbumtype">
+	<Site.Page className="weekalbumtype">
 		<Site.HeaderTitle
 			href={'#' + album.parent_album.path}
 			title={album.pageTitle}
