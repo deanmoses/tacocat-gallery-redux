@@ -7,9 +7,13 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/es/integration/react';
 import configureStore from '@src/redux/store/store';
+import { updateAuthenticationStatusFromServer } from '@src/redux/actions/authentication-action-builders';
 import { App } from '@src/components/app';
 
 const { persistor, store } = configureStore();
+
+// Check with the server to see if the user is authenticated
+store.dispatch(updateAuthenticationStatusFromServer());
 
 // Render the app into an element on the index HTML page
 render(

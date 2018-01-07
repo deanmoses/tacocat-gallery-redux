@@ -1,3 +1,10 @@
+//
+// TypeScript definitions to make redux-persist work with TypeScript.
+// I found this file online and simply put it in my project.
+// There's a specific folder for TypeScript types that I didn't use, because this is temporary;
+// they say they're merging in the TypeScript definitions soon (as of Dec 2017)
+//
+
 declare module 'redux-persist' {
 	export * from 'redux-persist/es/constants';
 	export * from 'redux-persist/es/types';

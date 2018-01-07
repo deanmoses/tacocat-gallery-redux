@@ -46,6 +46,13 @@ export default abstract class Config {
 	}
 
 	/**
+	 * URL of the JSON REST API to check the user's authentication status
+	 */
+	public static checkAuthenticationJsonUrl(): string {
+		return 'https://tacocat.com/zenphoto/?api&auth';
+	}
+
+	/**
 	 * URL you can hit to update the JSON cache of a specific album
 	 */
 	public static refreshAlbumCacheUrl(albumPath: string): string {

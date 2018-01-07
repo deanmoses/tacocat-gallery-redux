@@ -44,7 +44,7 @@ function fetchLatestAlbum() {
 	};
 }
 
-function handleErrors(response: any) {
+function handleErrors(response: Response): Response {
 	// TODO: instead of simply checking ok, return a structured FetchError with a NotFound type, etc
 	if (!response.ok) {
 		throw Error(response.statusText);

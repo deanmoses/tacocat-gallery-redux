@@ -18,7 +18,8 @@ localForage.config({
 });
 const reduxPersistConfig = {
 	key: 'root',
-	storage: localForage
+	storage: localForage,
+	blacklist: ['isAuthenticated']
 };
 const combinedReducers = persistCombineReducers(
 	reduxPersistConfig,

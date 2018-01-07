@@ -44,7 +44,7 @@ export function fetchAlbum(albumPath: string) {
 	};
 }
 
-function handleErrors(response: Response) {
+function handleErrors(response: Response): Response {
 	if (!response.ok) {
 		throw Error(response.statusText);
 	} else if (response.status === 404) {
