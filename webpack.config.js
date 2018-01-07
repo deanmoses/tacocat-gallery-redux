@@ -20,7 +20,7 @@ var config = {
 
 	output: {
 		// The output directory as an absolute path
-		path: path.join(__dirname, 'app'),
+		path: path.join(__dirname, 'dist'),
 
 		// The name of the output bundle
 		filename: 'bundle.js'
