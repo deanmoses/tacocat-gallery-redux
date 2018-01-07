@@ -36,7 +36,7 @@ export const DayAlbumPage: React.StatelessComponent<ComponentProps> = ({
 				title={album.prevAlbumTitle}
 			/>
 		</Site.HeaderTitle>
-		<section className="overview">
+		<section>
 			<h2 className="hidden">Overview</h2>
 			<EditableHtml html={album.desc} className={'caption'} />
 		</section>

@@ -36,7 +36,7 @@ export const GenericAlbumPage: React.StatelessComponent<ComponentProps> = ({
 				title={album.prevAlbumTitle}
 			/>
 		</Site.HeaderTitle>
-		<section className="overview">
+		<section>
 			<h2 className="hidden">Overview</h2>
 			GENERIC
 			<EditableHtml html={album.desc} className="caption" />
