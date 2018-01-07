@@ -64,40 +64,40 @@ interface ChildAlbumsByMonth {
  * Assumes you are passing in an album whose subalbums are all within the same year.
  */
 function childAlbumsByMonth(albums: AlbumThumb[]): ChildAlbumsByMonth[] {
-	if (!albums) return null;
-
-	// month names to add to the results, to make rendering even simpler
-	const monthNames = [
-		'January',
-		'February',
-		'March',
-		'April',
-		'May',
-		'June',
-		'July',
-		'August',
-		'September',
-		'October',
-		'November',
-		'December'
-	];
-
 	// array to return
 	let childAlbumsByMonth: ChildAlbumsByMonth[] = [];
 
-	// iterate over this album's subalbums, putting them into the correct month
-	albums.forEach(childAlbum => {
-		// create Date object based on album's timestamp
-		// multiply by 1000 to turn seconds into milliseconds
-		const month: number = new Date(childAlbum.date * 1000).getMonth();
-		if (!childAlbumsByMonth[month]) {
-			childAlbumsByMonth[month] = {
-				monthName: monthNames[month],
-				albums: []
-			};
-		}
-		childAlbumsByMonth[month].albums.push(childAlbum);
-	});
+	if (albums) {
+		// month names to add to the results, to make rendering even simpler
+		const monthNames = [
+			'January',
+			'February',
+			'March',
+			'April',
+			'May',
+			'June',
+			'July',
+			'August',
+			'September',
+			'October',
+			'November',
+			'December'
+		];
+
+		// iterate over this album's subalbums, putting them into the correct month
+		albums.forEach(childAlbum => {
+			// create Date object based on album's timestamp
+			// multiply by 1000 to turn seconds into milliseconds
+			const month: number = new Date(childAlbum.date * 1000).getMonth();
+			if (!childAlbumsByMonth[month]) {
+				childAlbumsByMonth[month] = {
+					monthName: monthNames[month],
+					albums: []
+				};
+			}
+			childAlbumsByMonth[month].albums.push(childAlbum);
+		});
+	}
 
 	return childAlbumsByMonth.reverse();
 }
