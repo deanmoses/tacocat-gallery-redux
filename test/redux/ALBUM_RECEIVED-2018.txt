@@ -1,0 +1,49 @@
+{
+	type: "ALBUM_RECEIVED",
+	albumPath: "2018",
+	album: {
+		path: "2018",
+		title: "2018",
+		date: 1514855752,
+		image_size: 1024,
+		thumb_size: 200,
+		url_thumb:
+			"/zenphoto/cache/2018/01-01/tennessee_valley_hike04_w200_h200_cw1858_ch1858_cx862_cy592_thumb.jpg",
+		albums: [
+			{
+				path: "2018/01-01",
+				title: "01-01",
+				desc:
+					"<p>Happy New Year!</p><p>2018 is off to a good start.&nbsp;</p><p>We celebrated New Year's Eve with Alva, Nicole, Ulysses and Ana in their new house up in the Berkeley hills with a good view of the fireworks.</p><p>New Year's Day, we did our annual&nbsp;Tennessee Valley hike.</p>",
+				date: 1514855992,
+				date_updated: 1514853358,
+				customdata: "New Year",
+				image_size: 1024,
+				thumb_size: 200,
+				url_thumb:
+					"/zenphoto/cache/2018/01-01/new_years_eve10_200_cw200_ch200_thumb.jpg"
+			},
+			{
+				path: "2018/best",
+				title: "Best of 2018",
+				desc: "Best pictures of 2018",
+				date: 1514855997,
+				date_updated: 1514855997,
+				customdata: "Best of 2018",
+				image_size: 1024,
+				thumb_size: 200,
+				url_thumb:
+					"/zenphoto/cache/2017/12-25/noel_portrait2_200_cw200_ch200_thumb.jpg"
+			}
+		],
+		next: {
+			path: "2017",
+			title: "2017",
+			date: 1483257600,
+			image_size: 1024,
+			thumb_size: 200,
+			url_thumb:
+				"/zenphoto/cache/2017/10-29/a_family2_200_cw200_ch200_thumb.jpg"
+		}
+	}
+}

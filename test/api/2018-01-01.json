@@ -1,0 +1,340 @@
+{
+	"album": {
+		"path": "2018/01-01",
+		"title": "01-01",
+		"desc":
+			"<p>Happy New Year!</p><p>2018 is off to a good start.&nbsp;</p><p>We celebrated New Year's Eve with Alva, Nicole, Ulysses and Ana in their new house up in the Berkeley hills with a good view of the fireworks.</p><p>New Year's Day, we did our annual&nbsp;Tennessee Valley hike.</p>",
+		"date": 1514855992,
+		"date_updated": 1514853358,
+		"customdata": "New Year",
+		"image_size": 1024,
+		"thumb_size": 200,
+		"url_thumb":
+			"/zenphoto/cache/2018/01-01/new_years_eve10_200_cw200_ch200_thumb.jpg",
+		"images": [
+			{
+				"path": "2018/01-01/new_years_eve01.jpg",
+				"title": "Host",
+				"desc": "<p>Come in! Come in! Happy end of 2017!</p><p>Hi Alva.</p>",
+				"date": 1514808187,
+				"url_full": "/zenphoto/albums/2018/01-01/new_years_eve01.jpg",
+				"url_sized": "/zenphoto/cache/2018/01-01/new_years_eve01_1024.jpg",
+				"url_thumb":
+					"/zenphoto/cache/2018/01-01/new_years_eve01_w200_h200_cw2286_ch2286_cx1895_cy842_thumb.jpg",
+				"width": 6016,
+				"height": 4016,
+				"index": 0,
+				"copyright": "\u00a92018 Dean and Lucie Moses, all rights reserved"
+			},
+			{
+				"path": "2018/01-01/new_years_eve03.jpg",
+				"title": "Hostess",
+				"desc":
+					"<p>Nicole cooked up a delicious feast... clams, chicken, roasted cauliflower and more.&nbsp;</p><p>A tasty goodbye to 2017.&nbsp;</p>",
+				"date": 1514807943,
+				"url_full": "/zenphoto/albums/2018/01-01/new_years_eve03.jpg",
+				"url_sized": "/zenphoto/cache/2018/01-01/new_years_eve03_1024.jpg",
+				"url_thumb":
+					"/zenphoto/cache/2018/01-01/new_years_eve03_200_cw200_ch200_thumb.jpg",
+				"width": 6016,
+				"height": 4016,
+				"index": 1,
+				"copyright": "\u00a92018 Dean and Lucie Moses, all rights reserved"
+			},
+			{
+				"path": "2018/01-01/new_years_eve04.jpg",
+				"title": "Two Alvas",
+				"desc":
+					"<p>The artwork on the wall is a portrait of Alva by Miriam.&nbsp;</p>",
+				"date": 1514807932,
+				"url_full": "/zenphoto/albums/2018/01-01/new_years_eve04.jpg",
+				"url_sized": "/zenphoto/cache/2018/01-01/new_years_eve04_1024.jpg",
+				"url_thumb":
+					"/zenphoto/cache/2018/01-01/new_years_eve04_200_cw200_ch200_thumb.jpg",
+				"width": 6016,
+				"height": 4016,
+				"index": 2,
+				"copyright": "\u00a92018 Dean and Lucie Moses, all rights reserved"
+			},
+			{
+				"path": "2018/01-01/new_years_eve05.jpg",
+				"title": "Ulysses",
+				"desc":
+					"<p>Hi Ulysses!</p><p>Note the guitar in the background. At some point during the night,&nbsp;Alva strummed<em> Auld Lang Syne</em>&nbsp;(with punk-like flair) and we all sang along.</p><p>A note to our French readers: <em>Auld Lang Syne</em> is an old Scottish folk song. For some reason, it's the de rigueur&nbsp;song of New Year's Eve in the United States.</p>",
+				"date": 1514807433,
+				"url_full": "/zenphoto/albums/2018/01-01/new_years_eve05.jpg",
+				"url_sized": "/zenphoto/cache/2018/01-01/new_years_eve05_1024.jpg",
+				"url_thumb":
+					"/zenphoto/cache/2018/01-01/new_years_eve05_200_cw200_ch200_thumb.jpg",
+				"width": 6016,
+				"height": 4016,
+				"index": 3,
+				"copyright": "\u00a92018 Dean and Lucie Moses, all rights reserved"
+			},
+			{
+				"path": "2018/01-01/new_years_eve06.jpg",
+				"title": "La Tigra",
+				"desc":
+					"<p>Milo grabbed the camera and asked us to give him our best <em>La Tigra</em>.&nbsp;</p><p>Those of you who have seen the movie <em>Zoolander</em> will understand.&nbsp;</p>",
+				"date": 1514807654,
+				"url_full": "/zenphoto/albums/2018/01-01/new_years_eve06.jpg",
+				"url_sized": "/zenphoto/cache/2018/01-01/new_years_eve06_1024.jpg",
+				"url_thumb":
+					"/zenphoto/cache/2018/01-01/new_years_eve06_200_cw200_ch200_thumb.jpg",
+				"width": 5312,
+				"height": 3546,
+				"index": 4,
+				"copyright": "\u00a92018 Dean and Lucie Moses, all rights reserved"
+			},
+			{
+				"path": "2018/01-01/new_years_eve07.jpg",
+				"title": "Four Legs",
+				"desc":
+					"<p>Wait... four legs in the air?!? Is something terribly amiss with Ana?&nbsp;</p><p>Don't worry. It's Ana + her best friend Stella. Stella's parents were away partying somewhere else, while Stella partied with us.&nbsp;</p>",
+				"date": 1514807660,
+				"url_full": "/zenphoto/albums/2018/01-01/new_years_eve07.jpg",
+				"url_sized": "/zenphoto/cache/2018/01-01/new_years_eve07_1024.jpg",
+				"url_thumb":
+					"/zenphoto/cache/2018/01-01/new_years_eve07_200_cw200_ch200_thumb.jpg",
+				"width": 4612,
+				"height": 3079,
+				"index": 5,
+				"copyright": "\u00a92018 Dean and Lucie Moses, all rights reserved"
+			},
+			{
+				"path": "2018/01-01/new_years_eve08.jpg",
+				"title": "Ana",
+				"desc": "<p>A blur of happy multi-age roughhousing.&nbsp;</p>",
+				"date": 1514807854,
+				"url_full": "/zenphoto/albums/2018/01-01/new_years_eve08.jpg",
+				"url_sized": "/zenphoto/cache/2018/01-01/new_years_eve08_1024.jpg",
+				"url_thumb":
+					"/zenphoto/cache/2018/01-01/new_years_eve08_200_cw200_ch200_thumb.jpg",
+				"width": 6016,
+				"height": 4016,
+				"index": 6,
+				"copyright": "\u00a92018 Dean and Lucie Moses, all rights reserved"
+			},
+			{
+				"path": "2018/01-01/new_years_eve09.jpg",
+				"title": "Midnight",
+				"desc":
+					"<p>10, 9, 8, 7, 6, 5, 4, 3, 2, 1 Happy New Year!!!</p><p>We watched the fireworks right from Alva's porch.&nbsp;</p>",
+				"date": 1514807447,
+				"url_full": "/zenphoto/albums/2018/01-01/new_years_eve09.jpg",
+				"url_sized": "/zenphoto/cache/2018/01-01/new_years_eve09_1024.jpg",
+				"url_thumb":
+					"/zenphoto/cache/2018/01-01/new_years_eve09_200_cw200_ch200_thumb.jpg",
+				"width": 6016,
+				"height": 4016,
+				"index": 7,
+				"copyright": "\u00a92018 Dean and Lucie Moses, all rights reserved"
+			},
+			{
+				"path": "2018/01-01/new_years_eve10.jpg",
+				"title": "Fireworks",
+				"desc": "<p>Ooooooo. Aaaaaaa.</p>",
+				"date": 1514807449,
+				"url_full": "/zenphoto/albums/2018/01-01/new_years_eve10.jpg",
+				"url_sized": "/zenphoto/cache/2018/01-01/new_years_eve10_1024.jpg",
+				"url_thumb":
+					"/zenphoto/cache/2018/01-01/new_years_eve10_200_cw200_ch200_thumb.jpg",
+				"width": 6016,
+				"height": 4016,
+				"index": 8,
+				"copyright": "\u00a92018 Dean and Lucie Moses, all rights reserved"
+			},
+			{
+				"path": "2018/01-01/new_years_eve11.jpg",
+				"title": "Good Bye",
+				"desc": "<p>Time to go home.</p><p>Lucie is looking French.&nbsp;</p>",
+				"date": 1514807455,
+				"url_full": "/zenphoto/albums/2018/01-01/new_years_eve11.jpg",
+				"url_sized": "/zenphoto/cache/2018/01-01/new_years_eve11_1024.jpg",
+				"url_thumb":
+					"/zenphoto/cache/2018/01-01/new_years_eve11_200_cw200_ch200_thumb.jpg",
+				"width": 6016,
+				"height": 4016,
+				"index": 9,
+				"copyright": "\u00a92018 Dean and Lucie Moses, all rights reserved"
+			},
+			{
+				"path": "2018/01-01/tennessee_valley_hike01.jpg",
+				"title": "Hike",
+				"desc":
+					"<p>The family tradition is to hike Tennessee Valley the day after Thanksgiving. <br></p><p>However, Higgsy was with us this Thanksgiving and dogs aren't allowed on that trail.&nbsp;</p><p>Today we finally got to scratch our Tennessee Valley itch.</p>",
+				"date": 1514853358,
+				"url_full": "/zenphoto/albums/2018/01-01/tennessee_valley_hike01.jpg",
+				"url_sized":
+					"/zenphoto/cache/2018/01-01/tennessee_valley_hike01_1024.jpg",
+				"url_thumb":
+					"/zenphoto/cache/2018/01-01/tennessee_valley_hike01_200_cw200_ch200_thumb.jpg",
+				"width": 5472,
+				"height": 3648,
+				"index": 10,
+				"copyright": "\u00a92018 Dean and Lucie Moses, all rights reserved"
+			},
+			{
+				"path": "2018/01-01/tennessee_valley_hike02.jpg",
+				"title": "Beach",
+				"desc":
+					"<p>This is the tamest we have ever seen the waves at Tennessee Valley beach.&nbsp;</p>",
+				"date": 1514850441,
+				"url_full": "/zenphoto/albums/2018/01-01/tennessee_valley_hike02.jpg",
+				"url_sized":
+					"/zenphoto/cache/2018/01-01/tennessee_valley_hike02_1024.jpg",
+				"url_thumb":
+					"/zenphoto/cache/2018/01-01/tennessee_valley_hike02_200_cw200_ch200_thumb.jpg",
+				"width": 5472,
+				"height": 3648,
+				"index": 11,
+				"copyright": "\u00a92018 Dean and Lucie Moses, all rights reserved"
+			},
+			{
+				"path": "2018/01-01/tennessee_valley_hike03.jpg",
+				"title": "Amigos",
+				"desc": "<p>Los tres amigos.</p>",
+				"date": 1514839286,
+				"url_full": "/zenphoto/albums/2018/01-01/tennessee_valley_hike03.jpg",
+				"url_sized":
+					"/zenphoto/cache/2018/01-01/tennessee_valley_hike03_1024.jpg",
+				"url_thumb":
+					"/zenphoto/cache/2018/01-01/tennessee_valley_hike03_200_cw200_ch200_thumb.jpg",
+				"width": 4032,
+				"height": 3024,
+				"index": 12
+			},
+			{
+				"path": "2018/01-01/tennessee_valley_hike04.jpg",
+				"title": "Family",
+				"desc": "<p>La famila.</p>",
+				"date": 1514850912,
+				"url_full": "/zenphoto/albums/2018/01-01/tennessee_valley_hike04.jpg",
+				"url_sized":
+					"/zenphoto/cache/2018/01-01/tennessee_valley_hike04_1024.jpg",
+				"url_thumb":
+					"/zenphoto/cache/2018/01-01/tennessee_valley_hike04_w200_h200_cw1858_ch1858_cx862_cy592_thumb.jpg",
+				"width": 4476,
+				"height": 2984,
+				"index": 13,
+				"copyright": "\u00a92018 Dean and Lucie Moses, all rights reserved"
+			},
+			{
+				"path": "2018/01-01/tennessee_valley_hike05.jpg",
+				"title": "Papa Lift",
+				"desc":
+					"<p>Dean's glad that the kids are finally starting to carry their own weight.<br></p>",
+				"date": 1514850407,
+				"url_full": "/zenphoto/albums/2018/01-01/tennessee_valley_hike05.jpg",
+				"url_sized":
+					"/zenphoto/cache/2018/01-01/tennessee_valley_hike05_1024.jpg",
+				"url_thumb":
+					"/zenphoto/cache/2018/01-01/tennessee_valley_hike05_200_cw200_ch200_thumb.jpg",
+				"width": 5472,
+				"height": 3648,
+				"index": 14,
+				"copyright": "\u00a92018 Dean and Lucie Moses, all rights reserved"
+			},
+			{
+				"path": "2018/01-01/tennessee_valley_hike06.jpg",
+				"title": "Ocean",
+				"desc": "<p>Hey Dean, how cold&nbsp;is the water?</p>",
+				"date": 1514850781,
+				"url_full": "/zenphoto/albums/2018/01-01/tennessee_valley_hike06.jpg",
+				"url_sized":
+					"/zenphoto/cache/2018/01-01/tennessee_valley_hike06_1024.jpg",
+				"url_thumb":
+					"/zenphoto/cache/2018/01-01/tennessee_valley_hike06_200_cw200_ch200_thumb.jpg",
+				"width": 4926,
+				"height": 3284,
+				"index": 15,
+				"copyright": "\u00a92018 Dean and Lucie Moses, all rights reserved"
+			},
+			{
+				"path": "2018/01-01/tennessee_valley_hike07.jpg",
+				"title": "Cold",
+				"desc": "<p>It's super cold!!!&nbsp;</p>",
+				"date": 1514850751,
+				"url_full": "/zenphoto/albums/2018/01-01/tennessee_valley_hike07.jpg",
+				"url_sized":
+					"/zenphoto/cache/2018/01-01/tennessee_valley_hike07_1024.jpg",
+				"url_thumb":
+					"/zenphoto/cache/2018/01-01/tennessee_valley_hike07_200_cw200_ch200_thumb.jpg",
+				"width": 5472,
+				"height": 3648,
+				"index": 16,
+				"copyright": "\u00a92018 Dean and Lucie Moses, all rights reserved"
+			},
+			{
+				"path": "2018/01-01/tennessee_valley_hike09.jpg",
+				"title": "Wet Feet",
+				"desc":
+					"<p>Milo had no intention to get HIS feet wet but he was treacherously forced to by his own father.&nbsp;</p>",
+				"date": 1514851024,
+				"url_full": "/zenphoto/albums/2018/01-01/tennessee_valley_hike09.jpg",
+				"url_sized":
+					"/zenphoto/cache/2018/01-01/tennessee_valley_hike09_1024.jpg",
+				"url_thumb":
+					"/zenphoto/cache/2018/01-01/tennessee_valley_hike09_200_cw200_ch200_thumb.jpg",
+				"width": 5181,
+				"height": 3454,
+				"index": 17,
+				"copyright": "\u00a92018 Dean and Lucie Moses, all rights reserved"
+			},
+			{
+				"path": "2018/01-01/tennessee_valley_hike10.jpg",
+				"title": "Footsies",
+				"desc": "<p>Playing footsies with the waves.&nbsp;</p>",
+				"date": 1514850983,
+				"url_full": "/zenphoto/albums/2018/01-01/tennessee_valley_hike10.jpg",
+				"url_sized":
+					"/zenphoto/cache/2018/01-01/tennessee_valley_hike10_1024.jpg",
+				"url_thumb":
+					"/zenphoto/cache/2018/01-01/tennessee_valley_hike10_200_cw200_ch200_thumb.jpg",
+				"width": 5472,
+				"height": 3648,
+				"index": 18,
+				"copyright": "\u00a92018 Dean and Lucie Moses, all rights reserved"
+			},
+			{
+				"path": "2018/01-01/tennessee_valley_hike12.jpg",
+				"title": "Rock",
+				"desc": "<p>Soaking up the rays on the rocks.</p>",
+				"date": 1514851155,
+				"url_full": "/zenphoto/albums/2018/01-01/tennessee_valley_hike12.jpg",
+				"url_sized":
+					"/zenphoto/cache/2018/01-01/tennessee_valley_hike12_1024.jpg",
+				"url_thumb":
+					"/zenphoto/cache/2018/01-01/tennessee_valley_hike12_200_cw200_ch200_thumb.jpg",
+				"width": 5472,
+				"height": 3648,
+				"index": 19,
+				"copyright": "\u00a92018 Dean and Lucie Moses, all rights reserved"
+			},
+			{
+				"path": "2018/01-01/tennessee_valley_hike14.jpg",
+				"title": "All Five",
+				"desc": "<p>Happy 2018!</p>",
+				"date": 1514851183,
+				"url_full": "/zenphoto/albums/2018/01-01/tennessee_valley_hike14.jpg",
+				"url_sized":
+					"/zenphoto/cache/2018/01-01/tennessee_valley_hike14_1024.jpg",
+				"url_thumb":
+					"/zenphoto/cache/2018/01-01/tennessee_valley_hike14_200_cw200_ch200_thumb.jpg",
+				"width": 5472,
+				"height": 3648,
+				"index": 20,
+				"copyright": "\u00a92018 Dean and Lucie Moses, all rights reserved"
+			}
+		],
+		"parent_album": {
+			"path": "2018",
+			"title": "2018",
+			"date": 1514855752,
+			"image_size": 1024,
+			"thumb_size": 200,
+			"url_thumb":
+				"/zenphoto/cache/2018/01-01/tennessee_valley_hike04_w200_h200_cw1858_ch1858_cx862_cy592_thumb.jpg"
+		}
+	}
+}
