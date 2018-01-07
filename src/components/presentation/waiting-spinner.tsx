@@ -3,20 +3,23 @@ import * as React from 'react';
 /**
  * Waiting spinner component, to be shown while pages load
  */
-type State = {
+type ComponentState = {
 	showSpinner: boolean;
 	timeout?: any; // 'any' because it's a differently typed think in Node than in browser
 };
-export default class WaitingSpinner extends React.Component<any, State> {
-	state: State = {
+export default class WaitingSpinner extends React.Component<
+	any,
+	ComponentState
+> {
+	state: ComponentState = {
 		showSpinner: false
 	};
 
 	/**
 	 * Constructor is invoked once, before the component is mounted
 	 */
-	constructor(props: State) {
-		super(null, props);
+	constructor(props: any, state: ComponentState) {
+		super(props, state);
 
 		// Don't show spinner immediately;
 		// that's annoying on fast page transitions.
