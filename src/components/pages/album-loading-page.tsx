@@ -1,13 +1,23 @@
 import * as React from 'react';
 import * as Site from '@src/components/presentation/site';
+import { getYearFromPath } from '@src/utils/path-utils';
 import WaitingSpinner from '@src/components/presentation/waiting-spinner';
+
+/**
+ * Component properties
+ */
+export type ComponentProps = {
+	readonly path: string;
+};
 
 /**
  * Album page that displays a "loading..." spinner
  */
-export const AlbumLoadingPage: React.StatelessComponent = () => (
-	<Site.Page className="albumpage loading">
-		<Site.HeaderTitle showTitle={false}>
+export const AlbumLoadingPage: React.StatelessComponent<ComponentProps> = ({
+	path
+}) => (
+	<Site.Page showFooter={false} year={getYearFromPath(path)}>
+		<Site.HeaderTitle showTitle={false} showSearch={false}>
 			<Site.PrevButton />
 			<Site.UpButton />
 			<Site.NextButton />

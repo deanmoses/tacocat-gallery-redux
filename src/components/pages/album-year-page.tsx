@@ -16,7 +16,7 @@ interface AlbumPageProps {
 export const YearAlbumPage: React.StatelessComponent<AlbumPageProps> = ({
 	album
 }) => (
-	<Site.Page className="albumpage yearalbumtype">
+	<Site.Page className="albumpage yearalbumtype" year={album.year}>
 		<Site.HeaderTitle href="#" title={album.pageTitle} path={album.path}>
 			<Site.PrevButton
 				href={album.nextAlbumHref}

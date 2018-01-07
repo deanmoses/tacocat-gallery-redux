@@ -19,8 +19,12 @@ $titleColor: #fff;
 	padding: 0;
 }
 
-.pagecontents {
-	margin: 10px;
+#page-container {
+	padding: 10px;
+	height: 100vh;
+}
+
+#page-contents {
 	background-color: white;
 	border: solid black 1px;
 }

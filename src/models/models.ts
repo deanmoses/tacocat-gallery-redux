@@ -15,6 +15,7 @@ export interface Album {
 	thumb_size?: number;
 	thumb?: string;
 	date?: number;
+	year?: number;
 	images?: Image[];
 	albums?: AlbumThumb[];
 	parent_album?: AlbumNavInfo;

@@ -54,7 +54,7 @@ export class AlbumContainer extends React.Component<ComponentProps> {
 			return <AlbumErrorPage error={album.err} />;
 		} else if (!album || (album.isLoading && !album.title)) {
 			document.title = 'Loading album...';
-			return <AlbumLoadingPage />;
+			return <AlbumLoadingPage path={this.props.path} />;
 		} else {
 			document.title = 'Weird state...';
 			const error = new FetchErrorImpl(

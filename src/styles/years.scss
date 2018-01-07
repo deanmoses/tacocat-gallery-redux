@@ -3,7 +3,7 @@
 //
 
 // default for years with no styling
-body {
+#page-container {
 	background-color: #3f64ee;
 
 	.header,
@@ -23,7 +23,7 @@ body {
 // each year, root and search should move to the latest year
 .root,
 .search,
-.y2018 {
+#page-container[data-year="2018"] {
 	background-color: #676559;
 
 	.header,
@@ -40,7 +40,7 @@ body {
 	}
 }
 
-.y2017 {
+#page-container[data-year="2017"] {
 	background-color: #5c7148;
 
 	.header,
@@ -57,7 +57,7 @@ body {
 	}
 }
 
-.y2016 {
+#page-container[data-year="2016"] {
 	background-color: #034f84;
 
 	.header,
@@ -74,7 +74,7 @@ body {
 	}
 }
 
-.y2015 {
+#page-container[data-year="2015"] {
 	background-color: #692f55;
 
 	.header,
@@ -91,7 +91,7 @@ body {
 	}
 }
 
-.y2014 {
+#page-container[data-year="2014"] {
 	background-color: #8d5f5f;
 
 	.header,
@@ -108,7 +108,7 @@ body {
 	}
 }
 
-.y2013 {
+#page-container[data-year="2013"] {
 	background-color: #917d61;
 
 	.header,
@@ -125,7 +125,7 @@ body {
 	}
 }
 
-.y2012 {
+#page-container[data-year="2012"] {
 	background-color: #973450;
 
 	.header,
@@ -142,7 +142,7 @@ body {
 	}
 }
 
-.y2011 {
+#page-container[data-year="2011"] {
 	background-color: #4d3087;
 
 	.header,
@@ -159,8 +159,8 @@ body {
 	}
 }
 
-.y2010,
-.y2009 {
+#page-container[data-year="2010"],
+#page-container[data-year="2009"] {
 	background-color: #3f64ee;
 
 	.header,
@@ -177,7 +177,7 @@ body {
 	}
 }
 
-.y2008 {
+#page-container[data-year="2008"] {
 	background-color: #869e59;
 
 	.header,
@@ -194,7 +194,7 @@ body {
 	}
 }
 
-.y2005 {
+#page-container[data-year="2005"] {
 	background-color: #743a7d;
 
 	.header,
@@ -211,8 +211,8 @@ body {
 	}
 }
 
-.y2003,
-.y2004 {
+#page-container[data-year="2004"],
+#page-container[data-year="2003"] {
 	background-color: #99cc33;
 
 	.header,
@@ -229,8 +229,8 @@ body {
 	}
 }
 
-.y2001,
-.y2002 {
+#page-container[data-year="2002"],
+#page-container[data-year="2001"] {
 	background-color: #ff6600;
 
 	.header {
@@ -250,11 +250,11 @@ body {
 	}
 }
 
-.y1981,
-.y1983,
-.y1985,
-.y1987,
-.y1989 {
+#page-container[data-year="1989"],
+#page-container[data-year="1987"],
+#page-container[data-year="1985"],
+#page-container[data-year="1983"],
+#page-container[data-year="1981"] {
 	background-color: #3a3a3c;
 
 	.header {
@@ -274,11 +274,11 @@ body {
 	}
 }
 
-.y1980,
-.y1982,
-.y1984,
-.y1986,
-.y1988 {
+#page-container[data-year="1988"],
+#page-container[data-year="1986"],
+#page-container[data-year="1984"],
+#page-container[data-year="1982"],
+#page-container[data-year="1980"] {
 	background-color: #4e337a;
 
 	.header,
@@ -295,11 +295,11 @@ body {
 	}
 }
 
-.y1971,
-.y1973,
-.y1975,
-.y1977,
-.y1979 {
+#page-container[data-year="1979"],
+#page-container[data-year="1977"],
+#page-container[data-year="1975"],
+#page-container[data-year="1973"],
+#page-container[data-year="1971"] {
 	background-color: #503200;
 
 	.header,
@@ -316,11 +316,11 @@ body {
 	}
 }
 
-.y1970,
-.y1972,
-.y1974,
-.y1976,
-.y1978 {
+#page-container[data-year="1978"],
+#page-container[data-year="1976"],
+#page-container[data-year="1974"],
+#page-container[data-year="1972"],
+#page-container[data-year="1970"] {
 	background-color: #434210;
 
 	.header,

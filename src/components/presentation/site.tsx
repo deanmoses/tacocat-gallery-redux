@@ -12,19 +12,19 @@ import { Icon, Icons } from '@src/components/presentation/icon';
 interface PageProps {
 	readonly className?: string;
 	readonly showFooter?: boolean;
+	readonly year?: number;
 }
 export const Page: React.StatelessComponent<PageProps> = ({
 	children,
 	className = '',
-	showFooter = true
+	showFooter = true,
+	year = 2018
 }) => {
-	var classes = 'pagecontents';
-	if (className) {
-		classes += ' ' + className;
-	}
 	return (
-		<div>
-			<div className={classes}>{children}</div>
+		<div id="page-container" data-year={year}>
+			<div id="page-contents" className={className}>
+				{children}
+			</div>
 			{showFooter && (
 				<div className="footer hidden-xs hidden-sm">
 					<img src="images/tacocat-logo.png" width="102px" height="19px" />

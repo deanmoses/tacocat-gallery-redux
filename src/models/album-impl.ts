@@ -52,6 +52,22 @@ export class AlbumImpl implements Album {
 	}
 
 	/**
+	 * Get year the album was published, like 2001
+	 */
+	get year(): number {
+		// First look at the path: this lets us get the right color for the "Loading..." page
+		// before we have the publication date
+		const dateBasedAlbumRegex = /^\/?(\d\d\d\d)\/?(\d\d-\d\d)?\/?$/; // like 2000 or 2000/12-31
+		const year = Number(dateBasedAlbumRegex.exec(this.path)[0]);
+		if (year && year != NaN) {
+			return year;
+		} else {
+			// Else look at the publication date
+			return new Date(this.date * 1000).getFullYear();
+		}
+	}
+
+	/**
 	 * Friendly title of page
 	 */
 	get pageTitle(): string {
