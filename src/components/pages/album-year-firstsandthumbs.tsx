@@ -16,18 +16,18 @@ interface ComponentProps {
 export const FirstsAndThumbs: React.StatelessComponent<ComponentProps> = ({
 	album
 }) => {
-	let albums = separateDayAlbums(album.albums);
+	const { nonDayAlbums, dayAlbums } = separateDayAlbums(album.albums);
 	return (
 		<div className="container-fluid">
 			<section className="col-md-3 firsts sidebar">
-				{albums.nonDayAlbums && <Thumb.List items={albums.nonDayAlbums} />}
+				{nonDayAlbums && <Thumb.List items={nonDayAlbums} />}
 				<h2 className="hidden">Firsts</h2>
 				<EditableHtml html={album.desc} className="firsts-text" />
 				{/* TODO: <EditMenu album={album} allowEdit={user.isAdmin} editMode={user.editMode} />*/}
 			</section>
 			<section className="col-md-9 col-md-offset-3">
 				<h2 className="hidden">Thumbnails</h2>
-				<ThumbsByMonth albums={albums.dayAlbums} />
+				<ThumbsByMonth albums={dayAlbums} />
 			</section>
 		</div>
 	);
