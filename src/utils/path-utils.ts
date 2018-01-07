@@ -7,6 +7,11 @@ const dateBasedPathRegex = /^\/?(\d\d\d\d)\/?(\d\d-\d\d)?(\/[^\/\.]+\.[^\/\.]{3,
  * @return numerical year or null if the path can't be parsed into a number
  */
 export function getYearFromPath(path: string): number {
-	const year = Number(dateBasedPathRegex.exec(path)[1]);
-	return year !== NaN ? year : null;
+	const regexResults = dateBasedPathRegex.exec(path);
+	if (regexResults) {
+		const year = Number(dateBasedPathRegex.exec(path)[1]);
+		return year !== NaN ? year : null;
+	} else {
+		return null;
+	}
 }
