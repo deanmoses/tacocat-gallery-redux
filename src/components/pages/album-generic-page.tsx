@@ -17,7 +17,7 @@ interface ComponentProps {
 export const GenericAlbumPage: React.StatelessComponent<ComponentProps> = ({
 	album
 }) => (
-	<Site.Page>
+	<Site.Page year={album.year}>
 		<Site.HeaderTitle
 			href={'#' + album.parent_album.path}
 			title={album.pageTitle}

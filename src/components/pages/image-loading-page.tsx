@@ -1,12 +1,26 @@
 import * as React from 'react';
 import * as Site from '@src/components/presentation/site';
 import WaitingSpinner from '@src/components/presentation/waiting-spinner';
+import { getYearFromPath } from '@src/utils/path-utils';
+
+/**
+ * Component properties
+ */
+type ComponentProps = {
+	readonly path: string;
+};
 
 /**
  * Image page that displays a "loading..." spinner
  */
-const ImageLoadingPage: React.StatelessComponent = () => (
-	<Site.Page className="imagepage waiting" showFooter={false}>
+export const ImageLoadingPage: React.StatelessComponent<ComponentProps> = ({
+	path
+}) => (
+	<Site.Page
+		className="imagepage"
+		year={getYearFromPath(path)}
+		showFooter={false}
+	>
 		<Site.HeaderTitle title="" showTitle={false} showSearch={false} />
 		<div className="photo-body">
 			<section className="col-md-3">
@@ -27,4 +41,3 @@ const ImageLoadingPage: React.StatelessComponent = () => (
 		</div>
 	</Site.Page>
 );
-export default ImageLoadingPage;

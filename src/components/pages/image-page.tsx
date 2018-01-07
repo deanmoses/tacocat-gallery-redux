@@ -19,7 +19,7 @@ const ImagePage: React.StatelessComponent<ComponentProps> = ({
 	album,
 	image
 }) => (
-	<Site.Page className="imagepage">
+	<Site.Page className="imagepage" year={album.year}>
 		<Site.HeaderTitle
 			href={album.href}
 			title={image.title}

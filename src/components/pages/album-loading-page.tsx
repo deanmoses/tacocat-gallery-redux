@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as Site from '@src/components/presentation/site';
-import { getYearFromPath } from '@src/utils/path-utils';
 import WaitingSpinner from '@src/components/presentation/waiting-spinner';
+import { getYearFromPath } from '@src/utils/path-utils';
 
 /**
  * Component properties

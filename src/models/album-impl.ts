@@ -7,6 +7,7 @@ import {
 	FetchError
 } from '@src/models/models';
 import { ImageImpl } from '@src/models/image-impl';
+import { getYearFromPath } from '@src/utils/path-utils';
 
 /**
  * Album implementation
@@ -57,8 +58,7 @@ export class AlbumImpl implements Album {
 	get year(): number {
 		// First look at the path: this lets us get the right color for the "Loading..." page
 		// before we have the publication date
-		const dateBasedAlbumRegex = /^\/?(\d\d\d\d)\/?(\d\d-\d\d)?\/?$/; // like 2000 or 2000/12-31
-		const year = Number(dateBasedAlbumRegex.exec(this.path)[0]);
+		const year = getYearFromPath(this.path);
 		if (year && year != NaN) {
 			return year;
 		} else {
