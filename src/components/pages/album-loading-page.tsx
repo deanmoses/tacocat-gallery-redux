@@ -23,7 +23,9 @@ export const AlbumLoadingPage: React.StatelessComponent<ComponentProps> = ({
 			<Site.NextButton />
 		</Site.HeaderTitle>
 		<Site.FullPageMessage>
-			<WaitingSpinner />
+			<p>
+				<WaitingSpinner />
+			</p>
 		</Site.FullPageMessage>
 	</Site.Page>
 );

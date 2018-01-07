@@ -20,8 +20,11 @@ export function latestAlbumReducer(
 		 *  In process of fetching from server
 		 */
 		case Actions.ActionTypeKeys.LATEST_ALBUM_REQUESTED: {
-			// Make copy of existing item, except with status of 'loading'
-			let copy = Object.assign({ isLoading: true }, latestAlbum);
+			// Make copy of existing item and set its status to 'loading'
+			const copy = {
+				...latestAlbum,
+				...{ isLoading: true }
+			};
 			return copy;
 		}
 
@@ -39,11 +42,11 @@ export function latestAlbumReducer(
 		case Actions.ActionTypeKeys.LATEST_ALBUM_ERRORED: {
 			console.log(action.type, action.error);
 
-			// Make copy of existing item, except with status of 'error'
-			let copy = Object.assign(
-				{ err: action.error, isLoading: false },
-				latestAlbum
-			);
+			// Make copy of existing item and set its status to 'error'
+			const copy = {
+				...latestAlbum,
+				...{ err: action.error, isLoading: false }
+			};
 			return copy;
 		}
 

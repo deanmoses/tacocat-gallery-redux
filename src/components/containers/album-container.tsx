@@ -47,16 +47,24 @@ export class AlbumContainer extends React.Component<ComponentProps> {
 		const album = this.props.album as Album;
 
 		if (album && album.image_size) {
-			document.title = album.path;
+			//
+			// If the album's ready to display... image_size just happens to be a property on all albums
+			//
 			return <AlbumPage album={album} />;
 		} else if (album && album.err) {
-			document.title = 'Error loading album';
+			//
+			// Else if the album's in an error state
+			//
 			return <AlbumErrorPage path={album.path} error={album.err} />;
 		} else if (!album || (album.isLoading && !album.title)) {
-			document.title = 'Loading album...';
+			//
+			// Else if the album's in a loading state
+			//
 			return <AlbumLoadingPage path={this.props.path} />;
 		} else {
-			document.title = 'Weird state...';
+			//
+			// I don't know how it could get into this state
+			//
 			const error = new FetchErrorImpl(
 				"I'm in some weird state I didn't expect"
 			);

@@ -1,7 +1,9 @@
 import * as React from 'react';
 import * as Site from '@src/components/presentation/site';
-import { FetchError } from '@src/models/models';
+import { Icon, Icons } from '@src/components/presentation/icon';
+import { FetchError, FetchErrorType } from '@src/models/models';
 import { getYearFromPath } from '@src/utils/path-utils';
+import Config from '@src/utils/config';
 
 /**
  * Component properties
@@ -17,9 +19,30 @@ interface ComponentProps {
 export const AlbumErrorPage: React.StatelessComponent<ComponentProps> = ({
 	path,
 	error
-}) => (
-	<Site.Page year={getYearFromPath(path)}>
-		<Site.HeaderTitle showTitle={false} />
-		<Site.FullPageMessage>Error: {error.message}</Site.FullPageMessage>
-	</Site.Page>
-);
+}) => {
+	let errorMessage;
+	if (error.type == FetchErrorType.NotFound) {
+		errorMessage = 'Album not found';
+	} else {
+		errorMessage = 'There was an error attempting to retrieve this album.';
+	}
+	return (
+		<Site.Page year={getYearFromPath(path)} showFooter={false}>
+			<Site.HeaderTitle
+				title={Config.siteTitle()}
+				shortTitle={Config.siteShortTitle()}
+				showTitleLink={false}
+				showTitle={false}
+				showSearch={false}
+			/>
+			<Site.FullPageMessage>
+				<p>{errorMessage}</p>
+				<p>
+					<a href="#">
+						Go back <Icon icon={Icons.HOME} />?
+					</a>
+				</p>
+			</Site.FullPageMessage>
+		</Site.Page>
+	);
+};

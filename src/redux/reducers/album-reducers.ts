@@ -22,15 +22,19 @@ export function albumsByPathReducer(
 		case Actions.ActionTypeKeys.ALBUM_REQUESTED: {
 			console.log(action.type, action.albumPath);
 
-			// Make copy of existing album, except with status of 'loading'
-			let albumCopy = Object.assign(
-				{ path: action.albumPath, isLoading: true },
-				albumsByPath[action.albumPath]
-			);
+			// Make copy of existing album and set its status to 'loading'
+			const albumCopy = {
+				...albumsByPath[action.albumPath],
+				...{ path: action.albumPath, isLoading: true, err: undefined }
+			};
 
-			// Make copy of entire store and return it
+			// Make copy of albumsByPath
 			let albumsCopy = { ...albumsByPath };
+
+			// Add copy of album to copy of albumsByPath
 			albumsCopy[action.albumPath] = albumCopy;
+
+			// Return copy of albumsByPath
 			return albumsCopy;
 		}
 
@@ -39,10 +43,15 @@ export function albumsByPathReducer(
 		 */
 		case Actions.ActionTypeKeys.ALBUM_RECEIVED: {
 			console.log(action.type, action.albumPath);
-			let newAlbums = { ...albumsByPath };
-			// Add album to store
-			newAlbums[action.albumPath] = action.album as Album;
-			return newAlbums;
+
+			// Make copy of albumsByPath
+			let albumsCopy = { ...albumsByPath };
+
+			// Add album to copy of albumsByPath
+			albumsCopy[action.albumPath] = action.album as Album;
+
+			// Return copy of albumsByPath
+			return albumsCopy;
 		}
 
 		/**
@@ -51,15 +60,19 @@ export function albumsByPathReducer(
 		case Actions.ActionTypeKeys.ALBUM_ERRORED: {
 			console.log(action.type, action.albumPath, action.error);
 
-			// Make copy of existing album, except with status of 'error'
-			let albumCopy = Object.assign(
-				{ path: action.albumPath, err: action.error, isLoading: false },
-				albumsByPath[action.albumPath]
-			);
+			// Make copy of existing album and set its status to 'error'
+			const albumCopy = {
+				...albumsByPath[action.albumPath],
+				...{ path: action.albumPath, err: action.error, isLoading: false }
+			};
 
-			// Make copy of entire store and return it
+			// Make copy of albumsByPath
 			let albumsCopy = { ...albumsByPath };
+
+			// Add copy of album to copy of albumsByPath
 			albumsCopy[action.albumPath] = albumCopy;
+
+			// Return copy of albumsByPath
 			return albumsCopy;
 		}
 

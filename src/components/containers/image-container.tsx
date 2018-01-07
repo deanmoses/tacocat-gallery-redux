@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Album, Image } from '@src/models/models';
+import { Album, Image, FetchErrorImpl } from '@src/models/models';
 import ImagePage from '@src/components/pages/image-page';
 import { ImageLoadingPage } from '@src/components/pages/image-loading-page';
 import ImageErrorPage from '@src/components/pages/image-error-page';
@@ -51,19 +51,40 @@ export class ImageContainer extends React.Component<ComponentProps> {
 
 		//console.log(`ImageContainer.render(${this.props.path}) album:`, album);
 
-		if (!album || album.isLoading) {
-			return <ImageLoadingPage path={this.props.path} />;
-		} else if (album.err) {
-			return <ImageErrorPage path={this.props.path} error={album.err} />;
-		} else if (!album.images) {
-			return <ImageNotFoundPage album={album} />;
-		} else {
+		if (album && album.image_size) {
+			//
+			// If the album's ready to display... image_size just happens to be a property on all albums
+			//
 			if (!image) {
+				//
+				// If we have the album but the image isn't in it, it's Not Found
+				//
 				//console.log(`No image of path (${imagePath}) in album ${album.path}`);
 				return <ImageNotFoundPage album={album} />;
 			} else {
+				//
+				// Else display the image
+				//
 				return <ImagePage album={album} image={image} />;
 			}
+		} else if (album && album.err) {
+			//
+			// Else if the album failed to load
+			//
+			return <ImageErrorPage path={this.props.path} error={album.err} />;
+		} else if (!album || (album.isLoading && !album.title)) {
+			//
+			// Else if the album's loading
+			//
+			return <ImageLoadingPage path={this.props.path} />;
+		} else {
+			//
+			// I don't know how it could get into this state
+			//
+			const error = new FetchErrorImpl(
+				"I'm in some weird state I didn't expect"
+			);
+			return <ImageErrorPage path={this.props.path} error={error} />;
 		}
 	}
 }

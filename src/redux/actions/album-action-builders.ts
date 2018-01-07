@@ -4,7 +4,7 @@
 
 import { RootState } from '@src/redux/reducers/root-state';
 import Config from '@src/utils/config';
-import { Album, FetchErrorImpl } from '@src/models/models';
+import { Album, FetchErrorImpl, FetchErrorType } from '@src/models/models';
 import {
 	ActionTypeKeys,
 	AlbumRequested,
@@ -40,15 +40,20 @@ export function fetchAlbum(albumPath: string) {
 			.then(handleErrors)
 			.then(response => response.json())
 			.then(json => dispatch(receiveAlbum(albumPath, json)))
-			.catch(error => dispatch(errorAlbum(albumPath, error.message)));
+			.catch(error => dispatch(errorAlbum(albumPath, error)));
 	};
 }
 
-function handleErrors(response: any) {
+function handleErrors(response: Response) {
 	if (!response.ok) {
 		throw Error(response.statusText);
+	} else if (response.status === 404) {
+		throw Error('Not Found');
+	} else if (response.status !== 200) {
+		throw Error(response.statusText);
+	} else {
+		return response;
 	}
-	return response;
 }
 
 /**
@@ -78,9 +83,13 @@ function receiveAlbum(albumPath: string, json: any): AlbumRecieved {
  * Action Builder: a helper function to create an Action
  */
 export function errorAlbum(albumPath: string, error: Error): AlbumErrored {
+	const type =
+		error.message === 'Not Found'
+			? FetchErrorType.NotFound
+			: FetchErrorType.Other;
 	return {
 		type: ActionTypeKeys.ALBUM_ERRORED,
 		albumPath,
-		error: new FetchErrorImpl(error.message)
+		error: new FetchErrorImpl(error.message, type)
 	};
 }

@@ -36,7 +36,9 @@ export const ImageLoadingPage: React.StatelessComponent<ComponentProps> = ({
 				</Site.HeaderButtons>
 			</section>
 			<Site.FullPageMessage>
-				<WaitingSpinner />
+				<p>
+					<WaitingSpinner />
+				</p>
 			</Site.FullPageMessage>
 		</div>
 	</Site.Page>

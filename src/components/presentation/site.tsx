@@ -48,20 +48,42 @@ export interface HeaderTitleProps {
 	readonly children?: any;
 }
 export const HeaderTitle: React.StatelessComponent<HeaderTitleProps> = ({
-	title = '',
-	//	shortTitle = '',
-	href = '',
-	path = '',
+	title,
+	shortTitle,
+	href,
+	path,
 	showTitle = true,
-	//	showTitleLink = true,
+	showTitleLink = true,
 	showSearch = true,
 	children
 }) => {
-	var derivedTitle = (
-		<a className="navbar-brand" href={href}>
-			{title}
-		</a>
-	);
+	let derivedTitle;
+
+	if (showTitleLink) {
+		derivedTitle = (
+			<a className="navbar-brand" href={href}>
+				{title}
+			</a>
+		);
+	} else {
+		if (!!shortTitle) {
+			derivedTitle = (
+				<span>
+					<span className="titleInput navbar-brand hidden-xs">{title}</span>
+					<span className="titleInput navbar-brand visible-xs">
+						{shortTitle}
+					</span>
+				</span>
+			);
+		} else {
+			derivedTitle = <span className="titleInput navbar-brand">{title}</span>;
+		}
+	}
+
+	// Set the browser title
+	document.title = !!shortTitle
+		? shortTitle
+		: !!title ? title : Config.siteShortTitle();
 
 	return (
 		<div>
@@ -91,11 +113,7 @@ interface FullPageMessageProps {
 }
 export const FullPageMessage: React.StatelessComponent<
 	FullPageMessageProps
-> = ({ children }) => (
-	<div className="fullPageMessage">
-		<p>{children}</p>
-	</div>
-);
+> = ({ children }) => <div className="fullPageMessage">{children}</div>;
 
 /**
  * Search icon for navigating to search screen
