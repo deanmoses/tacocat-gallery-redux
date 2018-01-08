@@ -9,7 +9,6 @@
 //
 
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { RootState } from '@src/redux/reducers/root-state';
 import { getAuthentication } from '@src/redux/selectors/authentication-selectors';
 import { getEditMode } from '@src/redux/selectors/edit-mode-selectors';
@@ -18,6 +17,22 @@ import {
 	EditableHtml,
 	ComponentProps
 } from '@src/components/presentation/editable-html';
+
+/**
+ * Adds additional properties over my target component's props
+ */
+interface ConnectedComponentProps extends ComponentProps {
+	/**
+	 * Name of the field being edited.
+	 * For example, if this is editing or displaying album.desc, this would be 'desc'.
+	 */
+	readonly field: string;
+
+	/**
+	 * Path of the album or image whose field is being edited
+	 */
+	readonly path: string;
+}
 
 /**
  * mapStateToProps() is a standard Redux function to transforms the state of
@@ -41,13 +56,14 @@ function mapStateToProps(
  * mapDispatchToProps() is a a standard Redux function to map
  * Redux action creator functions to functions on the target component.
  */
-function mapDispatchToProps(dispatch: any): Partial<ComponentProps> {
-	return bindActionCreators(
-		{
-			onHtmlChange: updateDraftField
-		},
-		dispatch
-	);
+function mapDispatchToProps(
+	dispatch: Function,
+	ownProps: ConnectedComponentProps
+): Partial<ComponentProps> {
+	return {
+		onHtmlChange: newHtmlValue =>
+			dispatch(updateDraftField(ownProps.path, ownProps.field, newHtmlValue))
+	};
 }
 
 /**
@@ -61,7 +77,7 @@ function mapDispatchToProps(dispatch: any): Partial<ComponentProps> {
  *
  * This way, the target component is completely unaware of Redux; it's a plain React component.
  */
-const ConnectedComponent = connect<{}, {}, ComponentProps>(
+const ConnectedComponent = connect<{}, {}, ConnectedComponentProps>(
 	mapStateToProps,
 	mapDispatchToProps
 )(EditableHtml);

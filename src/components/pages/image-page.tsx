@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as Site from '@src/components/presentation/site';
-import { EditableHtml } from '@src/components/presentation/editable-html';
+import EditableHtml from '@src/components/containers/editable-html-connector';
 import { Album, Image } from '@src/models/models';
 import Config from '@src/utils/config';
 

@@ -4,22 +4,11 @@ import { Editor } from '@src/components/presentation/editor';
 /**
  * Component properties
  */
-export type ComponentProps = {
+export interface ComponentProps {
 	/**
 	 * Text / HTML to either display read-only or via a rich text editor
 	 */
 	readonly html: string;
-
-	/**
-	 * Name of the field being edited.
-	 * For example, if this is editing or displaying album.desc, this would be 'desc'.
-	 */
-	readonly field: string;
-
-	/**
-	 * Path of the album or image whose field is being edited
-	 */
-	readonly path: string;
 
 	/**
 	 * Optional CSS class names to add to me
@@ -36,12 +25,8 @@ export type ComponentProps = {
 	 * Called when my text / HTML content changes.
 	 * This will typically be hooked up by my Redux connector component, see my *-container.tsx file.
 	 */
-	readonly onHtmlChange?: (
-		path: string,
-		field: string,
-		newValue: string
-	) => void;
-};
+	readonly onHtmlChange?: (newValue: string) => void;
+}
 
 /**
  * Component that either displays text as HTML or shows a rich text editor if
@@ -49,8 +34,6 @@ export type ComponentProps = {
  */
 export const EditableHtml: React.StatelessComponent<ComponentProps> = ({
 	html,
-	field,
-	path,
 	className,
 	editMode = false,
 	onHtmlChange
@@ -62,17 +45,12 @@ export const EditableHtml: React.StatelessComponent<ComponentProps> = ({
 	 */
 	function handleHtmlChange(newValue: string): void {
 		if (onHtmlChange) {
-			onHtmlChange(path, field, newValue);
+			onHtmlChange(newValue);
 		}
 	}
 
 	return editMode ? (
-		<Editor
-			html={html}
-			className={className}
-			onHtmlChange={handleHtmlChange}
-			key={path + html}
-		/>
+		<Editor html={html} className={className} onHtmlChange={handleHtmlChange} />
 	) : (
 		<div className={className} dangerouslySetInnerHTML={{ __html: html }} />
 	);

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Album, AlbumThumb } from '@src/models/models';
-import { EditableHtml } from '@src/components/presentation/editable-html';
+import EditableHtml from '@src/components/containers/editable-html-connector';
 import { ThumbsByMonth } from '@src/components/pages/album-year-thumbsbymonth';
 import * as Thumb from '@src/components/presentation/thumb';
 
