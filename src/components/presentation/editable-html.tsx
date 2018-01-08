@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Editor } from '@src/components/presentation/editor';
 
 /**
  * Component properties
@@ -22,7 +23,10 @@ export type ComponentProps = {
  */
 export class EditableHtml extends React.Component<ComponentProps> {
 	render() {
-		return (
+		const editMode = !this.props.html; // TODO: figure out editMode for real
+		return editMode ? (
+			<Editor html={this.props.html} className={this.props.className} />
+		) : (
 			<div
 				className={this.props.className}
 				dangerouslySetInnerHTML={{ __html: this.props.html }}

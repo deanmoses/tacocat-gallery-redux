@@ -7,6 +7,16 @@ $titleColor: #fff;
 
 @import "./node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
+/* Quill.js rich text editor */
+.ql-container {
+	font-family: unset;
+	font-size: unset;
+	.ql-editor {
+		line-height: unset;
+		padding: unset;
+	}
+}
+
 .btn {
 	border-radius: 0;
 }

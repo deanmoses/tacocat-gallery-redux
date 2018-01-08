@@ -2,13 +2,9 @@
 	"private": true,
 	"name": "tacocat-gallery-redux",
 	"version": "1.0.0",
-	"description": "Javascript front end for tacocat.com photo gallery built in React, Redux and Typescript",
-	"keywords": [
-		"javascript",
-		"react",
-		"redux",
-		"typescript"
-	],
+	"description":
+		"Javascript front end for tacocat.com photo gallery built in React, Redux and Typescript",
+	"keywords": ["javascript", "react", "redux", "typescript"],
 	"license": "MIT",
 	"author": "Dean Moses",
 	"scripts": {
@@ -18,11 +14,14 @@
 		"build-js": "webpack",
 		"start-static": "run-s build-static watch-static",
 		"build-static": "cpx 'src/public/**/*.{html,png,jpg,ico,xml,tx}' dist",
-		"watch-static": "cpx 'src/public/**/*.{html,png,jpg,ico,xml,txt}' dist --watch",
+		"watch-static":
+			"cpx 'src/public/**/*.{html,png,jpg,ico,xml,txt}' dist --watch",
 		"start-webpack": "webpack-dev-server --open",
 		"start-css": "run-s build-css watch-css",
-		"build-css": "node-sass-chokidar src/styles/main.scss -o dist/ --source-map true",
-		"watch-css": "node-sass-chokidar src/styles/main.scss -o dist/ --source-map true --watch --recursive",
+		"build-css":
+			"node-sass-chokidar src/styles/main.scss -o dist/ --source-map true",
+		"watch-css":
+			"node-sass-chokidar src/styles/main.scss -o dist/ --source-map true --watch --recursive",
 		"start-mockapi": "json-server --watch src/api/db.json --port 3001",
 		"test": "jest"
 	},
@@ -32,6 +31,7 @@
 		"popper.js": "^1.12.9",
 		"react": "^16.2.0",
 		"react-dom": "^16.2.0",
+		"react-quill": "^1.2.3",
 		"react-redux": "^5.0.6",
 		"react-router-dom": "^4.2.2",
 		"redux": "^3.7.2",
@@ -64,11 +64,7 @@
 		"webpack-dev-server": "^2.9.7"
 	},
 	"jest": {
-		"moduleFileExtensions": [
-			"ts",
-			"tsx",
-			"js"
-		],
+		"moduleFileExtensions": ["ts", "tsx", "js"],
 		"moduleNameMapper": {
 			"^@src(.*)$": "<rootDir>/src$1"
 		},
