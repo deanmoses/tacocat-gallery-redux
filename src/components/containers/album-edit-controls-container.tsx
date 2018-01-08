@@ -11,7 +11,8 @@ export enum Mode {
 	/** User is in edit mode -- show full controls */
 	EDIT_MODE_ON,
 	/** User has clicked save and we're currently saving -- show saving message */
-	SAVING
+	SAVING,
+	SAVE_ERROR
 }
 
 /**
@@ -35,7 +36,7 @@ export interface ComponentProps {
 	 * Called when my Save button is clicked.
 	 * This will typically be hooked up by my Redux connector component, see my *-container.tsx file
 	 */
-	readonly onSave?: (path: string) => void;
+	readonly onSave?: () => void;
 }
 
 /**
@@ -78,7 +79,7 @@ export class AlbumEditControls extends React.Component<ComponentProps> {
 	onSave(): void {
 		// This will typically be hooked up by my Redux connector component, see my *-container.tsx file
 		if (this.props.onSave) {
-			this.props.onSave(this.props.album.path);
+			this.props.onSave();
 		}
 	}
 
@@ -105,6 +106,15 @@ export class AlbumEditControls extends React.Component<ComponentProps> {
 			}
 			case Mode.SAVING: {
 				return <div>Saving...</div>;
+			}
+			case Mode.SAVE_ERROR: {
+				return (
+					<AlbumActiveEditControls
+						album={album}
+						onCancel={this.onCancel}
+						errorMessage="Error saving."
+					/>
+				);
 			}
 			default: {
 				// If my parent hasn't passed in an edit mode, render nothing

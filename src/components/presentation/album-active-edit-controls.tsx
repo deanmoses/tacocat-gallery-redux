@@ -8,6 +8,8 @@ import { Icon, Icons } from '@src/components/presentation/icon';
 interface ComponentProps {
 	readonly album: Album;
 
+	readonly errorMessage?: string;
+
 	/**
 	 * Called when my cancel button is clicked
 	 */
@@ -53,6 +55,7 @@ export class AlbumActiveEditControls extends React.Component<ComponentProps> {
 	}
 
 	render() {
+		const saveError = !!this.props.errorMessage;
 		return (
 			<div className="editControls">
 				<div className="btn-group">
@@ -67,12 +70,14 @@ export class AlbumActiveEditControls extends React.Component<ComponentProps> {
 					<button
 						type="button"
 						className="btn btn-default"
+						disabled={saveError}
 						title="Save album description"
 						onClick={this.onSave}
 					>
 						<Icon icon={Icons.CHEVRON_RIGHT} /> Save
 					</button>
 				</div>
+				{this.props.errorMessage}
 			</div>
 		);
 	}

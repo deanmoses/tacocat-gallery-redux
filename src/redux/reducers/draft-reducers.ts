@@ -104,6 +104,34 @@ export function draftsByPathReducer(
 		}
 
 		/**
+		 * DRAFT_SAVE_ERRORED
+		 * Set status of draft to errored
+		 */
+		case Actions.ActionTypeKeys.DRAFT_SAVE_ERRORED: {
+			console.log(action.type, action.path);
+			if (!action.path) throw new Error('Draft with no path');
+
+			// Make copy of existing draft or create a new one, and apply new content
+			const draftCopy: Draft = {
+				...draftsByPath[action.path],
+				...{
+					path: action.path, // in case we're creating a new draft we need to set its path
+					state: DraftState.ERRORED, // set status to saved
+					errorMessage: action.error.message
+				}
+			};
+
+			// Make copy of draftsByPath
+			let draftsByPathCopy = { ...draftsByPath };
+
+			// Add copy of draft to copy of draftsByPath
+			draftsByPathCopy[action.path] = draftCopy;
+
+			// Return copy of draftsByPath
+			return draftsByPathCopy;
+		}
+
+		/**
 		 * Default: don't want to handle this action, return existing state unchanged
 		 */
 		default:

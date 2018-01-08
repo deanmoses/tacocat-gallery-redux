@@ -9,10 +9,10 @@
 //
 
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { RootState } from '@src/redux/reducers/root-state';
 import { getAuthentication } from '@src/redux/selectors/authentication-selectors';
 import { getEditMode } from '@src/redux/selectors/edit-mode-selectors';
+import { getDraft } from '@src/redux/selectors/draft-selectors';
 import {
 	enableEditMode,
 	disableEditMode
@@ -23,6 +23,7 @@ import {
 	ComponentProps,
 	Mode
 } from '@src/components/containers/album-edit-controls-container';
+import { DraftState } from '@src/models/models';
 
 /**
  * mapStateToProps() is a standard Redux function to transforms the state of
@@ -35,36 +36,52 @@ import {
  * @returns set of props for the target component
  */
 function mapStateToProps(
-	state: RootState /*, ownProps: ComponentProps*/
+	state: RootState,
+	ownProps: ComponentProps
 ): Partial<ComponentProps> {
-	let mode: Mode;
-	if (!getAuthentication(state)) {
-		if (getEditMode(state)) {
-			mode = Mode.EDIT_MODE_ON;
-		} else {
-			mode = Mode.EDIT_MODE_ALLOWED;
-		}
-	} else {
-		mode = Mode.EDIT_MODE_DISALLOWED;
-	}
 	return {
-		editMode: mode
+		editMode: getEditMenuMode(state, ownProps)
 	};
+}
+
+/**
+ * Figure out what mode the edit menu should be in based on state and properties
+ */
+function getEditMenuMode(state: RootState, ownProps: ComponentProps) {
+	// if user is not authenticated
+	if (getAuthentication(state)) {
+		return Mode.EDIT_MODE_DISALLOWED;
+	} else if (!getEditMode(state)) {
+		// if we're in not in edit mode
+		return Mode.EDIT_MODE_ALLOWED;
+	} else {
+		// else we're in edit mode...
+		const draft = getDraft(state, ownProps.album.path);
+		if (draft) {
+			switch (draft.state) {
+				case DraftState.SAVING:
+					return Mode.SAVING;
+				case DraftState.ERRORED:
+					return Mode.SAVE_ERROR;
+			}
+		}
+		return Mode.EDIT_MODE_ON;
+	}
 }
 
 /**
  * mapDispatchToProps() is a a standard Redux function to map
  * Redux action creator functions to functions on the target component.
  */
-function mapDispatchToProps(dispatch: any) {
-	return bindActionCreators(
-		{
-			onEdit: enableEditMode,
-			onCancel: disableEditMode,
-			onSave: saveDraft
-		},
-		dispatch
-	);
+function mapDispatchToProps(
+	dispatch: Function,
+	ownProps: ComponentProps
+): Partial<ComponentProps> {
+	return {
+		onEdit: () => dispatch(enableEditMode()),
+		onCancel: () => dispatch(disableEditMode()),
+		onSave: () => dispatch(saveDraft(ownProps.album.path))
+	};
 }
 
 /**

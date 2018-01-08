@@ -9,6 +9,7 @@ import {
 	DraftSaved,
 	DraftSaveErrored
 } from '@src/redux/actions/actions';
+import { getDraft } from '@src/redux/selectors/draft-selectors';
 import { FetchErrorImpl } from '@src/models/models';
 
 /**
@@ -17,20 +18,37 @@ import { FetchErrorImpl } from '@src/models/models';
  * @param path path of album or image whose draft I should save
  */
 export function saveDraft(path: string) {
-	return (dispatch: Function) => {
+	return (dispatch: Function, getState: Function) => {
 		console.log('saveDraft()');
+
+		// Update Redux store state to "Saving..." for this image or album
 		dispatch(savingAction(path));
 
-		// TODO: get draft from RootState in order to post it
-		const json = {};
+		// Get draft from the Redux store
+		const draft = getDraft(getState(), path);
 
+		// Make copy of draft, so I can add stuff to it without modifying store
+		let jsonPostData: any = { ...draft };
+
+		// Add fields needed by Zenphoto
+		// TODO: set this based on whether the path is for an image or an album
+		jsonPostData.eip_context = 'album';
+
+		console.log(
+			'Will save to',
+			Config.jsonAlbumSaveUrl(path),
+			'draft content:',
+			jsonPostData
+		);
+
+		// Save draft to server
 		var requestConfig: RequestInit = {
 			method: 'POST',
 			headers: {
 				Accept: 'application/json',
 				'Content-Type': 'application/json'
 			},
-			body: JSON.stringify(json),
+			body: JSON.stringify(jsonPostData),
 			cache: 'no-store',
 			credentials: 'include'
 		};
