@@ -30,8 +30,7 @@ export class AlbumEditMenu extends React.Component<ComponentProps> {
 	 * User clicked the edit button
 	 */
 	onEdit() {
-		// If my parent component gave me an onEdit function to call
-		// via my onEdit property, call it.
+		// If my parent component gave me a function to call, call it
 		if (this.props.onEdit) {
 			this.props.onEdit();
 		}

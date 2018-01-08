@@ -7,11 +7,18 @@ import { Icon, Icons } from '@src/components/presentation/icon';
  */
 interface ComponentProps {
 	readonly album: Album;
+
 	/**
 	 * Called when my cancel button is clicked
 	 */
 	readonly onCancel?: () => void;
+
+	/**
+	 * Called when my save button is clicked
+	 */
+	readonly onSave?: () => void;
 }
+
 /**
  * User is currently editing.  Show controls to save and cancel.
  */
@@ -22,16 +29,26 @@ export class AlbumActiveEditControls extends React.Component<ComponentProps> {
 	constructor(props: ComponentProps) {
 		super(props);
 		this.onCancel = this.onCancel.bind(this);
+		this.onSave = this.onSave.bind(this);
 	}
 
 	/**
 	 * User clicked the cancel button
 	 */
 	onCancel() {
-		// If my parent component gave me an onCancel function to call
-		// via my onCancel property, call it.
+		// If my parent component gave me a function to call, call it
 		if (this.props.onCancel) {
 			this.props.onCancel();
+		}
+	}
+
+	/**
+	 * User clicked the save button
+	 */
+	onSave() {
+		// If my parent component gave me a function to call, call it
+		if (this.props.onSave) {
+			this.props.onSave();
 		}
 	}
 
@@ -51,6 +68,7 @@ export class AlbumActiveEditControls extends React.Component<ComponentProps> {
 						type="button"
 						className="btn btn-default"
 						title="Save album description"
+						onClick={this.onSave}
 					>
 						<Icon icon={Icons.CHEVRON_RIGHT} /> Save
 					</button>

@@ -43,6 +43,7 @@ export class AlbumEditControls extends React.Component<ComponentProps> {
 		super(props);
 		this.onEdit = this.onEdit.bind(this);
 		this.onCancel = this.onCancel.bind(this);
+		this.onSave = this.onSave.bind(this);
 	}
 
 	/**
@@ -56,13 +57,20 @@ export class AlbumEditControls extends React.Component<ComponentProps> {
 	}
 
 	/**
-	 * User clicked the cancel editing button
+	 * User clicked the Cancel button
 	 */
 	onCancel(): void {
 		// This will typically be hooked up by my Redux connector component, see my *-container.tsx file
 		if (this.props.onCancel) {
 			this.props.onCancel();
 		}
+	}
+
+	/**
+	 * User clicked the Save button
+	 */
+	onSave(): void {
+		console.log('On save PARENT clicked');
 	}
 
 	render() {
@@ -79,7 +87,11 @@ export class AlbumEditControls extends React.Component<ComponentProps> {
 			case Mode.EDIT_MODE_ON: {
 				// User is in edit mode.  Give controls to save and cancel.
 				return (
-					<AlbumActiveEditControls album={album} onCancel={this.onCancel} />
+					<AlbumActiveEditControls
+						album={album}
+						onCancel={this.onCancel}
+						onSave={this.onSave}
+					/>
 				);
 			}
 			case Mode.SAVING: {
