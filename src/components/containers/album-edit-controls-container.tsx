@@ -98,7 +98,7 @@ export class AlbumEditControls extends React.Component<ComponentProps> {
 				return <div>Saving...</div>;
 			}
 			default: {
-				// Shouldn't get here
+				// If my parent hasn't passed in an edit mode, render nothing
 				return null;
 			}
 		}

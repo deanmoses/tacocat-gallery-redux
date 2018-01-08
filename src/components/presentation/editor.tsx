@@ -5,9 +5,21 @@ import { ReactQuill } from 'react-quill';
  * Component properties
  */
 interface ComponentProps {
+	/**
+	 * The text / HTML to display
+	 */
 	readonly html: string;
-	readonly className: string;
+
+	/**
+	 * Optional CSS classes to display
+	 */
+	readonly className?: string;
 }
+
+function sendHtmlChangeEvent(newHtmlValue: string) {
+	console.log('New HTML value: ', newHtmlValue);
+}
+
 /**
  * Rich text editor component
  */
@@ -21,6 +33,7 @@ export const Editor: React.StatelessComponent<ComponentProps> = ({
 		formats={formats}
 		value={html}
 		className={className}
+		onChange={sendHtmlChangeEvent}
 	/>
 );
 
