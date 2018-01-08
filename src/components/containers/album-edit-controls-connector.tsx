@@ -1,5 +1,5 @@
 //
-// This is the React Redux connector for the LatestAlbumContainer component.
+// This is the React Redux connector for the AlbumEditControls component.
 //
 // Its job is to connect the target component to Redux in the following ways:
 // 1) Connect the Redux store's state with the target component's properties -- see mapStateToProps() below.
@@ -8,16 +8,17 @@
 // This way, the target component is completely unaware of Redux; it's a plain React component.
 //
 
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { RootState } from '@src/redux/reducers/root-state';
-import { AlbumThumb } from '@src/models/models';
-import * as actions from '@src/redux/actions/latest-album-action-builders';
-import { getLatestAlbum } from '@src/redux/selectors/selectors';
+import { getAuthentication } from '@src/redux/selectors/authentication-selectors';
+import { getEditMode } from '@src/redux/selectors/edit-mode-selectors';
+
 import {
-	LatestAlbumContainer,
-	ComponentProps
-} from '@src/components/containers/latest-album-container';
+	AlbumEditControls,
+	ComponentProps,
+	Mode
+} from '@src/components/presentation/album-edit-controls';
 
 /**
  * mapStateToProps() is a standard Redux function to transforms the state of
@@ -29,25 +30,32 @@ import {
  * @prop state the current Redux store state
  * @returns set of props for the target component
  */
-function mapStateToProps(state: RootState /*, ownProps: ComponentProps*/) {
-	const latestAlbum: AlbumThumb = getLatestAlbum(state);
-
+function mapStateToProps(
+	state: RootState /*, ownProps: ComponentProps*/
+): Partial<ComponentProps> {
+	let mode: Mode;
+	if (getAuthentication(state)) {
+		if (getEditMode(state)) {
+			mode = Mode.EDIT_MODE_ON;
+		} else {
+			mode = Mode.EDIT_MODE_ALLOWED;
+		}
+	} else {
+		mode = Mode.EDIT_MODE_DISALLOWED;
+	}
 	return {
-		latestAlbum
+		editMode: mode
 	};
 }
 
 /**
- * mapDispatchToProps() is a a standard Redux function to map Redux
- * action creator functions to functions on the target component.
+ * mapDispatchToProps() is a a standard Redux function to map
+ * Redux action creator functions to functions on the target component.
  */
-function mapDispatchToProps(dispatch: any) {
-	return bindActionCreators(
-		{
-			fetchLatestAlbumIfNeeded: actions.fetchLatestAlbumIfNeeded
-		},
-		dispatch
-	);
+function mapDispatchToProps(dispatch: any): Partial<ComponentProps> {
+	// STUPID -- I SEEM TO HAVE TO PUT THIS EMPTY FUNCTION HERE JUST TO PLEASE THE METHOD SIGNATURE BELOW
+	// TODO: figure out how to remove this method
+	return bindActionCreators({}, dispatch);
 }
 
 /**
@@ -64,5 +72,5 @@ function mapDispatchToProps(dispatch: any) {
 const ConnectedComponent = connect<{}, {}, ComponentProps>(
 	mapStateToProps,
 	mapDispatchToProps
-)(LatestAlbumContainer);
+)(AlbumEditControls);
 export default ConnectedComponent;

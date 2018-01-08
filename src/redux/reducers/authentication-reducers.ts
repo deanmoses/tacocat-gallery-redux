@@ -18,7 +18,7 @@ export function isAuthenticatedReducer(
 		return state ? state : false;
 	}
 	switch (action.type) {
-		case Actions.ActionTypeKeys.UPDATE_USER_AUTHENTICATION_STATUS:
+		case Actions.ActionTypeKeys.AUTHENTICATION_STATUS_UPDATE:
 			console.log(
 				action.type,
 				action.isAuthenticated ? 'authenticated' : 'not authenticated'

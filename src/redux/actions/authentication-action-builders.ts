@@ -5,7 +5,7 @@
 import Config from '@src/utils/config';
 import {
 	ActionTypeKeys,
-	UpdateUserAuthenticationStatus
+	AuthenticationStatusUpdate
 } from '@src/redux/actions/actions';
 
 /**
@@ -58,27 +58,27 @@ function handleErrors(response: Response): Response {
 /**
  * Action Builder: a helper function to create an Action
  */
-function updateStoreFromResponse(json: any): UpdateUserAuthenticationStatus {
+function updateStoreFromResponse(json: any): AuthenticationStatusUpdate {
 	// TODO: better error handling if we don't get back expected response
 	const authStatus: boolean = !!json.isAdmin;
-	return updateUserAuthenticationStatus(authStatus);
+	return updateAuthenticationStatus(authStatus);
 }
 
 /**
  * There was an error fetching, update store.
  */
-export function fetchError(error: Error): UpdateUserAuthenticationStatus {
+export function fetchError(error: Error): AuthenticationStatusUpdate {
 	console.log('Error fetching authentication status: ', error.message);
 	// when there's an error fetching auth status, set auth status to false
-	return updateUserAuthenticationStatus(false);
+	return updateAuthenticationStatus(false);
 }
 
 /**
  * Action Builder: a helper function to create an Action
  */
-export const updateUserAuthenticationStatus = (
+export const updateAuthenticationStatus = (
 	isAuthenticated: boolean
-): UpdateUserAuthenticationStatus => ({
-	type: ActionTypeKeys.UPDATE_USER_AUTHENTICATION_STATUS,
+): AuthenticationStatusUpdate => ({
+	type: ActionTypeKeys.AUTHENTICATION_STATUS_UPDATE,
 	isAuthenticated
 });

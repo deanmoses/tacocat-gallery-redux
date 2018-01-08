@@ -69,10 +69,18 @@ export default abstract class Config {
 		return 'https://tacocat.com/zenphoto/albums/' + imagePath;
 	}
 
-	public static zenphotoImageViewUrl(imagePath: string): string {
-		return 'https://tacocat.com/zenphoto/' + imagePath;
+	/**
+	 * URL to view an album or image in the default Zenphoto experience
+	 *
+	 * @param path path to an album or image
+	 */
+	public static zenphotoViewUrl(path: string): string {
+		return 'https://tacocat.com/zenphoto/' + path;
 	}
 
+	/**
+	 * URL to the full Zenphoto image edit page
+	 */
 	public static zenphotoImageEditUrl(
 		albumPath: string,
 		imageFilename: string
@@ -84,6 +92,9 @@ export default abstract class Config {
 			.replace('IMAGE_FILENAME', encodeURIComponent(imageFilename));
 	}
 
+	/**
+	 * URL to edit the ablum in the default Zenphoto experience
+	 */
 	public static zenphotoAlbumEditUrl(albumPath: string): string {
 		return (
 			'https://tacocat.com/zenphoto/zp-core/admin-edit.php?page=edit&album=' +

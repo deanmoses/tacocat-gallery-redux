@@ -22,4 +22,9 @@ export type RootState = {
 	 * True: user is authenticated
 	 */
 	readonly isAuthenticated: boolean;
+
+	/**
+	 * True: user is in edit mode
+	 */
+	readonly editMode: boolean;
 };

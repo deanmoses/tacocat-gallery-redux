@@ -13,6 +13,7 @@ export type ComponentProps = {
 	 * CSS class names to add to the outputted HTML
 	 */
 	readonly className?: string;
+	readonly editMode?: boolean;
 };
 
 /**
@@ -21,16 +22,14 @@ export type ComponentProps = {
  *
  * TODO: build edit mode!
  */
-export class EditableHtml extends React.Component<ComponentProps> {
-	render() {
-		const editMode = !this.props.html; // TODO: figure out editMode for real
-		return editMode ? (
-			<Editor html={this.props.html} className={this.props.className} />
-		) : (
-			<div
-				className={this.props.className}
-				dangerouslySetInnerHTML={{ __html: this.props.html }}
-			/>
-		);
-	}
-}
+export const EditableHtml: React.StatelessComponent<ComponentProps> = ({
+	html,
+	className,
+	editMode = false
+}) => {
+	return editMode ? (
+		<Editor html={html} className={className} />
+	) : (
+		<div className={className} dangerouslySetInnerHTML={{ __html: html }} />
+	);
+};

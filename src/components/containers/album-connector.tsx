@@ -26,7 +26,10 @@ import {
  * @prop state the current Redux store state
  * @returns set of props for this component
  */
-function mapStateToProps(state: RootState, ownProps: ComponentProps) {
+function mapStateToProps(
+	state: RootState,
+	ownProps: ComponentProps
+): Partial<ComponentProps> {
 	const path: string = ownProps.path;
 	const album: Album = getAlbum(state, path);
 
@@ -60,7 +63,7 @@ function mapDispatchToProps(dispatch: any) {
  *
  * This way, the target component is completely unaware of Redux; it's a plain React component.
  */
-export const ConnectedComponent = connect<{}, {}, ComponentProps>(
+const ConnectedComponent = connect<{}, {}, ComponentProps>(
 	mapStateToProps,
 	mapDispatchToProps
 )(AlbumContainer);

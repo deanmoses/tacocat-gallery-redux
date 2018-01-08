@@ -18,7 +18,8 @@ describe('root reducer test', () => {
 		const state: RootState = {
 			albumsByPath: {},
 			latestAlbum: null,
-			isAuthenticated: true
+			isAuthenticated: true,
+			editMode: false
 		};
 		expect(rootReducer(state, undefined)).toEqual({
 			albumsByPath: {},
@@ -30,7 +31,7 @@ describe('root reducer test', () => {
 		expect(
 			rootReducer(
 				initialRootState,
-				authenticationActions.updateUserAuthenticationStatus(true)
+				authenticationActions.updateAuthenticationStatus(true)
 			)
 		).toEqual({
 			albumsByPath: {},

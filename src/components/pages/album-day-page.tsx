@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { Album } from '@src/models/models';
 import * as Site from '@src/components/presentation/site';
-import { EditableHtml } from '@src/components/presentation/editable-html';
+import EditableHtml from '@src/components/containers/editable-html-connector';
 import * as Thumb from '@src/components/presentation/thumb';
+import AlbumEditControls from '@src/components/containers/album-edit-controls-connector';
 
 /**
  * Component properties
@@ -47,6 +48,6 @@ export const DayAlbumPage: React.StatelessComponent<ComponentProps> = ({
 			// selectedItem={selectedItem}
 			// onSelect={this.onThumbSelect}
 		/>
-		<div>Edit Menu Goes Here</div>
+		<AlbumEditControls album={album} />
 	</Site.Page>
 );

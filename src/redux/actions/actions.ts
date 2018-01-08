@@ -20,7 +20,8 @@ export enum ActionTypeKeys {
 	LATEST_ALBUM_REQUESTED = 'LATEST_ALBUM_REQUESTED',
 	LATEST_ALBUM_RECEIVED = 'LATEST_ALBUM_RECEIVED',
 	LATEST_ALBUM_ERRORED = 'LATEST_ALBUM_ERRORED',
-	UPDATE_USER_AUTHENTICATION_STATUS = 'UPDATE_USER_AUTHENTICATION_STATUS',
+	AUTHENTICATION_STATUS_UPDATE = 'AUTHENTICATION_STATUS_UPDATE',
+	EDIT_MODE_UPDATE = 'EDIT_MODE_UPDATE',
 	OTHER_ACTION = 'OTHER_ACTION'
 }
 
@@ -31,17 +32,21 @@ export type ActionTypes =
 	| LatestAlbumRequested
 	| LatestAlbumRecieved
 	| LatestAlbumErrored
-	| UpdateUserAuthenticationStatus
+	| AuthenticationStatusUpdate
+	| EditModeUpdate
 	| OtherAction;
 
 /**
- * Action type definition
+ * Album has been requested (but not yet received) from the server
  */
 export interface AlbumRequested extends Action {
 	type: ActionTypeKeys.ALBUM_REQUESTED;
 	albumPath: string;
 }
 
+/**
+ * Album has errored attempting to retrieve from the server
+ */
 export interface AlbumErrored extends Action {
 	type: ActionTypeKeys.ALBUM_ERRORED;
 	albumPath: string;
@@ -49,7 +54,7 @@ export interface AlbumErrored extends Action {
 }
 
 /**
- * Action type definition
+ * Album has been received from the server
  */
 export interface AlbumRecieved extends Action {
 	type: ActionTypeKeys.ALBUM_RECEIVED;
@@ -58,19 +63,22 @@ export interface AlbumRecieved extends Action {
 }
 
 /**
- * Action type definition
+ * Latest album has been requested (but not yet received) from server
  */
 export interface LatestAlbumRequested extends Action {
 	type: ActionTypeKeys.LATEST_ALBUM_REQUESTED;
 }
 
+/**
+ * Latest album has errored attempting to retrieve from server
+ */
 export interface LatestAlbumErrored extends Action {
 	type: ActionTypeKeys.LATEST_ALBUM_ERRORED;
 	error: FetchError;
 }
 
 /**
- * Action type definition
+ * Latest album has been received from server
  */
 export interface LatestAlbumRecieved extends Action {
 	type: ActionTypeKeys.LATEST_ALBUM_RECEIVED;
@@ -78,11 +86,19 @@ export interface LatestAlbumRecieved extends Action {
 }
 
 /**
- * Action type definition
+ * Update authentication status
  */
-export interface UpdateUserAuthenticationStatus extends Action {
-	type: ActionTypeKeys.UPDATE_USER_AUTHENTICATION_STATUS;
+export interface AuthenticationStatusUpdate extends Action {
+	type: ActionTypeKeys.AUTHENTICATION_STATUS_UPDATE;
 	isAuthenticated: boolean;
+}
+
+/**
+ * Update edit mode
+ */
+export interface EditModeUpdate extends Action {
+	type: ActionTypeKeys.EDIT_MODE_UPDATE;
+	editMode: boolean;
 }
 
 /**

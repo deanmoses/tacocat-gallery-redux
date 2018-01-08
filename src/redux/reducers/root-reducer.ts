@@ -2,6 +2,7 @@ import { RootState } from '@src/redux/reducers/root-state';
 import { albumsByPathReducer } from '@src/redux/reducers/album-reducers';
 import { latestAlbumReducer } from '@src/redux/reducers/latest-album-reducers';
 import { isAuthenticatedReducer } from '@src/redux/reducers/authentication-reducers';
+import { editModeReducer } from '@src/redux/reducers/edit-mode-reducers';
 
 /**
  * Starting state of the application
@@ -9,7 +10,8 @@ import { isAuthenticatedReducer } from '@src/redux/reducers/authentication-reduc
 export const initialRootState: RootState = {
 	albumsByPath: {},
 	latestAlbum: null,
-	isAuthenticated: false
+	isAuthenticated: false,
+	editMode: false
 };
 
 /**
@@ -19,5 +21,6 @@ export const initialRootState: RootState = {
 export const allReducers = {
 	albumsByPath: albumsByPathReducer,
 	latestAlbum: latestAlbumReducer,
-	isAuthenticated: isAuthenticatedReducer
+	isAuthenticated: isAuthenticatedReducer,
+	editMode: editModeReducer
 };
