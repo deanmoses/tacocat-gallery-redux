@@ -33,7 +33,7 @@ function mapStateToProps(
 	state: RootState /*, ownProps: ComponentProps*/
 ): Partial<ComponentProps> {
 	return {
-		editMode: getAuthentication(state) && getEditMode(state)
+		editMode: !getAuthentication(state) && getEditMode(state)
 	};
 }
 

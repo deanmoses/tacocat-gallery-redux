@@ -30,6 +30,12 @@ export interface ComponentProps {
 	 * This will typically be hooked up by my Redux connector component, see my *-container.tsx file
 	 */
 	readonly onCancel?: () => void;
+
+	/**
+	 * Called when my Save button is clicked.
+	 * This will typically be hooked up by my Redux connector component, see my *-container.tsx file
+	 */
+	readonly onSave?: (path: string) => void;
 }
 
 /**
@@ -70,7 +76,10 @@ export class AlbumEditControls extends React.Component<ComponentProps> {
 	 * User clicked the Save button
 	 */
 	onSave(): void {
-		console.log('On save PARENT clicked');
+		// This will typically be hooked up by my Redux connector component, see my *-container.tsx file
+		if (this.props.onSave) {
+			this.props.onSave(this.props.album.path);
+		}
 	}
 
 	render() {

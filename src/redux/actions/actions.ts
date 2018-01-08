@@ -23,6 +23,9 @@ export enum ActionTypeKeys {
 	ALBUM_RECEIVED = 'ALBUM_RECEIVED',
 	ALBUM_ERRORED = 'ALBUM_ERRORED',
 	DRAFT_UPDATE = 'DRAFT_UPDATE',
+	DRAFT_SAVING = 'DRAFT_SAVING',
+	DRAFT_SAVED = 'DRAFT_SAVED',
+	DRAFT_SAVE_ERRORED = 'DRAFT_SAVE_ERRORED',
 	LATEST_ALBUM_REQUESTED = 'LATEST_ALBUM_REQUESTED',
 	LATEST_ALBUM_RECEIVED = 'LATEST_ALBUM_RECEIVED',
 	LATEST_ALBUM_ERRORED = 'LATEST_ALBUM_ERRORED',
@@ -36,6 +39,9 @@ export type ActionTypes =
 	| AlbumRecieved
 	| AlbumErrored
 	| DraftUpdate
+	| DraftSaving
+	| DraftSaved
+	| DraftSaveErrored
 	| LatestAlbumRequested
 	| LatestAlbumRecieved
 	| LatestAlbumErrored
@@ -78,7 +84,41 @@ export interface DraftUpdate extends Action {
 	 * Path of album or image being updated
 	 */
 	path: string;
-	draftContent: DraftContent;
+	newDraftContent: DraftContent;
+}
+
+/**
+ * Draft is being saved to the server
+ */
+export interface DraftSaving extends Action {
+	type: ActionTypeKeys.DRAFT_SAVING;
+	/**
+	 * Path of album or image being updated
+	 */
+	path: string;
+}
+
+/**
+ * Draft was saved successfully to the server
+ */
+export interface DraftSaved extends Action {
+	type: ActionTypeKeys.DRAFT_SAVED;
+	/**
+	 * Path of album or image being updated
+	 */
+	path: string;
+}
+
+/**
+ * Draft save errored
+ */
+export interface DraftSaveErrored extends Action {
+	type: ActionTypeKeys.DRAFT_SAVE_ERRORED;
+	/**
+	 * Path of album or image being updated
+	 */
+	path: string;
+	error: FetchError;
 }
 
 /**

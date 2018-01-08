@@ -21,11 +21,16 @@ export type DraftsByPath = {
  * Represents an unsaved draft edit of an album or an image
  */
 export type Draft = {
-	isSaving?: boolean;
+	path: string;
+	state?: DraftState;
 	content?: DraftContent;
 };
-
 export type DraftContent = Album | Image;
+export enum DraftState {
+	UNSAVED_CHANGES = 'UNSAVED_CHANGES',
+	SAVING = 'SAVING',
+	SAVED = 'SAVED'
+}
 
 /**
  * A photo album

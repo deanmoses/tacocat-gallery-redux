@@ -20,17 +20,17 @@ export function updateDraftField(
 	// I would like to declare draftContent as type of DraftContent, but I can't
 	// because I'm setting the field's value via array index syntax like this:
 	// draftContent[field] = newValue
-	let draftContent: any = {};
-	draftContent[field] = newValue;
-	return updateDraftContent(path, draftContent as DraftContent);
+	let newDraftContent: any = {};
+	newDraftContent[field] = newValue;
+	return updateDraftContent(path, newDraftContent as DraftContent);
 }
 
 /**
  * Update the content of an unsaved draft of an album or image in the Redux store
  */
-function updateDraftContent(path: string, draftContent: DraftContent) {
+function updateDraftContent(path: string, newDraftContent: DraftContent) {
 	return function(dispatch: Function) {
-		return dispatch(draftUpdateAction(path, draftContent));
+		return dispatch(draftUpdateAction(path, newDraftContent));
 	};
 }
 
@@ -43,5 +43,5 @@ const draftUpdateAction = (
 ): DraftUpdate => ({
 	type: ActionTypeKeys.DRAFT_UPDATE,
 	path: path,
-	draftContent: draftContent
+	newDraftContent: draftContent
 });

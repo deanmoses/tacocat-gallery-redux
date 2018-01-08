@@ -53,6 +53,18 @@ export default abstract class Config {
 	}
 
 	/**
+	 * URL of the JSON REST API to save an album
+	 * @param albumPath path of an album
+	 */
+	public static jsonAlbumSaveUrl(albumPath: string): string {
+		// Not having the final slash messes up POSTing to the edit URL,
+		// because as of late 2016 zenphoto started redirecting
+		// to the version with the slash.
+		var finalSlash = albumPath.endsWith('/') ? '' : '/';
+		return 'https://tacocat.com/zenphoto/' + albumPath + finalSlash;
+	}
+
+	/**
 	 * URL you can hit to update the JSON cache of a specific album
 	 */
 	public static refreshAlbumCacheUrl(albumPath: string): string {

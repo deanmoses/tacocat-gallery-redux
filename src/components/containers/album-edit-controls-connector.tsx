@@ -17,6 +17,7 @@ import {
 	enableEditMode,
 	disableEditMode
 } from '@src/redux/actions/edit-mode-action-builders';
+import { saveDraft } from '@src/redux/actions/draft-save-action-builders';
 import {
 	AlbumEditControls,
 	ComponentProps,
@@ -37,7 +38,7 @@ function mapStateToProps(
 	state: RootState /*, ownProps: ComponentProps*/
 ): Partial<ComponentProps> {
 	let mode: Mode;
-	if (getAuthentication(state)) {
+	if (!getAuthentication(state)) {
 		if (getEditMode(state)) {
 			mode = Mode.EDIT_MODE_ON;
 		} else {
@@ -59,7 +60,8 @@ function mapDispatchToProps(dispatch: any) {
 	return bindActionCreators(
 		{
 			onEdit: enableEditMode,
-			onCancel: disableEditMode
+			onCancel: disableEditMode,
+			onSave: saveDraft
 		},
 		dispatch
 	);
