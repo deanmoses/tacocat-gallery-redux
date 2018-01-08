@@ -2,10 +2,34 @@
  * Interfaces for the application state
  */
 
-export interface AlbumsByPath {
+/**
+ * Represents a data store of albums retrievable by their path
+ */
+export type AlbumsByPath = {
 	[albumPath: string]: Album;
-}
+};
 
+/**
+ * Represents a data store of draft edits of both albums and images,
+ * retrievable by the path of that album or image
+ */
+export type DraftsByPath = {
+	[path: string]: Draft;
+};
+
+/**
+ * Represents an unsaved draft edit of an album or an image
+ */
+export type Draft = {
+	isSaving?: boolean;
+	content?: DraftContent;
+};
+
+export type DraftContent = Album | Image;
+
+/**
+ * A photo album
+ */
 export interface Album {
 	path: string;
 	title?: string;
@@ -34,6 +58,9 @@ export interface Album {
 	getImage?: Function;
 }
 
+/**
+ * Something that can be displayed as a thumbnail image
+ */
 export interface Thumbable {
 	path: string;
 	title: string;
@@ -46,26 +73,44 @@ export interface Thumbable {
 	height: number;
 }
 
+/**
+ * Enough information to display an Album as a thumbnail image
+ */
 export interface AlbumThumb extends Thumbable {
 	type?: AlbumType;
 }
 
+/**
+ * Enough information to display an Image as a thumbnail image
+ */
 export interface Image extends Thumbable {
 	nextImageHref: string;
 	prevImageHref: string;
 }
 
+/**
+ * Enough information to navigate to an Album
+ */
 export interface AlbumNavInfo {
 	path?: string;
 	title?: string;
 	date?: number;
 }
 
+/**
+ * Enough information to navigate to an Image
+ */
 export interface ImageNavInfo {
 	path: string;
 	title: string;
 }
 
+/**
+ * Types of albums
+ * TODO: I really want to get rid of this:
+ * 1) The root concept (Album) should not know about its children.
+ * 2) If I want to add new types of albums, new renderers, I shouldn't have to touch the data model.
+ */
 export enum AlbumType {
 	ROOT = 'ROOT',
 	YEAR = 'YEAR',

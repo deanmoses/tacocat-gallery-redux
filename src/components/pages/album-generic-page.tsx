@@ -39,7 +39,12 @@ export const GenericAlbumPage: React.StatelessComponent<ComponentProps> = ({
 		<section>
 			<h2 className="hidden">Overview</h2>
 			GENERIC
-			<EditableHtml html={album.desc} className="caption" />
+			<EditableHtml
+				html={album.desc}
+				field="desc"
+				path={album.path}
+				className="caption"
+			/>
 		</section>
 		<Thumb.List
 			items={album.images}

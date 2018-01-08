@@ -61,7 +61,12 @@ class ImagePageBody extends React.Component<ImagePageBodyProps> {
 			<div className="photo-body container-fluid">
 				<section className="col-md-3">
 					<h2 className="hidden">Caption</h2>
-					<EditableHtml html={image.desc} className="caption" />
+					<EditableHtml
+						html={image.desc}
+						field="desc"
+						path={image.path}
+						className="caption"
+					/>
 				</section>
 				<section className="col-md-9">
 					<h2 className="hidden">Photo</h2>

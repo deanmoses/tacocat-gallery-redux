@@ -14,30 +14,36 @@ interface ComponentProps {
 	 * Optional CSS classes to display
 	 */
 	readonly className?: string;
-}
 
-function sendHtmlChangeEvent(newHtmlValue: string) {
-	console.log('New HTML value: ', newHtmlValue);
+	/**
+	 * Called when my text / HTML content changes
+	 */
+	readonly onHtmlChange?: (html: string) => void;
 }
 
 /**
- * Rich text editor component
+ * Rich text editor component.
+ * Built over the Quill.js rich text editor.
+ * It was kind of hell to get it working, but there weren't any other better options.
+ * See my Evernote on what I had to do in the react-quill node module source code to get it to work.
  */
 export const Editor: React.StatelessComponent<ComponentProps> = ({
 	html,
-	className
+	className,
+	onHtmlChange
 }) => (
 	<ReactQuill
-		theme="bubble"
+		theme="bubble" // The "bubble" theme is the one that makes the toolbar pop up when text is selected, rather than be there permanently
 		modules={modules}
 		formats={formats}
 		value={html}
 		className={className}
-		onChange={sendHtmlChangeEvent}
+		onChange={onHtmlChange}
 	/>
 );
 
 const modules = {
+	// Items in the Quill.js editor toolbar
 	toolbar: [
 		['bold', 'italic', 'underline'],
 		[{ list: 'ordered' }, { list: 'bullet' }],
@@ -45,6 +51,8 @@ const modules = {
 	]
 };
 
+// What formatting the Quill.js editor allows, whether via the toolbar
+// or via keystroke commands (or pasting content in?)
 const formats = [
 	'header',
 	'bold',

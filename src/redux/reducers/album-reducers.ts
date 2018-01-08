@@ -76,6 +76,7 @@ export function albumsByPathReducer(
 			return albumsCopy;
 		}
 
+		// Default: don't want to handle this action, return existing state unchanged
 		default:
 			return albumsByPath;
 	}

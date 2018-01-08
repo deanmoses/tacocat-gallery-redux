@@ -39,7 +39,12 @@ export const DayAlbumPage: React.StatelessComponent<ComponentProps> = ({
 		</Site.HeaderTitle>
 		<section>
 			<h2 className="hidden">Overview</h2>
-			<EditableHtml html={album.desc} className={'caption'} />
+			<EditableHtml
+				html={album.desc}
+				field="desc"
+				path={album.path}
+				className={'caption'}
+			/>
 		</section>
 		<Thumb.List
 			items={album.images}

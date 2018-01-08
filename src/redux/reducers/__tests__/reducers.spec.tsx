@@ -17,6 +17,7 @@ describe('root reducer test', () => {
 	it('should keep authenticated=true', () => {
 		const state: RootState = {
 			albumsByPath: {},
+			draftsByPath: {},
 			latestAlbum: null,
 			isAuthenticated: true,
 			editMode: false

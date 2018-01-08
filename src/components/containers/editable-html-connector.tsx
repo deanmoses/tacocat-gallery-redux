@@ -13,6 +13,7 @@ import { bindActionCreators } from 'redux';
 import { RootState } from '@src/redux/reducers/root-state';
 import { getAuthentication } from '@src/redux/selectors/authentication-selectors';
 import { getEditMode } from '@src/redux/selectors/edit-mode-selectors';
+import { updateDraftField } from '@src/redux/actions/draft-action-builders';
 import {
 	EditableHtml,
 	ComponentProps
@@ -31,9 +32,6 @@ import {
 function mapStateToProps(
 	state: RootState /*, ownProps: ComponentProps*/
 ): Partial<ComponentProps> {
-	// Edit mode is on if user is both authenticed and in edit mode
-	// Hopefully, it's impossible to get into the state of an unauthenticated
-	// user in edit mode, but...
 	return {
 		editMode: getAuthentication(state) && getEditMode(state)
 	};
@@ -44,9 +42,12 @@ function mapStateToProps(
  * Redux action creator functions to functions on the target component.
  */
 function mapDispatchToProps(dispatch: any): Partial<ComponentProps> {
-	// STUPID -- I SEEM TO HAVE TO PUT THIS EMPTY FUNCTION HERE JUST TO PLEASE THE METHOD SIGNATURE BELOW
-	// TODO: figure out how to remove this method
-	return bindActionCreators({}, dispatch);
+	return bindActionCreators(
+		{
+			onHtmlChange: updateDraftField
+		},
+		dispatch
+	);
 }
 
 /**

@@ -8,7 +8,12 @@
 //
 
 import { Action } from 'redux';
-import { Album, AlbumThumb, FetchError } from '@src/models/models';
+import {
+	Album,
+	AlbumThumb,
+	DraftContent,
+	FetchError
+} from '@src/models/models';
 
 /**
  * The keys for each action in the application
@@ -17,6 +22,7 @@ export enum ActionTypeKeys {
 	ALBUM_REQUESTED = 'ALBUM_REQUESTED',
 	ALBUM_RECEIVED = 'ALBUM_RECEIVED',
 	ALBUM_ERRORED = 'ALBUM_ERRORED',
+	DRAFT_UPDATE = 'DRAFT_UPDATE',
 	LATEST_ALBUM_REQUESTED = 'LATEST_ALBUM_REQUESTED',
 	LATEST_ALBUM_RECEIVED = 'LATEST_ALBUM_RECEIVED',
 	LATEST_ALBUM_ERRORED = 'LATEST_ALBUM_ERRORED',
@@ -29,6 +35,7 @@ export type ActionTypes =
 	| AlbumRequested
 	| AlbumRecieved
 	| AlbumErrored
+	| DraftUpdate
 	| LatestAlbumRequested
 	| LatestAlbumRecieved
 	| LatestAlbumErrored
@@ -60,6 +67,18 @@ export interface AlbumRecieved extends Action {
 	type: ActionTypeKeys.ALBUM_RECEIVED;
 	albumPath: string;
 	album: Album;
+}
+
+/**
+ * Draft edit of an album or image is being created or updated
+ */
+export interface DraftUpdate extends Action {
+	type: ActionTypeKeys.DRAFT_UPDATE;
+	/**
+	 * Path of album or image being updated
+	 */
+	path: string;
+	draftContent: DraftContent;
 }
 
 /**

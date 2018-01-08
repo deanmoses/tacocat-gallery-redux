@@ -73,7 +73,6 @@ export class AlbumActiveEditControls extends React.Component<ComponentProps> {
 						<Icon icon={Icons.CHEVRON_RIGHT} /> Save
 					</button>
 				</div>
-				TODO: IMPLEMENT
 			</div>
 		);
 	}
