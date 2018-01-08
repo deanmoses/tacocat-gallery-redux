@@ -19,7 +19,7 @@ localForage.config({
 const reduxPersistConfig = {
 	key: 'root',
 	storage: localForage,
-	blacklist: ['isAuthenticated', 'editMode']
+	blacklist: ['isAuthenticated', 'editMode', 'draftsByPath']
 };
 const combinedReducers = persistCombineReducers(
 	reduxPersistConfig,
