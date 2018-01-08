@@ -13,12 +13,11 @@ import { bindActionCreators } from 'redux';
 import { RootState } from '@src/redux/reducers/root-state';
 import { getAuthentication } from '@src/redux/selectors/authentication-selectors';
 import { getEditMode } from '@src/redux/selectors/edit-mode-selectors';
-
 import {
 	AlbumEditControls,
 	ComponentProps,
 	Mode
-} from '@src/components/presentation/album-edit-controls';
+} from '@src/components/containers/album-edit-controls-container';
 
 /**
  * mapStateToProps() is a standard Redux function to transforms the state of
