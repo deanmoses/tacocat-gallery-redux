@@ -21,9 +21,15 @@ export interface ComponentProps {
 	readonly album: Album;
 	readonly editMode?: Mode;
 	/**
-	 * Called when my edit button is clicked
+	 * Called when my Edit button is clicked.
+	 * This will typically be hooked up by my Redux connector component, see my *-container.tsx file.
 	 */
-	readonly onEdit?: (editMode: boolean) => void;
+	readonly onEdit?: () => void;
+	/**
+	 * Called when my Cancel Edit button is clicked.
+	 * This will typically be hooked up by my Redux connector component, see my *-container.tsx file
+	 */
+	readonly onCancel?: () => void;
 }
 
 /**
@@ -36,16 +42,26 @@ export class AlbumEditControls extends React.Component<ComponentProps> {
 	constructor(props: ComponentProps) {
 		super(props);
 		this.onEdit = this.onEdit.bind(this);
+		this.onCancel = this.onCancel.bind(this);
 	}
 
 	/**
-	 * User clicked the edit button
+	 * User clicked the Edit button
 	 */
 	onEdit(): void {
-		console.log('Hey! Set edit mode in PARENT!');
 		// This will typically be hooked up by my Redux connector component, see my *-container.tsx file
 		if (this.props.onEdit) {
-			this.props.onEdit(true);
+			this.props.onEdit();
+		}
+	}
+
+	/**
+	 * User clicked the cancel editing button
+	 */
+	onCancel(): void {
+		// This will typically be hooked up by my Redux connector component, see my *-container.tsx file
+		if (this.props.onCancel) {
+			this.props.onCancel();
 		}
 	}
 
@@ -62,7 +78,9 @@ export class AlbumEditControls extends React.Component<ComponentProps> {
 			}
 			case Mode.EDIT_MODE_ON: {
 				// User is in edit mode.  Give controls to save and cancel.
-				return <AlbumActiveEditControls album={album} />;
+				return (
+					<AlbumActiveEditControls album={album} onCancel={this.onCancel} />
+				);
 			}
 			case Mode.SAVING: {
 				return <div>Saving...</div>;

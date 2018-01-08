@@ -4,11 +4,18 @@
 
 import { ActionTypeKeys, EditModeUpdate } from '@src/redux/actions/actions';
 
+export function enableEditMode() {
+	return setEditMode(true);
+}
+
+export function disableEditMode() {
+	return setEditMode(false);
+}
+
 /**
  * Update edit mode in the Redux store
  */
 export function setEditMode(editMode: boolean) {
-	console.log('setEditMode()', editMode);
 	return function(dispatch: Function) {
 		return dispatch(editModeUpdateAction(editMode));
 	};
