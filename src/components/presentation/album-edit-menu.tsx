@@ -8,6 +8,10 @@ import { Icon, Icons } from '@src/components/presentation/icon';
  */
 interface ComponentProps {
 	readonly album: Album;
+	/**
+	 * Called when my edit button is clicked
+	 */
+	readonly onEdit?: () => void;
 }
 
 /**
@@ -19,11 +23,18 @@ export class AlbumEditMenu extends React.Component<ComponentProps> {
 	 */
 	constructor(props: ComponentProps) {
 		super(props);
-		this.edit.bind(this);
+		this.onEdit = this.onEdit.bind(this);
 	}
 
-	edit() {
-		console.log('Hey! Set edit mode!');
+	/**
+	 * User clicked the edit button
+	 */
+	onEdit() {
+		// If my parent component gave me an onEdit function to call
+		// via my onEdit property, call it.
+		if (this.props.onEdit) {
+			this.props.onEdit();
+		}
 	}
 
 	render() {
@@ -34,7 +45,11 @@ export class AlbumEditMenu extends React.Component<ComponentProps> {
 		return (
 			<div className="editControls">
 				<div className="btn-group">
-					<button type="button" className="btn btn-default" onClick={this.edit}>
+					<button
+						type="button"
+						className="btn btn-default"
+						onClick={this.onEdit}
+					>
 						<Icon icon={Icons.CHEVRON_RIGHT} /> Edit
 					</button>
 					<button

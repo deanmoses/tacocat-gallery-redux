@@ -20,12 +20,35 @@ export enum Mode {
 export interface ComponentProps {
 	readonly album: Album;
 	readonly editMode?: Mode;
+	/**
+	 * Called when my edit button is clicked
+	 */
+	readonly onEdit?: (editMode: boolean) => void;
 }
 
 /**
  * The album edit controls
  */
 export class AlbumEditControls extends React.Component<ComponentProps> {
+	/**
+	 * Constructor is invoked once, before the component is mounted
+	 */
+	constructor(props: ComponentProps) {
+		super(props);
+		this.onEdit = this.onEdit.bind(this);
+	}
+
+	/**
+	 * User clicked the edit button
+	 */
+	onEdit(): void {
+		console.log('Hey! Set edit mode in PARENT!');
+		// This will typically be hooked up by my Redux connector component, see my *-container.tsx file
+		if (this.props.onEdit) {
+			this.props.onEdit(true);
+		}
+	}
+
 	render() {
 		const album = this.props.album;
 		switch (this.props.editMode) {
@@ -35,7 +58,7 @@ export class AlbumEditControls extends React.Component<ComponentProps> {
 			}
 			case Mode.EDIT_MODE_ALLOWED: {
 				// User is allowed to edit but isn't currently editing.  Show edit button and a dropdown of other options.
-				return <AlbumEditMenu album={album} />;
+				return <AlbumEditMenu album={album} onEdit={this.onEdit} />;
 			}
 			case Mode.EDIT_MODE_ON: {
 				// User is in edit mode.  Give controls to save and cancel.

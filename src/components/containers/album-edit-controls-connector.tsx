@@ -13,6 +13,7 @@ import { bindActionCreators } from 'redux';
 import { RootState } from '@src/redux/reducers/root-state';
 import { getAuthentication } from '@src/redux/selectors/authentication-selectors';
 import { getEditMode } from '@src/redux/selectors/edit-mode-selectors';
+import { setEditMode } from '@src/redux/actions/edit-mode-action-builders';
 import {
 	AlbumEditControls,
 	ComponentProps,
@@ -33,7 +34,7 @@ function mapStateToProps(
 	state: RootState /*, ownProps: ComponentProps*/
 ): Partial<ComponentProps> {
 	let mode: Mode;
-	if (getAuthentication(state)) {
+	if (!getAuthentication(state)) {
 		if (getEditMode(state)) {
 			mode = Mode.EDIT_MODE_ON;
 		} else {
@@ -51,10 +52,8 @@ function mapStateToProps(
  * mapDispatchToProps() is a a standard Redux function to map
  * Redux action creator functions to functions on the target component.
  */
-function mapDispatchToProps(dispatch: any): Partial<ComponentProps> {
-	// STUPID -- I SEEM TO HAVE TO PUT THIS EMPTY FUNCTION HERE JUST TO PLEASE THE METHOD SIGNATURE BELOW
-	// TODO: figure out how to remove this method
-	return bindActionCreators({}, dispatch);
+function mapDispatchToProps(dispatch: any) {
+	return bindActionCreators({ onEdit: setEditMode }, dispatch);
 }
 
 /**
