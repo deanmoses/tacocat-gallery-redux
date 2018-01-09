@@ -20,18 +20,14 @@ export enum Icons {
  */
 interface IconProps {
 	readonly icon: Icons;
-	readonly size?: number;
 	readonly color?: string;
 	readonly onClick?: (x: any) => any;
 }
+
 /**
  * Icon component
  */
 export class Icon extends React.Component<IconProps> {
-	static defaultProps: Partial<IconProps> = {
-		size: 16
-	};
-
 	constructor(props: IconProps) {
 		super(props);
 		this.click = this.click.bind(this);
@@ -41,18 +37,20 @@ export class Icon extends React.Component<IconProps> {
 		const styles = {
 			svg: {
 				display: 'inline-block',
-				verticalAlign: 'middle'
+				verticalAlign: 'middle',
+				position: 'relative' as 'relative',
+				width: '1.2em',
+				height: '1.25em',
+				bottom: '0.125em'
 			},
 			path: {
-				fill: this.props.color
+				fill: 'currentColor'
 			}
 		};
 
 		return (
 			<svg
 				style={styles.svg}
-				width={`${this.props.size}px`}
-				height={`${this.props.size}px`}
 				viewBox="0 0 20 20" // The viewBox is tuned to work with the Entypo icon set http://www.entypo.com/.  Other icon sets can be used, but I may have to change the viewBox
 			>
 				<path style={styles.path} d={this.props.icon} />
