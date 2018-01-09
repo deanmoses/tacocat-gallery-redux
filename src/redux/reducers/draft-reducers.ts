@@ -29,13 +29,17 @@ export function draftsByPathReducer(
 			console.log(action.type, action.path, action.newDraftContent);
 			if (!action.path) throw new Error('Draft with no path');
 
-			// Make copy of existing draft or create a new one, and apply new content
+			// Get contents of old draft object, if any
+			const oldDraft = draftsByPath[action.path];
+			const oldDraftContent = !!oldDraft ? oldDraft.content : undefined;
+
+			// Create new draft object
 			const draftCopy: Draft = {
-				...draftsByPath[action.path],
-				...{
-					path: action.path, // in case we're creating a new draft we need to set its path
-					state: DraftState.UNSAVED_CHANGES, // set status to having unsaved changes
-					content: action.newDraftContent // the new content to apply
+				path: action.path, // in case we're creating a new draft we need to set its path
+				state: DraftState.UNSAVED_CHANGES, // set status to having unsaved changes
+				content: {
+					...oldDraftContent, // add in old content
+					...action.newDraftContent // overwrite old content with new content
 				}
 			};
 
