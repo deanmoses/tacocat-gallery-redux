@@ -42,7 +42,10 @@ type HeaderTitleProps = {
 	readonly shortTitle?: string;
 	readonly path?: string;
 	readonly href?: string;
-	readonly showTitle?: boolean;
+	/**
+	 * Show the Dean, Lucie, Felix and Milo Moses site title in the header, in addition to the page title
+	 */
+	readonly showSiteTitle?: boolean;
 	readonly showTitleLink?: boolean;
 	readonly showSearch?: boolean;
 	readonly children?: any;
@@ -52,7 +55,7 @@ export const HeaderTitle: React.StatelessComponent<HeaderTitleProps> = ({
 	shortTitle,
 	href,
 	path,
-	showTitle = true,
+	showSiteTitle = true,
 	showTitleLink = true,
 	showSearch = true,
 	children
@@ -68,7 +71,7 @@ export const HeaderTitle: React.StatelessComponent<HeaderTitleProps> = ({
 				/>
 			</div>
 			<div className="header-controls hidden-xxs">
-				{showTitle && (
+				{showSiteTitle && (
 					<span className="hidden-xs site-title">{Config.siteTitle()}</span>
 				)}
 				{showSearch && (

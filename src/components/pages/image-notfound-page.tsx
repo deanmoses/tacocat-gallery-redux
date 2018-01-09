@@ -20,7 +20,7 @@ const ImageNotFoundPage: React.StatelessComponent<ComponentProps> = ({
 		<Site.HeaderTitle
 			href={album.href}
 			title={'Image Not Found'}
-			showTitle={false}
+			showSiteTitle={false}
 			showSearch={false}
 		/>
 		<Site.FullPageMessage>

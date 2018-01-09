@@ -32,7 +32,7 @@ const ImageErrorPage: React.StatelessComponent<ComponentProps> = ({
 				title={Config.siteTitle()}
 				shortTitle={Config.siteShortTitle()}
 				showTitleLink={false}
-				showTitle={false}
+				showSiteTitle={false}
 				showSearch={false}
 			/>
 			<Site.FullPageMessage>

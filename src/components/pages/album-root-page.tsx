@@ -25,7 +25,7 @@ export const RootAlbumPage: React.StatelessComponent<ComponentProps> = ({
 				title={Config.siteTitle()}
 				shortTitle={Config.siteShortTitle()}
 				showTitleLink={false}
-				showTitle={false}
+				showSiteTitle={false}
 				path=""
 			/>
 			<div className="container-fluid">
