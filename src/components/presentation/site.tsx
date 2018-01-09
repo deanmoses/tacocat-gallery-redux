@@ -36,9 +36,9 @@ export const Page: React.StatelessComponent<PageProps> = ({
 };
 
 /**
- * Page's header bar with title
+ * Pgae / site header bar
  */
-type HeaderTitleProps = {
+type HeaderProps = {
 	/**
 	 * Page title
 	 */
@@ -79,7 +79,7 @@ type HeaderTitleProps = {
 /**
  * Site / page header component
  */
-export const HeaderTitle: React.StatelessComponent<HeaderTitleProps> = ({
+export const Header: React.StatelessComponent<HeaderProps> = ({
 	title,
 	shortTitle,
 	href,

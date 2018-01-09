@@ -21,7 +21,7 @@ export const RootAlbumPage: React.StatelessComponent<ComponentProps> = ({
 	let albums = separateYearAlbums(album.albums);
 	return (
 		<Site.Page className="root">
-			<Site.HeaderTitle
+			<Site.Header
 				title={Config.siteTitle()}
 				shortTitle={Config.siteShortTitle()}
 				showSiteTitle={false}

@@ -28,7 +28,7 @@ const ImageErrorPage: React.StatelessComponent<ComponentProps> = ({
 	}
 	return (
 		<Site.Page className="imagepage" year={getYearFromPath(path)}>
-			<Site.HeaderTitle
+			<Site.Header
 				title={Config.siteTitle()}
 				shortTitle={Config.siteShortTitle()}
 				showSiteTitle={false}

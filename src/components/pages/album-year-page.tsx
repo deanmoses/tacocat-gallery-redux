@@ -17,7 +17,7 @@ export const YearAlbumPage: React.StatelessComponent<AlbumPageProps> = ({
 	album
 }) => (
 	<Site.Page year={album.year}>
-		<Site.HeaderTitle href="#" title={album.pageTitle} searchPath={album.path}>
+		<Site.Header href="#" title={album.pageTitle} searchPath={album.path}>
 			<Site.PrevButton
 				href={album.nextAlbumHref}
 				title={album.nextAlbumTitle}
@@ -27,7 +27,7 @@ export const YearAlbumPage: React.StatelessComponent<AlbumPageProps> = ({
 				href={album.prevAlbumHref}
 				title={album.prevAlbumTitle}
 			/>
-		</Site.HeaderTitle>
+		</Site.Header>
 		<FirstsAndThumbs album={album} />
 	</Site.Page>
 );

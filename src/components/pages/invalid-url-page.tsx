@@ -9,7 +9,7 @@ export const InvalidUrlPage: React.StatelessComponent<
 	RouteComponentProps<any>
 > = () => (
 	<Site.Page showFooter={false}>
-		<Site.HeaderTitle />
+		<Site.Header />
 		<div className="fullPageMessage">
 			<p>That's not a valid URL.</p>
 			<p>

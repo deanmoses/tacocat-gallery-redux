@@ -28,7 +28,7 @@ export const AlbumErrorPage: React.StatelessComponent<ComponentProps> = ({
 	}
 	return (
 		<Site.Page year={getYearFromPath(path)} showFooter={false}>
-			<Site.HeaderTitle
+			<Site.Header
 				title={Config.siteTitle()}
 				shortTitle={Config.siteShortTitle()}
 				showSiteTitle={false}

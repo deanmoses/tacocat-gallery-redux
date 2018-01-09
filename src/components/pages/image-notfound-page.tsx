@@ -18,7 +18,7 @@ const ImageNotFoundPage: React.StatelessComponent<ComponentProps> = ({
 	album
 }) => (
 	<Site.Page className="imagepage" year={album.year}>
-		<Site.HeaderTitle
+		<Site.Header
 			href={album.href}
 			title={Config.siteTitle()}
 			shortTitle={Config.siteShortTitle()}

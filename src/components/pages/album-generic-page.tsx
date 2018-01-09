@@ -18,7 +18,7 @@ export const GenericAlbumPage: React.StatelessComponent<ComponentProps> = ({
 	album
 }) => (
 	<Site.Page year={album.year}>
-		<Site.HeaderTitle
+		<Site.Header
 			href={'#' + album.parent_album.path}
 			title={album.pageTitle}
 			searchPath={album.path}
@@ -35,7 +35,7 @@ export const GenericAlbumPage: React.StatelessComponent<ComponentProps> = ({
 				href={album.prevAlbumHref}
 				title={album.prevAlbumTitle}
 			/>
-		</Site.HeaderTitle>
+		</Site.Header>
 		<section>
 			<h2 className="hidden">Overview</h2>
 			GENERIC

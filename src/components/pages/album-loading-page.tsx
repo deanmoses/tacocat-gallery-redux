@@ -17,11 +17,11 @@ export const AlbumLoadingPage: React.StatelessComponent<ComponentProps> = ({
 	path
 }) => (
 	<Site.Page showFooter={false} year={getYearFromPath(path)}>
-		<Site.HeaderTitle showSiteTitle={false}>
+		<Site.Header showSiteTitle={false}>
 			<Site.PrevButton />
 			<Site.UpButton />
 			<Site.NextButton />
-		</Site.HeaderTitle>
+		</Site.Header>
 		<Site.FullPageMessage>
 			<p>
 				<WaitingSpinner />

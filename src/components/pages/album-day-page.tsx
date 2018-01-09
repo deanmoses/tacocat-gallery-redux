@@ -19,7 +19,7 @@ export const DayAlbumPage: React.StatelessComponent<ComponentProps> = ({
 	album
 }) => (
 	<Site.Page className="weekalbumtype" year={album.year}>
-		<Site.HeaderTitle
+		<Site.Header
 			href={'#' + album.parent_album.path}
 			title={album.pageTitle}
 			searchPath={album.path}
@@ -36,7 +36,7 @@ export const DayAlbumPage: React.StatelessComponent<ComponentProps> = ({
 				href={album.prevAlbumHref}
 				title={album.prevAlbumTitle}
 			/>
-		</Site.HeaderTitle>
+		</Site.Header>
 		<section>
 			<h2 className="hidden">Overview</h2>
 			<EditableHtml
