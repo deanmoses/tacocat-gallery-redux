@@ -103,12 +103,12 @@ export const PageTitle: React.StatelessComponent<PageTitleProps> = ({
 			</a>
 		);
 	} else if (!shortTitle) {
-		return <span className="titleInput navbar-brand">{title}</span>;
+		return <span className="navbar-brand">{title}</span>;
 	} else {
 		return (
 			<span>
-				<span className="titleInput navbar-brand hidden-xs">{title}</span>
-				<span className="titleInput navbar-brand visible-xs">{shortTitle}</span>
+				<span className="navbar-brand hidden-xs">{title}</span>
+				<span className="navbar-brand visible-xs">{shortTitle}</span>
 			</span>
 		);
 	}
