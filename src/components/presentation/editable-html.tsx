@@ -4,7 +4,7 @@ import { Editor } from '@src/components/presentation/editor';
 /**
  * Component properties
  */
-export interface ComponentProps {
+export type ComponentProps = {
 	/**
 	 * Text / HTML to either display read-only or via a rich text editor
 	 */
@@ -26,7 +26,7 @@ export interface ComponentProps {
 	 * This will typically be hooked up by my Redux connector component, see my *-container.tsx file.
 	 */
 	readonly onHtmlChange?: (newValue: string) => void;
-}
+};
 
 /**
  * Component that either displays text as HTML or shows a rich text editor if

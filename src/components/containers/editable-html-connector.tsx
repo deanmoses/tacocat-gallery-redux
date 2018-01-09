@@ -19,9 +19,19 @@ import {
 } from '@src/components/presentation/editable-html';
 
 /**
- * Adds additional properties over my target component's props
+ * My properties are different than the component I wrap!
  */
-interface ConnectedComponentProps extends ComponentProps {
+type ConnectedComponentProps = {
+	/**
+	 * Text / HTML to either display read-only or via a rich text editor
+	 */
+	readonly html: string;
+
+	/**
+	 * Optional CSS class names to add to me
+	 */
+	readonly className?: string;
+
 	/**
 	 * Name of the field being edited.
 	 * For example, if this is editing or displaying album.desc, this would be 'desc'.
@@ -32,7 +42,7 @@ interface ConnectedComponentProps extends ComponentProps {
 	 * Path of the album or image whose field is being edited
 	 */
 	readonly path: string;
-}
+};
 
 /**
  * mapStateToProps() is a standard Redux function to transform the state of
