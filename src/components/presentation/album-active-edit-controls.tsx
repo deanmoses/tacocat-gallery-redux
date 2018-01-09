@@ -56,7 +56,7 @@ export class AlbumActiveEditControls extends React.Component<ComponentProps> {
 
 	render() {
 		const saveError = !!this.props.errorMessage;
-		const message = !!this.props.errorMessage;
+		const message = this.props.errorMessage;
 		return (
 			<div className="editControls">
 				<div className="btn-group">
