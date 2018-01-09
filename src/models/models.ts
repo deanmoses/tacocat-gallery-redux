@@ -42,6 +42,10 @@ export interface Album {
 	title?: string;
 	summary?: string;
 	desc?: string;
+	/**
+	 * True: album is NOT available to the public
+	 */
+	unpublished?: boolean;
 	image_size?: number;
 	thumb_size?: number;
 	thumb?: string;

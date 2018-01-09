@@ -37,6 +37,8 @@ export interface ComponentProps {
 	 * This will typically be hooked up by my Redux connector component, see my *-container.tsx file
 	 */
 	readonly onSave?: () => void;
+
+	readonly onFieldChange?: (fieldName: string, newValue: any) => void;
 }
 
 /**
@@ -51,6 +53,7 @@ export class AlbumEditControls extends React.Component<ComponentProps> {
 		this.onEdit = this.onEdit.bind(this);
 		this.onCancel = this.onCancel.bind(this);
 		this.onSave = this.onSave.bind(this);
+		this.onFieldChange = this.onFieldChange.bind(this);
 	}
 
 	/**
@@ -83,6 +86,13 @@ export class AlbumEditControls extends React.Component<ComponentProps> {
 		}
 	}
 
+	onFieldChange(field: string, newValue: any): void {
+		// This will typically be hooked up by my Redux connector component, see my *-container.tsx file
+		if (this.props.onFieldChange) {
+			this.props.onFieldChange(field, newValue);
+		}
+	}
+
 	render() {
 		const album = this.props.album;
 		switch (this.props.editMode) {
@@ -101,6 +111,7 @@ export class AlbumEditControls extends React.Component<ComponentProps> {
 						album={album}
 						onCancel={this.onCancel}
 						onSave={this.onSave}
+						onFieldChange={this.onFieldChange}
 					/>
 				);
 			}

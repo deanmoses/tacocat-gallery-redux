@@ -8,15 +8,11 @@ import { DraftContent } from '@src/models/models';
 /**
  * Update the named field with the specified new value
  *
+ * @param path  Path to album or image
  * @param field Name of a field on an album or image, like 'desc'
  * @param newValue New value of field
- * @param path  Path to album or image
  */
-export function updateDraftField(
-	path: string,
-	field: string,
-	newValue: string
-) {
+export function updateDraftField(path: string, field: string, newValue: any) {
 	// I would like to declare draftContent as type of DraftContent, but I can't
 	// because I'm setting the field's value via array index syntax like this:
 	// draftContent[field] = newValue

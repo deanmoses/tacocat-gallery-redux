@@ -18,6 +18,7 @@ import {
 	disableEditMode
 } from '@src/redux/actions/edit-mode-action-builders';
 import { saveDraft } from '@src/redux/actions/draft-save-action-builders';
+import { updateDraftField } from '@src/redux/actions/draft-update-action-builders';
 import {
 	AlbumEditControls,
 	ComponentProps,
@@ -80,7 +81,9 @@ function mapDispatchToProps(
 	return {
 		onEdit: () => dispatch(enableEditMode()),
 		onCancel: () => dispatch(disableEditMode()),
-		onSave: () => dispatch(saveDraft(ownProps.album.path))
+		onSave: () => dispatch(saveDraft(ownProps.album.path)),
+		onFieldChange: (field: string, newValue: any) =>
+			dispatch(updateDraftField(ownProps.album.path, field, newValue))
 	};
 }
 

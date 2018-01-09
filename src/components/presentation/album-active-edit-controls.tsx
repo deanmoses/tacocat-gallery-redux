@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Album } from '@src/models/models';
+import { Album, AlbumType } from '@src/models/models';
 import { Icon, Icons } from '@src/components/presentation/icon';
 
 /**
@@ -19,6 +19,11 @@ interface ComponentProps {
 	 * Called when my save button is clicked
 	 */
 	readonly onSave?: () => void;
+
+	/**
+	 * Called when any field changes
+	 */
+	readonly onFieldChange?: (field: string, newValue: any) => void;
 }
 
 /**
@@ -32,6 +37,8 @@ export class AlbumActiveEditControls extends React.Component<ComponentProps> {
 		super(props);
 		this.onCancel = this.onCancel.bind(this);
 		this.onSave = this.onSave.bind(this);
+		this.onSummaryChange = this.onSummaryChange.bind(this);
+		this.onPublishedChange = this.onPublishedChange.bind(this);
 	}
 
 	/**
@@ -54,9 +61,43 @@ export class AlbumActiveEditControls extends React.Component<ComponentProps> {
 		}
 	}
 
+	onSummaryChange(event: React.ChangeEvent<HTMLInputElement>) {
+		if (this.props.onFieldChange) {
+			this.props.onFieldChange('summary', event.currentTarget.value);
+		}
+	}
+
+	onPublishedChange(event: React.ChangeEvent<HTMLInputElement>) {
+		if (this.props.onFieldChange) {
+			this.props.onFieldChange('published', event.currentTarget.checked);
+		}
+	}
+
 	render() {
+		const a = this.props.album;
 		const saveError = !!this.props.errorMessage;
 		const message = this.props.errorMessage;
+		const summaryControl =
+			a.type === AlbumType.YEAR ? null : (
+				<input
+					type="text"
+					defaultValue={a.summary}
+					placeholder="Summary"
+					onChange={this.onSummaryChange}
+				/>
+			);
+		const publishControl =
+			a.type === AlbumType.YEAR ? null : (
+				<span>
+					<input
+						type="checkbox"
+						defaultChecked={!a.unpublished}
+						onChange={this.onPublishedChange}
+					/>{' '}
+					published
+				</span>
+			);
+
 		return (
 			<div className="editControls">
 				<div className="btn-group">
@@ -72,12 +113,14 @@ export class AlbumActiveEditControls extends React.Component<ComponentProps> {
 						type="button"
 						className="btn btn-default"
 						disabled={saveError}
-						title="Save album description"
+						title="Save"
 						onClick={this.onSave}
 					>
 						<Icon icon={Icons.CHEVRON_RIGHT} /> Save
 					</button>
 				</div>
+				{summaryControl}
+				{publishControl}
 				{!!message && <span className="editStatusMsg">{message}</span>}
 			</div>
 		);
