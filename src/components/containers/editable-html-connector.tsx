@@ -35,7 +35,7 @@ interface ConnectedComponentProps extends ComponentProps {
 }
 
 /**
- * mapStateToProps() is a standard Redux function to transforms the state of
+ * mapStateToProps() is a standard Redux function to transform the state of
  * the Redux store into the target component's properties.
  *
  * This will be invoked any time the component is mounted and there are changes

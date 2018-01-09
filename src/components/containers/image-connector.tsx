@@ -19,7 +19,7 @@ import {
 } from '@src/components/containers/image-container';
 
 /**
- * mapStateToProps() is a standard Redux function to transforms the state of
+ * mapStateToProps() is a standard Redux function to transform the state of
  * the Redux store into the target component's properties.
  *
  * @prop state the current Redux store state
