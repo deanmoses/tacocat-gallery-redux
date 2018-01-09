@@ -15,6 +15,9 @@ $titleColor: #fff;
 		line-height: unset;
 		padding: unset;
 	}
+	.ql-tooltip {
+		z-index: 1;
+	}
 }
 
 .btn {
