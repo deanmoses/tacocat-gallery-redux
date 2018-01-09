@@ -9,11 +9,11 @@ import { Icon, Icons } from '@src/components/presentation/icon';
 /**
  * Shell of a page
  */
-interface PageProps {
+type PageProps = {
 	readonly className?: string;
 	readonly showFooter?: boolean;
 	readonly year?: number;
-}
+};
 export const Page: React.StatelessComponent<PageProps> = ({
 	children,
 	className = '',
@@ -37,7 +37,7 @@ export const Page: React.StatelessComponent<PageProps> = ({
 /**
  * Page's header bar with title
  */
-export interface HeaderTitleProps {
+type HeaderTitleProps = {
 	readonly title?: string;
 	readonly shortTitle?: string;
 	readonly path?: string;
@@ -46,7 +46,7 @@ export interface HeaderTitleProps {
 	readonly showTitleLink?: boolean;
 	readonly showSearch?: boolean;
 	readonly children?: any;
-}
+};
 export const HeaderTitle: React.StatelessComponent<HeaderTitleProps> = ({
 	title,
 	shortTitle,
@@ -56,6 +56,46 @@ export const HeaderTitle: React.StatelessComponent<HeaderTitleProps> = ({
 	showTitleLink = true,
 	showSearch = true,
 	children
+}) => (
+	<div>
+		<nav className="header navbar" role="navigation">
+			<div className="navbar-header">
+				<PageTitle
+					title={title}
+					shortTitle={shortTitle}
+					href={href}
+					showTitleLink={showTitleLink}
+				/>
+			</div>
+			<div className="header-controls hidden-xxs">
+				{showTitle && (
+					<span className="hidden-xs site-title">{Config.siteTitle()}</span>
+				)}
+				{showSearch && (
+					<span className="search-button">
+						<SearchButton returnPath={path} />
+					</span>
+				)}
+			</div>
+		</nav>
+		<HeaderButtons>{children}</HeaderButtons>
+	</div>
+);
+
+/**
+ * Page title
+ */
+type PageTitleProps = {
+	readonly title?: string;
+	readonly shortTitle?: string;
+	readonly href?: string;
+	readonly showTitleLink?: boolean;
+};
+export const PageTitle: React.StatelessComponent<PageTitleProps> = ({
+	title,
+	shortTitle,
+	href,
+	showTitleLink
 }) => {
 	let derivedTitle;
 
@@ -85,32 +125,15 @@ export const HeaderTitle: React.StatelessComponent<HeaderTitleProps> = ({
 		? shortTitle
 		: !!title ? title : Config.siteShortTitle();
 
-	return (
-		<div>
-			<nav className="header navbar" role="navigation">
-				<div className="navbar-header">{derivedTitle}</div>
-				<div className="header-controls hidden-xxs">
-					{showTitle && (
-						<span className="hidden-xs site-title">{Config.siteTitle()}</span>
-					)}
-					{showSearch && (
-						<span className="search-button">
-							<SearchButton returnPath={path} />
-						</span>
-					)}
-				</div>
-			</nav>
-			<HeaderButtons>{children}</HeaderButtons>
-		</div>
-	);
+	return derivedTitle;
 };
 
 /**
  * Full page message component
  */
-interface FullPageMessageProps {
+type FullPageMessageProps = {
 	readonly children: any;
-}
+};
 export const FullPageMessage: React.StatelessComponent<
 	FullPageMessageProps
 > = ({ children }) => <div className="fullPageMessage">{children}</div>;
@@ -118,10 +141,10 @@ export const FullPageMessage: React.StatelessComponent<
 /**
  * Search icon for navigating to search screen
  */
-interface SearchButtonProps {
+type SearchButtonProps = {
 	readonly searchTerms?: string;
 	readonly returnPath?: string;
-}
+};
 export const SearchButton: React.StatelessComponent<SearchButtonProps> = ({
 	searchTerms,
 	returnPath
@@ -140,9 +163,9 @@ export const SearchButton: React.StatelessComponent<SearchButtonProps> = ({
 /**
  * Row of header buttons
  */
-interface HeaderButtonsProps {
+type HeaderButtonsProps = {
 	readonly children?: any;
-}
+};
 export const HeaderButtons: React.StatelessComponent<HeaderButtonsProps> = ({
 	children
 }) => {
@@ -161,10 +184,10 @@ export const HeaderButtons: React.StatelessComponent<HeaderButtonsProps> = ({
 /**
  * Header Nav Button Props used for multiple types of header buttons (prev / next)
  */
-interface HeaderNavButtonProps {
+type HeaderNavButtonProps = {
 	readonly href?: string;
 	readonly title?: string;
-}
+};
 
 /**
  * Prev Nav Button
@@ -207,10 +230,10 @@ export const UpButton: React.StatelessComponent<HeaderNavButtonProps> = ({
 /**
  * Header Button
  */
-interface HeaderButtonProps {
+type HeaderButtonProps = {
 	readonly href?: string;
 	readonly children?: any;
-}
+};
 export const HeaderButton: React.StatelessComponent<HeaderButtonProps> = ({
 	href,
 	children
