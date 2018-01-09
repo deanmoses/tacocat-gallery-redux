@@ -4,8 +4,11 @@
 
 import * as React from 'react';
 import Config from '@src/utils/config';
-import { Icon, Icons } from '@src/components/presentation/icon';
 import EditableText from '@src/components/containers/editable-text-connector';
+import { HomeIcon } from '@src/components/presentation/icon-home';
+import { NextIcon } from '@src/components/presentation/icon-next';
+import { PrevIcon } from '@src/components/presentation/icon-prev';
+import { SearchIcon } from '@src/components/presentation/icon-search';
 
 /**
  * Shell of a page
@@ -192,7 +195,7 @@ export const SearchButton: React.StatelessComponent<SearchButtonProps> = ({
 	searchUrl += returnPath ? encodeURIComponent(returnPath) : '';
 	return (
 		<a href={searchUrl}>
-			<Icon icon={Icons.SEARCH} />
+			<SearchIcon />
 		</a>
 	);
 };
@@ -234,8 +237,7 @@ export const PrevButton: React.StatelessComponent<HeaderNavButtonProps> = ({
 	title
 }) => (
 	<HeaderButton href={href}>
-		<Icon icon={Icons.CHEVRON_LEFT} />{' '}
-		<span className="nav-button-label">{title}</span>
+		<PrevIcon /> <span className="nav-button-label">{title}</span>
 	</HeaderButton>
 );
 
@@ -247,8 +249,7 @@ export const NextButton: React.StatelessComponent<HeaderNavButtonProps> = ({
 	title
 }) => (
 	<HeaderButton href={href}>
-		<span className="nav-button-label">{title}</span>{' '}
-		<Icon icon={Icons.CHEVRON_RIGHT} />
+		<span className="nav-button-label">{title}</span> <NextIcon />
 	</HeaderButton>
 );
 
@@ -260,7 +261,7 @@ export const UpButton: React.StatelessComponent<HeaderNavButtonProps> = ({
 	title
 }) => (
 	<HeaderButton href={href}>
-		<Icon icon={Icons.HOME} /> <span className="nav-button-label">{title}</span>
+		<HomeIcon /> <span className="nav-button-label">{title}</span>
 	</HeaderButton>
 );
 

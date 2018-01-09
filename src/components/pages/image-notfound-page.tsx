@@ -1,8 +1,8 @@
 import * as React from 'react';
 import * as Site from '@src/components/presentation/site';
 import { Album } from '@src/models/models';
-import { Icon, Icons } from '@src/components/presentation/icon';
 import Config from '@src/utils/config';
+import { HomeIcon } from '@src/components/presentation/icon-home';
 
 /**
  * Component properties
@@ -28,7 +28,7 @@ const ImageNotFoundPage: React.StatelessComponent<ComponentProps> = ({
 			<p>Image not found.</p>
 			<p>
 				<a href="#">
-					Go back <Icon icon={Icons.HOME} />?
+					Go back <HomeIcon />?
 				</a>
 			</p>
 		</Site.FullPageMessage>

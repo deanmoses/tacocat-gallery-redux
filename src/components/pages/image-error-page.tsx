@@ -1,9 +1,9 @@
 import * as React from 'react';
 import * as Site from '@src/components/presentation/site';
-import { Icon, Icons } from '@src/components/presentation/icon';
 import { FetchError, FetchErrorType } from '@src/models/models';
 import { getYearFromPath } from '@src/utils/path-utils';
 import Config from '@src/utils/config';
+import { HomeIcon } from '@src/components/presentation/icon-home';
 
 /**
  * Component properties
@@ -37,7 +37,7 @@ const ImageErrorPage: React.StatelessComponent<ComponentProps> = ({
 				<p>{errorMessage}</p>
 				<p>
 					<a href="#">
-						Go back <Icon icon={Icons.HOME} />?
+						Go back <HomeIcon />?
 					</a>
 				</p>
 			</Site.FullPageMessage>

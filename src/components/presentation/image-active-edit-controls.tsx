@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { Icon, Icons } from '@src/components/presentation/icon';
+import { CancelIcon } from '@src/components/presentation/icon-cancel';
+import { SaveIcon } from '@src/components/presentation/icon-save';
 
 /**
  * Component properties
@@ -63,7 +64,7 @@ export class ImageActiveEditControls extends React.Component<ComponentProps> {
 						title="Leave edit mode"
 						onClick={this.onCancel}
 					>
-						<Icon icon={Icons.CHEVRON_RIGHT} /> Cancel
+						<CancelIcon /> Cancel
 					</button>
 					<button
 						type="button"
@@ -72,7 +73,7 @@ export class ImageActiveEditControls extends React.Component<ComponentProps> {
 						title="Save"
 						onClick={this.onSave}
 					>
-						<Icon icon={Icons.CHEVRON_RIGHT} /> Save
+						<SaveIcon /> Save
 					</button>
 				</div>
 				{!!message && <span className="editStatusMsg">{message}</span>}

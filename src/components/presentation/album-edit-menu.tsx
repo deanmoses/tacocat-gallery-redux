@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { Album } from '@src/models/models';
 import Config from '@src/utils/config';
-import { Icon, Icons } from '@src/components/presentation/icon';
+import { ViewIcon } from '@src/components/presentation/icon-view';
+import { EditIcon } from '@src/components/presentation/icon-edit';
 
 /**
  * Component properties
@@ -49,7 +50,7 @@ export class AlbumEditMenu extends React.Component<ComponentProps> {
 						className="btn btn-default"
 						onClick={this.onEdit}
 					>
-						<Icon icon={Icons.CHEVRON_RIGHT} /> Edit
+						<EditIcon /> Edit
 					</button>
 					<button
 						type="button"
@@ -63,12 +64,12 @@ export class AlbumEditMenu extends React.Component<ComponentProps> {
 					<ul className="dropdown-menu" role="menu">
 						<li>
 							<a href={zeditUrl} target="zenedit" title="Edit in Zenphoto">
-								<Icon icon={Icons.CHEVRON_RIGHT} /> Edit in Zenphoto
+								<EditIcon /> Edit in Zenphoto
 							</a>
 						</li>
 						<li>
 							<a href={zviewUrl} target="zenedit" title="View in Zenphoto">
-								<Icon icon={Icons.CHEVRON_RIGHT} /> View in Zenphoto
+								<ViewIcon /> View in Zenphoto
 							</a>
 						</li>
 					</ul>
