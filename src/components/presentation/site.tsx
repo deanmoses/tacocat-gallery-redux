@@ -5,6 +5,7 @@
 import * as React from 'react';
 import Config from '@src/utils/config';
 import { Icon, Icons } from '@src/components/presentation/icon';
+import EditableText from '@src/components/containers/editable-text-connector';
 
 /**
  * Shell of a page
@@ -40,7 +41,14 @@ export const Page: React.StatelessComponent<PageProps> = ({
 type HeaderTitleProps = {
 	readonly title?: string;
 	readonly shortTitle?: string;
+	/**
+	 * Path for the purposes of showing the "go back" in search
+	 */
 	readonly path?: string;
+	/**
+	 * Path for the purposes of editing the title -- in Tacocat, only applies to images not albums
+	 */
+	readonly editPath?: string;
 	readonly href?: string;
 	/**
 	 * Show the 'Dean, Lucie, Felix and Milo Moses' site title in the header, in addition to the page title
@@ -54,6 +62,7 @@ export const HeaderTitle: React.StatelessComponent<HeaderTitleProps> = ({
 	shortTitle,
 	href,
 	path,
+	editPath,
 	showSiteTitle = true,
 	showSearch = true,
 	children
@@ -61,7 +70,12 @@ export const HeaderTitle: React.StatelessComponent<HeaderTitleProps> = ({
 	<div>
 		<nav className="header navbar" role="navigation">
 			<div className="navbar-header">
-				<PageTitle title={title} shortTitle={shortTitle} href={href} />
+				<PageTitle
+					title={title}
+					shortTitle={shortTitle}
+					href={href}
+					editPath={editPath}
+				/>
 			</div>
 			<div className="header-controls hidden-xxs">
 				{showSiteTitle && (
@@ -85,18 +99,30 @@ type PageTitleProps = {
 	readonly title?: string;
 	readonly shortTitle?: string;
 	readonly href?: string;
+	readonly editPath?: string;
+	readonly onTitleChange?: (newTitle: string) => void;
 };
 export const PageTitle: React.StatelessComponent<PageTitleProps> = ({
 	title,
 	shortTitle,
-	href
+	href,
+	editPath
 }) => {
 	// Set the browser title
 	document.title = !!shortTitle
 		? shortTitle
 		: !!title ? title : Config.siteShortTitle();
 
-	if (!!href) {
+	if (!!editPath) {
+		return (
+			<EditableText
+				className="navbar-brand"
+				text={title}
+				field="title"
+				path={editPath}
+			/>
+		);
+	} else if (!!href) {
 		return (
 			<a className="navbar-brand" href={href}>
 				{title}

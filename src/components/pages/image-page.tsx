@@ -23,6 +23,7 @@ const ImagePage: React.StatelessComponent<ComponentProps> = ({
 		<Site.HeaderTitle
 			href={album.href}
 			title={image.title}
+			editPath={image.path}
 			showSiteTitle={false}
 			showSearch={false}
 		/>
