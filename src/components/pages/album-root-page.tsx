@@ -24,7 +24,6 @@ export const RootAlbumPage: React.StatelessComponent<ComponentProps> = ({
 			<Site.HeaderTitle
 				title={Config.siteTitle()}
 				shortTitle={Config.siteShortTitle()}
-				showTitleLink={false}
 				showSiteTitle={false}
 				path=""
 			/>

@@ -43,10 +43,9 @@ type HeaderTitleProps = {
 	readonly path?: string;
 	readonly href?: string;
 	/**
-	 * Show the Dean, Lucie, Felix and Milo Moses site title in the header, in addition to the page title
+	 * Show the 'Dean, Lucie, Felix and Milo Moses' site title in the header, in addition to the page title
 	 */
 	readonly showSiteTitle?: boolean;
-	readonly showTitleLink?: boolean;
 	readonly showSearch?: boolean;
 	readonly children?: any;
 };
@@ -56,19 +55,13 @@ export const HeaderTitle: React.StatelessComponent<HeaderTitleProps> = ({
 	href,
 	path,
 	showSiteTitle = true,
-	showTitleLink = true,
 	showSearch = true,
 	children
 }) => (
 	<div>
 		<nav className="header navbar" role="navigation">
 			<div className="navbar-header">
-				<PageTitle
-					title={title}
-					shortTitle={shortTitle}
-					href={href}
-					showTitleLink={showTitleLink}
-				/>
+				<PageTitle title={title} shortTitle={shortTitle} href={href} />
 			</div>
 			<div className="header-controls hidden-xxs">
 				{showSiteTitle && (
@@ -92,24 +85,24 @@ type PageTitleProps = {
 	readonly title?: string;
 	readonly shortTitle?: string;
 	readonly href?: string;
-	readonly showTitleLink?: boolean;
 };
 export const PageTitle: React.StatelessComponent<PageTitleProps> = ({
 	title,
 	shortTitle,
-	href,
-	showTitleLink
+	href
 }) => {
 	let derivedTitle;
 
-	if (showTitleLink) {
+	if (!!href) {
 		derivedTitle = (
 			<a className="navbar-brand" href={href}>
 				{title}
 			</a>
 		);
 	} else {
-		if (!!shortTitle) {
+		if (!shortTitle) {
+			derivedTitle = <span className="titleInput navbar-brand">{title}</span>;
+		} else {
 			derivedTitle = (
 				<span>
 					<span className="titleInput navbar-brand hidden-xs">{title}</span>
@@ -118,8 +111,6 @@ export const PageTitle: React.StatelessComponent<PageTitleProps> = ({
 					</span>
 				</span>
 			);
-		} else {
-			derivedTitle = <span className="titleInput navbar-brand">{title}</span>;
 		}
 	}
 
