@@ -53,6 +53,7 @@ export class ImageActiveEditControls extends React.Component<ComponentProps> {
 
 	render() {
 		const saveError = !!this.props.errorMessage;
+		const message = this.props.errorMessage;
 		return (
 			<div>
 				<div className="btn-group">
@@ -74,7 +75,7 @@ export class ImageActiveEditControls extends React.Component<ComponentProps> {
 						<Icon icon={Icons.CHEVRON_RIGHT} /> Save
 					</button>
 				</div>
-				{this.props.errorMessage}
+				{!!message && <span className="editStatusMsg">{message}</span>}
 			</div>
 		);
 	}

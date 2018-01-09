@@ -56,6 +56,7 @@ export class AlbumActiveEditControls extends React.Component<ComponentProps> {
 
 	render() {
 		const saveError = !!this.props.errorMessage;
+		const message = !!this.props.errorMessage;
 		return (
 			<div className="editControls">
 				<div className="btn-group">
@@ -77,7 +78,7 @@ export class AlbumActiveEditControls extends React.Component<ComponentProps> {
 						<Icon icon={Icons.CHEVRON_RIGHT} /> Save
 					</button>
 				</div>
-				{this.props.errorMessage}
+				{!!message && <span className="editStatusMsg">{message}</span>}
 			</div>
 		);
 	}
