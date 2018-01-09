@@ -32,7 +32,6 @@ export const AlbumErrorPage: React.StatelessComponent<ComponentProps> = ({
 				title={Config.siteTitle()}
 				shortTitle={Config.siteShortTitle()}
 				showSiteTitle={false}
-				showSearch={false}
 			/>
 			<Site.FullPageMessage>
 				<p>{errorMessage}</p>

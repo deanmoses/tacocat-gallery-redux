@@ -17,7 +17,7 @@ export const AlbumLoadingPage: React.StatelessComponent<ComponentProps> = ({
 	path
 }) => (
 	<Site.Page showFooter={false} year={getYearFromPath(path)}>
-		<Site.HeaderTitle showSiteTitle={false} showSearch={false}>
+		<Site.HeaderTitle showSiteTitle={false}>
 			<Site.PrevButton />
 			<Site.UpButton />
 			<Site.NextButton />

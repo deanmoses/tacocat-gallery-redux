@@ -2,6 +2,7 @@ import * as React from 'react';
 import * as Site from '@src/components/presentation/site';
 import { Album } from '@src/models/models';
 import { Icon, Icons } from '@src/components/presentation/icon';
+import Config from '@src/utils/config';
 
 /**
  * Component properties
@@ -19,14 +20,17 @@ const ImageNotFoundPage: React.StatelessComponent<ComponentProps> = ({
 	<Site.Page className="imagepage" year={album.year}>
 		<Site.HeaderTitle
 			href={album.href}
-			title={'Image Not Found'}
+			title={Config.siteTitle()}
+			shortTitle={Config.siteShortTitle()}
 			showSiteTitle={false}
-			showSearch={false}
 		/>
 		<Site.FullPageMessage>
-			<a href="#">
-				Go back <Icon icon={Icons.HOME} />?
-			</a>
+			<p>Image not found.</p>
+			<p>
+				<a href="#">
+					Go back <Icon icon={Icons.HOME} />?
+				</a>
+			</p>
 		</Site.FullPageMessage>
 	</Site.Page>
 );

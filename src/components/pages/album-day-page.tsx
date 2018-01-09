@@ -22,7 +22,7 @@ export const DayAlbumPage: React.StatelessComponent<ComponentProps> = ({
 		<Site.HeaderTitle
 			href={'#' + album.parent_album.path}
 			title={album.pageTitle}
-			path={album.path}
+			searchPath={album.path}
 		>
 			<Site.PrevButton
 				href={album.nextAlbumHref}

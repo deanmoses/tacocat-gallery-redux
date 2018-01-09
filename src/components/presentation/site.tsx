@@ -39,58 +39,83 @@ export const Page: React.StatelessComponent<PageProps> = ({
  * Page's header bar with title
  */
 type HeaderTitleProps = {
-	readonly title?: string;
-	readonly shortTitle?: string;
 	/**
-	 * Path for the purposes of showing the "go back" in search
+	 * Page title
 	 */
-	readonly path?: string;
+	readonly title?: string;
+
+	/**
+	 * Short page title, for mobile devices
+	 */
+	readonly shortTitle?: string;
+
+	/**
+	 * Href for page title -- the pattern is to navigate to the parent above you.
+	 * So from a photo you'd navigate to its parent album.
+	 */
+	readonly href?: string;
+
 	/**
 	 * Path for the purposes of editing the title -- in Tacocat, only applies to images not albums
 	 */
 	readonly editPath?: string;
-	readonly href?: string;
+
+	/**
+	 * Path for the purposes of navigating back from a search -- in Tacocat, only applies to albums not images
+	 */
+	readonly searchPath?: string;
+
 	/**
 	 * Show the 'Dean, Lucie, Felix and Milo Moses' site title in the header, in addition to the page title
 	 */
 	readonly showSiteTitle?: boolean;
-	readonly showSearch?: boolean;
+
+	/**
+	 * Search buttons
+	 */
 	readonly children?: any;
 };
+
+/**
+ * Site / page header component
+ */
 export const HeaderTitle: React.StatelessComponent<HeaderTitleProps> = ({
 	title,
 	shortTitle,
 	href,
-	path,
 	editPath,
+	searchPath,
 	showSiteTitle = true,
-	showSearch = true,
 	children
-}) => (
-	<div>
-		<nav className="header navbar" role="navigation">
-			<div className="navbar-header">
-				<PageTitle
-					title={title}
-					shortTitle={shortTitle}
-					href={href}
-					editPath={editPath}
-				/>
-			</div>
-			<div className="header-controls hidden-xxs">
-				{showSiteTitle && (
-					<span className="hidden-xs site-title">{Config.siteTitle()}</span>
-				)}
-				{showSearch && (
-					<span className="search-button">
-						<SearchButton returnPath={path} />
-					</span>
-				)}
-			</div>
-		</nav>
-		<HeaderButtons>{children}</HeaderButtons>
-	</div>
-);
+}) => {
+	const showSearch = searchPath !== undefined && searchPath !== null;
+
+	return (
+		<div>
+			<nav className="header navbar" role="navigation">
+				<div className="navbar-header">
+					<PageTitle
+						title={title}
+						shortTitle={shortTitle}
+						href={href}
+						editPath={editPath}
+					/>
+				</div>
+				<div className="header-controls hidden-xxs">
+					{showSiteTitle && (
+						<span className="hidden-xs site-title">{Config.siteTitle()}</span>
+					)}
+					{showSearch && (
+						<span className="search-button">
+							<SearchButton returnPath={searchPath} />
+						</span>
+					)}
+				</div>
+			</nav>
+			<HeaderButtons>{children}</HeaderButtons>
+		</div>
+	);
+};
 
 /**
  * Page title

@@ -21,7 +21,7 @@ export const ImageLoadingPage: React.StatelessComponent<ComponentProps> = ({
 		year={getYearFromPath(path)}
 		showFooter={false}
 	>
-		<Site.HeaderTitle title="" showSiteTitle={false} showSearch={false} />
+		<Site.HeaderTitle title="" showSiteTitle={false} />
 		<div className="photo-body">
 			<section className="col-md-3">
 				<h2 className="hidden">Caption</h2>

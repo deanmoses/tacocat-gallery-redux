@@ -25,7 +25,6 @@ const ImagePage: React.StatelessComponent<ComponentProps> = ({
 			title={image.title}
 			editPath={image.path}
 			showSiteTitle={false}
-			showSearch={false}
 		/>
 		<ImagePageBody album={album} image={image} />
 	</Site.Page>

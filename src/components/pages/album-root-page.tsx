@@ -25,7 +25,7 @@ export const RootAlbumPage: React.StatelessComponent<ComponentProps> = ({
 				title={Config.siteTitle()}
 				shortTitle={Config.siteShortTitle()}
 				showSiteTitle={false}
-				path=""
+				searchPath=""
 			/>
 			<div className="container-fluid">
 				<section className="col-md-3 sidebar latest">
