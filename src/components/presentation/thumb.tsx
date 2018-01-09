@@ -6,7 +6,7 @@ import * as React from 'react';
 import * as DateUtils from '@src/utils/date-utils';
 import Config from '@src/utils/config';
 import { AlbumType, Thumbable } from '@src/models/models';
-import { HomeIcon } from '@src/components/presentation/icon-home';
+import { StarIcon } from '@src/components/presentation/icon-star';
 
 /**
  * List component properties
@@ -169,7 +169,7 @@ export class Nail extends React.Component<NailProps> {
 		var selectButton = !this.props.editMode ? (
 			''
 		) : (
-			<HomeIcon onClick={this.onSelect} />
+			<StarIcon onClick={this.onSelect} />
 		);
 		var thumbUrl = Config.cdnHost() + item.url_thumb;
 
