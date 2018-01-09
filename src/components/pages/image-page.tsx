@@ -3,6 +3,7 @@ import * as Site from '@src/components/presentation/site';
 import EditableHtml from '@src/components/containers/editable-html-connector';
 import { Album, Image } from '@src/models/models';
 import Config from '@src/utils/config';
+import ImageEditControls from '@src/components/containers/image-edit-controls-connector';
 
 /**
  * Component properties
@@ -27,6 +28,7 @@ const ImagePage: React.StatelessComponent<ComponentProps> = ({
 			showSiteTitle={false}
 		/>
 		<ImagePageBody album={album} image={image} />
+		<ImageEditControls image={image} />
 	</Site.Page>
 );
 export default ImagePage;
