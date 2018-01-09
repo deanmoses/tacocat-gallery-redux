@@ -3,6 +3,7 @@ import { Album, AlbumThumb } from '@src/models/models';
 import EditableHtml from '@src/components/containers/editable-html-connector';
 import { ThumbsByMonth } from '@src/components/pages/album-year-thumbsbymonth';
 import * as Thumb from '@src/components/presentation/thumb';
+import AlbumEditControls from '@src/components/containers/album-edit-controls-connector';
 
 /**
  * Component properties
@@ -17,10 +18,11 @@ export const FirstsAndThumbs: React.StatelessComponent<ComponentProps> = ({
 	album
 }) => {
 	const { nonDayAlbums, dayAlbums } = separateDayAlbums(album.albums);
+	const showNonDayAlbums = nonDayAlbums && nonDayAlbums.length > 0;
 	return (
 		<div className="container-fluid">
 			<section className="col-md-3 firsts sidebar">
-				{nonDayAlbums && <Thumb.List items={nonDayAlbums} />}
+				{showNonDayAlbums && <Thumb.List items={nonDayAlbums} />}
 				<h2 className="hidden">Firsts</h2>
 				<EditableHtml
 					html={album.desc}
@@ -28,7 +30,7 @@ export const FirstsAndThumbs: React.StatelessComponent<ComponentProps> = ({
 					path={album.path}
 					className="firsts-text"
 				/>
-				{/* TODO: <EditMenu album={album} allowEdit={user.isAdmin} editMode={user.editMode} />*/}
+				<AlbumEditControls album={album} />
 			</section>
 			<section className="col-md-9 col-md-offset-3">
 				<h2 className="hidden">Thumbnails</h2>
