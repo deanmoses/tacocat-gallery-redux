@@ -91,35 +91,27 @@ export const PageTitle: React.StatelessComponent<PageTitleProps> = ({
 	shortTitle,
 	href
 }) => {
-	let derivedTitle;
-
-	if (!!href) {
-		derivedTitle = (
-			<a className="navbar-brand" href={href}>
-				{title}
-			</a>
-		);
-	} else {
-		if (!shortTitle) {
-			derivedTitle = <span className="titleInput navbar-brand">{title}</span>;
-		} else {
-			derivedTitle = (
-				<span>
-					<span className="titleInput navbar-brand hidden-xs">{title}</span>
-					<span className="titleInput navbar-brand visible-xs">
-						{shortTitle}
-					</span>
-				</span>
-			);
-		}
-	}
-
 	// Set the browser title
 	document.title = !!shortTitle
 		? shortTitle
 		: !!title ? title : Config.siteShortTitle();
 
-	return derivedTitle;
+	if (!!href) {
+		return (
+			<a className="navbar-brand" href={href}>
+				{title}
+			</a>
+		);
+	} else if (!shortTitle) {
+		return <span className="titleInput navbar-brand">{title}</span>;
+	} else {
+		return (
+			<span>
+				<span className="titleInput navbar-brand hidden-xs">{title}</span>
+				<span className="titleInput navbar-brand visible-xs">{shortTitle}</span>
+			</span>
+		);
+	}
 };
 
 /**
