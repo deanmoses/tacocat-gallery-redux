@@ -1,5 +1,8 @@
 //
-// Icon component
+// Base icon component
+//
+// Most or all of these icons are from Bootstrap, but this guy reimplemented them as SVGs:
+// https://leungwensen.github.io/svg-icon/#bootstrap
 //
 
 import * as React from 'react';
