@@ -8,17 +8,17 @@ import { EmptyStarIcon } from '@src/components/presentation/icon-star-empty';
 /**
  * Component properties
  */
-interface ComponentProps {
+export type ComponentProps = {
 	readonly item: Thumbable;
 	readonly isAlbum?: boolean;
 	readonly albumType: AlbumType;
 	readonly editMode?: boolean;
 	readonly useLongDateAsTitle?: boolean;
 	readonly useLongDateAsSummary?: boolean;
-	readonly selectedItem?: any;
-	readonly selected?: any;
+	readonly selected?: boolean;
 	readonly onSelect?: () => any;
-}
+};
+
 /**
  * Component that displays a thumbnail of either an album or an image.
  */

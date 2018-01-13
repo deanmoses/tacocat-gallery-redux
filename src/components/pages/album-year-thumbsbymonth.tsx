@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { AlbumThumb } from '@src/models/models';
-import { Thumbnail } from '@src/components/presentation/thumbnail';
+import Thumbnail from '@src/components/containers/thumbnail-connector';
 
 /**
  * Component properties
