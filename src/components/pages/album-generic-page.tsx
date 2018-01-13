@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as Site from '@src/components/presentation/site';
 import EditableHtml from '@src/components/containers/editable-html-connector';
 import { Album } from '@src/models/models';
-import * as Thumb from '@src/components/presentation/thumb';
+import { ThumbnailList } from '@src/components/presentation/thumbnail-list';
 
 /**
  * Component properties
@@ -46,7 +46,7 @@ export const GenericAlbumPage: React.StatelessComponent<ComponentProps> = ({
 				className="caption"
 			/>
 		</section>
-		<Thumb.List
+		<ThumbnailList
 			items={album.images}
 			isAlbum={false}
 			// editMode={user.editMode}

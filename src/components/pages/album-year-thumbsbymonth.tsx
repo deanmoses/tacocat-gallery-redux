@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { AlbumThumb } from '@src/models/models';
-import * as Thumb from '@src/components/presentation/thumb';
+import { Thumbnail } from '@src/components/presentation/thumbnail';
 
 /**
  * Component properties
@@ -38,7 +38,7 @@ const ThumbsForMonth: React.StatelessComponent<ThumbsForMonthProps> = ({
 }) => {
 	// Build each thumbnail in month
 	var thumbsForMonth = month.albums.map(childAlbum => (
-		<Thumb.Nail
+		<Thumbnail
 			item={childAlbum}
 			isAlbum={true}
 			albumType={childAlbum.type}

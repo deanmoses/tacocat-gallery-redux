@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as Site from '@src/components/presentation/site';
 import { Album, AlbumType, AlbumThumb } from '@src/models/models';
 import Config from '@src/utils/config';
-import * as Thumb from '@src/components/presentation/thumb';
+import { ThumbnailList } from '@src/components/presentation/thumbnail-list';
 import LatestAlbumThumb from '@src/components/containers/latest-album-connector';
 
 /**
@@ -33,12 +33,12 @@ export const RootAlbumPage: React.StatelessComponent<ComponentProps> = ({
 					{!!albums.nonYearAlbums.length && (
 						<div>
 							<hr />
-							<Thumb.List items={albums.nonYearAlbums} />
+							<ThumbnailList items={albums.nonYearAlbums} />
 						</div>
 					)}
 				</section>
 				<section className="col-md-9 col-md-offset-3">
-					<Thumb.List
+					<ThumbnailList
 						items={albums.yearAlbums}
 						isAlbum={true}
 						albumType={AlbumType.ROOT}

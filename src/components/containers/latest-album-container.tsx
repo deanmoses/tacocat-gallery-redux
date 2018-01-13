@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { AlbumThumb } from '@src/models/models';
-import * as Thumb from '@src/components/presentation/thumb';
+import { Thumbnail } from '@src/components/presentation/thumbnail';
 
 /**
  * Component properties
@@ -47,7 +47,7 @@ export class LatestAlbumContainer extends React.Component<ComponentProps> {
 			return (
 				<div>
 					<h2>Latest Album</h2>
-					<Thumb.Nail item={album} isAlbum={true} albumType={null} />
+					<Thumbnail item={album} isAlbum={true} albumType={null} />
 				</div>
 			);
 		}
