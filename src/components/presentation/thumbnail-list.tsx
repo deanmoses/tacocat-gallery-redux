@@ -9,10 +9,10 @@ interface ComponentProps {
 	readonly items: Thumbable[];
 	readonly isAlbum?: boolean;
 	readonly albumType?: AlbumType;
-	readonly editMode?: boolean;
 	readonly useLongDateAsTitle?: boolean;
 	readonly useLongDateAsSummary?: boolean;
-	readonly selectedItem?: any;
+	/** URL of selected thumbnail. Only used in edit mode. */
+	readonly selectedItemUrl?: any;
 	readonly onSelect?: (x: any) => any;
 }
 
@@ -23,7 +23,6 @@ interface ComponentProps {
 export class ThumbnailList extends React.Component<ComponentProps> {
 	static defaultProps: Partial<ComponentProps> = {
 		isAlbum: false,
-		editMode: false,
 		useLongDateAsTitle: false,
 		useLongDateAsSummary: false
 	};
@@ -35,39 +34,26 @@ export class ThumbnailList extends React.Component<ComponentProps> {
 
 	render() {
 		if (!this.props.items) {
-			return false;
+			return null;
 		}
 		var isAlbum = this.props.isAlbum;
 		var sectionText = isAlbum ? 'Albums' : 'Photos';
+
+		// build thumbnails
 		var thumbs = this.props.items.map((child: any) => {
-			if (this.props.editMode) {
-				var selected =
-					this.props.editMode &&
-					!!this.props.selectedItem &&
-					child.path.endsWith(this.props.selectedItem);
-				return (
-					<Thumbnail
-						item={child}
-						isAlbum={isAlbum}
-						albumType={this.props.albumType}
-						key={child.path}
-						editMode={this.props.editMode}
-						selected={selected}
-						onSelect={this.onSelect.bind(this, child.path)}
-					/>
-				);
-			} else {
-				return (
-					<Thumbnail
-						item={child}
-						isAlbum={isAlbum}
-						albumType={this.props.albumType}
-						key={child.path}
-						useLongDateAsSummary={this.props.useLongDateAsSummary}
-						useLongDateAsTitle={this.props.useLongDateAsTitle}
-					/>
-				);
-			}
+			var selected = child.url_thumb.endsWith(this.props.selectedItemUrl);
+			return (
+				<Thumbnail
+					item={child}
+					isAlbum={isAlbum}
+					albumType={this.props.albumType}
+					key={child.path}
+					useLongDateAsSummary={this.props.useLongDateAsSummary}
+					useLongDateAsTitle={this.props.useLongDateAsTitle}
+					selected={selected}
+					onSelect={this.onSelect.bind(this, child.path)}
+				/>
+			);
 		});
 
 		return (

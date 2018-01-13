@@ -20,7 +20,7 @@ export class AlbumImpl implements Album {
 	desc?: string;
 	image_size?: number;
 	thumb_size?: number;
-	thumb?: string;
+	url_thumb?: string;
 	date?: number;
 	albums?: AlbumThumb[];
 	images?: (Image)[];

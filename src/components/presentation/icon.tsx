@@ -18,11 +18,11 @@ export type IconProps = {
  * Icon component properties
  */
 type ComponentProps = {
+	readonly onClick?: (x: any) => void;
 	readonly path: string;
 	readonly viewBox?: string;
 	readonly width?: string;
 	readonly height?: string;
-	readonly onClick?: (x: any) => void;
 };
 
 /**
@@ -35,14 +35,10 @@ export const Icon: React.StatelessComponent<ComponentProps> = ({
 	width = '1em',
 	onClick
 }) => {
-	const styles = {
+	const styles: any = {
 		svg: {
-			display: 'inline-block',
-			verticalAlign: 'middle',
-			position: 'relative' as 'relative',
 			width: width,
-			height: height,
-			bottom: '0.125em'
+			height: height
 		},
 		path: {
 			fill: 'currentColor'
@@ -50,7 +46,12 @@ export const Icon: React.StatelessComponent<ComponentProps> = ({
 	};
 
 	return (
-		<svg style={styles.svg} viewBox={viewBox} onClick={onClick}>
+		<svg
+			className="icon"
+			style={styles.svg}
+			viewBox={viewBox}
+			onClick={onClick}
+		>
 			<path style={styles.path} d={path} />
 		</svg>
 	);

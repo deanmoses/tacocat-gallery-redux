@@ -48,7 +48,11 @@ export interface Album {
 	unpublished?: boolean;
 	image_size?: number;
 	thumb_size?: number;
-	thumb?: string;
+
+	/**
+	 * URL of album's thumbnail photo.
+	 */
+	url_thumb?: string;
 	date?: number;
 	year?: number;
 	images?: Image[];

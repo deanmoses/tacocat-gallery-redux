@@ -49,9 +49,7 @@ export const DayAlbumPage: React.StatelessComponent<ComponentProps> = ({
 		<ThumbnailList
 			items={album.images}
 			isAlbum={false}
-			// editMode={user.editMode}
-			// selectedItem={selectedItem}
-			// onSelect={this.onThumbSelect}
+			selectedItemUrl={album.url_thumb}
 		/>
 		<AlbumEditControls album={album} />
 	</Site.Page>

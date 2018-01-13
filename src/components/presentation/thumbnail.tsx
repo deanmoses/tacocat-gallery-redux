@@ -3,6 +3,7 @@ import * as DateUtils from '@src/utils/date-utils';
 import Config from '@src/utils/config';
 import { AlbumType, Thumbable } from '@src/models/models';
 import { StarIcon } from '@src/components/presentation/icon-star';
+import { EmptyStarIcon } from '@src/components/presentation/icon-star-empty';
 
 /**
  * Component properties
@@ -41,7 +42,7 @@ export class Thumbnail extends React.Component<ComponentProps> {
 		}
 		let width = 200;
 		let height = 200;
-		let title;
+		let title = item.title;
 		if (this.props.isAlbum) {
 			if (this.props.albumType === AlbumType.ROOT) {
 				title = DateUtils.year(item.date);
@@ -53,15 +54,13 @@ export class Thumbnail extends React.Component<ComponentProps> {
 			}
 		} else if (this.props.useLongDateAsTitle) {
 			title = DateUtils.longDate(item.date);
-		} else {
-			title = item.title;
 		}
 		let widthPx = width + 'px';
 		let heightPx = height + 'px';
-		var style = {
+		let style = {
 			width: widthPx
 		};
-		var imgLinkStyle = {
+		let imgLinkStyle = {
 			width: widthPx,
 			height: heightPx
 		};
@@ -77,14 +76,19 @@ export class Thumbnail extends React.Component<ComponentProps> {
 			</p>
 		);
 
-		var selectedClass =
-			!this.props.editMode || !this.props.selected ? '' : ' selected';
-		var selectButton = !this.props.editMode ? (
-			''
-		) : (
-			<StarIcon onClick={this.onSelect} />
-		);
-		var thumbUrl = Config.cdnHost() + item.url_thumb;
+		let selectedClass = '';
+		let selectButton;
+
+		if (this.props.editMode) {
+			if (this.props.selected) {
+				selectedClass = ' selected';
+				selectButton = <StarIcon onClick={this.onSelect} />;
+			} else {
+				selectButton = <EmptyStarIcon onClick={this.onSelect} />;
+			}
+		}
+
+		let thumbUrl = Config.cdnHost() + item.url_thumb;
 
 		return (
 			<span className={'thumbnail' + selectedClass}>
