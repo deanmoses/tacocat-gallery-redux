@@ -189,9 +189,9 @@ export const SearchButton: React.StatelessComponent<SearchButtonProps> = ({
 	searchTerms,
 	returnPath
 }) => {
-	var searchUrl = '#search:';
-	searchUrl += searchTerms ? encodeURIComponent(searchTerms) : '';
-	searchUrl += '&return:';
+	var searchUrl = '#search';
+	searchUrl += searchTerms ? '/' + encodeURIComponent(searchTerms) : '';
+	searchUrl += '/return:';
 	searchUrl += returnPath ? encodeURIComponent(returnPath) : '';
 	return (
 		<a href={searchUrl}>

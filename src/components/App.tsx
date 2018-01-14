@@ -6,6 +6,7 @@ import * as React from 'react';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import Album from '@src/components/containers/album-connector';
 import Image from '@src/components/containers/image-connector';
+import { SearchContainer as Search } from '@src/components/containers/search-container';
 import InvalidUrl from '@src/components/pages/invalid-url-page';
 
 /**
@@ -15,6 +16,10 @@ export const App: React.StatelessComponent = () => (
 	<Router hashType="noslash">
 		<Switch>
 			<Route exact path="/" render={() => <Album path="/" />} />
+			<Route
+				path="/search/:terms?/return:returnPath"
+				render={() => <Search returnPath="/" />}
+			/>
 			<Route
 				exact
 				path="/:albumPath([^.]+)"
