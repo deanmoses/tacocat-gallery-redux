@@ -49,7 +49,7 @@ function mapStateToProps(
  */
 function getEditMenuMode(state: RootState, ownProps: ComponentProps) {
 	// if user is not authenticated
-	if (getAuthentication(state)) {
+	if (!getAuthentication(state)) {
 		return Mode.EDIT_MODE_DISALLOWED;
 	} else if (!getEditMode(state)) {
 		// if we're in not in edit mode

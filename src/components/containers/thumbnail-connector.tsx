@@ -10,7 +10,6 @@
 
 import { connect } from 'react-redux';
 import { RootState } from '@src/redux/reducers/root-state';
-import { getAuthentication } from '@src/redux/selectors/authentication-selectors';
 import { getEditMode } from '@src/redux/selectors/edit-mode-selectors';
 import { setAlbumThumbnail } from '@src/redux/actions/thumbnail-action-builders';
 import { getParentFromPath, getLeafItemOnPath } from '@src/utils/path-utils';
@@ -47,7 +46,7 @@ function mapStateToProps(
 	state: RootState /*, ownProps: ComponentProps*/
 ): Partial<ComponentProps> {
 	return {
-		editMode: !getAuthentication(state) && getEditMode(state)
+		editMode: getEditMode(state)
 	};
 }
 

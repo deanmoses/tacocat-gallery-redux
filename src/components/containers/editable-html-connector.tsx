@@ -10,7 +10,6 @@
 
 import { connect } from 'react-redux';
 import { RootState } from '@src/redux/reducers/root-state';
-import { getAuthentication } from '@src/redux/selectors/authentication-selectors';
 import { getEditMode } from '@src/redux/selectors/edit-mode-selectors';
 import { updateDraftField } from '@src/redux/actions/draft-update-action-builders';
 import {
@@ -58,7 +57,7 @@ function mapStateToProps(
 	state: RootState /*, ownProps: ComponentProps*/
 ): Partial<ComponentProps> {
 	return {
-		editMode: !getAuthentication(state) && getEditMode(state)
+		editMode: getEditMode(state)
 	};
 }
 

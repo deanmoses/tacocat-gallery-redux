@@ -9,10 +9,12 @@
 //
 
 import { RootState } from '@src/redux/reducers/root-state';
+import { getAuthentication } from '@src/redux/selectors/authentication-selectors';
 
 /**
- * Retrieve whether the system is in edit mode or not
+ * Retrieve whether the system is in edit mode or not.
+ * Also checks to see if the user is authenticated.
  */
-export function getEditMode(state: RootState): boolean {
-	return state.editMode;
+export function getEditMode(rootState: RootState): boolean {
+	return getAuthentication(rootState) && rootState.editMode;
 }
