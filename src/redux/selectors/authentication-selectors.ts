@@ -13,6 +13,6 @@ import { RootState } from '@src/redux/reducers/root-state';
 /**
  * Retrieve whether the system is in edit mode or not
  */
-export function getAuthentication(state: RootState): boolean {
+export function isAuthenticated(state: RootState): boolean {
 	return state.isAuthenticated;
 }

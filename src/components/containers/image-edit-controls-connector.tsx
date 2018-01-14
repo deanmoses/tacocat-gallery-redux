@@ -10,8 +10,8 @@
 
 import { connect } from 'react-redux';
 import { RootState } from '@src/redux/reducers/root-state';
-import { getAuthentication } from '@src/redux/selectors/authentication-selectors';
-import { getEditMode } from '@src/redux/selectors/edit-mode-selectors';
+import { isAuthenticated } from '@src/redux/selectors/authentication-selectors';
+import { isInEditMode } from '@src/redux/selectors/edit-mode-selectors';
 import { getDraft } from '@src/redux/selectors/draft-selectors';
 import {
 	enableEditMode,
@@ -49,9 +49,9 @@ function mapStateToProps(
  */
 function getEditMenuMode(state: RootState, ownProps: ComponentProps) {
 	// if user is not authenticated
-	if (!getAuthentication(state)) {
+	if (!isAuthenticated(state)) {
 		return Mode.EDIT_MODE_DISALLOWED;
-	} else if (!getEditMode(state)) {
+	} else if (!isInEditMode(state)) {
 		// if we're in not in edit mode
 		return Mode.EDIT_MODE_ALLOWED;
 	} else {

@@ -10,7 +10,7 @@
 
 import { connect } from 'react-redux';
 import { RootState } from '@src/redux/reducers/root-state';
-import { getEditMode } from '@src/redux/selectors/edit-mode-selectors';
+import { isInEditMode } from '@src/redux/selectors/edit-mode-selectors';
 import { setAlbumThumbnail } from '@src/redux/actions/thumbnail-action-builders';
 import { getParentFromPath, getLeafItemOnPath } from '@src/utils/path-utils';
 import { AlbumType, Thumbable } from '@src/models/models';
@@ -46,7 +46,7 @@ function mapStateToProps(
 	state: RootState /*, ownProps: ComponentProps*/
 ): Partial<ComponentProps> {
 	return {
-		editMode: getEditMode(state)
+		editMode: isInEditMode(state)
 	};
 }
 
