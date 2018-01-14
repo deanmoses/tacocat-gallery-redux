@@ -6,7 +6,7 @@ import * as React from 'react';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import Album from '@src/components/containers/album-connector';
 import Image from '@src/components/containers/image-connector';
-import { SearchContainer as Search } from '@src/components/containers/search-container';
+import Search from '@src/components/containers/search-connector';
 import InvalidUrl from '@src/components/pages/invalid-url-page';
 
 /**

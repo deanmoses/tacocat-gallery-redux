@@ -1,7 +1,7 @@
 //
-// This is the React Redux connector for the LatestAlbumContainer component.
+// This is the React Redux connector for the SearchContainer component.
 //
-// Its job is to connect the target component to Redux in the following ways:
+// A Redux connector's job is to connect the target component to Redux in the following ways:
 // 1) Connect the Redux store's state with the target component's properties -- see mapStateToProps() below.
 // 2) Connect the target component's events (like fetchIfNeeded) to the Redux actions -- see mapDispatchToProps() below
 //
@@ -10,14 +10,22 @@
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { RootState } from '@src/redux/reducers/root-state';
-import { AlbumThumb } from '@src/models/models';
-import * as actions from '@src/redux/actions/latest-album-action-builders';
-import { getLatestAlbum } from '@src/redux/selectors/selectors';
+import { searchIfNeeded } from '@src/redux/actions/search-action-builders';
 import {
-	LatestAlbumContainer,
+	SearchContainer,
 	ComponentProps
-} from '@src/components/containers/latest-album-container';
+} from '@src/components/containers/search-container';
+import { RootState } from '@src/redux/reducers/root-state';
+import { getSearchResults } from '@src/redux/selectors/search-selectors';
+import { SearchState } from '@src/models/models';
+
+/**
+ * My properties are different than the component I wrap!
+ */
+type ConnectedComponentProps = {
+	readonly returnPath: string;
+	readonly searchTerms?: string;
+};
 
 /**
  * mapStateToProps() is a standard Redux function to transform the state of
@@ -30,13 +38,24 @@ import {
  * @returns set of props for the target component
  */
 function mapStateToProps(
-	state: RootState /*, ownProps: ComponentProps*/
+	rootState: RootState,
+	ownProps: ComponentProps
 ): Partial<ComponentProps> {
-	const latestAlbum: AlbumThumb = getLatestAlbum(state);
-
-	return {
-		latestAlbum
-	};
+	if (!ownProps.searchTerms) {
+		return {};
+	}
+	const search = getSearchResults(rootState, ownProps.searchTerms);
+	if (!search) {
+		return {
+			state: SearchState.SEARCHING
+		};
+	} else {
+		return {
+			state: search.state,
+			results: search.results,
+			errorMessage: search.errorMessage
+		};
+	}
 }
 
 /**
@@ -46,7 +65,7 @@ function mapStateToProps(
 function mapDispatchToProps(dispatch: any): Partial<ComponentProps> {
 	return bindActionCreators(
 		{
-			fetchLatestAlbumIfNeeded: actions.fetchLatestAlbumIfNeeded
+			fetchIfNeeded: searchIfNeeded
 		},
 		dispatch
 	);
@@ -63,8 +82,8 @@ function mapDispatchToProps(dispatch: any): Partial<ComponentProps> {
  *
  * This way, the target component is completely unaware of Redux; it's a plain React component.
  */
-const ConnectedComponent = connect<{}, {}, ComponentProps>(
+const ConnectedComponent = connect<{}, {}, ConnectedComponentProps>(
 	mapStateToProps,
 	mapDispatchToProps
-)(LatestAlbumContainer);
+)(SearchContainer);
 export default ConnectedComponent;

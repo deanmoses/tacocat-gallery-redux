@@ -1,6 +1,7 @@
 import * as React from 'react';
 import * as Site from '@src/components/presentation/site';
 import { SearchPageShell } from '@src/components/presentation/search-page-shell';
+import { HomeIcon } from '@src/components/presentation/icon-home';
 
 /**
  * Component properties
@@ -21,7 +22,11 @@ export const SearchErrorPage: React.StatelessComponent<ComponentProps> = ({
 	<SearchPageShell searchTerms={searchTerms} returnPath={returnPath}>
 		<Site.FullPageMessage>
 			<p>There was an error searching.</p>
-			<p>Reload the page and try again.</p>
+			<p>
+				<a href="#">
+					Go back <HomeIcon />?
+				</a>
+			</p>
 		</Site.FullPageMessage>
 	</SearchPageShell>
 );

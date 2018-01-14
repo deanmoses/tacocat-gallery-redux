@@ -65,6 +65,18 @@ export default abstract class Config {
 	}
 
 	/**
+	 * URL of the JSON REST API to search for the specified terms
+	 * @argument searchTerms the terms to search for
+	 */
+	public static jsonSearchUrl(searchTerms: string): string {
+		return (
+			'https://tacocat.com/zenphoto/page/search?words=' +
+			encodeURIComponent(searchTerms) +
+			'&api'
+		);
+	}
+
+	/**
 	 * URL you can hit to update the JSON cache of a specific album
 	 */
 	public static refreshAlbumCacheUrl(albumPath: string): string {

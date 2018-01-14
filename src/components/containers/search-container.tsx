@@ -2,7 +2,7 @@ import * as React from 'react';
 import { SearchPageShell } from '@src/components/presentation/search-page-shell';
 import { SearchLoadingPage } from '@src/components/pages/search-loading-page';
 import { SearchErrorPage } from '@src/components/pages/search-error-page';
-//import { ThumbnailList } from '@src/components/presentation/thumbnail-list';
+import { SearchState } from '@src/models/models';
 
 /**
  * Component properties
@@ -10,9 +10,10 @@ import { SearchErrorPage } from '@src/components/pages/search-error-page';
 export type ComponentProps = {
 	readonly returnPath: string;
 	readonly searchTerms?: string;
-	readonly error?: string; // error doing search
+	readonly errorMessage?: string; // error doing search
 	readonly results?: any;
-	readonly doSearch?: Function;
+	readonly state?: SearchState;
+	readonly fetchIfNeeded?: (searchTerms: string) => void;
 };
 
 /**
@@ -27,7 +28,11 @@ export class SearchContainer extends React.Component<ComponentProps> {
 	 * This is the place to trigger async logic, such as Redux actions.
 	 */
 	componentDidMount() {
-		//this.props.fetchIfNeeded(this.props.path);
+		// If my connector component has hooked up a method to fetch search results...
+		if (!!this.props.fetchIfNeeded) {
+			// ...call it
+			this.props.fetchIfNeeded(this.props.searchTerms);
+		}
 	}
 
 	/**
@@ -37,22 +42,24 @@ export class SearchContainer extends React.Component<ComponentProps> {
 	 * only want to handle changes. This may occur when the parent component causes
 	 * your component to re-render.
 	 */
-	// componentWillReceiveProps(nextProps: ComponentProps) {
-	// 	// Have we changed which album we're displaying?
-	// 	let differentAlbum: boolean = nextProps.path !== this.props.path;
-	// 	if (differentAlbum) {
-	// 		this.props.fetchIfNeeded(nextProps.path);
-	// 	}
-	// }
+	componentWillReceiveProps(nextProps: ComponentProps) {
+		// Have we changed which search terms we're displaying?
+		let differentSearchTerms: boolean =
+			nextProps.searchTerms !== this.props.searchTerms;
+		if (differentSearchTerms) {
+			this.props.fetchIfNeeded(nextProps.searchTerms);
+		}
+	}
 
 	render() {
-		// No state = no search results
-		if (!this.props.results && !this.props.error) {
+		console.log(`search render(${this.props.searchTerms})`);
+		if (!this.props.state) {
 			// Tabula rasa: search screen, ready to type a search query into
-			if (!this.props.searchTerms) {
-				return <SearchPageShell returnPath={this.props.returnPath} />;
-			} else {
-				// Else search terms have been typed in.  Show waiting page
+			return <SearchPageShell returnPath={this.props.returnPath} />;
+		}
+
+		switch (this.props.state) {
+			case SearchState.SEARCHING: {
 				return (
 					<SearchLoadingPage
 						searchTerms={this.props.searchTerms}
@@ -60,35 +67,35 @@ export class SearchContainer extends React.Component<ComponentProps> {
 					/>
 				);
 			}
-		} else if (this.props.error) {
-			return (
-				<SearchErrorPage
-					searchTerms={this.props.searchTerms}
-					returnPath={this.props.returnPath}
-					error={this.props.error}
-				/>
-			);
-		} else if (this.props.results) {
-			// Else if successful results
-			// No images or albums in results: show no search results page
-			if (!this.props.results.images && !this.props.results.albums) {
-				return null; //<NoResultsPage searchTerms={this.props.searchTerms} returnPath={this.props.returnPath} />
-			} else {
-				return null;
-				// let images:any = '';
-				// let albums:any = '';
-				// if (this.props.results.images) {
-				// 	images = <ThumbnailList items={this.props.results.images} useLongDateAsSummary={true}/>;
-				// }
-				// if (this.props.results.albums) {
-				// 	albums = <ThumbnailList items={this.props.results.albums} useLongDateAsTitle={true}/>;
-				// }
-				// return (
-				// 	null//<ResultsPage searchTerms={this.props.searchTerms} returnPath={this.props.returnPath} images={images} albums={albums} />
-				// );
+			case SearchState.ERROR: {
+				return (
+					<SearchErrorPage
+						error={this.props.errorMessage}
+						searchTerms={this.props.searchTerms}
+						returnPath={this.props.returnPath}
+					/>
+				);
+			}
+			default: {
+				// Else if successful results
+				// No images or albums in results: show no search results page
+				if (!this.props.results.images && !this.props.results.albums) {
+					return null; //<NoResultsPage searchTerms={this.props.searchTerms} returnPath={this.props.returnPath} />
+				} else {
+					return null;
+					// let images:any = '';
+					// let albums:any = '';
+					// if (this.props.results.images) {
+					// 	images = <ThumbnailList items={this.props.results.images} useLongDateAsSummary={true}/>;
+					// }
+					// if (this.props.results.albums) {
+					// 	albums = <ThumbnailList items={this.props.results.albums} useLongDateAsTitle={true}/>;
+					// }
+					// return (
+					// 	null//<ResultsPage searchTerms={this.props.searchTerms} returnPath={this.props.returnPath} images={images} albums={albums} />
+					// );
+				}
 			}
 		}
-
-		return null;
 	}
 }

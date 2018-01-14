@@ -18,6 +18,7 @@ describe('root reducer test', () => {
 		const state: RootState = {
 			albumsByPath: {},
 			draftsByPath: {},
+			searchesBySearchTerms: {},
 			latestAlbum: null,
 			isAuthenticated: true,
 			editMode: false

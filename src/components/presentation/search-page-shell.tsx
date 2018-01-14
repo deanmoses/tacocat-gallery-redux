@@ -34,9 +34,18 @@ export class SearchPageShell extends React.Component<ComponentProps> {
 	handleSearch(e: any) {
 		e.preventDefault();
 		const searchBox = this.refs.searchBox as any;
-		const searchTerms = encode(searchBox.value.trim());
-		const returnPath = encode(this.props.returnPath);
-		const searchUrl = 'search/' + searchTerms + '/return:' + returnPath;
+
+		let searchTerms = encode(searchBox.value.trim());
+		if (!!searchTerms) {
+			searchTerms = '/' + searchTerms;
+		}
+
+		let returnPath = encode(this.props.returnPath);
+		if (!!returnPath) {
+			returnPath = '/return:' + returnPath;
+		}
+
+		const searchUrl = 'search' + searchTerms + returnPath;
 		window.location.hash = searchUrl;
 	}
 

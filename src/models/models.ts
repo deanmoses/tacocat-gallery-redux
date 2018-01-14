@@ -1,16 +1,16 @@
-/**
- * Interfaces for the application state
- */
+//
+// Interfaces for the application state
+//
 
 /**
- * Represents a data store of albums retrievable by their path
+ * A data store of albums retrievable by their path
  */
 export type AlbumsByPath = {
 	[albumPath: string]: Album;
 };
 
 /**
- * Represents a data store of draft edits of both albums and images,
+ * A data store of draft edits of both albums and images,
  * retrievable by the path of that album or image
  */
 export type DraftsByPath = {
@@ -18,7 +18,7 @@ export type DraftsByPath = {
 };
 
 /**
- * Represents an unsaved draft edit of an album or an image
+ * An unsaved draft edit of an album or an image
  */
 export type Draft = {
 	path: string;
@@ -32,6 +32,29 @@ export enum DraftState {
 	SAVING = 'SAVING',
 	SAVED = 'SAVED',
 	ERRORED = 'ERRORED'
+}
+
+/**
+ * A data store of search results,
+ * retrievably by their search terms.
+ */
+export type SearchesBySearchTerms = {
+	[searchTerms: string]: Search;
+};
+
+/**
+ * A set of search results for a particular set of search terms
+ */
+export type Search = {
+	results?: any;
+	state?: SearchState;
+	errorMessage?: string;
+};
+
+export enum SearchState {
+	SEARCHING = 'SEARCHING',
+	SUCCESS = 'SUCCESS',
+	ERROR = 'ERROR'
 }
 
 /**

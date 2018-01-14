@@ -33,6 +33,9 @@ export enum ActionTypeKeys {
 	LATEST_ALBUM_REQUESTED = 'LATEST_ALBUM_REQUESTED',
 	LATEST_ALBUM_RECEIVED = 'LATEST_ALBUM_RECEIVED',
 	LATEST_ALBUM_ERRORED = 'LATEST_ALBUM_ERRORED',
+	SEARCHING = 'SEARCHING',
+	SEARCH_RESULTS_RECEIVED = 'SEARCH_RESULTS_RECEIVED',
+	SEARCH_ERRORED = 'SEARCH_ERRORED',
 	AUTHENTICATION_STATUS_UPDATE = 'AUTHENTICATION_STATUS_UPDATE',
 	EDIT_MODE_UPDATE = 'EDIT_MODE_UPDATE',
 	OTHER_ACTION = 'OTHER_ACTION'
@@ -52,6 +55,9 @@ export type ActionTypes =
 	| LatestAlbumRequested
 	| LatestAlbumRecieved
 	| LatestAlbumErrored
+	| Searching
+	| SearchResultsReceived
+	| SearchErrored
 	| AuthenticationStatusUpdate
 	| EditModeUpdate
 	| OtherAction;
@@ -183,6 +189,32 @@ export interface LatestAlbumErrored extends Action {
 export interface LatestAlbumRecieved extends Action {
 	type: ActionTypeKeys.LATEST_ALBUM_RECEIVED;
 	latestAlbum: AlbumThumb;
+}
+
+/**
+ * Search results are being fetched (but not yet received) from the server
+ */
+export interface Searching extends Action {
+	type: ActionTypeKeys.SEARCHING;
+	searchTerms: string;
+}
+
+/**
+ * Search results have been received from server
+ */
+export interface SearchResultsReceived extends Action {
+	type: ActionTypeKeys.SEARCH_RESULTS_RECEIVED;
+	searchTerms: string;
+	searchResults: any;
+}
+
+/**
+ * The search has errored attempting to retrieve from server
+ */
+export interface SearchErrored extends Action {
+	type: ActionTypeKeys.SEARCH_ERRORED;
+	searchTerms: string;
+	error: FetchError;
 }
 
 /**
