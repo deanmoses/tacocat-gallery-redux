@@ -42,7 +42,7 @@ export default abstract class Config {
 	 * URL of the JSON REST API to retrieve the latest album
 	 */
 	public static latestAlbumJsonUrl(): string {
-		return 'http://tacocat.com/zenphoto/?json&latest_albums&depth=0';
+		return 'https://tacocat.com/zenphoto/?json&latest_albums&depth=0';
 	}
 
 	/**
