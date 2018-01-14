@@ -15,7 +15,9 @@ import InvalidUrl from '@src/components/pages/invalid-url-page';
 export const App: React.StatelessComponent = () => (
 	<Router hashType="noslash">
 		<Switch>
+			{/* Root gallery / album */}
 			<Route exact path="/" render={() => <Album path="/" />} />
+			{/* Search */}
 			<Route
 				path="/search/:searchTerms?/return::returnPath?"
 				render={props => (
@@ -25,6 +27,7 @@ export const App: React.StatelessComponent = () => (
 					/>
 				)}
 			/>
+			{/* Albums are any path without a '.' */}
 			<Route
 				exact
 				path="/:albumPath([^.]+)"
@@ -32,9 +35,11 @@ export const App: React.StatelessComponent = () => (
 					<Album path={props.match.params.albumPath as string} />
 				)}
 			/>
+			{/* Images are any path WITH something.something.  
+			Note that some filenames have periods, so it has to support multiple periods. */}
 			<Route
 				exact
-				path="/:imagePath([^.]+[.][^.]+)"
+				path="/:imagePath([^.]+[.].+)"
 				render={props => (
 					<Image path={props.match.params.imagePath as string} />
 				)}
