@@ -72,7 +72,7 @@ export default abstract class Config {
 		return (
 			'https://tacocat.com/zenphoto/page/search?words=' +
 			encodeURIComponent(searchTerms) +
-			'&api'
+			'&json'
 		);
 	}
 

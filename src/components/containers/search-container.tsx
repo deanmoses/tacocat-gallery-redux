@@ -3,6 +3,8 @@ import { SearchPageShell } from '@src/components/presentation/search-page-shell'
 import { SearchLoadingPage } from '@src/components/pages/search-loading-page';
 import { SearchErrorPage } from '@src/components/pages/search-error-page';
 import { SearchState } from '@src/models/models';
+import { NoSearchResultsPage } from '@src/components/pages/search-results-empty-page';
+import { SearchResultsPage } from '@src/components/pages/search-results-page';
 
 /**
  * Component properties
@@ -52,7 +54,6 @@ export class SearchContainer extends React.Component<ComponentProps> {
 	}
 
 	render() {
-		console.log(`search render(${this.props.searchTerms})`);
 		if (!this.props.state) {
 			// Tabula rasa: search screen, ready to type a search query into
 			return <SearchPageShell returnPath={this.props.returnPath} />;
@@ -76,24 +77,25 @@ export class SearchContainer extends React.Component<ComponentProps> {
 					/>
 				);
 			}
+			// Else if successful results
 			default: {
-				// Else if successful results
 				// No images or albums in results: show no search results page
 				if (!this.props.results.images && !this.props.results.albums) {
-					return null; //<NoResultsPage searchTerms={this.props.searchTerms} returnPath={this.props.returnPath} />
+					return (
+						<NoSearchResultsPage
+							searchTerms={this.props.searchTerms}
+							returnPath={this.props.returnPath}
+						/>
+					);
 				} else {
-					return null;
-					// let images:any = '';
-					// let albums:any = '';
-					// if (this.props.results.images) {
-					// 	images = <ThumbnailList items={this.props.results.images} useLongDateAsSummary={true}/>;
-					// }
-					// if (this.props.results.albums) {
-					// 	albums = <ThumbnailList items={this.props.results.albums} useLongDateAsTitle={true}/>;
-					// }
-					// return (
-					// 	null//<ResultsPage searchTerms={this.props.searchTerms} returnPath={this.props.returnPath} images={images} albums={albums} />
-					// );
+					return (
+						<SearchResultsPage
+							images={this.props.results.images}
+							albums={this.props.results.albums}
+							searchTerms={this.props.searchTerms}
+							returnPath={this.props.returnPath}
+						/>
+					);
 				}
 			}
 		}

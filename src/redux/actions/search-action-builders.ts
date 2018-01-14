@@ -71,10 +71,12 @@ function receiveSearchResults(
 	searchTerms: string,
 	json: any
 ): SearchResultsReceived {
+	// TODO: better error handling if we don't get back expected response,
+	// rather than just accepting json.search
 	return {
 		type: ActionTypeKeys.SEARCH_RESULTS_RECEIVED,
 		searchTerms: searchTerms,
-		searchResults: json
+		searchResults: json.search
 	};
 }
 
