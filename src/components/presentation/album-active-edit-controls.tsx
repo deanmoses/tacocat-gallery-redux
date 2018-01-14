@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Album, AlbumType } from '@src/models/models';
-import { NextIcon } from '@src/components/presentation/icon-next';
-import { PrevIcon } from '@src/components/presentation/icon-prev';
+import { SaveIcon } from '@src/components/presentation/icon-save';
+import { CancelIcon } from '@src/components/presentation/icon-cancel';
 
 /**
  * Component properties
@@ -108,7 +108,7 @@ export class AlbumActiveEditControls extends React.Component<ComponentProps> {
 						title="Leave edit mode"
 						onClick={this.onCancel}
 					>
-						<PrevIcon /> Cancel
+						<CancelIcon /> Cancel
 					</button>
 					<button
 						type="button"
@@ -117,7 +117,7 @@ export class AlbumActiveEditControls extends React.Component<ComponentProps> {
 						title="Save"
 						onClick={this.onSave}
 					>
-						<NextIcon /> Save
+						<SaveIcon /> Save
 					</button>
 				</div>
 				{summaryControl}
