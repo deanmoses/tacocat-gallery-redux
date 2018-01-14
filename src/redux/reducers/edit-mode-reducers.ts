@@ -1,5 +1,5 @@
 //
-// The React Redux reducers for authentication
+// The React Redux reducers for handling edit mode
 //
 
 import * as Actions from '@src/redux/actions/actions';
