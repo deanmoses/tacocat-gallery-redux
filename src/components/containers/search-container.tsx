@@ -1,10 +1,17 @@
 import * as React from 'react';
+import { SearchPageShell } from '@src/components/presentation/search-page-shell';
+import { SearchLoadingPage } from '@src/components/pages/search-loading-page';
+import { SearchErrorPage } from '@src/components/pages/search-error-page';
+//import { ThumbnailList } from '@src/components/presentation/thumbnail-list';
 
 /**
  * Component properties
  */
 export type ComponentProps = {
 	readonly returnPath: string;
+	readonly searchTerms?: string;
+	readonly error?: string; // error doing search
+	readonly results?: any;
 	readonly doSearch?: Function;
 };
 
@@ -39,6 +46,49 @@ export class SearchContainer extends React.Component<ComponentProps> {
 	// }
 
 	render() {
-		return 'Search Page';
+		// No state = no search results
+		if (!this.props.results && !this.props.error) {
+			// Tabula rasa: search screen, ready to type a search query into
+			if (!this.props.searchTerms) {
+				return <SearchPageShell returnPath={this.props.returnPath} />;
+			} else {
+				// Else search terms have been typed in.  Show waiting page
+				return (
+					<SearchLoadingPage
+						searchTerms={this.props.searchTerms}
+						returnPath={this.props.returnPath}
+					/>
+				);
+			}
+		} else if (this.props.error) {
+			return (
+				<SearchErrorPage
+					searchTerms={this.props.searchTerms}
+					returnPath={this.props.returnPath}
+					error={this.props.error}
+				/>
+			);
+		} else if (this.props.results) {
+			// Else if successful results
+			// No images or albums in results: show no search results page
+			if (!this.props.results.images && !this.props.results.albums) {
+				return null; //<NoResultsPage searchTerms={this.props.searchTerms} returnPath={this.props.returnPath} />
+			} else {
+				return null;
+				// let images:any = '';
+				// let albums:any = '';
+				// if (this.props.results.images) {
+				// 	images = <ThumbnailList items={this.props.results.images} useLongDateAsSummary={true}/>;
+				// }
+				// if (this.props.results.albums) {
+				// 	albums = <ThumbnailList items={this.props.results.albums} useLongDateAsTitle={true}/>;
+				// }
+				// return (
+				// 	null//<ResultsPage searchTerms={this.props.searchTerms} returnPath={this.props.returnPath} images={images} albums={albums} />
+				// );
+			}
+		}
+
+		return null;
 	}
 }

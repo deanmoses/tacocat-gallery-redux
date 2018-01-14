@@ -17,8 +17,13 @@ export const App: React.StatelessComponent = () => (
 		<Switch>
 			<Route exact path="/" render={() => <Album path="/" />} />
 			<Route
-				path="/search/:terms?/return:returnPath"
-				render={() => <Search returnPath="/" />}
+				path="/search/:searchTerms?/return::returnPath?"
+				render={props => (
+					<Search
+						searchTerms={decode(props.match.params.searchTerms)}
+						returnPath={decode(props.match.params.returnPath)}
+					/>
+				)}
 			/>
 			<Route
 				exact
@@ -38,3 +43,7 @@ export const App: React.StatelessComponent = () => (
 		</Switch>
 	</Router>
 );
+
+function decode(uriComponent: string): string {
+	return !!uriComponent ? decodeURIComponent(uriComponent) : '';
+}
