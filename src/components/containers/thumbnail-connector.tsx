@@ -12,7 +12,8 @@ import { connect } from 'react-redux';
 import { RootState } from '@src/redux/reducers/root-state';
 import { getAuthentication } from '@src/redux/selectors/authentication-selectors';
 import { getEditMode } from '@src/redux/selectors/edit-mode-selectors';
-//import { updateDraftField } from '@src/redux/actions/draft-update-action-builders';
+import { updateDraftField } from '@src/redux/actions/draft-update-action-builders';
+import { getParentFromPath, getLeafItemOnPath } from '@src/utils/path-utils';
 import { AlbumType, Thumbable } from '@src/models/models';
 import {
 	Thumbnail,
@@ -54,12 +55,22 @@ function mapStateToProps(
  * mapDispatchToProps() is a a standard Redux function to map
  * Redux action creator functions to functions on the target component.
  */
-function mapDispatchToProps(): Partial<ComponentProps> {
-// dispatch: Function,
-// ownProps: ConnectedComponentProps
+function mapDispatchToProps(
+	dispatch: Function,
+	ownProps: Partial<ComponentProps>
+): Partial<ComponentProps> {
 	return {
-		// onSelect: newTextValue =>
-		// 	dispatch(updateDraftField(item.path, 'url_thumb', true))
+		// onSelect() = on click of the star on the thumbnail
+		// On onSelect(), set that item's thumbnail URL (ownProps.item.url_thumb) as the thumbnail URL
+		// of the parent album as retrieved with getParentFromPath(ownProps.item.path).
+		onSelect: () =>
+			dispatch(
+				updateDraftField(
+					getParentFromPath(ownProps.item.path),
+					'url_thumb',
+					getLeafItemOnPath(ownProps.item.path)
+				)
+			)
 	};
 }
 

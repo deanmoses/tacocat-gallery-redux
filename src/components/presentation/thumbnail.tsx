@@ -16,7 +16,7 @@ export type ComponentProps = {
 	readonly useLongDateAsTitle?: boolean;
 	readonly useLongDateAsSummary?: boolean;
 	readonly selected?: boolean;
-	readonly onSelect?: () => any;
+	readonly onSelect?: () => void;
 };
 
 /**

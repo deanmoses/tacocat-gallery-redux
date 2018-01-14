@@ -15,3 +15,29 @@ export function getYearFromPath(path: string): number {
 		return null;
 	}
 }
+
+/**
+ * Return the parent path from the given path.  For example:
+ *  - If the path is an image, it returns the album the image is in.
+ *  - If the path is an album, it returns the parent album the child is in.
+ *  - If the path is an album off the root like "2000", it returns ''
+ *  - If the path is the root album (the gallery itself), it throws an exception.
+ */
+export function getParentFromPath(path: string): string {
+	if (!path || path === '/') throw new Error('Root album has no parent');
+	// get the album's path from the photo's path
+	var pathParts = path.split('/');
+	pathParts.pop(); // remove photo filename
+	return pathParts.join('/');
+}
+
+/**
+ * Return the leaf item on the given path.  For example:
+ * - If the path is an image like 2001/12-31/photo.jpg, it returns photo.jpg
+ * - If the path is an album like 2001/12-31, it returns 12-31
+ * - If the path is 2001, it returns 2001
+ * - If the path is empty, it return empty
+ */
+export function getLeafItemOnPath(path: string): string {
+	return path.split('/').pop(); // we just want 'felix.jpg'
+}

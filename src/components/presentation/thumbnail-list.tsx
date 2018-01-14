@@ -13,7 +13,6 @@ interface ComponentProps {
 	readonly useLongDateAsSummary?: boolean;
 	/** URL of selected thumbnail. Only used in edit mode. */
 	readonly selectedItemUrl?: any;
-	readonly onSelect?: (x: any) => any;
 }
 
 /**
@@ -29,7 +28,6 @@ export class ThumbnailList extends React.Component<ComponentProps> {
 
 	constructor(props: ComponentProps) {
 		super(props);
-		this.onSelect = this.onSelect.bind(this);
 	}
 
 	render() {
@@ -51,7 +49,6 @@ export class ThumbnailList extends React.Component<ComponentProps> {
 					useLongDateAsSummary={this.props.useLongDateAsSummary}
 					useLongDateAsTitle={this.props.useLongDateAsTitle}
 					selected={selected}
-					onSelect={this.onSelect.bind(this, child.path)}
 				/>
 			);
 		});
@@ -62,11 +59,5 @@ export class ThumbnailList extends React.Component<ComponentProps> {
 				{thumbs}
 			</section>
 		);
-	}
-
-	onSelect(selectKey: any) {
-		if (this.props.onSelect) {
-			this.props.onSelect(selectKey);
-		}
 	}
 }
