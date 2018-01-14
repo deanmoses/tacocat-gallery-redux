@@ -26,6 +26,10 @@ export enum ActionTypeKeys {
 	DRAFT_SAVING = 'DRAFT_SAVING',
 	DRAFT_SAVED = 'DRAFT_SAVED',
 	DRAFT_SAVE_ERRORED = 'DRAFT_SAVE_ERRORED',
+	THUMBNAIL_UPDATE = 'THUMBNAIL_UPDATE',
+	THUMBNAIL_SAVING = 'THUMBNAIL_SAVING',
+	THUMBNAIL_SAVED = 'THUMBNAIL_SAVED',
+	THUMBNAIL_SAVE_ERRORED = 'THUMBNAIL_SAVE_ERRORED',
 	LATEST_ALBUM_REQUESTED = 'LATEST_ALBUM_REQUESTED',
 	LATEST_ALBUM_RECEIVED = 'LATEST_ALBUM_RECEIVED',
 	LATEST_ALBUM_ERRORED = 'LATEST_ALBUM_ERRORED',
@@ -42,6 +46,9 @@ export type ActionTypes =
 	| DraftSaving
 	| DraftSaved
 	| DraftSaveErrored
+	| ThumbnailSaving
+	| ThumbnailSaved
+	| ThumbnailSaveErrored
 	| LatestAlbumRequested
 	| LatestAlbumRecieved
 	| LatestAlbumErrored
@@ -118,6 +125,40 @@ export interface DraftSaveErrored extends Action {
 	 * Path of album or image being updated
 	 */
 	path: string;
+	error: FetchError;
+}
+
+/**
+ * New thumbnail for album is being saved to the server
+ */
+export interface ThumbnailSaving extends Action {
+	type: ActionTypeKeys.THUMBNAIL_SAVING;
+	/**
+	 * Path of album whose thumbnail is being saved
+	 */
+	albumPath: string;
+}
+
+/**
+ * New thumbnail for album was saved successfully to the server
+ */
+export interface ThumbnailSaved extends Action {
+	type: ActionTypeKeys.THUMBNAIL_SAVED;
+	/**
+	 * Path of album whose thumbnail is being saved
+	 */
+	albumPath: string;
+}
+
+/**
+ * There was an error trying to save a new thumbnail for album
+ */
+export interface ThumbnailSaveErrored extends Action {
+	type: ActionTypeKeys.THUMBNAIL_SAVE_ERRORED;
+	/**
+	 * Path of album whose thumbnail was being saved
+	 */
+	albumPath: string;
 	error: FetchError;
 }
 

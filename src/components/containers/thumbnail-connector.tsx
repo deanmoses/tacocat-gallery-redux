@@ -12,7 +12,7 @@ import { connect } from 'react-redux';
 import { RootState } from '@src/redux/reducers/root-state';
 import { getAuthentication } from '@src/redux/selectors/authentication-selectors';
 import { getEditMode } from '@src/redux/selectors/edit-mode-selectors';
-import { updateDraftField } from '@src/redux/actions/draft-update-action-builders';
+import { setAlbumThumbnail } from '@src/redux/actions/thumbnail-action-builders';
 import { getParentFromPath, getLeafItemOnPath } from '@src/utils/path-utils';
 import { AlbumType, Thumbable } from '@src/models/models';
 import {
@@ -65,9 +65,8 @@ function mapDispatchToProps(
 		// of the parent album as retrieved with getParentFromPath(ownProps.item.path).
 		onSelect: () =>
 			dispatch(
-				updateDraftField(
+				setAlbumThumbnail(
 					getParentFromPath(ownProps.item.path),
-					'url_thumb',
 					getLeafItemOnPath(ownProps.item.path)
 				)
 			)
