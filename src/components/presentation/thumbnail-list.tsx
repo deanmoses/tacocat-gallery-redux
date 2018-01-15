@@ -13,6 +13,8 @@ interface ComponentProps {
 	readonly useLongDateAsSummary?: boolean;
 	/** URL of selected thumbnail. Only used in edit mode. */
 	readonly selectedItemUrl?: any;
+	/** True: admin can select which thumbnail is the album's thumnail.  Only used by day albums. */
+	readonly participateInEditMode?: boolean;
 }
 
 /**
@@ -23,7 +25,8 @@ export class ThumbnailList extends React.Component<ComponentProps> {
 	static defaultProps: Partial<ComponentProps> = {
 		isAlbum: false,
 		useLongDateAsTitle: false,
-		useLongDateAsSummary: false
+		useLongDateAsSummary: false,
+		participateInEditMode: false
 	};
 
 	constructor(props: ComponentProps) {
@@ -49,6 +52,7 @@ export class ThumbnailList extends React.Component<ComponentProps> {
 					useLongDateAsSummary={this.props.useLongDateAsSummary}
 					useLongDateAsTitle={this.props.useLongDateAsTitle}
 					selected={selected}
+					participateInEditMode={this.props.participateInEditMode}
 				/>
 			);
 		});

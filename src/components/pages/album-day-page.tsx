@@ -50,6 +50,7 @@ export const DayAlbumPage: React.StatelessComponent<ComponentProps> = ({
 			items={album.images}
 			isAlbum={false}
 			selectedItemUrl={album.url_thumb}
+			participateInEditMode={true}
 		/>
 		<AlbumEditControls album={album} />
 	</Site.Page>

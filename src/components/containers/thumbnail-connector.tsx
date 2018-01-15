@@ -30,6 +30,8 @@ type ConnectedComponentProps = {
 	readonly useLongDateAsTitle?: boolean;
 	readonly useLongDateAsSummary?: boolean;
 	readonly selected?: boolean;
+	/** True: admin can select which thumbnail is the album's thumnail.  Only used by day albums. */
+	readonly participateInEditMode?: boolean;
 };
 
 /**
@@ -43,10 +45,11 @@ type ConnectedComponentProps = {
  * @returns set of props for the target component
  */
 function mapStateToProps(
-	state: RootState /*, ownProps: ComponentProps*/
+	state: RootState,
+	ownProps: ConnectedComponentProps
 ): Partial<ComponentProps> {
 	return {
-		editMode: isInEditMode(state)
+		editMode: !!ownProps.participateInEditMode && isInEditMode(state)
 	};
 }
 
