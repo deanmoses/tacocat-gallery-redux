@@ -154,6 +154,10 @@ export interface ThumbnailSaved extends Action {
 	 * Path of album whose thumbnail is being saved
 	 */
 	albumPath: string;
+	/**
+	 * URL to new thumbnail image for album
+	 */
+	thumbnailUrl: string;
 }
 
 /**

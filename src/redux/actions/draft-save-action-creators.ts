@@ -71,7 +71,11 @@ function checkForErrors(response: Response): Response {
 }
 
 function successAction(path: string, json: any): DraftSaved {
-	if (!json.success) {
+	if (!json || !json.success) {
+		console.log(
+			`Server did not respond with success saving draft for ${path}.  Instead, responded with:`,
+			json
+		);
 		throw new Error(
 			'Server did not respond with success.  Instead, responded with: ' + json
 		);
