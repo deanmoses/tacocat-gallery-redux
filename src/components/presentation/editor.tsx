@@ -34,10 +34,7 @@ export const Editor: React.StatelessComponent<ComponentProps> = ({
 }) => {
 	let onChange = (_content: any, _delta: any, _source: any, editor: any) => {
 		if (onHtmlChange) {
-			// The '' is how I'm converting this to a string.
-			// If I don't, I get the following error message when I go to the next image:
-			// You are passing the `delta` object from the `onChange` event back as `value`. You most probably want `editor.getContents()` instead.
-			onHtmlChange('' + editor.getContents());
+			onHtmlChange(editor.getHTML());
 		}
 	};
 	return (
