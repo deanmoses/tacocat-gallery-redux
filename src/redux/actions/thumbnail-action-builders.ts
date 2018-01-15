@@ -31,31 +31,22 @@ export function setAlbumThumbnail(
 		// Update Redux store state to "Saving..." for this image or album
 		dispatch(savingAction(albumPath));
 
-		// Body of HTTP POST
-		let jsonPostData: any = {
-			eip_context: 'album',
-			thumb: thumbnailLeafPath
-		};
-
-		console.log(
-			'Will save to',
-			Config.jsonAlbumSaveUrl(albumPath),
-			'draft content:',
-			jsonPostData
-		);
+		// The body of the form I will be sending to the server
+		let formData = new FormData();
+		formData.append('eip_context', 'album');
+		formData.append('thumb', thumbnailLeafPath);
 
 		// Save draft to server
 		var requestConfig: RequestInit = {
 			method: 'POST',
 			headers: {
-				Accept: 'application/json',
-				'Content-Type': 'application/json'
+				Accept: 'application/json'
 			},
-			body: JSON.stringify(jsonPostData),
+			body: formData,
 			cache: 'no-store',
 			credentials: 'include'
 		};
-		return fetch(Config.jsonAlbumSaveUrl(albumPath), requestConfig)
+		return fetch(Config.albumSaveUrl(albumPath), requestConfig)
 			.then(checkForErrors)
 			.then(response => response.json())
 			.then(json => dispatch(successAction(albumPath, json)))

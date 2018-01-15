@@ -53,10 +53,10 @@ export default abstract class Config {
 	}
 
 	/**
-	 * URL of the JSON REST API to save an album
+	 * URL to send a HTTP POST to save an album
 	 * @param albumPath path of an album
 	 */
-	public static jsonAlbumSaveUrl(albumPath: string): string {
+	public static albumSaveUrl(albumPath: string): string {
 		// Not having the final slash messes up POSTing to the edit URL,
 		// because as of late 2016 zenphoto started redirecting
 		// to the version with the slash.

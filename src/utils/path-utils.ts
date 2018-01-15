@@ -41,3 +41,10 @@ export function getParentFromPath(path: string): string {
 export function getLeafItemOnPath(path: string): string {
 	return path.split('/').pop(); // we just want 'felix.jpg'
 }
+
+/**
+ * Return true if specified path is to an image (instead of an album)
+ */
+export function isImagePath(path: string): boolean {
+	return !!path && path.indexOf('.') > 0;
+}

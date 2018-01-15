@@ -11,6 +11,7 @@ import {
 } from '@src/redux/actions/actions';
 import { getDraft } from '@src/redux/selectors/draft-selectors';
 import { FetchErrorImpl } from '@src/models/models';
+import { isImagePath } from '@src/utils/path-utils';
 
 /**
  * Save the draft at the specified path
@@ -27,32 +28,26 @@ export function saveDraft(path: string) {
 		// Get draft from the Redux store
 		const draft = getDraft(getState(), path);
 
-		// Make copy of draft, so I can add stuff to it without modifying store
-		let jsonPostData: any = { ...draft };
-
-		// Add fields needed by Zenphoto
-		// TODO: set this based on whether the path is for an image or an album
-		jsonPostData.eip_context = 'album';
-
-		console.log(
-			'Will save to',
-			Config.jsonAlbumSaveUrl(path),
-			'draft content:',
-			jsonPostData
-		);
+		// The body of the form I will be sending to the server
+		let formData = new FormData();
+		formData.append('eip_context', isImagePath(path) ? 'image' : 'album');
+		// Add the content of the draft (the actual album or image fields) to the form body
+		const content: any = draft.content;
+		for (let fieldName in content) {
+			formData.append(fieldName, content[fieldName]);
+		}
 
 		// Save draft to server
 		var requestConfig: RequestInit = {
 			method: 'POST',
 			headers: {
-				Accept: 'application/json',
-				'Content-Type': 'application/json'
+				Accept: 'application/json'
 			},
-			body: JSON.stringify(jsonPostData),
+			body: formData,
 			cache: 'no-store',
 			credentials: 'include'
 		};
-		return fetch(Config.jsonAlbumSaveUrl(path), requestConfig)
+		return fetch(Config.albumSaveUrl(path), requestConfig)
 			.then(checkForErrors)
 			.then(response => response.json())
 			.then(json => dispatch(successAction(path, json)))
@@ -76,7 +71,12 @@ function checkForErrors(response: Response): Response {
 }
 
 function successAction(path: string, json: any): DraftSaved {
-	console.log('success.  do something with json: ', json);
+	if (!json.success) {
+		throw new Error(
+			'Server did not respond with success.  Instead, responded with: ' + json
+		);
+	}
+
 	return {
 		type: ActionTypeKeys.DRAFT_SAVED,
 		path: path
