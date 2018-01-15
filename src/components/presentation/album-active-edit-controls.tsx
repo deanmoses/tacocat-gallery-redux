@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Album, AlbumType } from '@src/models/models';
-import { SaveIcon } from '@src/components/presentation/icon-save';
-import { CancelIcon } from '@src/components/presentation/icon-cancel';
+import { SaveIcon } from '@src/components/presentation/icon/icon-save';
+import { CancelIcon } from '@src/components/presentation/icon/icon-cancel';
 
 /**
  * Component properties

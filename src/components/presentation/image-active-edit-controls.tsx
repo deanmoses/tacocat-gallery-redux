@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { CancelIcon } from '@src/components/presentation/icon-cancel';
-import { SaveIcon } from '@src/components/presentation/icon-save';
+import { CancelIcon } from '@src/components/presentation/icon/icon-cancel';
+import { SaveIcon } from '@src/components/presentation/icon/icon-save';
 
 /**
  * Component properties

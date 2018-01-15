@@ -5,10 +5,10 @@
 import * as React from 'react';
 import Config from '@src/utils/config';
 import EditableText from '@src/components/containers/editable-text-connector';
-import { HomeIcon } from '@src/components/presentation/icon-home';
-import { NextIcon } from '@src/components/presentation/icon-next';
-import { PrevIcon } from '@src/components/presentation/icon-prev';
-import { SearchIcon } from '@src/components/presentation/icon-search';
+import { HomeIcon } from '@src/components/presentation/icon/icon-home';
+import { NextIcon } from '@src/components/presentation/icon/icon-next';
+import { PrevIcon } from '@src/components/presentation/icon/icon-prev';
+import { SearchIcon } from '@src/components/presentation/icon/icon-search';
 
 /**
  * Shell of a page

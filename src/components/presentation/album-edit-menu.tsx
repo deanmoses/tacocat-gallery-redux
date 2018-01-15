@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { Album } from '@src/models/models';
 import Config from '@src/utils/config';
-import { ViewIcon } from '@src/components/presentation/icon-view';
-import { EditIcon } from '@src/components/presentation/icon-edit';
+import { ViewIcon } from '@src/components/presentation/icon/icon-view';
+import { EditIcon } from '@src/components/presentation/icon/icon-edit';
 
 /**
  * Component properties

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as Site from '@src/components/presentation/site';
 import { SearchPageShell } from '@src/components/presentation/search-page-shell';
-import { HomeIcon } from '@src/components/presentation/icon-home';
+import { HomeIcon } from '@src/components/presentation/icon/icon-home';
 
 /**
  * Component properties

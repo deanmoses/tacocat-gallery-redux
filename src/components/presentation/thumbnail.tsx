@@ -2,8 +2,8 @@ import * as React from 'react';
 import * as DateUtils from '@src/utils/date-utils';
 import Config from '@src/utils/config';
 import { AlbumType, Thumbable } from '@src/models/models';
-import { StarIcon } from '@src/components/presentation/icon-star';
-import { EmptyStarIcon } from '@src/components/presentation/icon-star-empty';
+import { StarIcon } from '@src/components/presentation/icon/icon-star';
+import { EmptyStarIcon } from '@src/components/presentation/icon/icon-star-empty';
 
 /**
  * Component properties

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as Site from '@src/components/presentation/site';
-import { CircleArrowLeftIcon } from '@src/components/presentation/icon-circle-arrow-left';
+import { CircleArrowLeftIcon } from '@src/components/presentation/icon/icon-circle-arrow-left';
 
 /**
  * Component properties

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Icon } from '@src/components/presentation/icon';
+import { Icon } from '@src/components/presentation/icon/icon';
 
 export const CircleArrowLeftIcon: React.SFC = () => (
 	<Icon

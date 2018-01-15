@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Icon, IconProps } from '@src/components/presentation/icon';
+import { Icon, IconProps } from '@src/components/presentation/icon/icon';
 
 export const HomeIcon: React.SFC<IconProps> = ({ onClick }) => (
 	<Icon

@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as Site from '@src/components/presentation/site';
 import { Album } from '@src/models/models';
 import Config from '@src/utils/config';
-import { HomeIcon } from '@src/components/presentation/icon-home';
+import { HomeIcon } from '@src/components/presentation/icon/icon-home';
 
 /**
  * Component properties

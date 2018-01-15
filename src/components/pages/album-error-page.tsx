@@ -3,7 +3,7 @@ import * as Site from '@src/components/presentation/site';
 import { FetchError, FetchErrorType } from '@src/models/models';
 import { getYearFromPath } from '@src/utils/path-utils';
 import Config from '@src/utils/config';
-import { HomeIcon } from '@src/components/presentation/icon-home';
+import { HomeIcon } from '@src/components/presentation/icon/icon-home';
 
 /**
  * Component properties
