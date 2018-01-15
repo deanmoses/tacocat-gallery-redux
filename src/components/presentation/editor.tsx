@@ -31,16 +31,26 @@ export const Editor: React.StatelessComponent<ComponentProps> = ({
 	html,
 	className,
 	onHtmlChange
-}) => (
-	<ReactQuill
-		theme="bubble" // The "bubble" theme is the one that makes the toolbar pop up when text is selected, rather than be there permanently
-		modules={modules}
-		formats={formats}
-		value={html}
-		className={className}
-		onChange={onHtmlChange}
-	/>
-);
+}) => {
+	let onChange = (_content: any, _delta: any, _source: any, editor: any) => {
+		if (onHtmlChange) {
+			// The '' is how I'm converting this to a string.
+			// If I don't, I get the following error message when I go to the next image:
+			// You are passing the `delta` object from the `onChange` event back as `value`. You most probably want `editor.getContents()` instead.
+			onHtmlChange('' + editor.getContents());
+		}
+	};
+	return (
+		<ReactQuill
+			theme="bubble" // The "bubble" theme is the one that makes the toolbar pop up when text is selected, rather than be there permanently
+			modules={modules}
+			formats={formats}
+			value={html}
+			className={className}
+			onChange={onChange}
+		/>
+	);
+};
 
 const modules = {
 	// Items in the Quill.js editor toolbar
