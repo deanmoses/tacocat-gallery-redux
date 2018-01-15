@@ -10,7 +10,7 @@
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { searchIfNeeded } from '@src/redux/actions/search-action-builders';
+import { searchIfNeeded } from '@src/redux/actions/search-action-creators';
 import {
 	SearchContainer,
 	ComponentProps

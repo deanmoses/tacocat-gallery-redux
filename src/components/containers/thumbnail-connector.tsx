@@ -11,7 +11,7 @@
 import { connect } from 'react-redux';
 import { RootState } from '@src/redux/reducers/root-state';
 import { isInEditMode } from '@src/redux/selectors/edit-mode-selectors';
-import { setAlbumThumbnail } from '@src/redux/actions/thumbnail-set-action-builders';
+import { setAlbumThumbnail } from '@src/redux/actions/thumbnail-set-action-creators';
 import { getParentFromPath, getLeafItemOnPath } from '@src/utils/path-utils';
 import { AlbumType, Thumbable } from '@src/models/models';
 import {

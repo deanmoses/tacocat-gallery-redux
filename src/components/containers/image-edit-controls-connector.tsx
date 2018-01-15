@@ -16,8 +16,8 @@ import { getDraft } from '@src/redux/selectors/draft-selectors';
 import {
 	enableEditMode,
 	disableEditMode
-} from '@src/redux/actions/edit-mode-action-builders';
-import { saveDraft } from '@src/redux/actions/draft-save-action-builders';
+} from '@src/redux/actions/edit-mode-action-creators';
+import { saveDraft } from '@src/redux/actions/draft-save-action-creators';
 import {
 	ImageEditControls,
 	ComponentProps,

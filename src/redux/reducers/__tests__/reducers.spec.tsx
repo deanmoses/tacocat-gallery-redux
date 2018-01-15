@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
 import { RootState } from '../root-state';
 import { allReducers, initialRootState } from '../root-reducer';
-import * as authenticationActions from '@src/redux/actions/authentication-action-builders';
-import * as albumActions from '@src/redux/actions/album-fetch-action-builders';
+import * as authenticationActions from '@src/redux/actions/authentication-action-creators';
+import * as albumActions from '@src/redux/actions/album-fetch-action-creators';
 
 const rootReducer = combineReducers<RootState>(allReducers);
 

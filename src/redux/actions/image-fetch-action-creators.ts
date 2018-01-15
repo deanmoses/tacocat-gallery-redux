@@ -3,7 +3,7 @@
 //
 
 import { RootState } from '@src/redux/reducers/root-state';
-import { fetchAlbum } from '@src/redux/actions/album-fetch-action-builders';
+import { fetchAlbum } from '@src/redux/actions/album-fetch-action-creators';
 
 /**
  * Action Builder: a helper function to create an Image

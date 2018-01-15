@@ -16,9 +16,9 @@ import { getDraft } from '@src/redux/selectors/draft-selectors';
 import {
 	enableEditMode,
 	disableEditMode
-} from '@src/redux/actions/edit-mode-action-builders';
-import { saveDraft } from '@src/redux/actions/draft-save-action-builders';
-import { updateDraftField } from '@src/redux/actions/draft-update-action-builders';
+} from '@src/redux/actions/edit-mode-action-creators';
+import { saveDraft } from '@src/redux/actions/draft-save-action-creators';
+import { updateDraftField } from '@src/redux/actions/draft-update-action-creators';
 import {
 	AlbumEditControls,
 	ComponentProps,

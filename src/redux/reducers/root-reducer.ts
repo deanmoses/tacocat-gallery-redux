@@ -1,10 +1,10 @@
 import { RootState } from '@src/redux/reducers/root-state';
-import { albumsByPathReducer } from '@src/redux/reducers/album-reducers';
-import { draftsByPathReducer } from '@src/redux/reducers/draft-reducers';
-import { latestAlbumReducer } from '@src/redux/reducers/latest-album-reducers';
-import { isAuthenticatedReducer } from '@src/redux/reducers/authentication-reducers';
-import { editModeReducer } from '@src/redux/reducers/edit-mode-reducers';
-import { searchesBySearchTermsReducer } from '@src/redux/reducers/search-reducers';
+import { albumsByPathReducer } from '@src/redux/reducers/album-reducer';
+import { draftsByPathReducer } from '@src/redux/reducers/draft-reducer';
+import { latestAlbumReducer } from '@src/redux/reducers/latest-album-reducer';
+import { isAuthenticatedReducer } from '@src/redux/reducers/authentication-reducer';
+import { editModeReducer } from '@src/redux/reducers/edit-mode-reducer';
+import { searchesBySearchTermsReducer } from '@src/redux/reducers/search-reducer';
 
 /**
  * Starting state of the application

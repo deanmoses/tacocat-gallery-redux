@@ -11,7 +11,7 @@
 import { connect } from 'react-redux';
 import { RootState } from '@src/redux/reducers/root-state';
 import { isInEditMode } from '@src/redux/selectors/edit-mode-selectors';
-import { updateDraftField } from '@src/redux/actions/draft-update-action-builders';
+import { updateDraftField } from '@src/redux/actions/draft-update-action-creators';
 import {
 	EditableHtml,
 	ComponentProps
