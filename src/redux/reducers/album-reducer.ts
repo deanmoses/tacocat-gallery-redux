@@ -24,19 +24,11 @@ export function albumsByPathReducer(
 			console.log(action.type, action.albumPath);
 
 			// Make copy of existing album and set its status to 'loading'
-			const albumCopy = {
-				...albumsByPath[action.albumPath],
-				...{ path: action.albumPath, isLoading: true, err: undefined }
-			};
-
-			// Make copy of albumsByPath
-			let albumsCopy = { ...albumsByPath };
-
-			// Add copy of album to copy of albumsByPath
-			albumsCopy[action.albumPath] = albumCopy;
-
-			// Return copy of albumsByPath
-			return albumsCopy;
+			return copyAlbumsByPath(albumsByPath, {
+				path: action.albumPath,
+				isLoading: true,
+				err: undefined
+			});
 		}
 
 		/**
@@ -62,19 +54,11 @@ export function albumsByPathReducer(
 			console.log(action.type, action.albumPath, action.error);
 
 			// Make copy of existing album and set its status to 'error'
-			const albumCopy = {
-				...albumsByPath[action.albumPath],
-				...{ path: action.albumPath, err: action.error, isLoading: false }
-			};
-
-			// Make copy of albumsByPath
-			let albumsCopy = { ...albumsByPath };
-
-			// Add copy of album to copy of albumsByPath
-			albumsCopy[action.albumPath] = albumCopy;
-
-			// Return copy of albumsByPath
-			return albumsCopy;
+			return copyAlbumsByPath(albumsByPath, {
+				path: action.albumPath,
+				isLoading: false,
+				err: action.error
+			});
 		}
 
 		/**
