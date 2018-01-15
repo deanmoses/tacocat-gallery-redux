@@ -2,6 +2,7 @@
 
 //
 // Configuration file for the Webpack source file bundler
+// This is the common config, imported by the prod and dev configs
 //
 
 const webpack = require('webpack');
@@ -12,8 +13,6 @@ const PATH_TO_SRC = path.join(__dirname, 'src');
 var config = {
 	// The base directory, an absolute path, for resolving entry points and loaders from configuration
 	context: PATH_TO_SRC,
-
-	devtool: 'source-map',
 
 	// The entry point into the application. At this point the application starts executing
 	entry: './index.tsx',
@@ -65,11 +64,5 @@ var config = {
 		watchContentBase: true
 	}
 };
-
-if (process.env.NODE_ENV === 'production') {
-	config.output.path = path.join(__dirname, 'dist');
-	config.plugins.push(new webpack.optimize.UglifyJsPlugin());
-	config.devtool = 'source-map';
-}
 
 module.exports = config;

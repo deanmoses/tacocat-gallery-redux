@@ -9,17 +9,17 @@
 	"author": "Dean Moses",
 	"scripts": {
 		"start": "run-p start-css start-static start-webpack",
-		"build": "run-s build-setprodenv build-js build-css build-static",
-		"build-setprodenv": "NODE_ENV=production",
-		"build-js": "webpack",
+		"build": "run-s build-js build-css build-static",
+		"build-js":
+			"webpack --config webpack.prod.js --define process.env.NODE_ENV=production",
 		"start-static": "run-s build-static watch-static",
 		"build-static": "cpx 'src/public/**/*.{html,png,jpg,ico,xml,tx}' dist",
 		"watch-static":
 			"cpx 'src/public/**/*.{html,png,jpg,ico,xml,txt}' dist --watch",
-		"start-webpack": "webpack-dev-server --open",
+		"start-webpack": "webpack-dev-server --open --config webpack.dev.js",
 		"start-css": "run-s build-css watch-css",
 		"build-css":
-			"node-sass-chokidar src/styles/main.scss -o dist/ --source-map true",
+			"node-sass-chokidar src/styles/main.scss -o dist/ --source-map true --output-style compressed",
 		"watch-css":
 			"node-sass-chokidar src/styles/main.scss -o dist/ --source-map true --watch --recursive",
 		"start-mockapi": "json-server --watch src/api/db.json --port 3001",
@@ -60,8 +60,10 @@
 		"ts-jest": "^22.0.0",
 		"tslint": "^5.8.0",
 		"typescript": "^2.6.2",
+		"uglifyjs-webpack-plugin": "^1.0.0-rc.0",
 		"webpack": "^3.10.0",
-		"webpack-dev-server": "^2.9.7"
+		"webpack-dev-server": "^2.9.7",
+		"webpack-merge": "^4.1.1"
 	},
 	"jest": {
 		"moduleFileExtensions": ["ts", "tsx", "js"],
