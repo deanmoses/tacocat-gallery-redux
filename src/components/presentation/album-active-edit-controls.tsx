@@ -79,19 +79,21 @@ export class AlbumActiveEditControls extends React.Component<ComponentProps> {
 		const saveError = !!this.props.errorMessage;
 		const message = this.props.errorMessage;
 		const summaryControl =
-			a.type === AlbumType.YEAR ? null : (
+			a.type !== AlbumType.DAY ? null : (
 				<input
 					type="text"
-					defaultValue={a.summary}
+					key={a.path}
+					defaultValue={a.customdata}
 					placeholder="Summary"
 					onChange={this.onSummaryChange}
 				/>
 			);
 		const publishControl =
-			a.type === AlbumType.YEAR ? null : (
+			a.type !== AlbumType.DAY ? null : (
 				<span>
 					<input
 						type="checkbox"
+						key={a.path}
 						defaultChecked={!a.unpublished}
 						onChange={this.onPublishedChange}
 					/>{' '}

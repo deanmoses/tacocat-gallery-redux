@@ -15,7 +15,7 @@ import { getYearFromPath } from '@src/utils/path-utils';
 export class AlbumImpl implements Album {
 	path: string;
 	title?: string;
-	summary?: string;
+	customdata?: string;
 	unpublished?: boolean;
 	desc?: string;
 	image_size?: number;

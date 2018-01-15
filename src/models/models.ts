@@ -63,7 +63,10 @@ export enum SearchState {
 export interface Album {
 	path: string;
 	title?: string;
-	summary?: string;
+	/**
+	 * Used by tacocat.com as a short summary of the album
+	 */
+	customdata?: string;
 	desc?: string;
 	/**
 	 * True: album is NOT available to the public
