@@ -14,5 +14,13 @@ import { RootState } from '@src/redux/reducers/root-state';
  * Retrieve whether the system is in edit mode or not
  */
 export function isAuthenticated(state: RootState): boolean {
-	return true || state.isAuthenticated;
+	// If we're not in production, always say the user is authenticated.
+	// This helps with testing in development.
+	// The production build process replaces the text 'process.env.NODE_ENV'
+	// with the literal string 'production'
+	if (process.env.NODE_ENV !== 'production') {
+		return true;
+	} else {
+		return state.isAuthenticated;
+	}
 }
