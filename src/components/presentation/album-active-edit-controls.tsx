@@ -70,7 +70,7 @@ export class AlbumActiveEditControls extends React.Component<ComponentProps> {
 
 	onPublishedChange(event: React.ChangeEvent<HTMLInputElement>) {
 		if (this.props.onFieldChange) {
-			this.props.onFieldChange('published', event.currentTarget.checked);
+			this.props.onFieldChange('show', event.currentTarget.checked);
 		}
 	}
 
