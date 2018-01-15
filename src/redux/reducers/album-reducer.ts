@@ -32,6 +32,20 @@ export function albumsByPathReducer(
 		}
 
 		/**
+		 * Received error attempting to fetch album from server
+		 */
+		case Actions.ActionTypeKeys.ALBUM_ERRORED: {
+			console.log(action.type, action.albumPath, action.error);
+
+			// Make copy of existing album and set its status to 'error'
+			return copyAlbumsByPath(albumsByPath, {
+				path: action.albumPath,
+				isLoading: false,
+				err: action.error
+			});
+		}
+
+		/**
 		 * Received album from server
 		 */
 		case Actions.ActionTypeKeys.ALBUM_RECEIVED: {
@@ -45,20 +59,6 @@ export function albumsByPathReducer(
 
 			// Return copy of albumsByPath
 			return albumsCopy;
-		}
-
-		/**
-		 * Received error attempting to fetch album from server
-		 */
-		case Actions.ActionTypeKeys.ALBUM_ERRORED: {
-			console.log(action.type, action.albumPath, action.error);
-
-			// Make copy of existing album and set its status to 'error'
-			return copyAlbumsByPath(albumsByPath, {
-				path: action.albumPath,
-				isLoading: false,
-				err: action.error
-			});
 		}
 
 		/**
