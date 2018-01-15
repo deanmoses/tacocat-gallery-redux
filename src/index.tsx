@@ -9,6 +9,7 @@ import { PersistGate } from 'redux-persist/es/integration/react';
 import configureStore from '@src/redux/store/store';
 import { updateAuthenticationStatusFromServer } from '@src/redux/actions/authentication-action-creators';
 import { App } from '@src/components/app';
+import EditModeScripts from '@src/components/containers/edit-mode-scripts-connector';
 
 const { persistor, store } = configureStore();
 
@@ -20,6 +21,7 @@ render(
 	<Provider store={store}>
 		<PersistGate persistor={persistor}>
 			<App />
+			<EditModeScripts />
 		</PersistGate>
 	</Provider>,
 	document.getElementById('app')
