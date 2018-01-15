@@ -36,7 +36,9 @@ export function fetchAlbum(albumPath: string) {
 	return (dispatch: Function) => {
 		console.log('fetchAlbum()', albumPath);
 		dispatch(requestAlbum(albumPath));
-		return fetch(Config.jsonAlbumUrl(albumPath))
+		return fetch(Config.jsonAlbumUrl(albumPath), {
+			credentials: 'include'
+		})
 			.then(handleErrors)
 			.then(response => response.json())
 			.then(json => dispatch(receiveAlbum(albumPath, json)))
