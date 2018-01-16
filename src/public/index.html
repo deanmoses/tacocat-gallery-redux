@@ -13,11 +13,37 @@
     <meta name="msapplication-config" content="browserconfig.xml" />
     <meta name="theme-color" content="#ffffff">
     <title>The Moses Family</title>
+    <script>
+        var supportsES6 = function () {
+            try {
+                new Function("(a = 0) => a");
+                return true;
+            }
+            catch (err) {
+                return false;
+            }
+        }();
+
+    </script>
 </head>
 
 <body>
     <div id="app"></div>
-    <script src="bundle.js"></script>
+    <script>
+        if (supportsES6) {
+            var script = document.createElement("script");
+            script.src = "bundle.js";
+            document.body.appendChild(script);
+        }
+        else {
+            var noES6message = document.createElement("div");
+            noES6message.innerHTML = "<p class='browsehappy'>Your browser doesn't support The Moses Family picture gallery.</p>";
+            document.body.appendChild(noES6message);
+        }
+    </script>
+    <noscript>
+        <p class="browsehappy">This site requires JavaScript. Your browser does not support JavaScript, or you've disabled it.</p>
+    </noscript>
 </body>
 
 </html>
