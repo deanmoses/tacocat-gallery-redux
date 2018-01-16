@@ -96,7 +96,10 @@ export interface Album {
 	prevAlbumTitle?: string;
 	parentAlbumHref?: string;
 	parentAlbumTitle?: string;
-	getImage?: Function;
+	/**
+	 * Return image at specified path, or null
+	 */
+	getImage?: (imagePath: string) => Image;
 }
 
 /**
