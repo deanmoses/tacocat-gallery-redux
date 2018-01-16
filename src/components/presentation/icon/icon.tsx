@@ -11,6 +11,10 @@ import * as React from 'react';
  * Child icon properties
  */
 export type IconProps = {
+	/**
+	 * Title to show on icon, for accessibility
+	 */
+	readonly title?: string;
 	readonly onClick?: (x: any) => void;
 };
 
@@ -23,6 +27,7 @@ type ComponentProps = {
 	readonly viewBox?: string;
 	readonly width?: string;
 	readonly height?: string;
+	readonly title?: string;
 };
 
 /**
@@ -33,7 +38,8 @@ export const Icon: React.StatelessComponent<ComponentProps> = ({
 	viewBox = '0 0 20 20', // The viewBox is tuned to work with the Entypo icon set http://www.entypo.com/.  Other icon sets can be used, but I may have to change the viewBox
 	height = '1em',
 	width = '1em',
-	onClick
+	onClick,
+	title
 }) => {
 	const styles: any = {
 		svg: {
@@ -44,7 +50,7 @@ export const Icon: React.StatelessComponent<ComponentProps> = ({
 			fill: 'currentColor'
 		}
 	};
-
+	const titleElement = !title ? null : <title>{title}</title>;
 	return (
 		<svg
 			className="icon"
@@ -52,6 +58,7 @@ export const Icon: React.StatelessComponent<ComponentProps> = ({
 			viewBox={viewBox}
 			onClick={onClick}
 		>
+			{titleElement}
 			<path style={styles.path} d={path} />
 		</svg>
 	);

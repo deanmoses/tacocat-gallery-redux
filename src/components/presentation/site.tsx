@@ -195,7 +195,7 @@ export const SearchButton: React.StatelessComponent<SearchButtonProps> = ({
 	searchUrl += returnPath ? encodeURIComponent(returnPath) : '';
 	return (
 		<a href={searchUrl}>
-			<SearchIcon />
+			<SearchIcon title="Search" />
 		</a>
 	);
 };
@@ -261,7 +261,7 @@ export const UpButton: React.StatelessComponent<HeaderNavButtonProps> = ({
 	title
 }) => (
 	<HeaderButton href={href}>
-		<HomeIcon /> <span className="nav-button-label">{title}</span>
+		<HomeIcon title={title} /> <span className="nav-button-label">{title}</span>
 	</HeaderButton>
 );
 
