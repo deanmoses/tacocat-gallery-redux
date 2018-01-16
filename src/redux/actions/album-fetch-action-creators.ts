@@ -16,7 +16,7 @@ import {
  * Action Builder: a helper function to create an Action
  */
 export function fetchAlbumIfNeeded(albumPath: string) {
-	console.log('fetchAlbumIfNeeded()', albumPath);
+	//console.log('fetchAlbumIfNeeded()', albumPath);
 	return function(dispatch: Function, getState: Function) {
 		if (shouldFetchAlbum(getState(), albumPath)) {
 			return dispatch(fetchAlbum(albumPath));
@@ -28,13 +28,13 @@ function shouldFetchAlbum(state: RootState, albumPath: string): boolean {
 	const album = state.albumsByPath[albumPath];
 	// always fetch album
 	const shouldFetch = !album || !!album;
-	console.log(`shouldFetchAlbum(${albumPath})?`, shouldFetch);
+	//console.log(`shouldFetchAlbum(${albumPath})?`, shouldFetch);
 	return shouldFetch;
 }
 
 export function fetchAlbum(albumPath: string) {
 	return (dispatch: Function) => {
-		console.log('fetchAlbum()', albumPath);
+		//console.log('fetchAlbum()', albumPath);
 		dispatch(requestAlbum(albumPath));
 
 		// Configuration for HTTP request
