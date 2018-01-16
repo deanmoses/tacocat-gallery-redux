@@ -38,7 +38,7 @@ export function saveDraft(path: string) {
 		}
 
 		// Save draft to server
-		var requestConfig: RequestInit = {
+		let requestConfig: RequestInit = {
 			method: 'POST',
 			headers: {
 				Accept: 'application/json'
