@@ -3,8 +3,8 @@
 //
 
 import * as Actions from '@src/redux/actions/actions';
-import { AlbumsByPath, Album, AlbumThumb } from '@src/models/models';
-import { getParentFromPath } from '@src/utils/path-utils';
+import { AlbumsByPath, Album, AlbumThumb, Image } from '@src/models/models';
+import { getParentFromPath, isImagePath } from '@src/utils/path-utils';
 
 /**
  * A reducer function
@@ -18,7 +18,8 @@ export function albumsByPathReducer(
 	}
 	switch (action.type) {
 		/**
-		 *  In process of fetching album from server
+		 * ALBUM_REQUESTED
+		 * In process of fetching album from server
 		 */
 		case Actions.ActionTypeKeys.ALBUM_REQUESTED: {
 			console.log(action.type, action.albumPath);
@@ -32,6 +33,7 @@ export function albumsByPathReducer(
 		}
 
 		/**
+		 * ALBUM_ERRORED
 		 * Received error attempting to fetch album from server
 		 */
 		case Actions.ActionTypeKeys.ALBUM_ERRORED: {
@@ -46,6 +48,7 @@ export function albumsByPathReducer(
 		}
 
 		/**
+		 * ALBUM_RECEIVED
 		 * Received album from server
 		 */
 		case Actions.ActionTypeKeys.ALBUM_RECEIVED: {
@@ -62,7 +65,47 @@ export function albumsByPathReducer(
 		}
 
 		/**
-		 * Album got new thumbnail
+		 * DRAFT_SAVED
+		 * Draft successfully saved to server.  Update real album or image in store.
+		 */
+		case Actions.ActionTypeKeys.DRAFT_SAVED: {
+			console.log(action.type, action.path, action.draft);
+			if (!action.path) throw new Error('Draft with no path');
+
+			// If we're dealing with a draft of an image
+			if (isImagePath(action.path)) {
+				// Make copy of albumsByPath
+				let newAlbumsByPath = { ...albumsByPath };
+
+				// Get album copy whose image we need to update
+				const albumPath = getParentFromPath(action.path);
+				const album = newAlbumsByPath[albumPath];
+
+				// Get image to update
+				let image = !album.images
+					? null
+					: album.images.find((image: Image) => image.path === action.path);
+
+				if (!image)
+					throw new Error(
+						`Could not find image [${action.path}] in album [${album.path}]`
+					);
+
+				// Apply contents of draft to image
+				Object.apply(image, action.draft.content);
+
+				// Return copy of albumsByPath
+				return newAlbumsByPath;
+			} else {
+				// Else we're dealing with a draft of an album
+				// Make copy of existing album and update its fields from the draft
+				return copyAlbumsByPath(albumsByPath, action.draft.content);
+			}
+		}
+
+		/**
+		 * THUMBNAIL_SAVED
+		 * New album thumbnail saved to server.  Update it in store.
 		 */
 		case Actions.ActionTypeKeys.THUMBNAIL_SAVED: {
 			console.log(action.type, action.albumPath, action.thumbnailUrl);

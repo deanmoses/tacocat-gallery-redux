@@ -13,9 +13,6 @@ export function draftsByPathReducer(
 	action: Actions.ActionTypes
 ): DraftsByPath {
 	if (!action) {
-		console.log(
-			'draftsByPath reducer: no action detected, returning existing state'
-		);
 		// No action: return existing state unchanged
 		return draftsByPath;
 	}
@@ -82,7 +79,7 @@ export function draftsByPathReducer(
 
 		/**
 		 * DRAFT_SAVED
-		 * Set status of draft to saving
+		 * Draft saved to server, update real album or image
 		 */
 		case Actions.ActionTypeKeys.DRAFT_SAVED: {
 			console.log(action.type, action.path);
@@ -109,7 +106,7 @@ export function draftsByPathReducer(
 
 		/**
 		 * DRAFT_SAVE_ERRORED
-		 * Set status of draft to errored
+		 * Save to server errored. Set status of draft to errored
 		 */
 		case Actions.ActionTypeKeys.DRAFT_SAVE_ERRORED: {
 			console.log(action.type, action.path);

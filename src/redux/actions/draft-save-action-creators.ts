@@ -10,7 +10,7 @@ import {
 	DraftSaveErrored
 } from '@src/redux/actions/actions';
 import { getDraft } from '@src/redux/selectors/draft-selectors';
-import { FetchErrorImpl } from '@src/models/models';
+import { Draft, FetchErrorImpl } from '@src/models/models';
 import { isImagePath } from '@src/utils/path-utils';
 
 /**
@@ -20,8 +20,6 @@ import { isImagePath } from '@src/utils/path-utils';
  */
 export function saveDraft(path: string) {
 	return (dispatch: Function, getState: Function) => {
-		console.log('saveDraft()');
-
 		// Update Redux store state to "Saving..." for this image or album
 		dispatch(savingAction(path));
 
@@ -50,7 +48,7 @@ export function saveDraft(path: string) {
 		return fetch(Config.albumSaveUrl(path), requestConfig)
 			.then(checkForErrors)
 			.then(response => response.json())
-			.then(json => dispatch(successAction(path, json)))
+			.then(json => dispatch(successAction(path, draft, json)))
 			.catch(error => dispatch(errorAction(path, error)));
 	};
 }
@@ -70,11 +68,13 @@ function checkForErrors(response: Response): Response {
 	return response;
 }
 
-function successAction(path: string, json: any): DraftSaved {
+function successAction(path: string, draft: Draft, json: any): DraftSaved {
 	if (!json || !json.success) {
 		console.log(
 			`Server did not respond with success saving draft for ${path}.  Instead, responded with:`,
-			json
+			json,
+			'Draft:',
+			draft
 		);
 		throw new Error(
 			'Server did not respond with success.  Instead, responded with: ' + json
@@ -83,7 +83,8 @@ function successAction(path: string, json: any): DraftSaved {
 
 	return {
 		type: ActionTypeKeys.DRAFT_SAVED,
-		path: path
+		path: path,
+		draft: draft
 	};
 }
 

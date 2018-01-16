@@ -12,7 +12,8 @@ import {
 	Album,
 	AlbumThumb,
 	DraftContent,
-	FetchError
+	FetchError,
+	Draft
 } from '@src/models/models';
 
 /**
@@ -120,6 +121,7 @@ export interface DraftSaved extends Action {
 	 * Path of album or image being updated
 	 */
 	path: string;
+	draft: Draft;
 }
 
 /**
