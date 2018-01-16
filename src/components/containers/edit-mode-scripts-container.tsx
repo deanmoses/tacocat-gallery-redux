@@ -20,20 +20,41 @@ export class EditModeScriptsContainer extends React.Component<ComponentProps> {
 	 */
 	componentDidMount() {
 		if (this.props.editMode) {
-			this.addScript(
-				'https://code.jquery.com/jquery-3.2.1.slim.min.js',
-				'sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g='
-			);
-			this.addScript(
-				'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js',
-				'sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa'
-			);
-			this.addCss('//cdn.quilljs.com/1.2.6/quill.bubble.css');
+			this.addScripts();
+		}
+	}
+
+	/**
+	 * React.js component lifecycle method.  Invoked before a mounted component
+	 * receives new props.  Note that React may call this method even if the props
+	 * have not changed, so make sure to compare the current and next values if you
+	 * only want to handle changes. This may occur when the parent component causes
+	 * your component to re-render.
+	 */
+	componentWillReceiveProps(nextProps: ComponentProps) {
+		// If we're going from edit off to edit on, add the scripts
+		if (nextProps.editMode && !this.props.editMode) {
+			this.addScripts();
 		}
 	}
 
 	render(): any {
 		return null;
+	}
+
+	/**
+	 * Write some Javascript and CSS tags into the HTML
+	 */
+	addScripts() {
+		this.addScript(
+			'https://code.jquery.com/jquery-3.2.1.slim.min.js',
+			'sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g='
+		);
+		this.addScript(
+			'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js',
+			'sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa'
+		);
+		this.addCss('//cdn.quilljs.com/1.2.6/quill.bubble.css');
 	}
 
 	/**
