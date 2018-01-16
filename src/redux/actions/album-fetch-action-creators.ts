@@ -36,9 +36,19 @@ export function fetchAlbum(albumPath: string) {
 	return (dispatch: Function) => {
 		console.log('fetchAlbum()', albumPath);
 		dispatch(requestAlbum(albumPath));
-		return fetch(Config.jsonAlbumUrl(albumPath), {
-			credentials: 'include'
-		})
+
+		// Configuration for HTTP request
+		let requestConfig: RequestInit = {};
+		// Only send credentials if we're in prod.
+		// This helps with testing in development.
+		// The production build process replaces the text 'process.env.NODE_ENV'
+		// with the literal string 'production'
+		if (process.env.NODE_ENV === 'production') {
+			requestConfig.credentials = 'include';
+		}
+
+		// Fetch via HTTP
+		return fetch(Config.jsonAlbumUrl(albumPath), requestConfig)
 			.then(handleErrors)
 			.then(response => response.json())
 			.then(json => dispatch(receiveAlbum(albumPath, json)))
