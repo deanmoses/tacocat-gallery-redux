@@ -17,14 +17,33 @@ export const App: React.StatelessComponent = () => (
 		<Switch>
 			{/* Root gallery / album */}
 			<Route exact path="/" render={() => <Album path="/" />} />
-			{/* Search */}
+			{/* Search without terms or return path */}
+			<Route path="/search" exact render={() => <Search />} />
+			{/* Search without terms but with return path */}
 			<Route
-				path="/search/:searchTerms?/return::returnPath?"
+				path="/search/(return:):returnPath?"
+				exact
+				render={props => (
+					<Search returnPath={decode(props.match.params.returnPath)} />
+				)}
+			/>
+			{/* Search with both terms and return path */}
+			<Route
+				path="/search/:searchTerms?/return::returnPath"
+				exact
 				render={props => (
 					<Search
 						searchTerms={decode(props.match.params.searchTerms)}
 						returnPath={decode(props.match.params.returnPath)}
 					/>
+				)}
+			/>
+			{/* Search with terms but without return path */}
+			<Route
+				path="/search/:searchTerms"
+				exact
+				render={props => (
+					<Search searchTerms={decode(props.match.params.searchTerms)} />
 				)}
 			/>
 			{/* Albums are any path without a '.' */}

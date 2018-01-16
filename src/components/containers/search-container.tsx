@@ -10,7 +10,7 @@ import { SearchResultsPage } from '@src/components/pages/search-results-page';
  * Component properties
  */
 export type ComponentProps = {
-	readonly returnPath: string;
+	readonly returnPath?: string;
 	readonly searchTerms?: string;
 	readonly errorMessage?: string; // error doing search
 	readonly results?: any;

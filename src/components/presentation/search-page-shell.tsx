@@ -6,7 +6,7 @@ import { CircleArrowLeftIcon } from '@src/components/presentation/icon/icon-circ
  * Component properties
  */
 interface ComponentProps {
-	readonly returnPath: string;
+	readonly returnPath?: string;
 	readonly searchTerms?: string;
 	readonly onSearch?: (event: any) => void;
 	readonly children?: any;
@@ -50,7 +50,8 @@ export class SearchPageShell extends React.Component<ComponentProps> {
 	}
 
 	render() {
-		const returnPath = this.props.returnPath;
+		const returnUrl =
+			'#' + (!this.props.returnPath ? '' : this.props.returnPath);
 		const searchTerms = this.props.searchTerms;
 		const children = this.props.children;
 
@@ -58,7 +59,7 @@ export class SearchPageShell extends React.Component<ComponentProps> {
 			<Site.Page showFooter={false}>
 				<nav className="header navbar">
 					<div className="navbar-header">
-						<a className="navbar-brand" href={'#' + returnPath}>
+						<a className="navbar-brand" href={returnUrl}>
 							<CircleArrowLeftIcon />
 						</a>
 					</div>

@@ -23,7 +23,7 @@ import { SearchState } from '@src/models/models';
  * My properties are different than the component I wrap!
  */
 type ConnectedComponentProps = {
-	readonly returnPath: string;
+	readonly returnPath?: string;
 	readonly searchTerms?: string;
 };
 
