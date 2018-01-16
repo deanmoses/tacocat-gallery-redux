@@ -16,7 +16,6 @@ import { AlbumThumb, FetchErrorImpl } from '@src/models/models';
  * Fetch the latest album if needed
  */
 export function fetchLatestAlbumIfNeeded() {
-	console.log('fetchLatestAlbumIfNeeded()');
 	return function(dispatch: Function, getState: Function) {
 		if (shouldFetchLatestAlbum(getState())) {
 			return dispatch(fetchLatestAlbum());
@@ -28,13 +27,11 @@ function shouldFetchLatestAlbum(state: RootState): boolean {
 	const album = state.latestAlbum;
 	// always fetch latest album for now
 	const shouldFetch = !album || !!album;
-	console.log(`shouldFetchLatestAlbum()?`, shouldFetch);
 	return shouldFetch;
 }
 
 function fetchLatestAlbum() {
 	return (dispatch: Function) => {
-		console.log('fetchLatestAlbum()');
 		dispatch(requestLatestAlbum());
 		return fetch(Config.latestAlbumJsonUrl())
 			.then(handleErrors)

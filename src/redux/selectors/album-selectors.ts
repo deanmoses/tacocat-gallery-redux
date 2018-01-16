@@ -21,7 +21,7 @@ export function getAlbum(state: RootState, albumPath: string): Album {
 }
 
 /**
- * Retrieve album for the specified imagePath
+ * Retrieve image for the specified imagePath
  */
 export function getImage(state: RootState, imagePath: string): Image {
 	let album = getAlbumForImage(state, imagePath);
@@ -29,7 +29,7 @@ export function getImage(state: RootState, imagePath: string): Image {
 }
 
 /**
- * Retrieve album for the specified imagePath
+ * Retrieve parent album for the specified imagePath
  */
 export function getAlbumForImage(state: RootState, imagePath: string): Album {
 	// get album's path from the photo's path

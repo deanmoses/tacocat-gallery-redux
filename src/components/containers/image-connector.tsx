@@ -12,7 +12,10 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actions from '@src/redux/actions/image-fetch-action-creators';
 import { RootState } from '@src/redux/reducers/root-state';
-import { getImage, getAlbumForImage } from '@src/redux/selectors/selectors';
+import {
+	getImage,
+	getAlbumForImage
+} from '@src/redux/selectors/album-selectors';
 import {
 	ImageContainer,
 	ComponentProps

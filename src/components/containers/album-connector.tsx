@@ -13,7 +13,7 @@ import { connect } from 'react-redux';
 import * as actions from '@src/redux/actions/album-fetch-action-creators';
 import { RootState } from '@src/redux/reducers/root-state';
 import { Album } from '@src/models/models';
-import { getAlbum } from '@src/redux/selectors/selectors';
+import { getAlbum } from '@src/redux/selectors/album-selectors';
 import {
 	AlbumContainer,
 	ComponentProps

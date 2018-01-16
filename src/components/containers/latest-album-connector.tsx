@@ -13,7 +13,7 @@ import { connect } from 'react-redux';
 import { RootState } from '@src/redux/reducers/root-state';
 import { AlbumThumb } from '@src/models/models';
 import * as actions from '@src/redux/actions/latest-album-action-creators';
-import { getLatestAlbum } from '@src/redux/selectors/selectors';
+import { getLatestAlbum } from '@src/redux/selectors/album-selectors';
 import {
 	LatestAlbumContainer,
 	ComponentProps

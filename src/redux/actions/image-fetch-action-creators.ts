@@ -9,8 +9,6 @@ import { fetchAlbum } from '@src/redux/actions/album-fetch-action-creators';
  * Action Builder: a helper function to create an Image
  */
 export function fetchImageIfNeeded(imagePath: string) {
-	console.log(`fetchImageIfNeeded(${imagePath})`);
-
 	// get the album's path from the photo's path
 	var pathParts = imagePath.split('/');
 	pathParts.pop(); // remove photo filename
@@ -38,6 +36,5 @@ function shouldFetch(state: RootState, albumPath: string): boolean {
 	// the previous fetch could have failed -- I've seen that!
 	// TODO: implement some sort of age-based system to re-fetch older albums
 	const shouldFetchAlbum = !album || (!!album.err || !!album.isLoading);
-	console.log(`shouldFetchAlbum(${albumPath})?`, shouldFetchAlbum);
 	return shouldFetchAlbum;
 }
