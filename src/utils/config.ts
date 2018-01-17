@@ -1,21 +1,33 @@
+import { isImagePath } from '@src/utils/path-utils';
+
 /**
  * Configuration global to the application
  */
 export default abstract class Config {
+	/**
+	 * The title of the site, such as shown in the header of the site.
+	 */
 	public static siteTitle(): string {
 		return 'Dean, Lucie, Felix and Milo Moses';
 	}
 
+	/**
+	 * The shorter title of the site, to be shown when space is limited.
+	 */
 	public static siteShortTitle(): string {
 		return 'The Moses Family';
 	}
 
-	// Base host of the live non-CDN webserver.  The origin server.
+	/**
+	 *  Base host of the live non-CDN webserver.  The origin server.
+	 */
 	public static liveHost(): string {
 		return 'https://tacocat.com';
 	}
 
-	// Base host of CDN-servable stuff. Could be a CDN or may be the actual webserver.
+	/**
+	 * Base host of CDN-servable stuff. Could be a CDN or may be the actual webserver.
+	 */
 	public static cdnHost(): string {
 		return 'https://cdn.tacocat.com';
 	}
@@ -54,14 +66,18 @@ export default abstract class Config {
 
 	/**
 	 * URL to send a HTTP POST to save an album
-	 * @param albumPath path of an album
+	 * @param path path of an album or an image
 	 */
-	public static albumSaveUrl(albumPath: string): string {
-		// Not having the final slash messes up POSTing to the edit URL,
-		// because as of late 2016 zenphoto started redirecting
-		// to the version with the slash.
-		var finalSlash = albumPath.endsWith('/') ? '' : '/';
-		return 'https://tacocat.com/zenphoto/' + albumPath + finalSlash;
+	public static saveUrl(path: string): string {
+		if (isImagePath(path)) {
+			return 'https://tacocat.com/zenphoto/' + path;
+		} else {
+			// Not having the final slash messes up POSTing to the edit URL,
+			// because as of late 2016 zenphoto started redirecting
+			// to the version with the slash.
+			var finalSlash = path.endsWith('/') ? '' : '/';
+			return 'https://tacocat.com/zenphoto/' + path + finalSlash;
+		}
 	}
 
 	/**
@@ -77,25 +93,15 @@ export default abstract class Config {
 	}
 
 	/**
-	 * URL you can hit to update the JSON cache of a specific album
+	 * URL to view the full sized raw image on Zenphoto
+	 * @param imagePath path to an image
 	 */
-	public static refreshAlbumCacheUrl(albumPath: string): string {
-		// strip the '/' off if it exists
-		var slashlessAlbumPath = albumPath.replace('/', '');
-		return this.liveHost() + '/p_json/refresh.php?album=' + slashlessAlbumPath;
-	}
-
-	public static zenphotoBaseUrl(): string {
-		return 'https://tacocat.com/zenphoto/';
-	}
-
 	public static zenphotoImageFullSizeUrl(imagePath: string): string {
 		return 'https://tacocat.com/zenphoto/albums/' + imagePath;
 	}
 
 	/**
 	 * URL to view an album or image in the default Zenphoto experience
-	 *
 	 * @param path path to an album or image
 	 */
 	public static zenphotoViewUrl(path: string): string {
@@ -124,11 +130,5 @@ export default abstract class Config {
 			'https://tacocat.com/zenphoto/zp-core/admin-edit.php?page=edit&album=' +
 			encodeURIComponent(albumPath)
 		);
-	}
-
-	public static staticAlbumUrl(albumPath: string): string {
-		// format: 2001/12-31
-		// new format: 2001/12/31
-		return 'https://tacocat.com/pix/' + albumPath.split('-').join('/') + '/';
 	}
 }

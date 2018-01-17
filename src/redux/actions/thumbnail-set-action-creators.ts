@@ -44,7 +44,7 @@ export function setAlbumThumbnail(
 			cache: 'no-store',
 			credentials: 'include'
 		};
-		return fetch(Config.albumSaveUrl(albumPath), requestConfig)
+		return fetch(Config.saveUrl(albumPath), requestConfig)
 			.then(checkForErrors)
 			.then(response => response.json())
 			.then(json => dispatch(successAction(albumPath, thumbnailLeafPath, json)))

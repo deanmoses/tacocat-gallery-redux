@@ -46,7 +46,7 @@ export function saveDraft(path: string) {
 			cache: 'no-store',
 			credentials: 'include'
 		};
-		return fetch(Config.albumSaveUrl(path), requestConfig)
+		return fetch(Config.saveUrl(path), requestConfig)
 			.then(checkForErrors)
 			.then(response => response.json())
 			.then(json => handleSuccess(dispatch, path, draft, json))
