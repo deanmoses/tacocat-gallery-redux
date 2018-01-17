@@ -37,27 +37,27 @@ import { DraftState } from '@src/models/models';
  * @returns set of props for the target component
  */
 function mapStateToProps(
-	state: RootState,
+	rootState: RootState,
 	ownProps: ComponentProps
 ): Partial<ComponentProps> {
 	return {
-		editMode: getEditMenuMode(state, ownProps)
+		editMode: getEditMenuMode(rootState, ownProps)
 	};
 }
 
 /**
  * Figure out what mode the edit menu should be in based on state and properties
  */
-function getEditMenuMode(state: RootState, ownProps: ComponentProps) {
-	if (!isAuthenticated(state)) {
+function getEditMenuMode(rootState: RootState, ownProps: ComponentProps) {
+	if (!isAuthenticated(rootState)) {
 		// if user is not authenticated...
 		return Mode.EDIT_MODE_DISALLOWED;
-	} else if (!isInEditMode(state)) {
+	} else if (!isInEditMode(rootState)) {
 		// if we're authenticated but not in edit mode...
 		return Mode.EDIT_MODE_ALLOWED;
 	} else {
 		// if we're in edit mode...
-		const draft = getDraft(state, ownProps.album.path);
+		const draft = getDraft(rootState, ownProps.album.path);
 		if (draft) {
 			switch (draft.state) {
 				case DraftState.SAVING:

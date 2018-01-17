@@ -3,6 +3,9 @@ import { Image } from '@src/models/models';
 import { ImageEditMenu } from '@src/components/presentation/image-edit-menu';
 import { ImageActiveEditControls } from '@src/components/presentation/image-active-edit-controls';
 
+/**
+ * What 'mode' this component is in
+ */
 export enum Mode {
 	/** User isn't allowed to start edit mode -- hide the controls completely */
 	EDIT_MODE_DISALLOWED,
@@ -12,7 +15,10 @@ export enum Mode {
 	EDIT_MODE_ON,
 	/** User has clicked save and we're currently saving -- show saving message */
 	SAVING,
-	SAVE_ERROR
+	/** There was an error saving -- show error message */
+	SAVE_ERROR,
+	/** The draft was successfully saved -- show saved message */
+	SAVED
 }
 
 /**
@@ -110,7 +116,17 @@ export class ImageEditControls extends React.Component<ComponentProps> {
 				return (
 					<ImageActiveEditControls
 						onCancel={this.onCancel}
-						errorMessage="Error saving."
+						isMessageError={true}
+						message="Error saving."
+					/>
+				);
+			}
+			case Mode.SAVED: {
+				return (
+					<ImageActiveEditControls
+						onCancel={this.onCancel}
+						onSave={this.onSave}
+						message="Saved."
 					/>
 				);
 			}

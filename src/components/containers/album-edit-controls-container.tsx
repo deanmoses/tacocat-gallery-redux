@@ -3,6 +3,9 @@ import { Album } from '@src/models/models';
 import { AlbumEditMenu } from '@src/components/presentation/album-edit-menu';
 import { AlbumActiveEditControls } from '@src/components/presentation/album-active-edit-controls';
 
+/**
+ * What 'mode' this component is in
+ */
 export enum Mode {
 	/** User isn't allowed to start edit mode -- hide the controls completely */
 	EDIT_MODE_DISALLOWED,
@@ -128,6 +131,7 @@ export class AlbumEditControls extends React.Component<ComponentProps> {
 					<AlbumActiveEditControls
 						album={album}
 						onCancel={this.onCancel}
+						isMessageError={true}
 						message="Error saving."
 					/>
 				);
