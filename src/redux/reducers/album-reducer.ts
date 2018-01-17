@@ -69,7 +69,7 @@ export function albumsByPathReducer(
 		 * Draft successfully saved to server.  Update real album or image in store.
 		 */
 		case Actions.ActionTypeKeys.DRAFT_SAVED: {
-			console.log(action.type, action.path, action.draft);
+			console.log(action.type, action.path, action.draft.content);
 			if (!action.path) throw new Error('Draft with no path');
 
 			// If we're dealing with a draft of an image
@@ -92,7 +92,7 @@ export function albumsByPathReducer(
 					);
 
 				// Apply contents of draft to image
-				Object.apply(image, action.draft.content);
+				Object.assign(image, action.draft.content);
 
 				// Return copy of albumsByPath
 				return newAlbumsByPath;
