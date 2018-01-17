@@ -46,6 +46,7 @@ export class EditModeScriptsContainer extends React.Component<ComponentProps> {
 	 * Write some Javascript and CSS tags into the HTML
 	 */
 	addScripts() {
+		// jQuery needed for Bootstrap, and that's it
 		this.addScript(
 			'https://code.jquery.com/jquery-3.2.1.slim.min.js',
 			'sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g='
