@@ -85,6 +85,10 @@ export function draftsByPathReducer(
 			console.log(action.type, action.path);
 			if (!action.path) throw new Error('Draft with no path');
 
+			// TODO: I think I should only change to SAVED if the current status is SAVING.
+			// That way, if the user starts to edit more before the save comes back, we
+			// don't overwrite their new draft.
+
 			// Set draft to just contain status 'SAVED'
 			const draftCopy: Draft = {
 				path: action.path,
@@ -109,8 +113,10 @@ export function draftsByPathReducer(
 		case Actions.ActionTypeKeys.DRAFT_SAVED_TIMEOUT: {
 			console.log(action.type, action.path);
 			if (!action.path) throw new Error('Draft with no path');
+
 			const oldDraft = draftsByPath[action.path];
 			if (!oldDraft || oldDraft.state !== DraftState.SAVED) {
+				// If the old draft isn't in a SAVED state, ignore this action.
 				return draftsByPath;
 			} else {
 				// Draft exists and is in SAVED state.  Delete it.
@@ -133,6 +139,10 @@ export function draftsByPathReducer(
 		case Actions.ActionTypeKeys.DRAFT_SAVE_ERRORED: {
 			console.log(action.type, action.path);
 			if (!action.path) throw new Error('Draft with no path');
+
+			// TODO: I think I should only change to ERRORED if the current status is SAVING.
+			// That way, if the user starts to edit more before the save comes back, we
+			// don't overwrite their new draft.
 
 			// Make copy of existing draft or create a new one, and apply new content
 			const draftCopy: Draft = {
