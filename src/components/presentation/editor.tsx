@@ -1,5 +1,11 @@
 import * as React from 'react';
 import { ReactQuill } from 'react-quill';
+import { MyLink } from '@src/components/presentation/quill-link';
+
+// This is simply to use MyLink so that TypeScript compiler doesn't complain
+// Importing MyLink is simply so that it loads in the module and registers
+// the MyLink class with the Quill editor, to customize the handling of hrefs.
+MyLink;
 
 /**
  * Component properties
