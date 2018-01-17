@@ -7,6 +7,7 @@ import {
 	ActionTypeKeys,
 	DraftSaving,
 	DraftSaved,
+	DraftSavedTimeout,
 	DraftSaveErrored
 } from '@src/redux/actions/actions';
 import { getDraft } from '@src/redux/selectors/draft-selectors';
@@ -48,7 +49,7 @@ export function saveDraft(path: string) {
 		return fetch(Config.albumSaveUrl(path), requestConfig)
 			.then(checkForErrors)
 			.then(response => response.json())
-			.then(json => dispatch(successAction(path, draft, json)))
+			.then(json => handleSuccess(dispatch, path, draft, json))
 			.catch(error => dispatch(errorAction(path, error)));
 	};
 }
@@ -68,7 +69,12 @@ function checkForErrors(response: Response): Response {
 	return response;
 }
 
-function successAction(path: string, draft: Draft, json: any): DraftSaved {
+function handleSuccess(
+	dispatch: Function,
+	path: string,
+	draft: Draft,
+	json: any
+) {
 	if (!json || !json.success) {
 		console.log(
 			`Server did not respond with success saving draft for ${path}.  Instead, responded with:`,
@@ -81,10 +87,24 @@ function successAction(path: string, draft: Draft, json: any): DraftSaved {
 		);
 	}
 
+	dispatch(successAction(path, draft));
+	setTimeout(() => {
+		dispatch(successTimeoutAction(path));
+	}, 2000);
+}
+
+function successAction(path: string, draft: Draft): DraftSaved {
 	return {
 		type: ActionTypeKeys.DRAFT_SAVED,
 		path: path,
 		draft: draft
+	};
+}
+
+function successTimeoutAction(path: string): DraftSavedTimeout {
+	return {
+		type: ActionTypeKeys.DRAFT_SAVED_TIMEOUT,
+		path: path
 	};
 }
 

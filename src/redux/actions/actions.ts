@@ -11,9 +11,9 @@ import { Action } from 'redux';
 import {
 	Album,
 	AlbumThumb,
+	Draft,
 	DraftContent,
-	FetchError,
-	Draft
+	FetchError
 } from '@src/models/models';
 
 /**
@@ -26,6 +26,7 @@ export enum ActionTypeKeys {
 	DRAFT_UPDATE = 'DRAFT_UPDATE',
 	DRAFT_SAVING = 'DRAFT_SAVING',
 	DRAFT_SAVED = 'DRAFT_SAVED',
+	DRAFT_SAVED_TIMEOUT = 'DRAFT_SAVED_TIMEOUT',
 	DRAFT_SAVE_ERRORED = 'DRAFT_SAVE_ERRORED',
 	THUMBNAIL_UPDATE = 'THUMBNAIL_UPDATE',
 	THUMBNAIL_SAVING = 'THUMBNAIL_SAVING',
@@ -49,6 +50,7 @@ export type ActionTypes =
 	| DraftUpdate
 	| DraftSaving
 	| DraftSaved
+	| DraftSavedTimeout
 	| DraftSaveErrored
 	| ThumbnailSaving
 	| ThumbnailSaved
@@ -122,6 +124,17 @@ export interface DraftSaved extends Action {
 	 */
 	path: string;
 	draft: Draft;
+}
+
+/**
+ * Draft was saved successfully to the server, and now the "Saved." message should be faded out
+ */
+export interface DraftSavedTimeout extends Action {
+	type: ActionTypeKeys.DRAFT_SAVED_TIMEOUT;
+	/**
+	 * Path of album or image being updated
+	 */
+	path: string;
 }
 
 /**

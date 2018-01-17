@@ -85,13 +85,10 @@ export function draftsByPathReducer(
 			console.log(action.type, action.path);
 			if (!action.path) throw new Error('Draft with no path');
 
-			// Make copy of existing draft or create a new one, and apply new content
+			// Set draft to just contain status 'SAVED'
 			const draftCopy: Draft = {
-				...draftsByPath[action.path],
-				...{
-					path: action.path, // in case we're creating a new draft we need to set its path
-					state: DraftState.SAVED // set status to saved
-				}
+				path: action.path,
+				state: DraftState.SAVED
 			};
 
 			// Make copy of draftsByPath
@@ -102,6 +99,31 @@ export function draftsByPathReducer(
 
 			// Return copy of draftsByPath
 			return draftsByPathCopy;
+		}
+
+		/**
+		 * DRAFT_SAVED_TIMEOUT
+		 * Draft saved message has displayed a while.
+		 * Clear out the draft entirely
+		 */
+		case Actions.ActionTypeKeys.DRAFT_SAVED_TIMEOUT: {
+			console.log(action.type, action.path);
+			if (!action.path) throw new Error('Draft with no path');
+			const oldDraft = draftsByPath[action.path];
+			if (!oldDraft || oldDraft.state !== DraftState.SAVED) {
+				return draftsByPath;
+			} else {
+				// Draft exists and is in SAVED state.  Delete it.
+
+				// Make copy of draftsByPath
+				let draftsByPathCopy = { ...draftsByPath };
+
+				// Delete the draft entirely
+				delete draftsByPathCopy[action.path];
+
+				// Return copy of draftsByPath
+				return draftsByPathCopy;
+			}
 		}
 
 		/**

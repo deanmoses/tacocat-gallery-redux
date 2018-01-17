@@ -12,7 +12,10 @@ export enum Mode {
 	EDIT_MODE_ON,
 	/** User has clicked save and we're currently saving -- show saving message */
 	SAVING,
-	SAVE_ERROR
+	/** There was an error saving -- show error message */
+	SAVE_ERROR,
+	/** The draft was successfully saved -- show saved message */
+	SAVED
 }
 
 /**
@@ -116,14 +119,28 @@ export class AlbumEditControls extends React.Component<ComponentProps> {
 				);
 			}
 			case Mode.SAVING: {
+				// Save is in process
 				return <div>Saving...</div>;
 			}
 			case Mode.SAVE_ERROR: {
+				// There was an error saving
 				return (
 					<AlbumActiveEditControls
 						album={album}
 						onCancel={this.onCancel}
-						errorMessage="Error saving."
+						message="Error saving."
+					/>
+				);
+			}
+			case Mode.SAVED: {
+				// Draft was saved
+				return (
+					<AlbumActiveEditControls
+						album={album}
+						onCancel={this.onCancel}
+						onSave={this.onSave}
+						onFieldChange={this.onFieldChange}
+						message="Saved."
 					/>
 				);
 			}

@@ -9,7 +9,15 @@ import { CancelIcon } from '@src/components/presentation/icon/icon-cancel';
 interface ComponentProps {
 	readonly album: Album;
 
-	readonly errorMessage?: string;
+	/**
+	 * Message to display within the controls, like "Saved." or "Error Saving."
+	 */
+	readonly message?: string;
+
+	/**
+	 * True: the message property is an error message.  Disable various buttons.
+	 */
+	readonly isMessageError?: boolean;
 
 	/**
 	 * Called when my cancel button is clicked
@@ -76,8 +84,7 @@ export class AlbumActiveEditControls extends React.Component<ComponentProps> {
 
 	render() {
 		const a = this.props.album;
-		const saveError = !!this.props.errorMessage;
-		const message = this.props.errorMessage;
+		const message = this.props.message;
 		const summaryControl =
 			a.type !== AlbumType.DAY ? null : (
 				<input
@@ -115,7 +122,7 @@ export class AlbumActiveEditControls extends React.Component<ComponentProps> {
 					<button
 						type="button"
 						className="btn btn-default"
-						disabled={saveError}
+						disabled={!!this.props.isMessageError}
 						title="Save"
 						onClick={this.onSave}
 					>
