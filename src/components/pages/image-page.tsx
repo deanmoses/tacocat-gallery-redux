@@ -83,6 +83,7 @@ class ImagePageBody extends React.Component<ImagePageBodyProps> {
 							src={Config.cdnHost() + image.url_sized}
 							style={imgStyle}
 							className={'thephoto ' + orientation}
+							alt={image.title}
 						/>
 					</a>
 				</section>

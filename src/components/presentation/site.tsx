@@ -237,7 +237,8 @@ export const PrevButton: React.StatelessComponent<HeaderNavButtonProps> = ({
 	title
 }) => (
 	<HeaderButton href={href}>
-		<PrevIcon /> <span className="nav-button-label">{title}</span>
+		<PrevIcon title="Previous" />{' '}
+		<span className="nav-button-label">{title}</span>
 	</HeaderButton>
 );
 
@@ -249,7 +250,7 @@ export const NextButton: React.StatelessComponent<HeaderNavButtonProps> = ({
 	title
 }) => (
 	<HeaderButton href={href}>
-		<span className="nav-button-label">{title}</span> <NextIcon />
+		<span className="nav-button-label">{title}</span> <NextIcon title="Next" />
 	</HeaderButton>
 );
 
