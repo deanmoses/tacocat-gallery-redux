@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="en-US">
+<html lang="en-US" manifest="a.appcache?t=TIMESTAMP">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel='stylesheet' href='main.css'>
+    <link rel='stylesheet' href='main.css?t=TIMESTAMP'>
     <link rel="apple-touch-icon" sizes="180x180" href="images/favicons/apple-touch-icon.png">
     <link rel="icon" type="image/png" href="images/favicons/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="images/favicons/favicon-16x16.png" sizes="16x16">
@@ -32,7 +32,7 @@
     <script>
         if (supportsES6) {
             var script = document.createElement("script");
-            script.src = "bundle.js";
+            script.src = "bundle.js?t=TIMESTAMP";
             document.body.appendChild(script);
         }
         else {
