@@ -80,7 +80,12 @@ class ImagePageBody extends React.Component<ImagePageBodyProps> {
 					<a href={Config.zenphotoImageFullSizeUrl(image.path)} target="zen">
 						<img
 							key={Config.cdnHost() + image.url_sized} // When navigating between images quickly, React doesn't destroy the previous image fast enough: you see the old image with the new text.  Adding the key property seems to make this problem go away.
-							src={Config.cdnHost() + image.url_sized}
+							src={
+								Config.cdnHost() +
+								image.url_sized +
+								'?t=' +
+								image.last_modified_date
+							}
 							style={imgStyle}
 							className={'thephoto ' + orientation}
 							alt={image.title}

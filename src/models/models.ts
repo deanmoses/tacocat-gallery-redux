@@ -130,6 +130,7 @@ export interface AlbumThumb extends Thumbable {
 export interface Image extends Thumbable {
 	nextImageHref: string;
 	prevImageHref: string;
+	last_modified_date: string;
 }
 
 /**
