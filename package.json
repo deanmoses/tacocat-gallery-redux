@@ -12,14 +12,15 @@
 		"build": "run-s build-js build-css build-static",
 		"build-js":
 			"webpack --config webpack.prod.js --define process.env.NODE_ENV=production",
-		"start-static": "run-s build-static watch-static",
+		"start-static": "run-s build-static delete-appcache watch-static",
 		"build-static": "run-s copy-static timestamp-static",
 		"copy-static":
 			"cpx 'src/public/**/*.{html,png,jpg,ico,xml,tx,json,appcache}' dist",
 		"timestamp-static":
 			"replace-in-file /TIMESTAMP/g $(date +\"%s\") dist/*.{html,css,js,appcache} --isRegex",
 		"watch-static":
-			"cpx 'src/public/**/*.{html,png,jpg,ico,xml,txt,json,appcache}' dist --watch",
+			"cpx 'src/public/**/*.{html,png,jpg,ico,xml,txt,json}' dist --watch",
+		"delete-appcache": "rm dist/a.appcache",
 		"start-webpack": "webpack-dev-server --open --config webpack.dev.js",
 		"start-css": "run-s build-css watch-css",
 		"build-css":
