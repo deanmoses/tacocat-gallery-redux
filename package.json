@@ -2,32 +2,38 @@
 	"private": true,
 	"name": "tacocat-gallery-redux",
 	"version": "1.0.0",
-	"description": "Javascript front end for tacocat.com photo gallery built in React, Redux and Typescript",
-	"keywords": [
-		"javascript",
-		"react",
-		"redux",
-		"typescript"
-	],
+	"description":
+		"Javascript front end for tacocat.com photo gallery built in React, Redux and Typescript",
+	"keywords": ["javascript", "react", "redux", "typescript"],
 	"license": "MIT",
 	"author": "Dean Moses",
 	"scripts": {
 		"start": "run-p start-css start-static start-webpack",
 		"build": "run-s build-js build-css build-static",
-		"build-js": "webpack --config webpack.prod.js --define process.env.NODE_ENV=production",
+		"build-js":
+			"webpack --config webpack.prod.js --define process.env.NODE_ENV=production",
 		"start-static": "run-s build-static delete-appcache watch-static",
-		"build-static": "run-s copy-static timestamp-static",
-		"copy-static": "cpx 'src/public/**/*.{html,png,jpg,ico,xml,tx,json,appcache}' dist",
-		"timestamp-static": "replace-in-file /TIMESTAMP/g $(date +\"%s\") dist/*.{html,css,js,appcache} --isRegex",
-		"watch-static": "cpx 'src/public/**/*.{html,png,jpg,ico,xml,txt,json}' dist --watch",
+		"build-static": "run-s copy-static copy-htaccess timestamp-static",
+		"copy-static":
+			"cpx 'src/public/**/*.{html,png,jpg,ico,xml,tx,json,appcache}' dist",
+		"copy-htaccess": "cp src/public/.htaccess dist",
+		"timestamp-static":
+			"replace-in-file /TIMESTAMP/g $(date +\"%s\") dist/*.{html,css,js,appcache} --isRegex",
+		"watch-static":
+			"cpx 'src/public/**/*.{html,png,jpg,ico,xml,txt,json}' dist --watch",
 		"delete-appcache": "rm dist/a.appcache",
 		"start-webpack": "webpack-dev-server --open --config webpack.dev.js",
 		"start-css": "run-s build-css watch-css",
-		"build-css": "node-sass-chokidar src/styles/main.scss -o dist/ --source-map true --output-style compressed",
-		"watch-css": "node-sass-chokidar src/styles/main.scss -o dist/ --source-map true --watch --recursive",
+		"build-css":
+			"node-sass-chokidar src/styles/main.scss -o dist/ --source-map true --output-style compressed",
+		"watch-css":
+			"node-sass-chokidar src/styles/main.scss -o dist/ --source-map true --watch --recursive",
 		"start-mockapi": "json-server --watch src/api/db.json --port 3001",
 		"test": "jest",
-		"deploy-staging": "rsync -r -a -v --delete --exclude '.DS_Store' --exclude 'mockdata' dist/ deanmoses@tacocat.com:~/tacocat.com/p3",
+		"deploy-staging":
+			"rsync -r -a -v --delete --exclude '.DS_Store' --exclude 'mockdata' dist/ deanmoses@tacocat.com:~/tacocat.com/p3",
+		"deploy-prod":
+			"rsync -r -a -v --delete --exclude '.DS_Store' --exclude 'mockdata' dist/ deanmoses@tacocat.com:~/tacocat.com/p",
 		"build-and-stage": "run-s build deploy-staging"
 	},
 	"dependencies": {
@@ -71,11 +77,7 @@
 		"webpack-merge": "^4.1.1"
 	},
 	"jest": {
-		"moduleFileExtensions": [
-			"ts",
-			"tsx",
-			"js"
-		],
+		"moduleFileExtensions": ["ts", "tsx", "js"],
 		"moduleNameMapper": {
 			"^@src(.*)$": "<rootDir>/src$1"
 		},
