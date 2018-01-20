@@ -86,7 +86,7 @@ export default abstract class Config {
 	 */
 	public static jsonSearchUrl(searchTerms: string): string {
 		return (
-			'https://tacocat.com/zenphoto/page/search?words=' +
+			'https://tacocat.com/zenphoto/page/search/?words=' +
 			encodeURIComponent(searchTerms) +
 			'&json'
 		);
