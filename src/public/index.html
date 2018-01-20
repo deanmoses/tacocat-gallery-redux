@@ -13,14 +13,6 @@
     <meta name="msapplication-config" content="browserconfig.xml" />
     <meta name="theme-color" content="#ffffff">
     <title>The Moses Family</title>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-634317-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'UA-634317-1');
-    </script>
     <script>
         var supportsES6 = function () {
             try {
@@ -31,22 +23,6 @@
                 return false;
             }
         }();
-    </script>
-    <script>
-        // When there's a new version of the app in appcache, reload the app
-
-        // On page load
-        window.addEventListener('load', function (e) {
-            // Check if a new app cache is available
-            window.applicationCache.addEventListener('updateready', function (e) {
-                if (window.applicationCache.status == window.applicationCache.UPDATEREADY) {
-                    // Browser downloaded a new app cache
-                    window.location.reload();
-                } else {
-                    // Manifest hasn't changed. Nothing new to serve
-                }
-            }, false);
-        }, false);
     </script>
 </head>
 
