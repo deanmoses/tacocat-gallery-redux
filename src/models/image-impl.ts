@@ -8,7 +8,7 @@ export class ImageImpl implements Image {
 	title: string;
 	date: number;
 	desc: string;
-	last_modified_date: string;
+	last_modified_date: number;
 	unpublished: boolean;
 	url_full: string;
 	url_sized: string;

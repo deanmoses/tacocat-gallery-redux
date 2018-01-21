@@ -80,6 +80,7 @@ export interface Album {
 	 */
 	url_thumb?: string;
 	date?: number;
+	last_modified_date?: number;
 	year?: number;
 	images?: Image[];
 	albums?: AlbumThumb[];
@@ -115,6 +116,7 @@ export interface Thumbable {
 	url_thumb: string;
 	width: number;
 	height: number;
+	last_modified_date: number;
 }
 
 /**
@@ -130,7 +132,6 @@ export interface AlbumThumb extends Thumbable {
 export interface Image extends Thumbable {
 	nextImageHref: string;
 	prevImageHref: string;
-	last_modified_date: string;
 }
 
 /**

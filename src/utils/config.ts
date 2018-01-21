@@ -26,10 +26,16 @@ export default abstract class Config {
 	}
 
 	/**
-	 * Base host of CDN-servable stuff. Could be a CDN or may be the actual webserver.
+	 * Create URL to CDN-servable stuff. Could be a CDN or may be the actual webserver.
+	 *
+	 * @argument path Path to an image, such as /zenphoto/cache/2018/01-01/new_years_eve06_1024.jpg
 	 */
-	public static cdnHost(): string {
-		return 'https://cdn.tacocat.com';
+	public static cdnUrl(path: string, cachebuster: number): string {
+		let url = 'https://cdn.tacocat.com' + path;
+		if (path.startsWith('/zenphoto/cache')) {
+			url += '?t=' + cachebuster;
+		}
+		return url;
 	}
 
 	/**
