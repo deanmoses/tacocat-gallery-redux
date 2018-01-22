@@ -99,7 +99,11 @@ export function albumsByPathReducer(
 			} else {
 				// Else we're dealing with a draft of an album
 				// Make copy of existing album and update its fields from the draft
-				return copyAlbumsByPath(albumsByPath, action.draft.content);
+				return copyAlbumsByPath2(
+					albumsByPath,
+					action.path,
+					action.draft.content
+				);
 			}
 		}
 
@@ -163,9 +167,30 @@ function copyAlbumsByPath(
 	oldAlbumsByPath: AlbumsByPath,
 	newAlbumFields: Album
 ): AlbumsByPath {
+	return copyAlbumsByPath2(
+		oldAlbumsByPath,
+		newAlbumFields.path,
+		newAlbumFields
+	);
+}
+
+/**
+ * Return copy of albumsByPath, with the new album put into it.
+ *
+ * @param oldAlbumsByPath The current copy of albumsByPath in the Redux store.  Will be copied.
+ * @param albumPath The path of the album to update
+ * @param newAlbumFields Album fields that have been updated.  Either apply to an existing album or create new album.
+ */
+function copyAlbumsByPath2(
+	oldAlbumsByPath: AlbumsByPath,
+	albumPath: string,
+	newAlbumFields: Album
+): AlbumsByPath {
+	if (!albumPath) throw new Error('Album path is not set');
+
 	// Either create new album, or make copy of existing album and apply new fields
 	const newAlbum: Album = {
-		...oldAlbumsByPath[newAlbumFields.path],
+		...oldAlbumsByPath[albumPath],
 		...newAlbumFields
 	};
 
@@ -173,7 +198,7 @@ function copyAlbumsByPath(
 	let newAlbumsByPath = { ...oldAlbumsByPath };
 
 	// Add new/copy album to copy of albumsByPath
-	newAlbumsByPath[newAlbum.path] = newAlbum;
+	newAlbumsByPath[albumPath] = newAlbum;
 
 	// Return copy of albumsByPath
 	return newAlbumsByPath;
