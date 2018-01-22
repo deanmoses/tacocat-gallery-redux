@@ -72,13 +72,13 @@ export class AlbumActiveEditControls extends React.Component<ComponentProps> {
 
 	onSummaryChange(event: React.ChangeEvent<HTMLInputElement>) {
 		if (this.props.onFieldChange) {
-			this.props.onFieldChange('summary', event.currentTarget.value);
+			this.props.onFieldChange('customdata', event.target.value);
 		}
 	}
 
 	onPublishedChange(event: React.ChangeEvent<HTMLInputElement>) {
 		if (this.props.onFieldChange) {
-			this.props.onFieldChange('show', event.currentTarget.checked);
+			this.props.onFieldChange('unpublished', !event.target.checked);
 		}
 	}
 
@@ -89,7 +89,7 @@ export class AlbumActiveEditControls extends React.Component<ComponentProps> {
 			a.type !== AlbumType.DAY ? null : (
 				<input
 					type="text"
-					key={a.path}
+					key={a.path + a.customdata}
 					defaultValue={a.customdata}
 					placeholder="Summary"
 					onChange={this.onSummaryChange}
@@ -100,7 +100,7 @@ export class AlbumActiveEditControls extends React.Component<ComponentProps> {
 				<span>
 					<input
 						type="checkbox"
-						key={a.path}
+						key={a.path + a.unpublished}
 						defaultChecked={!a.unpublished}
 						onChange={this.onPublishedChange}
 					/>{' '}

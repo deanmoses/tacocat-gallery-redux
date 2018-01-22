@@ -75,13 +75,6 @@ export class AlbumImpl implements Album {
 	}
 
 	/**
-	 * True: album is public
-	 */
-	get published(): boolean {
-		return !this.unpublished;
-	}
-
-	/**
 	 * URL (including hashtag) to screen displaying album, like #2014/12-31
 	 */
 	get href(): string {
