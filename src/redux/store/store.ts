@@ -3,7 +3,7 @@
 //
 
 import * as redux from 'redux';
-import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
+import { composeWithDevTools } from 'redux-devtools-extension';
 import { persistStore, persistCombineReducers } from 'redux-persist';
 import thunk from 'redux-thunk';
 import { allReducers } from '../reducers/root-reducer';
