@@ -80,7 +80,6 @@ export interface Album {
 	 */
 	url_thumb?: string;
 	date?: number;
-	last_modified_date?: number;
 	year?: number;
 	images?: Image[];
 	albums?: AlbumThumb[];
