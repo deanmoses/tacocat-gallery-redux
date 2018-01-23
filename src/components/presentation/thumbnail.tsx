@@ -88,7 +88,7 @@ export class Thumbnail extends React.Component<ComponentProps> {
 			}
 		}
 
-		let thumbUrl = Config.cdnUrl(item.url_thumb, item.last_modified_date);
+		let thumbUrl = Config.cdnUrl(item.url_thumb);
 
 		return (
 			<span className={'thumbnail' + selectedClass}>

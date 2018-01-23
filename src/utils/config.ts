@@ -30,12 +30,8 @@ export default abstract class Config {
 	 *
 	 * @argument path Path to an image, such as /zenphoto/cache/2018/01-01/new_years_eve06_1024.jpg
 	 */
-	public static cdnUrl(path: string, cachebuster: number): string {
-		let url = 'https://cdn.tacocat.com' + path;
-		if (path.startsWith('/zenphoto/cache')) {
-			url += '?t=' + cachebuster;
-		}
-		return url;
+	public static cdnUrl(path: string): string {
+		return 'https://cdn.tacocat.com' + path;
 	}
 
 	/**
