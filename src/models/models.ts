@@ -115,7 +115,6 @@ export interface Thumbable {
 	url_thumb: string;
 	width: number;
 	height: number;
-	last_modified_date: number;
 }
 
 /**
