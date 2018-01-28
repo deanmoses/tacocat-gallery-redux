@@ -4,13 +4,19 @@
 
 import { RootState } from '@src/redux/reducers/root-state';
 import Config from '@src/utils/config';
-import { Album, FetchErrorImpl, FetchErrorType } from '@src/models/models';
+import {
+	Album,
+	FetchErrorImpl,
+	FetchErrorType,
+	AlbumType
+} from '@src/models/models';
 import {
 	ActionTypeKeys,
 	AlbumRequested,
 	AlbumRecieved,
 	AlbumErrored
 } from '@src/redux/actions/actions';
+import { getAlbumType } from '@src/utils/path-utils';
 
 /**
  * Action Builder: a helper function to create an Action
@@ -44,7 +50,17 @@ export function fetchAlbum(albumPath: string) {
 		// The production build process replaces the text 'process.env.NODE_ENV'
 		// with the literal string 'production'
 		if (process.env.NODE_ENV === 'production') {
-			requestConfig.credentials = 'include';
+			// Only send credentials for day albums.
+			// Because the root and year albums are served
+			// from *.json files on disk, and the apache
+			// .htaccess file in that directory is configured
+			// to serve Access-Control-Allow-Origin "*"
+			// And Chrome doesn't allow you to send credentials
+			// to a wildcard domain.  Blech.
+			const albumType = getAlbumType(albumPath);
+			if (albumType == AlbumType.DAY) {
+				requestConfig.credentials = 'include';
+			}
 		}
 
 		// Fetch via HTTP
