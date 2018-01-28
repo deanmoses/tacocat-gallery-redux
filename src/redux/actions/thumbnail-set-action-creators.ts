@@ -10,6 +10,8 @@ import {
 	ThumbnailSaveErrored
 } from '@src/redux/actions/actions';
 import { FetchErrorImpl } from '@src/models/models';
+import { getParentFromPath } from '@src/utils/path-utils';
+import { updateAlbumServerCache } from '@src/redux/actions/update-server-album-cache';
 
 /**
  * Set specified thumbnail as specified album's thumbnail
@@ -48,6 +50,7 @@ export function setAlbumThumbnail(
 			.then(checkForErrors)
 			.then(response => response.json())
 			.then(json => dispatch(successAction(albumPath, thumbnailLeafPath, json)))
+			.then(() => updateAlbumServerCache(getParentFromPath(albumPath)))
 			.catch(error =>
 				dispatch(errorAction(albumPath, thumbnailLeafPath, error))
 			);

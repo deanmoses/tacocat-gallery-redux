@@ -48,7 +48,7 @@ export function fetchAlbum(albumPath: string) {
 		}
 
 		// Fetch via HTTP
-		return fetch(Config.jsonAlbumUrl(albumPath), requestConfig)
+		return fetch(Config.albumUrl(albumPath), requestConfig)
 			.then(handleErrors)
 			.then(response => response.json())
 			.then(json => dispatch(receiveAlbum(albumPath, json)))

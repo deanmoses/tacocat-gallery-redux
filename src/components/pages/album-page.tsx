@@ -4,6 +4,7 @@ import { DayAlbumPage } from '@src/components/pages/album-day-page';
 import { YearAlbumPage } from '@src/components/pages/album-year-page';
 import { RootAlbumPage } from '@src/components/pages/album-root-page';
 import { GenericAlbumPage } from '@src/components/pages/album-generic-page';
+import { getAlbumType } from '@src/utils/path-utils';
 
 /**
  * Component properties
@@ -18,7 +19,7 @@ interface ComponentProps {
 export const AlbumPage: React.StatelessComponent<ComponentProps> = ({
 	album
 }) => {
-	switch (album.type) {
+	switch (getAlbumType(album.path)) {
 		case AlbumType.DAY: {
 			return <DayAlbumPage album={album} />;
 		}

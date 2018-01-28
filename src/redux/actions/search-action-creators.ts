@@ -38,7 +38,7 @@ function fetchSearchResults(searchTerms: string) {
 		console.log('fetchSearchResults()');
 		dispatch(searching(searchTerms));
 
-		return fetch(Config.jsonSearchUrl(searchTerms))
+		return fetch(Config.searchUrl(searchTerms))
 			.then(handleErrors)
 			.then(response => response.json())
 			.then(json => dispatch(receiveSearchResults(searchTerms, json)))

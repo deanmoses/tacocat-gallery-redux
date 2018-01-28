@@ -87,7 +87,6 @@ export interface Album {
 	next?: AlbumNavInfo;
 	isLoading?: boolean;
 	err?: FetchError;
-	type?: AlbumType;
 	pageTitle?: string;
 	href?: string;
 	nextAlbumHref?: string;
@@ -120,12 +119,10 @@ export interface Thumbable {
 /**
  * Enough information to display an Album as a thumbnail image
  */
-export interface AlbumThumb extends Thumbable {
-	type?: AlbumType;
-}
+export interface AlbumThumb extends Thumbable {}
 
 /**
- * Enough information to display an Image as a thumbnail image
+ * An image in an album
  */
 export interface Image extends Thumbable {
 	nextImageHref: string;

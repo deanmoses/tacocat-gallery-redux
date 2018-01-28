@@ -33,7 +33,7 @@ function shouldFetchLatestAlbum(state: RootState): boolean {
 function fetchLatestAlbum() {
 	return (dispatch: Function) => {
 		dispatch(requestLatestAlbum());
-		return fetch(Config.latestAlbumJsonUrl())
+		return fetch(Config.latestAlbumUrl())
 			.then(handleErrors)
 			.then(response => response.json())
 			.then(json => dispatch(receiveLatestAlbum(json)))

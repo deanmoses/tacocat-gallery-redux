@@ -11,8 +11,14 @@ import {
 	DraftSaveErrored
 } from '@src/redux/actions/actions';
 import { getDraft } from '@src/redux/selectors/draft-selectors';
-import { Draft, FetchErrorImpl } from '@src/models/models';
-import { isImagePath } from '@src/utils/path-utils';
+import { Draft, FetchErrorImpl, AlbumType } from '@src/models/models';
+import {
+	isImagePath,
+	isAlbumPath,
+	getAlbumType,
+	getParentFromPath
+} from '@src/utils/path-utils';
+import { updateAlbumServerCache } from '@src/redux/actions/update-server-album-cache';
 
 /**
  * Save the draft at the specified path
@@ -87,10 +93,24 @@ function handleSuccess(
 		);
 	}
 
+	// Tell system the draft save was successful
 	dispatch(successAction(path, draft));
+	// Tell system to stop showing that the draft save was successful
 	setTimeout(() => {
 		dispatch(successTimeoutAction(path));
 	}, 2000);
+
+	// For some types of albums, update the cache of the album on the server
+	if (isAlbumPath(path)) {
+		const albumType = getAlbumType(path);
+		// If it's a year album, update its cache
+		if (albumType === AlbumType.YEAR) {
+			updateAlbumServerCache(path);
+		} else if (albumType === AlbumType.DAY) {
+			// If it's a day album, update parent year album
+			updateAlbumServerCache(getParentFromPath(path));
+		}
+	}
 }
 
 function successAction(path: string, draft: Draft): DraftSaved {

@@ -1,8 +1,8 @@
 import { Album, AlbumType } from '@src/models/models';
-import { AlbumImpl } from '@src/models/album-impl';
 import RootAlbum from '@src/models/album-year';
 import YearAlbum from '@src/models/album-year';
 import DayAlbum from '@src/models/album-day';
+import { getAlbumType } from '@src/utils/path-utils';
 
 /**
  * Create an Album or a subclass of Album
@@ -14,7 +14,7 @@ export default function createAlbumFromObject(json: any): Album {
 }
 
 function instantiateAlbum(json: any): Album {
-	const type = AlbumImpl.type(json.path);
+	const type = getAlbumType(json.path);
 
 	switch (type) {
 		case AlbumType.ROOT: {

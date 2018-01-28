@@ -2,7 +2,6 @@ import {
 	Album,
 	Image,
 	AlbumNavInfo,
-	AlbumType,
 	AlbumThumb,
 	FetchError
 } from '@src/models/models';
@@ -34,22 +33,6 @@ export class AlbumImpl implements Album {
 		if (!(typeof path === 'string'))
 			throw new Error('Album path must be a string');
 		this.path = path;
-	}
-
-	get type(): AlbumType {
-		return AlbumImpl.type(this.path);
-	}
-
-	static type(path: string): AlbumType {
-		if (!path || path.length <= 0 || path === '/') {
-			return AlbumType.ROOT;
-		} else if (path.indexOf('/') < 0) {
-			// no slashes:  it's a year album
-			return AlbumType.YEAR;
-		} else {
-			// else it's a subalbum (2005/12-31 or 2005/12-31/snuggery)
-			return AlbumType.DAY;
-		}
 	}
 
 	/**

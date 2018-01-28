@@ -22,7 +22,7 @@ function fetchAuthStatus() {
 	return (dispatch: Function) => {
 		// Don't really need to build "authentication updating" functionality in the UI
 		//dispatch(authenticationStatusUpdating());
-		return fetch(Config.checkAuthenticationJsonUrl(), {
+		return fetch(Config.checkAuthenticationUrl(), {
 			credentials: 'include'
 		})
 			.then(handleErrors)

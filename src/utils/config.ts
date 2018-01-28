@@ -1,4 +1,5 @@
-import { isImagePath } from '@src/utils/path-utils';
+import { isImagePath, getAlbumType } from '@src/utils/path-utils';
+import { AlbumType } from '@src/models/models';
 
 /**
  * Configuration global to the application
@@ -19,15 +20,7 @@ export default abstract class Config {
 	}
 
 	/**
-	 *  Base host of the live non-CDN webserver.  The origin server.
-	 */
-	public static liveHost(): string {
-		return 'https://tacocat.com';
-	}
-
-	/**
-	 * Create URL to CDN-servable stuff. Could be a CDN or may be the actual webserver.
-	 *
+	 * Create URL to CDN-servable stuff.
 	 * @argument path Path to an image, such as /zenphoto/cache/2018/01-01/new_years_eve06_1024.jpg
 	 */
 	public static cdnUrl(path: string): string {
@@ -37,37 +30,47 @@ export default abstract class Config {
 	/**
 	 * URL of the JSON REST API from which to retrieve the album
 	 */
-	public static jsonAlbumUrl(path: string): string {
-		// For JSON requests to zenphoto, always end with a / or else suffer the cost of a redirect.
-		// Zenphoto has a stupid redirect in its .htaccess that redirects you to the / version of
-		// an album.
-		// Request THIS:
-		// https://tacocat.com/zenphoto/2005/11-20/?json
-		// NOT this:
-		// https://tacocat.com/zenphoto/2005/11-20?json
+	public static albumUrl(path: string): string {
+		switch (getAlbumType(path)) {
+			case AlbumType.ROOT: {
+				return 'https://tacocat.com/p_json/root.json';
+			}
+			case AlbumType.YEAR: {
+				return `https://tacocat.com/p_json/${path}.json`;
+			}
+			default: {
+				// For JSON requests to zenphoto, always end with a / or else suffer the cost of a redirect.
+				// Zenphoto has a stupid redirect in its .htaccess that redirects you to the / version of
+				// an album.
+				// Request THIS:
+				// https://tacocat.com/zenphoto/2005/11-20/?json
+				// NOT this:
+				// https://tacocat.com/zenphoto/2005/11-20?json
 
-		let newPath = path ? path : '/'; // root path
-		newPath = newPath.endsWith('/') ? newPath : newPath + '/';
-		newPath = newPath.startsWith('/') ? newPath : '/' + newPath;
-		return 'https://tacocat.com/zenphoto' + newPath + '?json';
+				let newPath = path ? path : '/'; // root path
+				newPath = newPath.endsWith('/') ? newPath : newPath + '/';
+				newPath = newPath.startsWith('/') ? newPath : '/' + newPath;
+				return `https://tacocat.com/zenphoto${newPath}?json`;
+			}
+		}
 	}
 
 	/**
 	 * URL of the JSON REST API to retrieve the latest album
 	 */
-	public static latestAlbumJsonUrl(): string {
+	public static latestAlbumUrl(): string {
 		return 'https://tacocat.com/zenphoto/?json&latest_albums&depth=0';
 	}
 
 	/**
 	 * URL of the JSON REST API to check the user's authentication status
 	 */
-	public static checkAuthenticationJsonUrl(): string {
+	public static checkAuthenticationUrl(): string {
 		return 'https://tacocat.com/zenphoto/?api&auth';
 	}
 
 	/**
-	 * URL to send a HTTP POST to save an album
+	 * URL to send a HTTP POST to save an album or an image
 	 * @param path path of an album or an image
 	 */
 	public static saveUrl(path: string): string {
@@ -83,10 +86,21 @@ export default abstract class Config {
 	}
 
 	/**
+	 * URL to update the server's JSON file cache of a specific album
+	 *
+	 * This should only be called for year albums (/2001) or the root album (/)
+	 */
+	public static refreshAlbumCacheUrl(albumPath: string) {
+		// strip the '/' off if it exists, so that "/2001" becomes "2001"
+		var slashlessAlbumPath = albumPath.replace('/', '');
+		return 'https://tacocat.com/p_json/refresh.php?album=' + slashlessAlbumPath;
+	}
+
+	/**
 	 * URL of the JSON REST API to search for the specified terms
 	 * @argument searchTerms the terms to search for
 	 */
-	public static jsonSearchUrl(searchTerms: string): string {
+	public static searchUrl(searchTerms: string): string {
 		return (
 			'https://tacocat.com/zenphoto/page/search/?words=' +
 			encodeURIComponent(searchTerms) +

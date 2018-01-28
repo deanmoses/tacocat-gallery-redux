@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { AlbumThumb } from '@src/models/models';
 import Thumbnail from '@src/components/containers/thumbnail-connector';
+import { getAlbumType } from '@src/utils/path-utils';
 
 /**
  * Component properties
@@ -41,7 +42,7 @@ const ThumbsForMonth: React.StatelessComponent<ThumbsForMonthProps> = ({
 		<Thumbnail
 			item={childAlbum}
 			isAlbum={true}
-			albumType={childAlbum.type}
+			albumType={getAlbumType(childAlbum.path)}
 			key={childAlbum.date}
 		/>
 	));

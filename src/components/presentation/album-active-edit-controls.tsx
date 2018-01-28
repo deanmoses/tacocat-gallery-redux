@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Album, AlbumType } from '@src/models/models';
 import { SaveIcon } from '@src/components/presentation/icon/icon-save';
 import { CancelIcon } from '@src/components/presentation/icon/icon-cancel';
+import { getAlbumType } from '@src/utils/path-utils';
 
 /**
  * Component properties
@@ -85,28 +86,27 @@ export class AlbumActiveEditControls extends React.Component<ComponentProps> {
 	render() {
 		const a = this.props.album;
 		const message = this.props.message;
-		const summaryControl =
-			a.type !== AlbumType.DAY ? null : (
+		const isDayAlbum = getAlbumType(a.path) === AlbumType.DAY;
+		const summaryControl = !isDayAlbum ? null : (
+			<input
+				type="text"
+				key={a.path + a.customdata}
+				defaultValue={a.customdata}
+				placeholder="Summary"
+				onChange={this.onSummaryChange}
+			/>
+		);
+		const publishControl = !isDayAlbum ? null : (
+			<span>
 				<input
-					type="text"
-					key={a.path + a.customdata}
-					defaultValue={a.customdata}
-					placeholder="Summary"
-					onChange={this.onSummaryChange}
-				/>
-			);
-		const publishControl =
-			a.type !== AlbumType.DAY ? null : (
-				<span>
-					<input
-						type="checkbox"
-						key={a.path + a.unpublished}
-						defaultChecked={!a.unpublished}
-						onChange={this.onPublishedChange}
-					/>{' '}
-					published
-				</span>
-			);
+					type="checkbox"
+					key={a.path + a.unpublished}
+					defaultChecked={!a.unpublished}
+					onChange={this.onPublishedChange}
+				/>{' '}
+				published
+			</span>
+		);
 
 		return (
 			<div className="editControls">
