@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { AlbumThumb } from '@src/models/models';
 import { Thumbnail } from '@src/components/presentation/thumbnail';
+import { getAlbumType } from '@src/utils/path-utils';
 
 /**
  * Component properties
@@ -47,7 +48,11 @@ export class LatestAlbumContainer extends React.Component<ComponentProps> {
 			return (
 				<div>
 					<h2>Latest Album</h2>
-					<Thumbnail item={album} isAlbum={true} albumType={null} />
+					<Thumbnail
+						item={album}
+						isAlbum={true}
+						albumType={getAlbumType(album.path)}
+					/>
 				</div>
 			);
 		}
