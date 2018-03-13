@@ -1,5 +1,6 @@
 import { isImagePath, getAlbumType } from '@src/utils/path-utils';
 import { AlbumType } from '@src/models/models';
+import { getParentFromPath, getLeafItemOnPath } from '@src/utils/path-utils';
 
 /**
  * Configuration global to the application
@@ -127,15 +128,13 @@ export default abstract class Config {
 	/**
 	 * URL to the full Zenphoto image edit page
 	 */
-	public static zenphotoImageEditUrl(
-		albumPath: string,
-		imageFilename: string
-	): string {
-		var zeditUrl =
-			'https://tacocat.com/zenphoto/zp-core/admin-edit.php?page=edit&tab=imageinfo&album=ALBUM_PATH&image=IMAGE_FILENAME#IT';
-		return zeditUrl
-			.replace('ALBUM_PATH', encodeURIComponent(albumPath))
-			.replace('IMAGE_FILENAME', encodeURIComponent(imageFilename));
+	public static zenphotoImageEditUrl(imagePath: string): string {
+		return 'https://tacocat.com/zenphoto/zp-core/admin-edit.php?page=edit&album=ALBUM_PATH&singleimage=IMAGE_FILENAME&tab=imageinfo&nopagination'
+			.replace('ALBUM_PATH', encodeURIComponent(getParentFromPath(imagePath)))
+			.replace(
+				'IMAGE_FILENAME',
+				encodeURIComponent(getLeafItemOnPath(imagePath))
+			);
 	}
 
 	/**

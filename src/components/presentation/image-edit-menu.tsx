@@ -39,7 +39,7 @@ export class ImageEditMenu extends React.Component<ComponentProps> {
 
 	render() {
 		const image = this.props.image;
-		var zeditUrl = ''; //TODO: fix: Config.zenphotoImageEditUrl(album.path, image.filename);
+		var zeditUrl = Config.zenphotoImageEditUrl(image.path);
 		var zviewUrl = Config.zenphotoViewUrl(image.path);
 
 		return (
