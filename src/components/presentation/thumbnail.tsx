@@ -64,7 +64,7 @@ export class Thumbnail extends React.Component<ComponentProps> {
 			width: widthPx,
 			height: heightPx
 		};
-		let summary: string = ''; //item.summary;
+		let summary: string = item.customdata;
 		if (!summary && this.props.useLongDateAsSummary) {
 			summary = DateUtils.longDate(item.date);
 		}

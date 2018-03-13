@@ -114,6 +114,7 @@ export interface Thumbable {
 	url_thumb: string;
 	width: number;
 	height: number;
+	customdata?: string;
 }
 
 /**
