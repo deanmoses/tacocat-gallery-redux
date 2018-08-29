@@ -11,6 +11,7 @@ import { updateAuthenticationStatusFromServer } from '@src/redux/actions/authent
 import { App } from '@src/components/app';
 import EditModeScripts from '@src/components/containers/edit-mode-scripts-connector';
 import { initialize } from 'react-ga';
+import { handleKeyboardNavigation } from '@src/utils/keyboard-navigation';
 
 // Set up Google Analytics
 initialize('UA-634317-1');
@@ -18,7 +19,7 @@ initialize('UA-634317-1');
 // When there's a new version of the app in appcache, reload the app
 window.applicationCache.addEventListener(
 	'updateready',
-	function() {
+	function () {
 		if (window.applicationCache.status == window.applicationCache.UPDATEREADY) {
 			// Browser downloaded a new app cache
 			window.location.reload();
@@ -45,3 +46,8 @@ render(
 	</Provider>,
 	document.getElementById('app')
 );
+
+// Listen for keyboard navigation
+document.addEventListener('keyup', (event) => {
+	handleKeyboardNavigation(store, event)
+});
