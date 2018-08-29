@@ -39,7 +39,11 @@ export const Editor: React.StatelessComponent<ComponentProps> = ({
 	onHtmlChange
 }) => {
 	let onChange = (_content: any, _delta: any, _source: any, editor: any) => {
-		if (onHtmlChange) {
+		// Quill will issue an initial onChange when loading the page and setting the text
+		// the first time.  To avoid this, only look at events that come from the user 
+		// (that's _source === 'user' rather than _source === 'api').  For more info, see
+		// https://github.com/zenoamaro/react-quill/issues/259
+		if (onHtmlChange && _source === 'user') {
 			onHtmlChange(editor.getHTML());
 		}
 	};
