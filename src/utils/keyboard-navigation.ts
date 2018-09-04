@@ -1,14 +1,23 @@
 import { Store } from 'react-redux';
 import { isImagePath, isAlbumPath, getParentFromPath } from '@src/utils/path-utils';
 import { getAlbum } from '@src/redux/selectors/album-selectors';
+import { isInEditMode } from '@src/redux/selectors/edit-mode-selectors';
 
 /**
  * Handle arrow presses by navigating to next and previous photos
  *
+ * @param store the root Redux store
  * @param event the keyboard event
  */
 export function handleKeyboardNavigation(store: Store<any>, event: KeyboardEvent): void {
 	if (event.defaultPrevented) {
+		return;
+	}
+
+	// Disable keyboard navigation when in edit mode:
+	// the user needs the arrow keys to navigate within
+	// the text they're editing.
+	if (isInEditMode(store.getState())) {
 		return;
 	}
 
@@ -39,6 +48,9 @@ enum Direction {
 
 /**
  * Navigate to next photo
+ * 
+ * @param store the root Redux store
+ * @param direction Next or Prev
  */
 function navigateToPeer(store: Store<any>, direction: Direction) {
 	const path: string = getPathFromUrl();
@@ -99,9 +111,10 @@ function navigateToParent() {
 	}
 }
 
-
 /**
  * If on an album, navigate to first child photo or child album
+ * 
+ * @param store the root Redux store
  */
 function navigateToFirstChild(store: Store<any>) {
 	const path: string = getPathFromUrl();
