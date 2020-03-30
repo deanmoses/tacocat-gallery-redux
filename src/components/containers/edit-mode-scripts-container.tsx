@@ -31,7 +31,7 @@ export class EditModeScriptsContainer extends React.Component<ComponentProps> {
 	 * only want to handle changes. This may occur when the parent component causes
 	 * your component to re-render.
 	 */
-	componentWillReceiveProps(nextProps: ComponentProps) {
+	UNSAFE_componentWillReceiveProps(nextProps: ComponentProps) {
 		// If we're going from edit off to edit on, add the scripts
 		if (nextProps.editMode && !this.props.editMode) {
 			this.addScripts();

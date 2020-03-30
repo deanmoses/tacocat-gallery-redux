@@ -44,7 +44,7 @@ export class SearchContainer extends React.Component<ComponentProps> {
 	 * only want to handle changes. This may occur when the parent component causes
 	 * your component to re-render.
 	 */
-	componentWillReceiveProps(nextProps: ComponentProps) {
+	UNSAFE_componentWillReceiveProps(nextProps: ComponentProps) {
 		// Have we changed which search terms we're displaying?
 		let differentSearchTerms: boolean =
 			nextProps.searchTerms !== this.props.searchTerms;

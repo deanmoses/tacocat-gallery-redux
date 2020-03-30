@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ReactQuill } from 'react-quill';
+import ReactQuill from 'react-quill';
 import { MyLink } from '@src/components/presentation/quill-link';
 
 // This is simply to use MyLink so that TypeScript compiler doesn't complain

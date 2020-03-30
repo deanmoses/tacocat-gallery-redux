@@ -1,4 +1,4 @@
-import { Store } from 'react-redux';
+import { Store } from 'redux';
 import { isImagePath, isAlbumPath, getParentFromPath } from '@src/utils/path-utils';
 import { getAlbum } from '@src/redux/selectors/album-selectors';
 import { isInEditMode } from '@src/redux/selectors/edit-mode-selectors';

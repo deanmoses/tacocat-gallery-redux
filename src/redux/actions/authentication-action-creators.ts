@@ -13,7 +13,7 @@ import {
  */
 export function updateAuthenticationStatusFromServer() {
 	//console.log('updateAuthenticationStatus()');
-	return function(dispatch: Function) {
+	return function (dispatch: Function) {
 		return dispatch(fetchAuthStatus());
 	};
 }

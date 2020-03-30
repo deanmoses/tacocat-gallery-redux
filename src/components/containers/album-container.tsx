@@ -35,7 +35,7 @@ export class AlbumContainer extends React.Component<ComponentProps> {
 	 * only want to handle changes. This may occur when the parent component causes
 	 * your component to re-render.
 	 */
-	componentWillReceiveProps(nextProps: ComponentProps) {
+	UNSAFE_componentWillReceiveProps(nextProps: ComponentProps) {
 		// Have we changed which album we're displaying?
 		let differentAlbum: boolean = nextProps.path !== this.props.path;
 		if (differentAlbum) {

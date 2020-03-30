@@ -37,7 +37,7 @@ export class ImageContainer extends React.Component<ComponentProps> {
 	 * only want to handle changes. This may occur when the parent component causes
 	 * your component to re-render.
 	 */
-	componentWillReceiveProps(nextProps: ComponentProps) {
+	UNSAFE_componentWillReceiveProps(nextProps: ComponentProps) {
 		// Have we changed which image we're displaying?
 		let differentImage: boolean = nextProps.path !== this.props.path;
 		if (differentImage) {

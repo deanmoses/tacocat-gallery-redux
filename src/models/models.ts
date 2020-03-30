@@ -32,7 +32,7 @@ export enum DraftState {
 	SAVING = 'SAVING',
 	SAVED = 'SAVED',
 	ERRORED = 'ERRORED'
-}
+};
 
 /**
  * A data store of search results,
@@ -55,7 +55,7 @@ export enum SearchState {
 	SEARCHING = 'SEARCHING',
 	SUCCESS = 'SUCCESS',
 	ERROR = 'ERROR'
-}
+};
 
 /**
  * A photo album
@@ -99,7 +99,7 @@ export interface Album {
 	 * Return image at specified path, or null
 	 */
 	getImage?: (imagePath: string) => Image;
-}
+};
 
 /**
  * Something that can be displayed as a thumbnail image
@@ -115,12 +115,12 @@ export interface Thumbable {
 	width: number;
 	height: number;
 	customdata?: string;
-}
+};
 
 /**
  * Enough information to display an Album as a thumbnail image
  */
-export interface AlbumThumb extends Thumbable {}
+export interface AlbumThumb extends Thumbable { };
 
 /**
  * An image in an album
@@ -128,7 +128,7 @@ export interface AlbumThumb extends Thumbable {}
 export interface Image extends Thumbable {
 	nextImageHref: string;
 	prevImageHref: string;
-}
+};
 
 /**
  * Enough information to navigate to an Album
@@ -137,7 +137,7 @@ export interface AlbumNavInfo {
 	path?: string;
 	title?: string;
 	date?: number;
-}
+};
 
 /**
  * Enough information to navigate to an Image
@@ -145,7 +145,7 @@ export interface AlbumNavInfo {
 export interface ImageNavInfo {
 	path: string;
 	title: string;
-}
+};
 
 /**
  * Types of albums
@@ -157,7 +157,7 @@ export enum AlbumType {
 	ROOT = 'ROOT',
 	YEAR = 'YEAR',
 	DAY = 'DAY'
-}
+};
 
 /**
  * Error for fetching from server
@@ -172,7 +172,7 @@ export interface FetchError {
 	 * Type of error
 	 */
 	type: FetchErrorType;
-}
+};
 
 /**
  * Types of errors that fetching from server can generate
@@ -180,7 +180,7 @@ export interface FetchError {
 export enum FetchErrorType {
 	NotFound = 'NotFound',
 	Other = 'Other'
-}
+};
 
 export class FetchErrorImpl implements FetchError {
 	message: string;
@@ -190,4 +190,4 @@ export class FetchErrorImpl implements FetchError {
 		this.message = message;
 		this.type = type ? type : FetchErrorType.Other;
 	}
-}
+};
