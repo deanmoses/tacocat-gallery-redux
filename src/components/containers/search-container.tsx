@@ -38,18 +38,15 @@ export class SearchContainer extends React.Component<ComponentProps> {
 	}
 
 	/**
-	 * React.js component lifecycle method.  Invoked before a mounted component
-	 * receives new props.  Note that React may call this method even if the props
-	 * have not changed, so make sure to compare the current and next values if you
-	 * only want to handle changes. This may occur when the parent component causes
-	 * your component to re-render.
+	 * React.js component lifecycle method.  Invoked immediately after updating occurs. 
+	 * This method is not called for the initial render.
 	 */
-	UNSAFE_componentWillReceiveProps(nextProps: ComponentProps) {
+	componentDidUpdate(prevProps: ComponentProps) {
 		// Have we changed which search terms we're displaying?
 		let differentSearchTerms: boolean =
-			nextProps.searchTerms !== this.props.searchTerms;
+			prevProps.searchTerms !== this.props.searchTerms;
 		if (differentSearchTerms) {
-			this.props.fetchIfNeeded(nextProps.searchTerms);
+			this.props.fetchIfNeeded(prevProps.searchTerms);
 		}
 	}
 
