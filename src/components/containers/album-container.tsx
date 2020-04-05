@@ -36,7 +36,7 @@ export class AlbumContainer extends React.Component<ComponentProps> {
 		// Have we changed which album we're displaying?
 		let differentAlbum: boolean = prevProps.path !== this.props.path;
 		if (differentAlbum) {
-			this.props.fetchIfNeeded(prevProps.path);
+			this.props.fetchIfNeeded(this.props.path);
 		}
 	}
 

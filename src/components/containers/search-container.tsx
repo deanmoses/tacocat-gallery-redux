@@ -46,7 +46,7 @@ export class SearchContainer extends React.Component<ComponentProps> {
 		let differentSearchTerms: boolean =
 			prevProps.searchTerms !== this.props.searchTerms;
 		if (differentSearchTerms) {
-			this.props.fetchIfNeeded(prevProps.searchTerms);
+			this.props.fetchIfNeeded(this.props.searchTerms);
 		}
 	}
 

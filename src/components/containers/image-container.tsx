@@ -38,7 +38,7 @@ export class ImageContainer extends React.Component<ComponentProps> {
 		// Have we changed which image we're displaying?
 		let differentImage: boolean = prevProps.path !== this.props.path;
 		if (differentImage) {
-			this.props.fetchIfNeeded(prevProps.path);
+			this.props.fetchIfNeeded(this.props.path);
 		}
 	}
 
