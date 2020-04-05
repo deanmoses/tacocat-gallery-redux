@@ -28,3 +28,22 @@ workbox.routing.registerRoute(
 		cacheName: staticCacheName,
 	})
 );
+
+// Clean up old Service Worker caches when a new version of Service Worker is activated
+self.addEventListener("activate", function (event) {
+	event.waitUntil(
+		caches.keys().then(function (cacheNames) {
+			let validCacheSet = new Set(Object.values(workbox.core.cacheNames).concat(staticCacheName));
+			return Promise.all(
+				cacheNames
+					.filter(function (cacheName) {
+						return !validCacheSet.has(cacheName);
+					})
+					.map(function (cacheName) {
+						console.log("deleting cache", cacheName);
+						return caches.delete(cacheName);
+					})
+			);
+		})
+	);
+});
