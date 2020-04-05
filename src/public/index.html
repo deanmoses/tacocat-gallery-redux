@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en-US" manifest="a.appcache?t=TIMESTAMP">
+<html lang="en-US">
 
 <head>
     <meta charset="utf-8">
@@ -33,6 +33,17 @@
             var script = document.createElement("script");
             script.src = "bundle.js?t=TIMESTAMP";
             document.body.appendChild(script);
+
+            if ('serviceWorker' in navigator) {
+                // Use the window load event to keep the page load performant
+                window.addEventListener('load', function () {
+                    navigator.serviceWorker.register('service-worker.js').then(function (registration) {
+                        console.log('ServiceWorker registration successful. Scope: ', registration.scope);
+                    }, function (err) {
+                        console.log('ServiceWorker registration failed: ', err);
+                    });
+                });
+            }
         }
         else {
             var noES6message = document.createElement("div");
@@ -41,7 +52,8 @@
         }
     </script>
     <noscript>
-        <p class="browsehappy">This site requires JavaScript. Your browser does not support JavaScript, or you've disabled it.</p>
+        <p class="browsehappy">This site requires JavaScript. Your browser does not support JavaScript, or you've
+            disabled it.</p>
     </noscript>
 </body>
 

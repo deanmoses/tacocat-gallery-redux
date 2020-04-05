@@ -16,20 +16,6 @@ import { handleKeyboardNavigation } from '@src/utils/keyboard-navigation';
 // Set up Google Analytics
 initialize('UA-634317-1');
 
-// When there's a new version of the app in appcache, reload the app
-window.applicationCache.addEventListener(
-	'updateready',
-	function () {
-		if (window.applicationCache.status == window.applicationCache.UPDATEREADY) {
-			// Browser downloaded a new app cache
-			window.location.reload();
-		} else {
-			// Manifest hasn't changed. Nothing new to serve
-		}
-	},
-	false
-);
-
 // Set up the Redux store
 const { persistor, store } = configureStore();
 

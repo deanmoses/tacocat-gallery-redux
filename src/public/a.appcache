@@ -1,9 +1,0 @@
-CACHE MANIFEST
-#TIMESTAMP
-
-CACHE:
-bundle.js?t=TIMESTAMP
-main.css?t=TIMESTAMP
-
-NETWORK:
-*

@@ -10,7 +10,11 @@ describe('root reducer test', () => {
 	it('should return the initial state', () => {
 		expect(rootReducer(undefined, undefined)).toEqual({
 			albumsByPath: {},
-			isAuthenticated: false
+			draftsByPath: {},
+			editMode: false,
+			isAuthenticated: false,
+			latestAlbum: null,
+			searchesBySearchTerms: {}
 		});
 	});
 
@@ -25,7 +29,11 @@ describe('root reducer test', () => {
 		};
 		expect(rootReducer(state, undefined)).toEqual({
 			albumsByPath: {},
-			isAuthenticated: true
+			draftsByPath: {},
+			editMode: false,
+			isAuthenticated: false,
+			latestAlbum: null,
+			searchesBySearchTerms: {}
 		});
 	});
 
@@ -37,7 +45,11 @@ describe('root reducer test', () => {
 			)
 		).toEqual({
 			albumsByPath: {},
-			isAuthenticated: true
+			draftsByPath: {},
+			editMode: false,
+			isAuthenticated: false,
+			latestAlbum: null,
+			searchesBySearchTerms: {}
 		});
 	});
 
@@ -57,7 +69,11 @@ describe('root reducer test', () => {
 					path: '/'
 				}
 			},
-			isAuthenticated: false
+			draftsByPath: {},
+			editMode: false,
+			isAuthenticated: false,
+			latestAlbum: null,
+			searchesBySearchTerms: {}
 		});
 	});
 });
