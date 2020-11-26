@@ -34,7 +34,7 @@
 	"dependencies": {
 		"jquery": "^3.4.1",
 		"localforage": "^1.7.3",
-		"popper.js": "^1.12.9",
+		"popper.js": "^1.16.1",
 		"react": "^16.13.1",
 		"react-dom": "^16.13.1",
 		"react-ga": "^2.7.0",

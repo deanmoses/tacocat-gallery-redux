@@ -30,7 +30,7 @@ export class EditModeScriptsContainer extends React.Component<ComponentProps> {
 	 */
 	componentDidUpdate(prevProps: ComponentProps) {
 		// If we're going from edit off to edit on, add the scripts
-		if (prevProps.editMode && !this.props.editMode) {
+		if (!prevProps.editMode && this.props.editMode) {
 			this.addScripts();
 		}
 	}
