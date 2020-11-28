@@ -61,7 +61,10 @@ var config = {
 		// Detect when dist changes and reload the browser.
 		// This is needed detect changes to the CSS and HTML,
 		// which webpack does not process.
-		watchContentBase: true
+		watchContentBase: true,
+
+		// Open the browser after the server has been started
+		open: true
 	}
 };
 
