@@ -33,7 +33,7 @@ interface ComponentProps {
  * It was kind of hell to get it working, but there weren't any other better options.
  * See my Evernote on what I had to do in the react-quill node module source code to get it to work.
  */
-export const Editor: React.StatelessComponent<ComponentProps> = ({
+export const Editor: React.FunctionComponent<ComponentProps> = ({
 	html,
 	className,
 	onHtmlChange

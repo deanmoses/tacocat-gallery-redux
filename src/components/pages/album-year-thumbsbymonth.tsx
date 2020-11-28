@@ -13,7 +13,7 @@ interface ComponentProps {
 /**
  * Component that displays a collection of thumbnails by grouping them into months
  */
-export const ThumbsByMonth: React.StatelessComponent<ComponentProps> = ({
+export const ThumbsByMonth: React.FunctionComponent<ComponentProps> = ({
 	albums
 }) => {
 	// Get data structure containing albums grouped by month
@@ -34,7 +34,7 @@ interface ThumbsForMonthProps {
 /**
  * Component that displays all the thumbnails for a month within the year
  */
-const ThumbsForMonth: React.StatelessComponent<ThumbsForMonthProps> = ({
+const ThumbsForMonth: React.FunctionComponent<ThumbsForMonthProps> = ({
 	month
 }) => {
 	// Build each thumbnail in month

@@ -15,7 +15,7 @@ export type ComponentProps = {
 /**
  * Search page that shows an error message
  */
-export const SearchErrorPage: React.StatelessComponent<ComponentProps> = ({
+export const SearchErrorPage: React.FunctionComponent<ComponentProps> = ({
 	searchTerms,
 	returnPath
 }) => (

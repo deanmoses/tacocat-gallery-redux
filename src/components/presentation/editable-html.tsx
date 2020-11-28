@@ -32,7 +32,7 @@ export type ComponentProps = {
  * Component that either displays text as HTML or shows a rich text editor if
  * the system is in edit mode.
  */
-export const EditableHtml: React.StatelessComponent<ComponentProps> = ({
+export const EditableHtml: React.FunctionComponent<ComponentProps> = ({
 	html,
 	className,
 	editMode = false,

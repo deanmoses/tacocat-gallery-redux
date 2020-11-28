@@ -7,7 +7,7 @@ interface ComponentProps {
 	readonly path: string;
 }
 
-const LogPageView: React.StatelessComponent<ComponentProps> = ({ path }) => {
+const LogPageView: React.FunctionComponent<ComponentProps> = ({ path }) => {
 	pageview('/p' + path);
 	return null;
 };

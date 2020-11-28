@@ -16,7 +16,7 @@ interface ComponentProps {
 /**
  * Album page
  */
-export const AlbumPage: React.StatelessComponent<ComponentProps> = ({
+export const AlbumPage: React.FunctionComponent<ComponentProps> = ({
 	album
 }) => {
 	switch (getAlbumType(album.path)) {

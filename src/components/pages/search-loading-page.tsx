@@ -14,7 +14,7 @@ export type ComponentProps = {
 /**
  * Search page that displays a "loading..." spinner
  */
-export const SearchLoadingPage: React.StatelessComponent<ComponentProps> = ({
+export const SearchLoadingPage: React.FunctionComponent<ComponentProps> = ({
 	searchTerms,
 	returnPath
 }) => (

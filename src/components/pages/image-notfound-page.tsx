@@ -14,7 +14,7 @@ interface ComponentProps {
 /**
  * Image not found page
  */
-const ImageNotFoundPage: React.StatelessComponent<ComponentProps> = ({
+const ImageNotFoundPage: React.FunctionComponent<ComponentProps> = ({
 	album
 }) => (
 	<Site.Page className="imagepage" year={album.year}>

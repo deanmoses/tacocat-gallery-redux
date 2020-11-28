@@ -13,7 +13,7 @@ export type ComponentProps = {
 /**
  * Album page that displays a "loading..." spinner
  */
-export const AlbumLoadingPage: React.StatelessComponent<ComponentProps> = ({
+export const AlbumLoadingPage: React.FunctionComponent<ComponentProps> = ({
 	path
 }) => (
 	<Site.Page showFooter={false} year={getYearFromPath(path)}>

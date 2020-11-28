@@ -16,7 +16,7 @@ interface ComponentProps {
 /**
  * Image page
  */
-const ImagePage: React.StatelessComponent<ComponentProps> = ({
+const ImagePage: React.FunctionComponent<ComponentProps> = ({
 	album,
 	image
 }) => (

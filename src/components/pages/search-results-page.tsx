@@ -16,7 +16,7 @@ export type ComponentProps = {
 /**
  * Search page that shows a "No Search Results" page
  */
-export const SearchResultsPage: React.StatelessComponent<ComponentProps> = ({
+export const SearchResultsPage: React.FunctionComponent<ComponentProps> = ({
 	searchTerms,
 	returnPath,
 	images,

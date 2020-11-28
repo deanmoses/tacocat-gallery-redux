@@ -13,7 +13,7 @@ export type ComponentProps = {
 /**
  * Search page that shows a "No Search Results" page
  */
-export const NoSearchResultsPage: React.StatelessComponent<ComponentProps> = ({
+export const NoSearchResultsPage: React.FunctionComponent<ComponentProps> = ({
 	searchTerms,
 	returnPath
 }) => (

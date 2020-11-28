@@ -16,7 +16,7 @@ interface ComponentProps {
 /**
  * Image page that displays an error -- the only possible errors at this point are about loading the album
  */
-const ImageErrorPage: React.StatelessComponent<ComponentProps> = ({
+const ImageErrorPage: React.FunctionComponent<ComponentProps> = ({
 	path,
 	error
 }) => {

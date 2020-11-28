@@ -16,7 +16,7 @@ interface ComponentProps {
 /**
  * Album page that displays an error
  */
-export const AlbumErrorPage: React.StatelessComponent<ComponentProps> = ({
+export const AlbumErrorPage: React.FunctionComponent<ComponentProps> = ({
 	path,
 	error
 }) => {

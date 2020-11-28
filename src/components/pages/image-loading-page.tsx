@@ -13,7 +13,7 @@ type ComponentProps = {
 /**
  * Image page that displays a "loading..." spinner
  */
-export const ImageLoadingPage: React.StatelessComponent<ComponentProps> = ({
+export const ImageLoadingPage: React.FunctionComponent<ComponentProps> = ({
 	path
 }) => (
 	<Site.Page

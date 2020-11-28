@@ -18,7 +18,7 @@ type PageProps = {
 	readonly showFooter?: boolean;
 	readonly year?: number;
 };
-export const Page: React.StatelessComponent<PageProps> = ({
+export const Page: React.FunctionComponent<PageProps> = ({
 	children,
 	className = '',
 	showFooter = true,
@@ -82,7 +82,7 @@ type HeaderProps = {
 /**
  * Site / page header component
  */
-export const Header: React.StatelessComponent<HeaderProps> = ({
+export const Header: React.FunctionComponent<HeaderProps> = ({
 	title,
 	shortTitle,
 	href,
@@ -130,7 +130,7 @@ type PageTitleProps = {
 	readonly editPath?: string;
 	readonly onTitleChange?: (newTitle: string) => void;
 };
-export const PageTitle: React.StatelessComponent<PageTitleProps> = ({
+export const PageTitle: React.FunctionComponent<PageTitleProps> = ({
 	title,
 	shortTitle,
 	href,
@@ -174,7 +174,7 @@ export const PageTitle: React.StatelessComponent<PageTitleProps> = ({
 type FullPageMessageProps = {
 	readonly children: any;
 };
-export const FullPageMessage: React.StatelessComponent<
+export const FullPageMessage: React.FunctionComponent<
 	FullPageMessageProps
 > = ({ children }) => <div className="fullPageMessage">{children}</div>;
 
@@ -185,7 +185,7 @@ type SearchButtonProps = {
 	readonly searchTerms?: string;
 	readonly returnPath?: string;
 };
-export const SearchButton: React.StatelessComponent<SearchButtonProps> = ({
+export const SearchButton: React.FunctionComponent<SearchButtonProps> = ({
 	searchTerms,
 	returnPath
 }) => {
@@ -206,7 +206,7 @@ export const SearchButton: React.StatelessComponent<SearchButtonProps> = ({
 type HeaderButtonsProps = {
 	readonly children?: any;
 };
-export const HeaderButtons: React.StatelessComponent<HeaderButtonsProps> = ({
+export const HeaderButtons: React.FunctionComponent<HeaderButtonsProps> = ({
 	children
 }) => {
 	if (!children) {
@@ -232,7 +232,7 @@ type HeaderNavButtonProps = {
 /**
  * Prev Nav Button
  */
-export const PrevButton: React.StatelessComponent<HeaderNavButtonProps> = ({
+export const PrevButton: React.FunctionComponent<HeaderNavButtonProps> = ({
 	href,
 	title
 }) => (
@@ -245,7 +245,7 @@ export const PrevButton: React.StatelessComponent<HeaderNavButtonProps> = ({
 /**
  * Next Nav Button
  */
-export const NextButton: React.StatelessComponent<HeaderNavButtonProps> = ({
+export const NextButton: React.FunctionComponent<HeaderNavButtonProps> = ({
 	href,
 	title
 }) => (
@@ -257,7 +257,7 @@ export const NextButton: React.StatelessComponent<HeaderNavButtonProps> = ({
 /**
  * Up Nav Button
  */
-export const UpButton: React.StatelessComponent<HeaderNavButtonProps> = ({
+export const UpButton: React.FunctionComponent<HeaderNavButtonProps> = ({
 	href,
 	title
 }) => (
@@ -273,7 +273,7 @@ type HeaderButtonProps = {
 	readonly href?: string;
 	readonly children?: any;
 };
-export const HeaderButton: React.StatelessComponent<HeaderButtonProps> = ({
+export const HeaderButton: React.FunctionComponent<HeaderButtonProps> = ({
 	href,
 	children
 }) => {

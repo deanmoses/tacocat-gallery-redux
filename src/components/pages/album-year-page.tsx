@@ -13,7 +13,7 @@ interface AlbumPageProps {
 /**
  * Year album page (like the one at the "2001" URL path)
  */
-export const YearAlbumPage: React.StatelessComponent<AlbumPageProps> = ({
+export const YearAlbumPage: React.FunctionComponent<AlbumPageProps> = ({
 	album
 }) => (
 	<Site.Page year={album.year}>

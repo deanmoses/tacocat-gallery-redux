@@ -15,7 +15,7 @@ interface ComponentProps {
 /**
  * Root album (the one at the "/" URL path) page
  */
-export const RootAlbumPage: React.StatelessComponent<ComponentProps> = ({
+export const RootAlbumPage: React.FunctionComponent<ComponentProps> = ({
 	album
 }) => {
 	let albums = separateYearAlbums(album.albums);

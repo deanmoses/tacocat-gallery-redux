@@ -15,7 +15,7 @@ interface ComponentProps {
 /**
  * Day/week/leaf album pages (like the one at the "2001/12-31" URL path)
  */
-export const DayAlbumPage: React.StatelessComponent<ComponentProps> = ({
+export const DayAlbumPage: React.FunctionComponent<ComponentProps> = ({
 	album
 }) => (
 	<Site.Page className="weekalbumtype" year={album.year}>

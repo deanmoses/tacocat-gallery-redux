@@ -14,7 +14,7 @@ interface ComponentProps {
 /**
  * Component that displays the year's firsts and the child albums' thumbnails
  */
-export const FirstsAndThumbs: React.StatelessComponent<ComponentProps> = ({
+export const FirstsAndThumbs: React.FunctionComponent<ComponentProps> = ({
 	album
 }) => {
 	const { nonDayAlbums, dayAlbums } = separateDayAlbums(album.albums);

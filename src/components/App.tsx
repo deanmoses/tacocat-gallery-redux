@@ -13,7 +13,7 @@ import LogPageView from '@src/components/containers/log-page-view';
 /**
  * The root component of the application
  */
-export const App: React.StatelessComponent = () => (
+export const App: React.FunctionComponent = () => (
 	<Router hashType="noslash">
 		<div>
 			{/* Google Analytics*/}

@@ -31,7 +31,7 @@ export interface ComponentProps {
  * Component that displays plain text either read-only or editable if
  * the system is in edit mode.
  */
-export const EditableText: React.StatelessComponent<ComponentProps> = ({
+export const EditableText: React.FunctionComponent<ComponentProps> = ({
 	text,
 	className,
 	editMode = false,

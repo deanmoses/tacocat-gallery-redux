@@ -14,7 +14,7 @@ interface ComponentProps {
 /**
  * Generic album page, should be able to render any type of album
  */
-export const GenericAlbumPage: React.StatelessComponent<ComponentProps> = ({
+export const GenericAlbumPage: React.FunctionComponent<ComponentProps> = ({
 	album
 }) => (
 	<Site.Page year={album.year}>

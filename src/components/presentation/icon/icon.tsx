@@ -33,7 +33,7 @@ type ComponentProps = {
 /**
  * Icon component
  */
-export const Icon: React.StatelessComponent<ComponentProps> = ({
+export const Icon: React.FunctionComponent<ComponentProps> = ({
 	path,
 	viewBox = '0 0 20 20', // The viewBox is tuned to work with the Entypo icon set http://www.entypo.com/.  Other icon sets can be used, but I may have to change the viewBox
 	height = '1em',
