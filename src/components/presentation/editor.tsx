@@ -1,11 +1,17 @@
 import * as React from 'react';
-import ReactQuill from 'react-quill';
-import { MyLink } from '@src/components/presentation/quill-link';
 
-// This is simply to use MyLink so that TypeScript compiler doesn't complain
-// Importing MyLink is simply so that it loads in the module and registers
-// the MyLink class with the Quill editor, to customize the handling of hrefs.
-MyLink;
+// Lazy load Quill.  This causes Webpack to create a separate bundle for it and its dependencies
+const ReactQuill = React.lazy(() => import('react-quill'));
+
+// Lazy load MyLink.  This causes Webpack to create a separate bundle for it and its dependencies
+async function loadLazily() {
+	const MyLink = await import('@src/components/presentation/quill-link');
+	// This is simply to use MyLink so that TypeScript compiler doesn't complain
+	// Importing MyLink is simply so that it loads in the module and registers
+	// the MyLink class with the Quill editor, to customize the handling of hrefs.
+	MyLink;
+}
+loadLazily();
 
 /**
  * Component properties
@@ -48,14 +54,18 @@ export const Editor: React.FunctionComponent<ComponentProps> = ({
 		}
 	};
 	return (
-		<ReactQuill
-			theme="bubble" // The "bubble" theme is the one that makes the toolbar pop up when text is selected, rather than be there permanently
-			modules={modules}
-			formats={formats}
-			value={html}
-			className={className}
-			onChange={onChange}
-		/>
+		<div>
+    <React.Suspense fallback={<div>Loading...</div>}>
+			<ReactQuill
+				theme="bubble" // The "bubble" theme is the one that makes the toolbar pop up when text is selected, rather than be there permanently
+				modules={modules}
+				formats={formats}
+				value={html}
+				className={className}
+				onChange={onChange}
+			/>
+    </React.Suspense>
+  </div>
 	);
 };
 

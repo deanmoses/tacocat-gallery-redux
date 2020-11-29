@@ -18,4 +18,4 @@ class MyLink extends Link {
 
 Quill.register(MyLink);
 
-export { MyLink };
+export { MyLink as default};

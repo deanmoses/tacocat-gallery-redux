@@ -25,6 +25,7 @@
 		"start-css": "run-s build-css watch-css",
 		"build-css": "node-sass-chokidar src/styles/main.scss -o dist/ --source-map true --output-style compressed",
 		"watch-css": "node-sass-chokidar src/styles/main.scss -o dist/ --source-map true --watch --recursive",
+		"bundle-stats": "webpack --profile --json > stats.json",
 		"start-mockapi": "json-server --watch src/api/db.json --port 3001",
 		"test": "jest",
 		"deploy-staging": "rsync -r -a -v --delete --exclude '.DS_Store' --exclude 'mockdata' dist/ deanmoses@tacocat.com:~/tacocat.com/p3",
@@ -44,7 +45,8 @@
 		"redux": "^4.0.5",
 		"redux-devtools-extension": "^2.13.8",
 		"redux-persist": "^6.0.0",
-		"redux-thunk": "^2.3.0"
+		"redux-thunk": "^2.3.0",
+		"webpack-bundle-analyzer": "^4.1.0"
 	},
 	"devDependencies": {
 		"@types/jest": "^26.0.15",

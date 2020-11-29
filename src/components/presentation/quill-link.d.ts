@@ -1,1 +1,1 @@
-export class MyLink { }
+export default class MyLink { }

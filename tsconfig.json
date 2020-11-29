@@ -1,7 +1,11 @@
 {
     "compilerOptions": {
         "alwaysStrict": true,
-        "module": "commonjs",
+        // I was using commonjs, but that doesn't support dynamic module loading, which
+        // is needed to allow webpack to split code into bundles and lazy load them.
+        // This does NOT affect the output format, which is specified by "target".
+        "module": "esnext",
+        "moduleResolution": "node",
         "noEmitOnError": true,
         "noFallthroughCasesInSwitch": true,
         "noImplicitAny": true,
@@ -9,7 +13,10 @@
         "noImplicitThis": true,
         "noUnusedLocals": true,
         "noUnusedParameters": true,
-        "removeComments": true,
+        // Webpack uses magic comments to control how code is split into bundles, 
+        // such as /* webpackChunkName: "my-chunk-name" */).
+        // Don't let TypeScript remove comments, it'll break Webpack code splitting.
+        "removeComments": false,
         "sourceMap": true,
         "target": "es6",
         "jsx": "react",
