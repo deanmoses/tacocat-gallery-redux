@@ -23,6 +23,23 @@
 // each year, root and search should move to the latest year
 .root,
 .search,
+#page-container[data-year="2021"] {
+	background-color: #94949c;
+
+	.header,
+	.month > h1 {
+		background-color: #f7de5a;
+	}
+
+	.btn {
+		background-color: #cec68c;
+	}
+
+	.sidebar {
+		background-color: #838470;
+	}
+}
+
 #page-container[data-year="2020"] {
 	background-color: #144d7f;
 
