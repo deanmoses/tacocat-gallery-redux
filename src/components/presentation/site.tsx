@@ -22,8 +22,12 @@ export const Page: React.FunctionComponent<PageProps> = ({
 	children,
 	className = '',
 	showFooter = true,
-	year = 2018
+	year
 }) => {
+	if (!year) {
+		var d = new Date();
+		year = d.getFullYear();
+	}
 	return (
 		<div id="page-container" data-year={year}>
 			<div id="page-contents" className={className}>
@@ -39,7 +43,7 @@ export const Page: React.FunctionComponent<PageProps> = ({
 };
 
 /**
- * Pgae / site header bar
+ * Page / site header bar
  */
 type HeaderProps = {
 	/**
@@ -139,7 +143,9 @@ export const PageTitle: React.FunctionComponent<PageTitleProps> = ({
 	// Set the browser title
 	document.title = !!shortTitle
 		? shortTitle
-		: !!title ? title : Config.siteShortTitle();
+		: !!title
+		? title
+		: Config.siteShortTitle();
 
 	if (!!editPath) {
 		return (
@@ -174,9 +180,9 @@ export const PageTitle: React.FunctionComponent<PageTitleProps> = ({
 type FullPageMessageProps = {
 	readonly children: any;
 };
-export const FullPageMessage: React.FunctionComponent<
-	FullPageMessageProps
-> = ({ children }) => <div className="fullPageMessage">{children}</div>;
+export const FullPageMessage: React.FunctionComponent<FullPageMessageProps> = ({
+	children
+}) => <div className="fullPageMessage">{children}</div>;
 
 /**
  * Search icon for navigating to search screen
